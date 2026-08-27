@@ -45,6 +45,20 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-journey-paper: var(--journey-paper);
+  --color-journey-surface: var(--journey-surface);
+  --color-journey-ink: var(--journey-ink);
+  --color-journey-ink-soft: var(--journey-ink-soft);
+  --color-journey-line: var(--journey-line);
+  --color-journey-line-strong: var(--journey-line-strong);
+  --color-journey-accent: var(--journey-accent);
+  --color-journey-accent-soft: var(--journey-accent-soft);
+  --color-journey-warm: var(--journey-warm);
+  --color-journey-warm-soft: var(--journey-warm-soft);
+  --color-journey-flag: var(--journey-flag);
+  --color-journey-flag-soft: var(--journey-flag-soft);
+  --font-journey-mono: var(--font-space-mono);
+  --font-journey-serif: var(--font-newsreader);
 }
 
 :root {
@@ -80,6 +94,18 @@
   --sidebar-accent-foreground: #171717;
   --sidebar-border: #e5e5e5;
   --sidebar-ring: #a1a1a1;
+  --journey-paper: #edefe9;
+  --journey-surface: #f7f8f3;
+  --journey-ink: #1f2420;
+  --journey-ink-soft: #56615b;
+  --journey-line: #c9cfc3;
+  --journey-line-strong: #a9b29f;
+  --journey-accent: #2b6e63;
+  --journey-accent-soft: #dce7e1;
+  --journey-warm: #c97a2e;
+  --journey-warm-soft: #f3e1cb;
+  --journey-flag: #b0492e;
+  --journey-flag-soft: #f1dad1;
 }
 
 .dark {
@@ -114,6 +140,18 @@
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: color-mix(in oklab, #ffffff 10%, transparent);
   --sidebar-ring: #525252;
+  --journey-paper: #141815;
+  --journey-surface: #1b211d;
+  --journey-ink: #e7e9e1;
+  --journey-ink-soft: #9aa398;
+  --journey-line: #2b322c;
+  --journey-line-strong: #3a4339;
+  --journey-accent: #5fbfae;
+  --journey-accent-soft: #1e332e;
+  --journey-warm: #e3a55a;
+  --journey-warm-soft: #3a2e1c;
+  --journey-flag: #e08668;
+  --journey-flag-soft: #3a241c;
 }
 
 @layer base {
