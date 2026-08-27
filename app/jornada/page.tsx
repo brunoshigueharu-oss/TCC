@@ -2,6 +2,7 @@ import { Newsreader, Space_Mono } from "next/font/google";
 
 import { learningJourney } from "@/lib/data/learning-journey";
 import { Hero } from "./_components/hero";
+import { HorizontalTimeline } from "./_components/horizontal-timeline";
 import { TrunkCommits } from "./_components/trunk-commits";
 
 const spaceMono = Space_Mono({
@@ -22,6 +23,7 @@ export default function JornadaPage() {
       className={`${spaceMono.variable} ${newsreader.variable} flex min-h-screen flex-col bg-journey-paper font-journey-serif text-journey-ink`}
     >
       <Hero journey={learningJourney} />
+      <HorizontalTimeline branches={learningJourney.branches} />
       <TrunkCommits items={learningJourney.trunkItems} />
       <footer className="flex flex-col gap-2 px-6 py-10 font-journey-mono text-xs text-journey-ink-soft sm:px-10">
         <span>
