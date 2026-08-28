@@ -158,3 +158,14 @@ Dentro da `HorizontalTimeline`: um tronco horizontal (linha) atravessa a seção
 
 - **VPN vs. VPS**: o relato original citou "VPN"; mantido como **VPS** por ser a leitura tecnicamente coerente com "hospedar um site" — não confirmado literalmente pelo autor. Revisar se necessário.
 - **Citação do Bruno Higashi's Mind**: não é uma fala literal transcrita — é uma síntese do que foi dito. Por isso entra como `reflection` (texto de destaque), sem aspas de citação direta.
+
+## Como construído (diferenças em relação a esta spec)
+
+Registrado após a implementação completa, para a spec não ficar desatualizada em relação ao código real:
+
+- **Sem `layout.tsx`**: a rota não tem sub-páginas, então as fontes (`next/font/google`) são aplicadas direto em `page.tsx`, sem um arquivo de layout dedicado. Simplificação decidida na fase de plano, comunicada na época — a spec nunca foi atualizada para refletir isso.
+- **`horizontal-timeline.tsx` continua Server Component.** O único Client Component da rota é `app/jornada/_components/scroll-shell.tsx` (não previsto nesta spec) — ele encapsula só o contêiner de rolagem (ref + listener de `wheel` + barra de progresso), recebendo o conteúdo de `horizontal-timeline.tsx` como `children`. Isso preserva `BranchStation` e a lista de estações como Server Components de verdade.
+- **`commits: z.array(commitSchema)` sem `.min(1)`**: necessário para a branch "Produção Musical", que ainda não tem nenhum commit (`commits: []`). A spec original listava `.min(1)`, o que teria quebrado esse caso.
+- **Token faltante nesta lista**: `--color-journey-surface` (fundo dos cards) também foi adicionado junto dos outros `journey-*`.
+- **Mecânica de altura mudou**: a Task de revisão final encontrou um bug real de recorte — com altura fixa (`h-[75vh]`) + `overflow-y: hidden`, o conteúdo do card mais longo ("Bruno Higashi's Mind") ficava invisível em qualquer altura de janela realista, sem nenhum indício visual. A implementação final usa **CSS Grid** (`grid-flow-col` com 3 linhas de grid compartilhadas, a do meio recebendo o tronco/pontos), com `minmax(37.5vh, auto)` nas linhas de conteúdo — 75vh vira uma altura *mínima*, não um teto, então nada é cortado, e o tronco fica estruturalmente alinhado entre as 6 estações (garantido pela grade, não coincidência numérica). O tronco deixou de ser uma única linha absoluta e passou a ser um segmento por coluna, unidos pela mesma linha de grade.
+- **Barra de progresso no topo, não na base**: consequência do ponto anterior — a seção da timeline ficou mais alta que a viewport típica (conteúdo cresce conforme o card mais longo), então uma barra fixada na base ficava abaixo da dobra na maior parte do tempo. Movida para o topo da seção, opção já prevista nesta spec ("no topo ou na base").
