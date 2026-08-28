@@ -41,7 +41,7 @@ Sem verde/âmbar/vermelho, `Branch["status"]` e `commit.kind` se diferenciam só
 - **`insight`**: mesma borda de `ativo`, mas o dot ganha um anel ao redor (`ring-2 ring-offset-2 ring-journey-line-strong`); o `reflection` continua em itálico — já é o suficiente pra destacar sem cor.
 - **`nao-iniciado`**: borda tracejada em `journey-line`, dot vazado (contorno `journey-ink-soft`, fundo `journey-surface`) — igual a hoje, só recolorido.
 - **`commit.kind === "flag"`**: em vez do dot ferrugem, o label do commit recebe sublinhado ondulado (`underline decoration-wavy underline-offset-4`) em `journey-ink-soft`; dot volta a usar a cor neutra do status da branch.
-- **`commit.kind === "insight"`**: dot preenchido `journey-ink` (em vez de âmbar) + label em `font-semibold` (peso extra é o único destaque).
+- **`commit.kind === "insight"`**: dot preenchido `journey-ink` (em vez de âmbar) + um fundo sutil (`journey-paper`, o tom da página, contra o `journey-surface` branco do card) por trás do item — como os labels de commit já são `font-bold` por padrão, não há "peso extra" possível sem inverter a hierarquia; o destaque vem do tom, não do peso.
 - `trunk-commits.tsx`: a seta `→` (hoje `text-journey-accent`) passa a `text-journey-ink-soft`.
 
 ## Correção do bug — mecânica de scroll
@@ -90,3 +90,4 @@ lib/data/learning-journey.ts                 # heroTitle novo
 - **Valores de cor**: os hexadecimais da paleta (`#f5f5f7`, `#1d1d1f`, `#6e6e73`, `#d2d2d7`, `#86868b`) replicam os tokens de cinza publicamente usados no design da Apple — não são uma aproximação livre.
 - **Fallback mobile pula o pin, não só desativa a transição**: decisão de implementação (não perguntada explicitamente) — presa por várias alturas de viewport em tela pequena tende a ficar ruim; a alternativa (tira horizontal simples) preserva a usabilidade em celular.
 - **Cards com overflow interno como salvaguarda**: mesmo com o teto de altura calculado a partir da viewport (não mais do conteúdo), texto muito longo ainda pode, em janelas muito baixas, não caber — nesse caso o card ganha scroll interno nativo em vez de cortar conteúdo sem indício (é o oposto do bug original: aqui a affordance é visível).
+- **Correção durante o plano**: o destaque do commit `insight` foi trocado de "peso extra (`font-semibold`)" para um fundo sutil (`journey-paper` sobre `journey-surface`) — os labels de commit já são `font-bold` por padrão, então `font-semibold` teria reduzido o peso em vez de aumentá-lo.
