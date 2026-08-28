@@ -29,9 +29,19 @@ export function ScrollShell({ children, "aria-label": ariaLabel }: ScrollShellPr
 
     if (!prefersReducedMotion) {
       handleWheel = (event: WheelEvent) => {
+        if (event.deltaY === 0 || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+
+        const LINE_HEIGHT = 16;
+        const delta =
+          event.deltaMode === 1
+            ? event.deltaY * LINE_HEIGHT
+            : event.deltaMode === 2
+              ? event.deltaY * container.clientHeight
+              : event.deltaY;
+
         const { scrollLeft, scrollWidth, clientWidth } = container;
         const maxScrollLeft = scrollWidth - clientWidth;
-        const scrollingForward = event.deltaY > 0;
+        const scrollingForward = delta > 0;
         const atStart = scrollLeft <= 0;
         const atEnd = scrollLeft >= maxScrollLeft - 1;
 
@@ -40,7 +50,7 @@ export function ScrollShell({ children, "aria-label": ariaLabel }: ScrollShellPr
         }
 
         event.preventDefault();
-        container.scrollLeft += event.deltaY;
+        container.scrollLeft += delta;
       };
       container.addEventListener("wheel", handleWheel, { passive: false });
     }
@@ -62,7 +72,7 @@ export function ScrollShell({ children, "aria-label": ariaLabel }: ScrollShellPr
       >
         {children}
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-journey-line">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-journey-line">
         <div
           className="h-full bg-journey-accent transition-[width] duration-150"
           style={{ width: `${progress * 100}%` }}
