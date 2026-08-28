@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { cn } from "@/lib/utils";
 import type { Branch } from "@/lib/data/learning-journey";
 import { BranchStation } from "./branch-station";
@@ -17,23 +18,23 @@ export function HorizontalTimeline({ branches }: { branches: Branch[] }) {
       className="relative min-h-[75vh] w-full border-y border-journey-line bg-journey-paper"
     >
       <ScrollShell aria-label="Linha do tempo horizontal da jornada com o Claude Code">
-        <div className="flex min-h-[75vh] w-max items-stretch px-16">
+        <div className="grid w-max auto-cols-[340px] grid-flow-col grid-rows-[minmax(37.5vh,auto)_auto_minmax(37.5vh,auto)] px-16">
           {branches.map((branch, index) => (
-            <div key={branch.id} className="flex w-[340px] shrink-0 flex-col items-center">
-              <div className="flex flex-1 items-end justify-center pb-3">
+            <Fragment key={branch.id}>
+              <div className="flex items-end justify-center pb-3">
                 {index % 2 === 0 ? <BranchStation branch={branch} /> : null}
               </div>
-              <div className="relative flex w-full items-center justify-center">
+              <div className="relative flex items-center justify-center">
                 <span className="h-px w-full bg-journey-line-strong" aria-hidden />
                 <span
                   className={cn("absolute size-3 rounded-full", STATUS_DOT[branch.status])}
                   aria-hidden
                 />
               </div>
-              <div className="flex flex-1 items-start justify-center pt-3">
+              <div className="flex items-start justify-center pt-3">
                 {index % 2 !== 0 ? <BranchStation branch={branch} /> : null}
               </div>
-            </div>
+            </Fragment>
           ))}
         </div>
       </ScrollShell>
