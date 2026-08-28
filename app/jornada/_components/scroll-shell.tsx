@@ -52,13 +52,13 @@ export function ScrollShell({ children, "aria-label": ariaLabel }: ScrollShellPr
   }, []);
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative w-full">
       <div
         ref={containerRef}
         role="group"
         aria-label={ariaLabel}
         tabIndex={0}
-        className="h-full w-full overflow-x-auto overflow-y-hidden focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-journey-accent"
+        className="w-full overflow-x-auto focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-journey-accent"
       >
         {children}
       </div>
