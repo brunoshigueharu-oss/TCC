@@ -59,27 +59,44 @@
   --color-journey-flag-soft: var(--journey-flag-soft);
   --font-journey-mono: var(--font-space-mono);
   --font-journey-serif: var(--font-newsreader);
+
+  /* Hub — espelha a coleção "Paleta IDV" do Figma (cor/...) */
+  --color-fundo: var(--hub-fundo);
+  --color-texto: var(--hub-texto);
+  --color-texto-secundario: var(--hub-texto-secundario);
+  --color-linha: var(--hub-linha);
+  --color-superficie: var(--hub-superficie);
+  --color-superficie-forte: var(--hub-superficie-forte);
+  --color-moldura: var(--hub-moldura);
+  --color-desativado: var(--hub-desativado);
+  --color-acao: var(--hub-acao);
+  --color-trilha: var(--hub-trilha);
+  --color-pratica: var(--hub-pratica);
+  --color-comunidade: var(--hub-comunidade);
+  --font-display: var(--font-instrument-sans);
+  --font-texto: var(--font-figtree);
 }
 
+/* Tokens do shadcn alinhados à "Paleta IDV" do hub (primário = verde-água/ação). */
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0a;
+  --foreground: #1b1f3b;
   --card: #ffffff;
-  --card-foreground: #0a0a0a;
+  --card-foreground: #1b1f3b;
   --popover: #ffffff;
-  --popover-foreground: #0a0a0a;
-  --primary: #171717;
-  --primary-foreground: #fafafa;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
+  --popover-foreground: #1b1f3b;
+  --primary: #14b38e;
+  --primary-foreground: #1b1f3b;
+  --secondary: #f1f2f6;
+  --secondary-foreground: #1b1f3b;
+  --muted: #f1f2f6;
+  --muted-foreground: #5a5e74;
+  --accent: #f1f2f6;
+  --accent-foreground: #1b1f3b;
   --destructive: #e7000b;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #a1a1a1;
+  --border: #d5d7e0;
+  --input: #d5d7e0;
+  --ring: #14b38e;
   --chart-1: #f54900;
   --chart-2: #009689;
   --chart-3: #104e64;
@@ -106,6 +123,19 @@
   --journey-warm-soft: #f3e1cb;
   --journey-flag: #b0492e;
   --journey-flag-soft: #f1dad1;
+  --hub-fundo: #ffffff;
+  --hub-texto: #1b1f3b;
+  --hub-texto-secundario: #5a5e74;
+  --hub-linha: #d5d7e0;
+  --hub-superficie: #f1f2f6;
+  --hub-superficie-forte: #e3e5ec;
+  /* Fundo de fora da coluna de celular no desktop (só protótipo) */
+  --hub-moldura: #4a4a4a;
+  --hub-desativado: #9a9dae;
+  --hub-acao: #14b38e;
+  --hub-trilha: #f5ee4a;
+  --hub-pratica: #ff48b0;
+  --hub-comunidade: #0b8fe0;
 }
 
 .dark {
