@@ -43,7 +43,7 @@ export function ReplyForm({ postId }: ReplyFormProps) {
     <form
       onSubmit={form.handleSubmit(handleReply)}
       noValidate
-      className="sticky bottom-0 z-10 flex flex-col gap-2 border-t border-linha bg-fundo px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))]"
+      className="sticky bottom-0 z-10 flex flex-col gap-2 border-t border-linha bg-fundo px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] lg:px-8 lg:pb-4"
     >
       <Controller
         name="body"

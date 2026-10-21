@@ -30,7 +30,7 @@ export function SearchResults({ results }: SearchResultsProps) {
 
           return (
             <li key={`${result.kind}-${result.id}`}>
-              <Link href={result.href} className="flex gap-3 px-4 py-3">
+              <Link href={result.href} className="flex gap-3 px-4 py-3 lg:gap-4 lg:px-5 lg:py-4 lg:transition-colors lg:hover:bg-superficie">
                 <span
                   aria-hidden
                   className={cn(

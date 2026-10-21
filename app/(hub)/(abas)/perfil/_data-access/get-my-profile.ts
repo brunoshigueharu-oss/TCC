@@ -1,5 +1,6 @@
 import "server-only";
 
+import { countUnreadNotifications } from "@/lib/data/notificacoes";
 import { CURRENT_USERNAME, findPerson, type Person } from "@/lib/data/pessoas";
 import { profile, type Profile } from "@/lib/data/perfil";
 import { findCurrentLesson, getModuleProgress, track } from "@/lib/data/trilha";
@@ -19,6 +20,7 @@ export type MyProfileData = {
   profile: Profile;
   track: TrackSummary;
   weeklyRank: number;
+  unreadNotifications: number;
 };
 
 /**
@@ -47,5 +49,6 @@ export async function getMyProfile(): Promise<MyProfileData> {
       currentLessonId: current?.lesson.id ?? null,
     },
     weeklyRank: myEntry?.position ?? ranking.length,
+    unreadNotifications: countUnreadNotifications(),
   };
 }

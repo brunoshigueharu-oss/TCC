@@ -42,7 +42,7 @@ export default async function PostPage({
   return (
     <>
       <BackBar href="/comunidade" label="Comunidade" action={<PostMenu postId={post.id} />} />
-      <main className="flex flex-1 flex-col gap-7 pt-5 pb-8">
+      <main className="flex flex-1 flex-col gap-7 pt-5 pb-8 lg:px-8 lg:pt-8">
         {isJustReported ? (
           <SurfaceCard role="status" className="flex items-start gap-3 p-4">
             <CircleCheck aria-hidden className="size-5 shrink-0 text-acao" strokeWidth={2} />

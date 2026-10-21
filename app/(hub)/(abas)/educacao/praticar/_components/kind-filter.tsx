@@ -8,7 +8,7 @@ type KindFilterProps = {
 /** Filtro por tipo de atividade. O tipo escolhido fica na URL (`?tipo=`). */
 export function KindFilter({ active }: KindFilterProps) {
   return (
-    <nav aria-label="Filtrar por tipo" className="px-4">
+    <nav aria-label="Filtrar por tipo" className="px-4 lg:px-0">
       <ul className="flex flex-wrap gap-2">
         <li>
           <Chip href="/educacao/praticar" isActive={active === null} scroll={false}>

@@ -24,20 +24,23 @@ export default async function ProficiencyPage() {
       <PageHeader title={proficiency.title} subtitle={proficiency.subtitle} icon={Award} tone="trilha">
         <EducationTabs active="proficiencia" />
       </PageHeader>
-      <main className="flex flex-col gap-7 pt-6 pb-8">
-        <p className="px-4 text-[15px] leading-relaxed">{proficiency.intro}</p>
+      {/* Computador: regras do teste à esquerda; selo e botão à direita. */}
+      <main className="flex flex-col gap-7 pt-6 pb-8 lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start lg:gap-x-8 lg:gap-y-6 lg:pb-0">
+        <p className="px-4 text-[15px] leading-relaxed lg:col-span-2 lg:max-w-[720px] lg:px-0">{proficiency.intro}</p>
         <TestDetails
           prerequisite={proficiency.prerequisite}
           totalMinutes={totalMinutes}
           totalQuestions={totalQuestions}
           passingPercent={proficiency.passingPercent}
         />
-        <BadgeCard name={proficiency.badge.name} description={proficiency.badge.description} />
-        <div className="flex flex-col gap-2 px-4">
-          <p className="text-xs text-texto-secundario">
-            O teste está liberado. A duração é uma referência: responda no seu ritmo.
-          </p>
-          <ActionLink href="/educacao/proficiencia/prova?questao=1">Iniciar teste</ActionLink>
+        <div className="contents lg:flex lg:flex-col lg:gap-6">
+          <BadgeCard name={proficiency.badge.name} description={proficiency.badge.description} />
+          <div className="flex flex-col gap-2 px-4 lg:px-0">
+            <p className="text-xs text-texto-secundario">
+              O teste está liberado. A duração é uma referência: responda no seu ritmo.
+            </p>
+            <ActionLink href="/educacao/proficiencia/prova?questao=1">Iniciar teste</ActionLink>
+          </div>
         </div>
       </main>
     </>

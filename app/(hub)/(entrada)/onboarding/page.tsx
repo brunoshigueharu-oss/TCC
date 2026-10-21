@@ -23,11 +23,11 @@ export default async function OnboardingPage({ searchParams }: PageProps<"/onboa
   return (
     <>
       <BrandHeader />
-      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6">
-        <SurfaceCard className="flex flex-col gap-4 p-4">
+      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6 lg:flex-none lg:gap-6 lg:px-6 lg:pt-0 lg:pb-0">
+        <SurfaceCard className="flex flex-col gap-4 p-4 lg:gap-5 lg:p-6">
           <StepIndicator current={position} labels={steps.map(({ shortLabel }) => shortLabel)} />
           <div className="flex flex-col gap-1">
-            <h1 className="font-display text-[22px] leading-tight font-bold">{step.title}</h1>
+            <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">{step.title}</h1>
             <p className="text-sm text-texto-secundario">{step.description}</p>
           </div>
         </SurfaceCard>

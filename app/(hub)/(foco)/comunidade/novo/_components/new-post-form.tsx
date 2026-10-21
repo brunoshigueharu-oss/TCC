@@ -77,7 +77,7 @@ export function NewPostForm({ tagOptions, lessonOptions }: NewPostFormProps) {
       noValidate
       className="flex flex-1 flex-col"
     >
-      <main className="flex flex-1 flex-col gap-5 pt-5 pb-8">
+      <main className="flex flex-1 flex-col gap-5 pt-5 pb-8 lg:px-8 lg:pt-8">
         <SurfaceCard className="p-4">
           <FieldGroup>
             <Controller
@@ -199,7 +199,7 @@ export function NewPostForm({ tagOptions, lessonOptions }: NewPostFormProps) {
                     id="texto"
                     placeholder="Descreva sua dúvida ou o que quer discutir. Se puder, cole o prompt que usou."
                     aria-invalid={fieldState.invalid}
-                    className={cn(inputClass, "min-h-36 py-2.5")}
+                    className={cn(inputClass, "min-h-36 py-2.5 lg:min-h-56")}
                   />
                   <FieldError errors={[fieldState.error]} />
                 </Field>
@@ -238,17 +238,17 @@ export function NewPostForm({ tagOptions, lessonOptions }: NewPostFormProps) {
         </SurfaceCard>
 
         {form.formState.errors.root?.message ? (
-          <p role="alert" className="mx-4 text-sm text-destructive">
+          <p role="alert" className="mx-4 text-sm text-destructive lg:mx-0">
             {form.formState.errors.root.message}
           </p>
         ) : null}
       </main>
 
-      <div className="sticky bottom-0 z-10 border-t border-linha bg-fundo px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+      <div className="sticky bottom-0 z-10 border-t border-linha bg-fundo px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] lg:flex lg:justify-end lg:px-8 lg:pb-4">
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
+          className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90 lg:w-auto lg:min-w-48 lg:px-8"
         >
           {isSubmitting ? "Publicando…" : "Publicar"}
         </Button>

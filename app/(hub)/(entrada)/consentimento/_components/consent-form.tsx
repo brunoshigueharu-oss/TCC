@@ -54,7 +54,7 @@ export function ConsentForm({ items, termsSummary }: ConsentFormProps) {
                 name={item.id}
                 control={form.control}
                 render={({ field }) => (
-                  <Field orientation="horizontal" className="items-center gap-4 px-4 py-3.5">
+                  <Field orientation="horizontal" className="items-center gap-4 px-4 py-3.5 lg:px-6 lg:py-4">
                     <FieldContent className="gap-0.5">
                       <FieldLabel htmlFor={`consent-${item.id}`} className="text-[15px] font-semibold">
                         {item.title}
@@ -79,12 +79,12 @@ export function ConsentForm({ items, termsSummary }: ConsentFormProps) {
       </SurfaceCard>
 
       {serverMessage ? (
-        <p role="alert" className="px-4 text-sm text-destructive">
+        <p role="alert" className="px-4 text-sm text-destructive lg:px-0">
           {serverMessage}
         </p>
       ) : null}
 
-      <div className="mt-auto px-4">
+      <div className="mt-auto px-4 lg:px-0">
         <Button type="submit" disabled={isPending} className={submitButtonClass}>
           {isPending ? "Salvando…" : "Aceitar e continuar"}
         </Button>

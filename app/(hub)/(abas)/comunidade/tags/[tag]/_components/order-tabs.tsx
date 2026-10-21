@@ -15,8 +15,8 @@ type OrderTabsProps = {
 /** Alternância Recentes / Mais úteis; a ordem fica na URL (`?ordem=`). */
 export function OrderTabs({ options }: OrderTabsProps) {
   return (
-    <nav aria-label="Ordenar posts" className="mx-4">
-      <ul className="grid grid-cols-2 gap-1 rounded-2xl bg-fundo p-1 ring-1 ring-linha/70">
+    <nav aria-label="Ordenar posts" className="mx-4 lg:mx-0">
+      <ul className="grid grid-cols-2 gap-1 rounded-2xl bg-fundo p-1 ring-1 ring-linha/70 lg:w-80">
         {options.map((option) => (
           <li key={option.label}>
             <Link

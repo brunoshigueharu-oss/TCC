@@ -14,8 +14,8 @@ export function PersonSummary({ person, isCurrentUser }: PersonSummaryProps) {
   const [topBadge] = person.badges;
 
   return (
-    <SurfaceCard className="flex flex-col gap-4 p-4">
-      <div className="flex items-center gap-4">
+    <SurfaceCard className="flex flex-col gap-4 p-4 lg:p-5">
+      <div className="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-3">
         <PersonAvatar name={person.name} tone={person.avatarTone} size="lg" />
         <div className="flex min-w-0 flex-col gap-0.5">
           <h1 className="font-display text-[22px] leading-tight font-bold">{person.name}</h1>

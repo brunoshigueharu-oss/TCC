@@ -1,5 +1,12 @@
 import { z } from "zod";
 
+/**
+ * Protótipo: com `false`, o fluxo de entrada (login, cadastro, onboarding,
+ * nivelamento) aceita qualquer coisa — até campos vazios — e só avança.
+ * Troque para `true` para religar as validações.
+ */
+export const IS_ENTRY_VALIDATION_ENABLED = false;
+
 /** Tamanho mínimo da senha (repetido no texto de ajuda do cadastro). */
 export const PASSWORD_MIN_LENGTH = 8;
 

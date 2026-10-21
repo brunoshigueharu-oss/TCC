@@ -16,7 +16,7 @@ type RankingListProps = {
  */
 export function RankingList({ entries }: RankingListProps) {
   return (
-    <SurfaceCard>
+    <SurfaceCard className="lg:col-start-1 lg:row-start-2">
       <ol className="divide-y divide-linha">
         {entries.map((entry) => (
           <li key={entry.username}>
@@ -24,8 +24,9 @@ export function RankingList({ entries }: RankingListProps) {
               href={entry.isCurrentUser ? "/perfil" : `/comunidade/pessoas/${entry.username}`}
               aria-current={entry.isCurrentUser ? "true" : undefined}
               className={cn(
-                "flex min-h-16 items-center gap-3 px-4 py-3",
+                "flex min-h-16 items-center gap-3 px-4 py-3 lg:px-5",
                 entry.isCurrentUser && "bg-trilha/30",
+                !entry.isCurrentUser && "lg:transition-colors lg:hover:bg-superficie",
               )}
             >
               <span className="w-6 shrink-0 font-display text-lg font-bold">{entry.position}º</span>

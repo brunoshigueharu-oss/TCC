@@ -13,9 +13,9 @@ export function CourseCard({ course }: CourseCardProps) {
   const hasStarted = course.completedLessons > 0;
 
   return (
-    <Link href={`/educacao/cursos/${course.id}`} className="flex gap-4 p-4">
-      <CourseCover cover={course.cover} className="size-[88px] shrink-0 rounded-xl" />
-      <span className="flex min-w-0 flex-1 flex-col gap-1">
+    <Link href={`/educacao/cursos/${course.id}`} className="flex gap-4 p-4 lg:h-full lg:flex-col lg:gap-0 lg:p-0">
+      <CourseCover cover={course.cover} className="size-[88px] shrink-0 rounded-xl lg:h-36 lg:w-full lg:rounded-none" />
+      <span className="flex min-w-0 flex-1 flex-col gap-1 lg:p-4">
         <span className="font-display text-lg leading-snug font-bold">{course.title}</span>
         <span className="text-sm text-texto-secundario">por {course.author.name}</span>
         <span className="text-xs text-texto-secundario">

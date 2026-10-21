@@ -11,7 +11,7 @@ import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import type { LevelingOption } from "@/lib/data/entrada";
 import { submitButtonClass } from "../../_lib/form-styles";
-import { singleChoiceSchema, type SingleChoiceInput } from "../../_lib/schemas";
+import { IS_ENTRY_VALIDATION_ENABLED, singleChoiceSchema, type SingleChoiceInput } from "../../_lib/schemas";
 
 type LevelingFormProps = {
   questionId: string;
@@ -35,7 +35,7 @@ export function LevelingForm({
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const form = useForm<SingleChoiceInput>({
-    resolver: zodResolver(singleChoiceSchema),
+    resolver: IS_ENTRY_VALIDATION_ENABLED ? zodResolver(singleChoiceSchema) : undefined,
     defaultValues: { choice: "" },
   });
 
@@ -69,7 +69,7 @@ export function LevelingForm({
                     <label
                       key={option.letter}
                       htmlFor={inputId}
-                      className="group/option flex min-h-14 cursor-pointer items-center gap-3 px-4 py-3 transition-colors has-focus-visible:bg-superficie has-data-checked:bg-trilha/30"
+                      className="group/option flex min-h-14 cursor-pointer items-center gap-3 px-4 py-3 transition-colors lg:px-6 has-focus-visible:bg-superficie has-data-checked:bg-trilha/30"
                     >
                       <span className="sr-only">
                         <RadioGroupItem id={inputId} value={option.letter} />
@@ -87,13 +87,13 @@ export function LevelingForm({
               </RadioGroup>
             </SurfaceCard>
             {fieldState.invalid ? (
-              <FieldError errors={[fieldState.error]} className="px-4" />
+              <FieldError errors={[fieldState.error]} className="px-4 lg:px-0" />
             ) : null}
           </FieldSet>
         )}
       />
 
-      <div className="mt-auto flex flex-col gap-2 px-4">
+      <div className="mt-auto flex flex-col gap-2 px-4 lg:px-0">
         <Button type="submit" disabled={isPending} className={submitButtonClass}>
           {submitLabel}
         </Button>

@@ -5,6 +5,7 @@ import { Chip } from "@/components/chip";
 import { PageHeader } from "@/components/page-header";
 import { SectionHeading } from "@/components/section-heading";
 import { SurfaceCard } from "@/components/surface-card";
+import { cn } from "@/lib/utils";
 import { SearchForm } from "./_components/search-form";
 import { SearchResults } from "./_components/search-results";
 import {
@@ -56,8 +57,8 @@ export default async function SearchPage({ searchParams }: PageProps<"/busca">) 
       <PageHeader title="Busca" icon={Search} tone="acao">
         <SearchForm query={query} type={type} />
         {found ? (
-          <nav aria-label="Filtrar resultados" className="-mx-4">
-            <ul className="flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <nav aria-label="Filtrar resultados" className="-mx-4 lg:mx-0">
+            <ul className="flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:overflow-visible lg:px-0">
               {typeFilters.map((filter) => (
                 <li key={filter.id}>
                   <Chip href={buildSearchHref(query, filter.id)} isActive={filter.id === type}
@@ -72,7 +73,12 @@ export default async function SearchPage({ searchParams }: PageProps<"/busca">) 
         ) : null}
       </PageHeader>
 
-      <main className="flex flex-col gap-7 pt-6 pb-8">
+      <main
+        className={cn(
+          "flex flex-col gap-7 pt-6 pb-8 lg:grid lg:items-start lg:gap-8 lg:pt-8 lg:pb-0",
+          found && found.tags.length > 0 ? "lg:grid-cols-[minmax(0,1fr)_300px]" : "lg:grid-cols-1",
+        )}
+      >
         {found ? (
           <>
             <section aria-labelledby="resultados" className="flex flex-col gap-2">
@@ -95,9 +101,9 @@ export default async function SearchPage({ searchParams }: PageProps<"/busca">) 
             </section>
 
             {found.tags.length > 0 ? (
-              <section aria-labelledby="tags" className="flex flex-col gap-2">
+              <section aria-labelledby="tags" className="flex flex-col gap-2 lg:sticky lg:top-8">
                 <SectionHeading id="tags" title="Tags" icon={Hash} tone="comunidade" />
-                <ul className="flex flex-wrap gap-2 px-4">
+                <ul className="flex flex-wrap gap-2 px-4 lg:px-0">
                   {found.tags.map((tag) => (
                     <li key={tag}>
                       <Chip href={`/comunidade/tags/${tag}`}>#{tag}</Chip>
@@ -108,16 +114,16 @@ export default async function SearchPage({ searchParams }: PageProps<"/busca">) 
             ) : null}
           </>
         ) : (
-          <section aria-labelledby="sugestoes" className="flex flex-col gap-2">
+          <section aria-labelledby="sugestoes" className="flex flex-col gap-2 lg:max-w-[720px]">
             <SectionHeading id="sugestoes" title="Buscas frequentes" icon={Sparkles} tone="acao" />
-            <ul className="flex flex-wrap gap-2 px-4">
+            <ul className="flex flex-wrap gap-2 px-4 lg:px-0">
               {suggestions.map((suggestion) => (
                 <li key={suggestion}>
                   <Chip href={buildSearchHref(suggestion, "tudo")}>{suggestion}</Chip>
                 </li>
               ))}
             </ul>
-            <p className="px-4 pt-2 text-sm text-texto-secundario">
+            <p className="px-4 pt-2 text-sm text-texto-secundario lg:px-0">
               Busque por lições da trilha, posts da comunidade, minicursos e pessoas.
             </p>
           </section>

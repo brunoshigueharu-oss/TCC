@@ -11,7 +11,7 @@ import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import type { ChoiceOption } from "@/lib/data/entrada";
 import { submitButtonClass } from "../../_lib/form-styles";
-import { singleChoiceSchema, type SingleChoiceInput } from "../../_lib/schemas";
+import { IS_ENTRY_VALIDATION_ENABLED, singleChoiceSchema, type SingleChoiceInput } from "../../_lib/schemas";
 
 type OnboardingFormProps = {
   stepId: string;
@@ -30,7 +30,7 @@ export function OnboardingForm({ stepId, legend, options, nextHref }: Onboarding
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const form = useForm<SingleChoiceInput>({
-    resolver: zodResolver(singleChoiceSchema),
+    resolver: IS_ENTRY_VALIDATION_ENABLED ? zodResolver(singleChoiceSchema) : undefined,
     defaultValues: { choice: "" },
   });
 
@@ -64,7 +64,7 @@ export function OnboardingForm({ stepId, legend, options, nextHref }: Onboarding
                     <label
                       key={option.id}
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-start gap-3 px-4 py-3.5 transition-colors has-data-checked:bg-acao/15"
+                      className="flex cursor-pointer items-start gap-3 px-4 py-3.5 transition-colors lg:px-6 lg:py-4 has-data-checked:bg-acao/15"
                     >
                       <RadioGroupItem id={inputId} value={option.id} className="mt-0.5 size-5" />
                       <span className="flex flex-col gap-0.5">
@@ -77,13 +77,13 @@ export function OnboardingForm({ stepId, legend, options, nextHref }: Onboarding
               </RadioGroup>
             </SurfaceCard>
             {fieldState.invalid ? (
-              <FieldError errors={[fieldState.error]} className="px-4" />
+              <FieldError errors={[fieldState.error]} className="px-4 lg:px-0" />
             ) : null}
           </FieldSet>
         )}
       />
 
-      <div className="mt-auto px-4">
+      <div className="mt-auto px-4 lg:px-0">
         <Button type="submit" disabled={isPending} className={submitButtonClass}>
           Continuar
         </Button>

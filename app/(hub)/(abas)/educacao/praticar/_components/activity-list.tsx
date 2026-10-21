@@ -20,14 +20,24 @@ export function ActivityList({ activities }: ActivityListProps) {
         tone="pratica"
       />
 
-      <SurfaceCard>
+      {/* Computador: a lista vira grade de cartões soltos. */}
+      <SurfaceCard
+        className={
+          activities.length > 0
+            ? "lg:overflow-visible lg:rounded-none lg:bg-transparent lg:ring-0"
+            : undefined
+        }
+      >
         {activities.length > 0 ? (
-          <ul className="divide-y divide-linha">
+          <ul className="divide-y divide-linha lg:grid lg:grid-cols-2 lg:gap-4 lg:divide-y-0 xl:grid-cols-3">
             {activities.map((activity) => (
-              <li key={activity.id}>
+              <li
+                key={activity.id}
+                className="lg:overflow-hidden lg:rounded-2xl lg:bg-fundo lg:ring-1 lg:ring-linha/70"
+              >
                 <Link
                   href={`/educacao/praticar/${activity.id}`}
-                  className="flex items-center gap-3 px-4 py-3"
+                  className="flex items-center gap-3 px-4 py-3 lg:h-full lg:items-start lg:p-5"
                 >
                   <span className="flex min-w-0 flex-1 flex-col gap-1.5">
                     <span className="flex items-center justify-between gap-2">

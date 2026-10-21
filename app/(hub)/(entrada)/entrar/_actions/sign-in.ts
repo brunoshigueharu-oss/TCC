@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import type { ActionResult } from "../../_lib/action-result";
-import { loginSchema, type LoginInput } from "../../_lib/schemas";
+import { IS_ENTRY_VALIDATION_ENABLED, loginSchema, type LoginInput } from "../../_lib/schemas";
 
 /**
  * Login do protótipo: só valida os campos e leva para a Home. Na versão real,
@@ -12,7 +12,7 @@ import { loginSchema, type LoginInput } from "../../_lib/schemas";
  */
 export async function signIn(input: LoginInput): Promise<ActionResult> {
   const validation = loginSchema.safeParse(input);
-  if (!validation.success) {
+  if (IS_ENTRY_VALIDATION_ENABLED && !validation.success) {
     return {
       success: false,
       message: "Revise os campos destacados.",

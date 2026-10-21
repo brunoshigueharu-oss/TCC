@@ -24,8 +24,6 @@ const homeSchema = z.object({
     done: z.number().int().nonnegative(),
     target: z.number().int().positive(),
   }),
-  /** Avisos não lidos — vira o selo do atalho "Avisos". */
-  unreadNotifications: z.number().int().nonnegative(),
   weeklyXp: z.object({
     xp: z.number().int().nonnegative(),
     friendsRank: z.number().int().positive(),
@@ -39,7 +37,6 @@ export type HomeData = z.infer<typeof homeSchema>;
 export const homeData: HomeData = homeSchema.parse({
   user: { firstName: "Marina", level: 3, xp: 1240 },
   dailyGoal: { done: 2, target: 3 },
-  unreadNotifications: 4,
   weeklyXp: { xp: 320, friendsRank: 4 },
   openQuestions: [
     {

@@ -42,8 +42,9 @@ export default async function LessonPage({
   return (
     <>
       <BackBar href="/educacao" label={`Trilha · Módulo ${trackModule.number}`} />
-      <main className="flex flex-col gap-5 pt-5 pb-8">
-        <SurfaceCard className="flex flex-col gap-3 p-4">
+      {/* Computador: lição em coluna de leitura; dúvidas da aula ao lado. */}
+      <main className="flex flex-col gap-5 pt-5 pb-8 lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:grid-rows-[auto_auto_auto_1fr] lg:items-start lg:gap-x-8 lg:pt-6 lg:pb-0">
+        <SurfaceCard className="flex flex-col gap-3 p-4 lg:col-start-1 lg:row-start-1 lg:p-6">
           <p className="text-xs font-semibold text-texto-secundario">
             Lição {formatTwoDigits(lesson.number)} de {formatTwoDigits(trackModule.lessons.length)} ·
             Etapa {step} de {totalSteps}
@@ -52,9 +53,11 @@ export default async function LessonPage({
           <ProgressBar value={step} max={totalSteps} label="Progresso na lição" />
         </SurfaceCard>
 
-        <LessonStepContent step={lesson.steps[step - 1]} />
+        <div className="lg:col-start-1 lg:row-start-2">
+          <LessonStepContent step={lesson.steps[step - 1]} />
+        </div>
 
-        <div className="px-4">
+        <div className="px-4 lg:col-start-1 lg:row-start-3 lg:flex lg:justify-end lg:px-0">
           {isLastStep ? (
             <ActionLink href="/educacao">Concluir lição</ActionLink>
           ) : (
@@ -63,7 +66,9 @@ export default async function LessonPage({
         </div>
 
         {lesson.questionsCount > 0 ? (
-          <LessonQuestions count={lesson.questionsCount} questions={lesson.questions} />
+          <div className="lg:sticky lg:top-20 lg:col-start-2 lg:row-span-4 lg:row-start-1">
+            <LessonQuestions count={lesson.questionsCount} questions={lesson.questions} />
+          </div>
         ) : null}
       </main>
     </>

@@ -11,15 +11,15 @@ type WeeklyStatsProps = Pick<HomeData, "dailyGoal" | "weeklyXp">;
 /** "Sua semana": ilustração à esquerda, meta do dia e XP à direita. */
 export function WeeklyStats({ dailyGoal, weeklyXp }: WeeklyStatsProps) {
   return (
-    <section aria-labelledby="semana" className="flex flex-col gap-2">
+    <section aria-labelledby="semana" className="flex flex-col gap-2 lg:order-last">
       <SectionHeading id="semana" title="Sua semana" href="/perfil" icon={Flame} tone="pratica" />
 
-      <div className="mx-4 flex overflow-hidden rounded-2xl bg-fundo ring-1 ring-linha/70">
-        <div className="flex w-[42%] shrink-0 items-center justify-center rounded-r-[999px] bg-pratica/15 py-4">
+      <div className="mx-4 flex overflow-hidden rounded-2xl bg-fundo ring-1 ring-linha/70 lg:mx-0 lg:flex-col">
+        <div className="flex w-[42%] shrink-0 items-center justify-center rounded-r-[999px] bg-pratica/15 py-4 lg:w-full lg:rounded-r-none lg:rounded-b-[56px] lg:py-6">
           <BauhausShapes composition="semana" className="size-28" />
         </div>
 
-        <dl className="flex flex-1 flex-col justify-center gap-4 p-4">
+        <dl className="flex flex-1 flex-col justify-center gap-4 p-4 lg:gap-5 lg:p-5">
           <div className="flex flex-col gap-1.5">
             <dt className="text-xs font-semibold text-texto-secundario">Meta do dia</dt>
             <dd className="font-display text-lg leading-none font-bold">

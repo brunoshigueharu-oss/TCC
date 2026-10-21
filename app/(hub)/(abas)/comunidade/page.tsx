@@ -1,4 +1,4 @@
-import { CircleCheck, MessagesSquare, Plus, Users } from "lucide-react";
+import { CircleCheck, Hash, MessagesSquare, Plus, Users } from "lucide-react";
 import type { Metadata } from "next";
 
 import { ActionLink } from "@/components/action-link";
@@ -22,43 +22,59 @@ export default async function CommunityPage({ searchParams }: PageProps<"/comuni
   const isJustPublished = readParam(query.publicado) === "1";
 
   return (
-    <div className="flex flex-1 flex-col bg-superficie">
+    <div className="flex flex-1 flex-col bg-superficie lg:mx-auto lg:w-full lg:max-w-[680px] xl:max-w-[1040px]">
       <PageHeader
         title="Comunidade"
         subtitle="Dúvidas e discussões da turma"
         icon={Users}
         tone="comunidade"
       >
-        <TagFilter tags={tags} activeSlug={activeTag?.slug ?? null} />
-        <ActionLink href="/comunidade/novo" className="gap-2">
+        {/* Computador largo: o filtro sai do cabeçalho e vai para a coluna lateral. */}
+        <div className="contents xl:hidden">
+          <TagFilter tags={tags} activeSlug={activeTag?.slug ?? null} />
+        </div>
+        <ActionLink href="/comunidade/novo" className="gap-2 lg:w-fit lg:self-start">
           <Plus aria-hidden className="size-5" strokeWidth={2} />
           Criar post
         </ActionLink>
       </PageHeader>
 
-      <main className="flex flex-col gap-7 pt-7 pb-8">
-        {isJustPublished ? (
-          <SurfaceCard role="status" className="flex items-start gap-3 p-4">
-            <CircleCheck aria-hidden className="size-5 shrink-0 text-acao" strokeWidth={2} />
-            <p className="text-sm leading-[1.45]">
-              Post publicado. Neste protótipo ele não fica salvo, mas a validação foi feita.
-            </p>
-          </SurfaceCard>
-        ) : null}
+      <main className="flex flex-col gap-7 pt-7 pb-8 lg:pb-0 xl:flex-row xl:items-start xl:gap-8">
+        <div className="contents xl:flex xl:min-w-0 xl:flex-1 xl:flex-col xl:gap-7">
+          {isJustPublished ? (
+            <SurfaceCard role="status" className="flex items-start gap-3 p-4">
+              <CircleCheck aria-hidden className="size-5 shrink-0 text-acao" strokeWidth={2} />
+              <p className="text-sm leading-[1.45]">
+                Post publicado. Neste protótipo ele não fica salvo, mas a validação foi feita.
+              </p>
+            </SurfaceCard>
+          ) : null}
 
-        <section aria-labelledby="posts" className="flex flex-col gap-2">
-          <SectionHeading
-            id="posts"
-            title={activeTag ? `Posts em ${activeTag.label}` : "Posts recentes"}
-            href={activeTag ? `/comunidade/tags/${activeTag.slug}` : undefined}
-            icon={MessagesSquare}
-            tone="comunidade"
-          />
-          <PostList
-            posts={posts}
-            emptyMessage="Ainda não há posts com esta tag. Que tal abrir a primeira conversa?"
-          />
-        </section>
+          <section aria-labelledby="posts" className="flex flex-col gap-2">
+            <SectionHeading
+              id="posts"
+              title={activeTag ? `Posts em ${activeTag.label}` : "Posts recentes"}
+              href={activeTag ? `/comunidade/tags/${activeTag.slug}` : undefined}
+              icon={MessagesSquare}
+              tone="comunidade"
+            />
+            <PostList
+              posts={posts}
+              emptyMessage="Ainda não há posts com esta tag. Que tal abrir a primeira conversa?"
+            />
+          </section>
+        </div>
+
+        {/* Só no computador largo: filtro de tags fixo ao lado do feed. */}
+        <aside
+          aria-labelledby="tags-feed"
+          className="hidden xl:sticky xl:top-8 xl:flex xl:w-[328px] xl:shrink-0 xl:flex-col xl:gap-2"
+        >
+          <SectionHeading id="tags-feed" title="Filtrar por tag" icon={Hash} tone="comunidade" />
+          <SurfaceCard className="p-4">
+            <TagFilter tags={tags} activeSlug={activeTag?.slug ?? null} layout="wrap" />
+          </SurfaceCard>
+        </aside>
       </main>
     </div>
   );

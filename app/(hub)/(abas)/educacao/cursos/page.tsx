@@ -44,12 +44,12 @@ export default async function CoursesPage({ searchParams }: PageProps<"/educacao
         </form>
       </PageHeader>
 
-      <main className="flex flex-col gap-7 pt-6 pb-8">
+      <main className="flex flex-col gap-7 pt-6 pb-8 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start lg:gap-8 lg:pb-0">
         <section aria-labelledby="minicursos" className="flex flex-col gap-2">
           <SectionHeading id="minicursos" title="Minicursos" icon={GraduationCap} tone="comunidade" />
 
           <nav aria-label="Filtrar por tag" className="pb-1">
-            <ul className="flex gap-2 overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <ul className="flex gap-2 overflow-x-auto px-4 py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:px-0">
               <li>
                 <Chip href="/educacao/cursos" isActive={activeTag === null}>
                   Todos
@@ -65,11 +65,21 @@ export default async function CoursesPage({ searchParams }: PageProps<"/educacao
             </ul>
           </nav>
 
-          <SurfaceCard>
+          {/* Computador: a lista vira grade de cartões soltos. */}
+          <SurfaceCard
+            className={
+              courses.length > 0
+                ? "lg:overflow-visible lg:rounded-none lg:bg-transparent lg:ring-0"
+                : undefined
+            }
+          >
             {courses.length > 0 ? (
-              <ul className="divide-y divide-linha">
+              <ul className="divide-y divide-linha lg:grid lg:grid-cols-2 lg:gap-4 lg:divide-y-0">
                 {courses.map((course) => (
-                  <li key={course.id}>
+                  <li
+                    key={course.id}
+                    className="lg:overflow-hidden lg:rounded-2xl lg:bg-fundo lg:ring-1 lg:ring-linha/70"
+                  >
                     <CourseCard course={course} />
                   </li>
                 ))}
@@ -82,7 +92,7 @@ export default async function CoursesPage({ searchParams }: PageProps<"/educacao
           </SurfaceCard>
         </section>
 
-        <SurfaceCard className="flex flex-col gap-3 p-4">
+        <SurfaceCard className="flex flex-col gap-3 p-4 lg:sticky lg:top-8 lg:mt-[52px] lg:p-5">
           <p className="font-display text-lg leading-snug font-bold">Compartilhe o que você sabe</p>
           <p className="text-sm text-texto-secundario">
             Monte um minicurso no computador. Ele passa pela moderação antes de aparecer aqui.

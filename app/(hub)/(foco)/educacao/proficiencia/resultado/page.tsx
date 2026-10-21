@@ -30,12 +30,12 @@ export default async function ProficiencyResultPage({
   return (
     <>
       <BackBar href="/educacao" label="Teste de proficiência" />
-      <main className="flex flex-col gap-7 pt-5 pb-8">
-        <SurfaceCard as="section" aria-labelledby="titulo-resultado" className="flex flex-col items-center gap-2 px-4 pt-6 pb-5 text-center">
+      <main className="flex flex-col gap-7 pt-5 pb-8 lg:gap-8 lg:px-8 lg:pt-8">
+        <SurfaceCard as="section" aria-labelledby="titulo-resultado" className="flex flex-col items-center gap-2 px-4 pt-6 pb-5 text-center lg:px-8 lg:pt-10 lg:pb-8">
           <div className="flex h-28 w-48 items-end justify-center rounded-t-full bg-trilha/30">
             <ResultShapes isApproved={score.isApproved} className="size-24" />
           </div>
-          <h1 id="titulo-resultado" className="mt-2 font-display text-[28px] leading-tight font-bold">
+          <h1 id="titulo-resultado" className="mt-2 font-display text-[28px] leading-tight font-bold lg:text-[34px]">
             {score.isApproved ? "Você foi aprovado" : "Ainda não foi desta vez"}
           </h1>
           <p className="text-sm text-texto-secundario">
@@ -67,16 +67,16 @@ export default async function ProficiencyResultPage({
           </section>
         ) : null}
 
-        <div className="flex flex-col gap-3 px-4">
+        <div className="flex flex-col gap-3 px-4 lg:flex-row-reverse lg:justify-start lg:px-0">
           {score.isApproved ? (
-            <ActionLink href="/perfil">Ver no perfil</ActionLink>
+            <ActionLink href="/perfil" className="lg:w-56">Ver no perfil</ActionLink>
           ) : (
-            <ActionLink href="/educacao/proficiencia/prova?questao=1" className="gap-2">
+            <ActionLink href="/educacao/proficiencia/prova?questao=1" className="gap-2 lg:w-56">
               <RotateCcw aria-hidden className="size-4" strokeWidth={2.25} />
               Refazer teste
             </ActionLink>
           )}
-          <ActionLink href="/educacao" variant="secondary" className="h-12">
+          <ActionLink href="/educacao" variant="secondary" className="h-12 lg:w-56">
             Voltar à Educação
           </ActionLink>
         </div>

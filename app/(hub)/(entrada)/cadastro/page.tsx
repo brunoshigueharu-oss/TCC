@@ -13,7 +13,7 @@ export default function SignUpPage() {
   return (
     <>
       <BrandHeader />
-      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6">
+      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6 lg:flex-none lg:gap-6 lg:px-6 lg:pt-0 lg:pb-0">
         <WelcomeCard
           title="Criar conta"
           subtitle="Gratuito. Leva menos de um minuto."
@@ -24,7 +24,7 @@ export default function SignUpPage() {
           <SignUpForm />
         </SurfaceCard>
 
-        <p className="mt-auto flex items-center justify-center gap-1 px-4 text-sm">
+        <p className="mt-auto flex items-center justify-center gap-1 px-4 text-sm lg:px-0">
           Já tem cadastro?
           <Link
             href="/entrar"

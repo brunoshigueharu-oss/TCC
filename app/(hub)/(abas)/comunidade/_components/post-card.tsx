@@ -19,7 +19,7 @@ function formatVotes(count: number) {
  */
 export function PostCard({ post }: PostCardProps) {
   return (
-    <SurfaceCard as="article" className="relative flex flex-col gap-2 p-4">
+    <SurfaceCard as="article" className="relative flex flex-col gap-2 p-4 lg:p-5 lg:transition-colors lg:hover:ring-linha">
       <div className="flex items-center gap-2">
         <Link
           href={getPersonHref(post.author.username)}
@@ -34,12 +34,12 @@ export function PostCard({ post }: PostCardProps) {
         </span>
       </div>
 
-      <h3 className="text-[15px] leading-snug font-semibold">
+      <h3 className="text-[15px] leading-snug font-semibold lg:text-base">
         <Link href={`/comunidade/posts/${post.id}`} className="after:absolute after:inset-0">
           {post.title}
         </Link>
       </h3>
-      <p className="line-clamp-2 text-sm leading-[1.45] text-texto-secundario">{post.body}</p>
+      <p className="line-clamp-2 text-sm leading-[1.45] text-texto-secundario lg:text-[15px]">{post.body}</p>
 
       <ul aria-label="Tags" className="flex flex-wrap gap-1.5 pt-1">
         {post.tags.map((tag) => (

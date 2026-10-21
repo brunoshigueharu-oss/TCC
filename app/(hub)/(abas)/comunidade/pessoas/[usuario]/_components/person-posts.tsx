@@ -25,11 +25,11 @@ export function PersonPosts({ firstName, posts }: PersonPostsProps) {
           <ul className="divide-y divide-linha">
             {posts.map((post) => (
               <li key={post.id}>
-                <Link href={`/comunidade/posts/${post.id}`} className="flex flex-col gap-1.5 px-4 py-3">
+                <Link href={`/comunidade/posts/${post.id}`} className="flex flex-col gap-1.5 px-4 py-3 lg:px-5 lg:py-4 lg:transition-colors lg:hover:bg-superficie">
                   <span className="w-fit rounded-full bg-comunidade/15 px-2.5 py-0.5 text-xs font-semibold">
                     #{post.tag}
                   </span>
-                  <span className="text-sm leading-[1.4] font-semibold">{post.title}</span>
+                  <span className="text-sm leading-[1.4] font-semibold lg:text-[15px]">{post.title}</span>
                   <span className="text-xs text-texto-secundario">
                     {formatAnswers(post.answers)} · {formatLikes(post.likes)}
                   </span>

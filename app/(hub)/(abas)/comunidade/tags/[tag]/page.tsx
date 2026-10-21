@@ -43,33 +43,38 @@ export default async function TagPage({
   const { tag, posts } = data;
 
   return (
-    <>
+    <div className="contents lg:mx-auto lg:block lg:w-full lg:max-w-[680px] xl:max-w-[1040px]">
       <BackBar href={`/comunidade?tag=${tag.slug}`} label="Comunidade · Tags" />
-      <main className="flex flex-col gap-5 pt-5 pb-8">
-        <TagIntro
-          tag={tag}
-          postsCount={posts.length}
-          isFollowing={isFollowing}
-          toggleFollowHref={buildTagHref(tag.slug, order, !isFollowing)}
-        />
-        <OrderTabs
-          options={[
-            {
-              label: "Recentes",
-              href: buildTagHref(tag.slug, "recentes", isFollowing),
-              isActive: order === "recentes",
-            },
-            {
-              label: "Mais úteis",
-              href: buildTagHref(tag.slug, "uteis", isFollowing),
-              isActive: order === "uteis",
-            },
-          ]}
-        />
-        <section aria-label={`Posts com a tag ${tag.label}`}>
-          <PostList posts={posts} emptyMessage="Ainda não há posts com esta tag." />
-        </section>
+      <main className="flex flex-col gap-5 pt-5 pb-8 lg:pt-6 lg:pb-0 xl:flex-row xl:items-start xl:gap-8">
+        {/* Computador largo: o cabeçalho da tag vira coluna fixa à direita. */}
+        <div className="contents xl:sticky xl:top-20 xl:order-last xl:block xl:w-[328px] xl:shrink-0">
+          <TagIntro
+            tag={tag}
+            postsCount={posts.length}
+            isFollowing={isFollowing}
+            toggleFollowHref={buildTagHref(tag.slug, order, !isFollowing)}
+          />
+        </div>
+        <div className="contents xl:flex xl:min-w-0 xl:flex-1 xl:flex-col xl:gap-5">
+          <OrderTabs
+            options={[
+              {
+                label: "Recentes",
+                href: buildTagHref(tag.slug, "recentes", isFollowing),
+                isActive: order === "recentes",
+              },
+              {
+                label: "Mais úteis",
+                href: buildTagHref(tag.slug, "uteis", isFollowing),
+                isActive: order === "uteis",
+              },
+            ]}
+          />
+          <section aria-label={`Posts com a tag ${tag.label}`}>
+            <PostList posts={posts} emptyMessage="Ainda não há posts com esta tag." />
+          </section>
+        </div>
       </main>
-    </>
+    </div>
   );
 }

@@ -13,7 +13,7 @@ type LessonCarouselProps = {
 };
 
 const cardClass =
-  "flex w-[86%] shrink-0 snap-start gap-4 rounded-2xl bg-fundo p-4 ring-1 ring-linha/70";
+  "flex w-[86%] shrink-0 snap-start gap-4 rounded-2xl bg-fundo p-4 ring-1 ring-linha/70 lg:w-auto lg:p-5";
 
 /** Miniatura do cartão: número da lição grande, no lugar de uma imagem. */
 function LessonThumb({ lesson, isLocked }: { lesson: Lesson; isLocked: boolean }) {
@@ -38,7 +38,7 @@ export function LessonCarousel({ current }: LessonCarouselProps) {
   const { lesson, moduleNumber, completedLessons, lessonsTotal, upcomingLessons } = current;
 
   return (
-    <section aria-labelledby="continuar" className="flex flex-col gap-2">
+    <section aria-labelledby="continuar" className="flex flex-col gap-2 lg:col-span-3">
       <SectionHeading
         id="continuar"
         title="Continuar de onde parou"
@@ -47,8 +47,8 @@ export function LessonCarousel({ current }: LessonCarouselProps) {
         tone="trilha"
       />
 
-      <ul className="flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <li className={cardClass}>
+      <ul className="flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0">
+        <li className={cn(cardClass, "lg:transition-shadow lg:hover:ring-texto/30")}>
           <Link href={`/educacao/licao/${lesson.id}`} className="flex min-w-0 flex-1 flex-col">
             <span className="text-xs font-semibold text-texto-secundario">
               Módulo {formatTwoDigits(moduleNumber)} · Lição {formatTwoDigits(lesson.number)} de{" "}

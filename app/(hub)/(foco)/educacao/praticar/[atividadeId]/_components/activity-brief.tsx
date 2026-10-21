@@ -8,14 +8,14 @@ type ActivityBriefProps = {
 /** Topo da atividade: tipo, nível, título, enunciado e código de apoio. */
 export function ActivityBrief({ activity }: ActivityBriefProps) {
   return (
-    <SurfaceCard as="section" aria-labelledby="titulo-atividade" className="flex flex-col gap-3 p-4">
+    <SurfaceCard as="section" aria-labelledby="titulo-atividade" className="flex flex-col gap-3 p-4 lg:gap-4 lg:p-6">
       <p className="flex flex-wrap items-center gap-2 text-xs text-texto-secundario">
         <span className="rounded-md bg-pratica/15 px-2 py-0.5 font-semibold text-texto">
           {activityKindLabel[activity.kind]}
         </span>
         {activity.level} · ≈ {activity.minutes} min · +{activity.xpReward} XP
       </p>
-      <h1 id="titulo-atividade" className="font-display text-[22px] leading-tight font-bold">
+      <h1 id="titulo-atividade" className="font-display text-[22px] leading-tight font-bold lg:text-[26px]">
         {activity.shortTitle}
       </h1>
       <div className="flex flex-col gap-1">

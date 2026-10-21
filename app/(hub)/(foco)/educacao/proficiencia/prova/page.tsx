@@ -41,8 +41,8 @@ export default async function ExamPage({ searchParams }: PageProps<"/educacao/pr
   return (
     <>
       <ExamTopBar minutesLeft={minutesLeft} />
-      <main className="flex flex-col gap-6 pt-5 pb-8">
-        <div className="flex flex-col gap-2 px-4">
+      <main className="flex flex-col gap-6 pt-5 pb-8 lg:gap-8 lg:px-8 lg:pt-8">
+        <div className="flex flex-col gap-2 px-4 lg:px-0">
           <p className="flex items-center justify-between text-xs text-texto-secundario">
             <span className="text-sm font-semibold text-texto">
               Questão {questionNumber} de {total}

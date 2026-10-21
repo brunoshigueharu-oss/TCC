@@ -17,9 +17,9 @@ export default async function ConsentPage() {
   return (
     <>
       <BrandHeader />
-      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6">
-        <SurfaceCard className="flex flex-col gap-1 p-4">
-          <h1 className="font-display text-[22px] leading-tight font-bold">Seus dados</h1>
+      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6 lg:flex-none lg:gap-6 lg:px-6 lg:pt-0 lg:pb-0">
+        <SurfaceCard className="flex flex-col gap-1 p-4 lg:gap-1.5 lg:p-6">
+          <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">Seus dados</h1>
           <p className="text-sm text-texto-secundario">
             Você escolhe o que compartilhar. Tudo pode ser alterado depois nas configurações da
             conta.

@@ -44,7 +44,7 @@ export default async function SettingsPage({ searchParams }: PageProps<"/perfil/
   return (
     <>
       <BackBar href="/perfil" label="Configurações" />
-      <main className="flex flex-col gap-7 pt-5 pb-8">
+      <main className="flex flex-col gap-7 pt-5 pb-8 lg:gap-8 lg:px-8 lg:pt-8">
         <section aria-labelledby="dados-conta" className="flex flex-col gap-2">
           <SectionHeading id="dados-conta" title="Dados da conta" icon={UserRound} tone="acao" />
           <SurfaceCard>
@@ -52,33 +52,35 @@ export default async function SettingsPage({ searchParams }: PageProps<"/perfil/
           </SurfaceCard>
         </section>
 
-        <section aria-labelledby="notificacoes-config" className="flex flex-col gap-2">
-          <SectionHeading id="notificacoes-config" title="Notificações" icon={Bell} tone="acao" />
-          <SurfaceCard>
-            <PreferenceSwitches items={notificationItems} initialValues={preferences} />
-          </SurfaceCard>
-        </section>
+        <div className="flex flex-col gap-7 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6">
+          <section aria-labelledby="notificacoes-config" className="flex flex-col gap-2">
+            <SectionHeading id="notificacoes-config" title="Notificações" icon={Bell} tone="acao" />
+            <SurfaceCard>
+              <PreferenceSwitches items={notificationItems} initialValues={preferences} />
+            </SurfaceCard>
+          </section>
 
-        <section aria-labelledby="privacidade" className="flex flex-col gap-2">
-          <SectionHeading
-            id="privacidade"
-            title="Privacidade e consentimento"
-            icon={ShieldCheck}
-            tone="acao"
-          />
-          <SurfaceCard>
-            <PreferenceSwitches items={privacyItems} initialValues={preferences} />
-            <Link
-              href="/consentimento"
-              className="flex min-h-12 items-center gap-3 border-t border-linha px-4"
-            >
-              <span className="flex-1 text-sm font-semibold">Rever o termo de consentimento</span>
-              <ChevronRight aria-hidden className="size-4" strokeWidth={2.5} />
-            </Link>
-          </SurfaceCard>
-        </section>
+          <section aria-labelledby="privacidade" className="flex flex-col gap-2">
+            <SectionHeading
+              id="privacidade"
+              title="Privacidade e consentimento"
+              icon={ShieldCheck}
+              tone="acao"
+            />
+            <SurfaceCard>
+              <PreferenceSwitches items={privacyItems} initialValues={preferences} />
+              <Link
+                href="/consentimento"
+                className="flex min-h-12 items-center gap-3 border-t border-linha px-4"
+              >
+                <span className="flex-1 text-sm font-semibold">Rever o termo de consentimento</span>
+                <ChevronRight aria-hidden className="size-4" strokeWidth={2.5} />
+              </Link>
+            </SurfaceCard>
+          </section>
+        </div>
 
-        <section aria-label="Sair ou excluir a conta" className="flex flex-col gap-3 px-4">
+        <section aria-label="Sair ou excluir a conta" className="flex flex-col gap-3 px-4 lg:grid lg:grid-cols-2 lg:px-0">
           <Link
             href="/entrar"
             className="flex h-12 items-center justify-center rounded-xl bg-texto text-[15px] font-semibold text-fundo transition-transform active:scale-[0.98]"
@@ -91,12 +93,12 @@ export default async function SettingsPage({ searchParams }: PageProps<"/perfil/
             <Link
               href="/perfil/configuracoes?excluir=1"
               scroll={false}
-              className="flex h-11 items-center justify-center rounded-xl text-sm font-semibold ring-1 ring-texto"
+              className="flex h-11 items-center justify-center rounded-xl text-sm font-semibold ring-1 ring-texto lg:h-12"
             >
               Excluir conta
             </Link>
           )}
-          <p className="text-xs text-texto-secundario">
+          <p className="text-xs text-texto-secundario lg:col-span-2">
             Ao excluir a conta, seu progresso, selos e XP são apagados. Posts e respostas na
             comunidade ficam anônimos.
           </p>

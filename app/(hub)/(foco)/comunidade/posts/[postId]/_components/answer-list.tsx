@@ -29,7 +29,7 @@ export function AnswerList({ answers }: AnswerListProps) {
         ) : (
           <ul className="divide-y divide-linha">
             {answers.map((answer) => (
-              <li key={answer.id} className="flex flex-col gap-2 px-4 py-3">
+              <li key={answer.id} className="flex flex-col gap-2 px-4 py-3 lg:px-6 lg:py-4">
                 <div className="flex items-center gap-2">
                   <Link
                     href={getPersonHref(answer.author.username)}

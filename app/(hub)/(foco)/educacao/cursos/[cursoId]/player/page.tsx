@@ -44,30 +44,30 @@ export default async function CoursePlayerPage({
   return (
     <>
       <BackBar href={`/educacao/cursos/${course.id}`} label={course.title} />
-      <main className="flex flex-col gap-7 pb-8">
-        <div className="flex flex-col">
+      <main className="flex flex-col gap-7 pb-8 lg:gap-8 lg:px-8 lg:pb-10">
+        <div className="flex flex-col lg:-mx-8">
           <VideoPlaceholder />
-          <div className="flex flex-col gap-2 rounded-b-[28px] bg-fundo px-4 pt-4 pb-5 ring-1 ring-linha/70">
+          <div className="flex flex-col gap-2 rounded-b-[28px] bg-fundo px-4 pt-4 pb-5 ring-1 ring-linha/70 lg:px-8 lg:pt-6 lg:pb-7">
             <p className="text-xs font-semibold text-texto-secundario">
               Aula {current} de {total}
             </p>
-            <h1 className="font-display text-[22px] leading-tight font-bold">{lesson.title}</h1>
+            <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">{lesson.title}</h1>
             <p className="text-sm text-texto-secundario">
               {course.title} · {lesson.minutes} min
             </p>
-            <p className="pt-1 text-[15px] leading-normal">{lesson.summary}</p>
+            <p className="pt-1 text-[15px] leading-normal lg:max-w-[60ch] lg:text-base lg:leading-relaxed">{lesson.summary}</p>
           </div>
         </div>
 
-        <nav aria-label="Navegar entre aulas" className="flex gap-3 px-4">
+        <nav aria-label="Navegar entre aulas" className="flex gap-3 px-4 lg:justify-end lg:px-0">
           {isFirst ? null : (
-            <ActionLink href={playerHref(current - 1)} variant="secondary" className="h-12 flex-1">
+            <ActionLink href={playerHref(current - 1)} variant="secondary" className="h-12 flex-1 lg:w-44 lg:flex-none">
               Anterior
             </ActionLink>
           )}
           <ActionLink
             href={isLast ? `/educacao/cursos/${course.id}` : playerHref(current + 1)}
-            className="flex-1"
+            className="flex-1 lg:w-56 lg:flex-none"
           >
             {isLast ? "Concluir curso" : "Próxima aula"}
           </ActionLink>

@@ -14,7 +14,7 @@ type SearchFormProps = {
  */
 export function SearchForm({ query, type }: SearchFormProps) {
   return (
-    <form action="/busca" method="get" role="search" className="relative flex items-center">
+    <form action="/busca" method="get" role="search" className="relative flex items-center lg:max-w-[720px]">
       {type === "tudo" ? null : <input type="hidden" name="tipo" value={type} />}
       <Search
         aria-hidden

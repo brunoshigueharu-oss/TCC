@@ -44,9 +44,9 @@ export function AnswerForm({ activityId }: AnswerFormProps) {
   }
 
   return (
-    <section aria-labelledby="sua-resposta" className="flex flex-col gap-2">
+    <section aria-labelledby="sua-resposta" className="flex flex-col gap-2 lg:col-span-2">
       <SectionHeading id="sua-resposta" title="Sua resposta" icon={PenLine} tone="pratica" />
-      <SurfaceCard className="p-4">
+      <SurfaceCard className="p-4 lg:p-6">
         <form onSubmit={form.handleSubmit(handleSubmit)} noValidate>
           <FieldGroup>
             <Controller
@@ -61,7 +61,7 @@ export function AnswerForm({ activityId }: AnswerFormProps) {
                     rows={6}
                     aria-invalid={fieldState.invalid}
                     placeholder="Escreva o prompt ou cole o código aqui…"
-                    className="min-h-36 rounded-xl border-linha bg-fundo px-3 py-2.5 text-[15px] md:text-[15px]"
+                    className="min-h-36 rounded-xl border-linha bg-fundo px-3 py-2.5 text-[15px] md:text-[15px] lg:min-h-56"
                   />
                   <FieldError errors={[fieldState.error]} />
                 </Field>
@@ -93,7 +93,7 @@ export function AnswerForm({ activityId }: AnswerFormProps) {
             <Button
               type="submit"
               disabled={isPending}
-              className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
+              className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90 lg:w-auto lg:min-w-56 lg:self-end lg:px-8"
             >
               {isPending ? "Enviando…" : "Enviar para avaliação"}
             </Button>

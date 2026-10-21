@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { inputClass, labelClass, submitButtonClass } from "../../_lib/form-styles";
-import { PASSWORD_MIN_LENGTH, signUpSchema, type SignUpInput } from "../../_lib/schemas";
+import { IS_ENTRY_VALIDATION_ENABLED, PASSWORD_MIN_LENGTH, signUpSchema, type SignUpInput } from "../../_lib/schemas";
 import { signUp } from "../_actions/sign-up";
 
 type TextFieldName = "name" | "email" | "password";
@@ -52,7 +52,7 @@ export function SignUpForm() {
   const [isPending, startTransition] = useTransition();
   const [serverMessage, setServerMessage] = useState<string>();
   const form = useForm<SignUpInput>({
-    resolver: zodResolver(signUpSchema),
+    resolver: IS_ENTRY_VALIDATION_ENABLED ? zodResolver(signUpSchema) : undefined,
     defaultValues: { name: "", email: "", password: "", acceptedTerms: false },
   });
 
@@ -65,7 +65,7 @@ export function SignUpForm() {
   }
 
   return (
-    <form noValidate onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-5 p-4">
+    <form noValidate onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-5 p-4 lg:p-6">
       <FieldGroup className="gap-4">
         {textFields.map((config) => (
           <Controller

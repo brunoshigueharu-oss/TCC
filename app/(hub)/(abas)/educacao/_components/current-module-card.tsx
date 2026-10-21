@@ -14,7 +14,7 @@ export function CurrentModuleCard({ trackModule }: CurrentModuleCardProps) {
   const nextLesson = trackModule.lessons.find((lesson) => lesson.status === "em-andamento");
 
   return (
-    <SurfaceCard as="section" aria-labelledby="modulo-atual" className="flex gap-4 p-4">
+    <SurfaceCard as="section" aria-labelledby="modulo-atual" className="flex gap-4 p-4 lg:p-5">
       <div className="flex min-w-0 flex-1 flex-col">
         <p className="text-xs font-semibold text-texto-secundario">
           Módulo {formatTwoDigits(trackModule.number)}

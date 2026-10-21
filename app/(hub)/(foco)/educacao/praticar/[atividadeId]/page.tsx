@@ -24,7 +24,7 @@ export default async function ActivityPage({ params }: PageProps<"/educacao/prat
   return (
     <>
       <BackBar href="/educacao/praticar" label="Praticar" />
-      <main className="flex flex-col gap-7 pt-5 pb-8">
+      <main className="flex flex-col gap-7 pt-5 pb-8 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start lg:gap-x-6 lg:gap-y-8 lg:px-8 lg:pt-8">
         <ActivityBrief activity={activity} />
         <CriteriaList criteria={activity.criteria} />
         <AnswerForm activityId={activity.id} />

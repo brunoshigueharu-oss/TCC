@@ -26,8 +26,8 @@ export default async function RankingPage({ searchParams }: PageProps<"/perfil/r
   return (
     <>
       <BackBar href="/perfil" label="Ranking de amigos" />
-      <main className="flex flex-col gap-5 pt-5 pb-8">
-        <nav aria-label="Período do ranking" className="flex gap-2 px-4">
+      <main className="flex flex-col gap-5 pt-5 pb-8 lg:grid lg:w-full lg:max-w-[1040px] lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-x-8 lg:gap-y-5 lg:pt-6 lg:pb-0">
+        <nav aria-label="Período do ranking" className="flex gap-2 px-4 lg:col-start-1 lg:row-start-1 lg:px-0">
           {periodOptions.map((option) => (
             <Chip
               key={option.value}
@@ -41,9 +41,9 @@ export default async function RankingPage({ searchParams }: PageProps<"/perfil/r
         </nav>
 
         {me ? (
-          <SurfaceCard className="flex flex-col gap-1 p-4">
+          <SurfaceCard className="flex flex-col gap-1 p-4 lg:sticky lg:top-20 lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:gap-2 lg:p-6">
             <p className="text-xs font-semibold text-texto-secundario">Sua posição {summary}</p>
-            <p className="font-display text-lg leading-snug font-bold">
+            <p className="font-display text-lg leading-snug font-bold lg:text-[22px]">
               {me.position}º lugar · {formatNumber(me.xp)} XP
             </p>
             <p className="text-sm text-texto-secundario">
@@ -56,7 +56,7 @@ export default async function RankingPage({ searchParams }: PageProps<"/perfil/r
 
         <RankingList entries={entries} />
 
-        <p className="px-4 text-xs text-texto-secundario">
+        <p className="px-4 text-xs text-texto-secundario lg:col-start-1 lg:row-start-3 lg:px-0">
           O ranking soma o XP de lições, práticas e respostas úteis na comunidade. Você pode sair dele
           em Configurações.
         </p>

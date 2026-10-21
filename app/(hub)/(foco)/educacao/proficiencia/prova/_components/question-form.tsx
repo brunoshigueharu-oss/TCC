@@ -61,8 +61,8 @@ export function QuestionForm({
         name="answer"
         control={form.control}
         render={({ field, fieldState }) => (
-          <FieldSet data-invalid={fieldState.invalid} className="gap-4 px-4">
-            <FieldLegend className="mb-5 font-display leading-tight font-bold data-[variant=legend]:text-[22px]">
+          <FieldSet data-invalid={fieldState.invalid} className="gap-4 px-4 lg:px-0">
+            <FieldLegend className="mb-5 font-display leading-tight font-bold data-[variant=legend]:text-[22px] lg:data-[variant=legend]:text-[26px]">
               {text}
             </FieldLegend>
             <RadioGroup
@@ -73,7 +73,7 @@ export function QuestionForm({
                 if (letter.success) field.onChange(letter.data);
               }}
               aria-invalid={fieldState.invalid}
-              className="gap-3"
+              className="gap-3 lg:grid-cols-2"
             >
               {optionLetters.map((letter, index) => (
                 <FieldLabel
@@ -99,16 +99,16 @@ export function QuestionForm({
         )}
       />
 
-      <div className="flex gap-3 px-4">
+      <div className="flex gap-3 px-4 lg:justify-end lg:px-0">
         {previousHref ? (
-          <ActionLink href={previousHref} variant="secondary" className="h-12 flex-1">
+          <ActionLink href={previousHref} variant="secondary" className="h-12 flex-1 lg:w-44 lg:flex-none">
             Anterior
           </ActionLink>
         ) : null}
         <Button
           type="submit"
           disabled={isPending}
-          className="h-12 flex-1 rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
+          className="h-12 flex-1 lg:w-56 lg:flex-none rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
         >
           {isPending ? "Salvando…" : isLastQuestion ? "Ver resultado" : "Próxima"}
         </Button>

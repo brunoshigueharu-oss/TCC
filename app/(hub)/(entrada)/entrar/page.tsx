@@ -18,7 +18,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/entrar">) 
   return (
     <>
       <BrandHeader />
-      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6">
+      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6 lg:flex-none lg:gap-6 lg:px-6 lg:pt-0 lg:pb-0">
         <WelcomeCard
           title="Entrar"
           subtitle="Continue sua trilha de onde parou."
@@ -26,7 +26,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/entrar">) 
         />
 
         {isRecovering ? (
-          <SurfaceCard role="status" className="p-4 text-sm leading-relaxed">
+          <SurfaceCard role="status" className="p-4 text-sm leading-relaxed lg:px-6">
             <p className="font-semibold">Recuperação de senha</p>
             <p className="text-texto-secundario">
               Se o e-mail estiver cadastrado, você recebe um link para criar uma nova senha.
@@ -38,7 +38,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/entrar">) 
           <LoginForm />
         </SurfaceCard>
 
-        <p className="mt-auto flex items-center justify-center gap-1 px-4 text-sm">
+        <p className="mt-auto flex items-center justify-center gap-1 px-4 text-sm lg:px-0">
           Ainda não tem conta?
           <Link
             href="/cadastro"

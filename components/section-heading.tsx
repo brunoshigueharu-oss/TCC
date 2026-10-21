@@ -31,7 +31,7 @@ export function SectionHeading({ id, title, icon: Icon, tone, href, className }:
   const rowClass = "flex min-h-11 items-center gap-3 text-[15px] font-semibold";
 
   return (
-    <h2 id={id} className={cn("px-4", className)}>
+    <h2 id={id} className={cn("px-4 lg:px-0", className)}>
       {href ? (
         <Link href={href} className={rowClass}>
           {content}

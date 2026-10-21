@@ -11,7 +11,7 @@ type PostListProps = {
 export function PostList({ posts, emptyMessage }: PostListProps) {
   if (posts.length === 0) {
     return (
-      <p className="mx-4 rounded-2xl bg-fundo p-4 text-sm text-texto-secundario ring-1 ring-linha/70">
+      <p className="mx-4 rounded-2xl lg:mx-0 bg-fundo p-4 text-sm text-texto-secundario ring-1 ring-linha/70">
         {emptyMessage}
       </p>
     );

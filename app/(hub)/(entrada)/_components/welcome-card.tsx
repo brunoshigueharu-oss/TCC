@@ -14,12 +14,12 @@ type WelcomeCardProps = {
 export function WelcomeCard({ title, subtitle, composition }: WelcomeCardProps) {
   return (
     <SurfaceCard className="flex items-center">
-      <div className="flex flex-1 flex-col gap-1 p-4">
-        <h1 className="font-display text-[22px] leading-tight font-bold">{title}</h1>
+      <div className="flex flex-1 flex-col gap-1 p-4 lg:gap-1.5 lg:p-6">
+        <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">{title}</h1>
         <p className="text-sm text-texto-secundario">{subtitle}</p>
       </div>
       <div className="flex w-[38%] shrink-0 justify-center rounded-l-[999px] bg-acao/15 py-3">
-        <WelcomeShapes composition={composition} className="size-24" />
+        <WelcomeShapes composition={composition} className="size-24 lg:size-28" />
       </div>
     </SurfaceCard>
   );

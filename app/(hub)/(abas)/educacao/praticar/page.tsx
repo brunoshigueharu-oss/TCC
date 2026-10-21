@@ -29,7 +29,7 @@ export default async function PracticePage({ searchParams }: PageProps<"/educaca
       <PageHeader title={practice.title} subtitle={practice.subtitle} icon={Target} tone="pratica">
         <EducationTabs active="praticar" />
       </PageHeader>
-      <main className="flex flex-col gap-5 pt-6 pb-8">
+      <main className="flex flex-col gap-5 pt-6 pb-8 lg:pb-0">
         <KindFilter active={activeKind} />
         <ActivityList activities={activities} />
       </main>

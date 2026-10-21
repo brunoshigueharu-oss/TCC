@@ -15,7 +15,7 @@ export function ReportSheet({ postId }: ReportSheetProps) {
 
   return (
     <div className="fixed inset-0 z-30">
-      <div className="relative mx-auto flex h-full max-w-[480px] flex-col justify-end">
+      <div className="relative mx-auto flex h-full max-w-[480px] flex-col justify-end lg:max-w-none lg:items-center lg:justify-center lg:p-6">
         <Link
           href={closeHref}
           scroll={false}
@@ -27,9 +27,9 @@ export function ReportSheet({ postId }: ReportSheetProps) {
           aria-modal="true"
           aria-labelledby="titulo-denuncia"
           aria-describedby="descricao-denuncia"
-          className="relative flex max-h-[90dvh] flex-col gap-4 overflow-y-auto rounded-t-[28px] bg-fundo px-4 pt-3 pb-[max(16px,env(safe-area-inset-bottom))]"
+          className="relative flex max-h-[90dvh] flex-col gap-4 overflow-y-auto rounded-t-[28px] bg-fundo px-4 pt-3 pb-[max(16px,env(safe-area-inset-bottom))] lg:w-full lg:max-w-[520px] lg:rounded-[28px] lg:px-6 lg:pt-6 lg:pb-6 lg:shadow-xl"
         >
-          <span aria-hidden className="mx-auto h-1 w-10 rounded-full bg-superficie-forte" />
+          <span aria-hidden className="mx-auto h-1 w-10 rounded-full bg-superficie-forte lg:hidden" />
           <div className="flex flex-col gap-1">
             <h2 id="titulo-denuncia" className="font-display text-[22px] leading-tight font-bold">
               Denunciar post

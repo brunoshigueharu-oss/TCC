@@ -25,7 +25,7 @@ export function PersonCourses({ courses }: PersonCoursesProps) {
         <ul className="divide-y divide-linha">
           {courses.map((course) => (
             <li key={course.id}>
-              <Link href={`/educacao/cursos/${course.id}`} className="flex flex-col gap-1 px-4 py-3">
+              <Link href={`/educacao/cursos/${course.id}`} className="flex flex-col gap-1 px-4 py-3 lg:px-5 lg:py-4 lg:transition-colors lg:hover:bg-superficie">
                 <span className="text-sm font-semibold">{course.title}</span>
                 <span className="text-xs text-texto-secundario">
                   {course.lessons} aulas · {course.students} pessoas inscritas

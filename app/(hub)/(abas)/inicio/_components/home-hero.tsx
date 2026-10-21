@@ -1,28 +1,27 @@
 import Image from "next/image";
 import { formatNumber, formatTwoDigits } from "@/lib/format";
-import { Shortcuts } from "./shortcuts";
 
 type HomeHeroProps = {
   firstName: string;
   level: number;
   xp: number;
-  unreadNotifications: number;
 };
 
 /**
- * Faixa do topo: ilustração ocupando o banner, com a saudação por cima. Os
- * atalhos ficam metade dentro, metade fora da faixa.
+ * Faixa do topo: ilustração ocupando o banner, com a saudação por cima. Logo
+ * abaixo já vem o conteúdo (de onde parou, semana, comunidade) — a navegação
+ * entre as áreas fica só na barra inferior.
  */
-export function HomeHero({ firstName, level, xp, unreadNotifications }: HomeHeroProps) {
+export function HomeHero({ firstName, level, xp }: HomeHeroProps) {
   return (
     <header className="relative">
-      <div className="relative h-[176px] overflow-hidden bg-fundo">
+      <div className="relative h-[140px] overflow-hidden bg-fundo lg:h-[196px] lg:rounded-[28px]">
         <Image
           src="/inicio/banner-ilustracao.png"
           alt=""
           fill
           priority
-          sizes="(max-width: 480px) 100vw, 480px"
+          sizes="(min-width: 1024px) min(1120px, calc(100vw - 336px)), (max-width: 480px) 100vw, 480px"
           className="pointer-events-none object-cover"
         />
 
@@ -32,23 +31,21 @@ export function HomeHero({ firstName, level, xp, unreadNotifications }: HomeHero
           className="pointer-events-none absolute inset-0 bg-linear-to-t from-neutral-900 via-neutral-500/70 to-transparent mix-blend-multiply"
         />
 
-        <div className="absolute bottom-[50px] left-6 flex items-center gap-3 text-white">
+        <div className="absolute bottom-5 left-6 flex items-center gap-3 text-white lg:bottom-8 lg:left-8 lg:gap-4">
           <span
             aria-hidden
-            className="flex size-16 items-center justify-center rounded-full border-[3px] border-fundo bg-texto font-display text-2xl font-bold text-trilha"
+            className="flex size-16 items-center justify-center rounded-full border-[3px] border-fundo bg-texto font-display text-2xl font-bold text-trilha lg:size-20 lg:text-3xl"
           >
             {firstName.charAt(0)}
           </span>
           <div className="flex flex-col">
-            <h1 className="font-display text-[22px] leading-tight font-bold">Olá, {firstName}!</h1>
-            <p className="text-sm font-medium">
+            <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[32px]">Olá, {firstName}!</h1>
+            <p className="text-sm font-medium lg:text-base">
               Nível {formatTwoDigits(level)} · {formatNumber(xp)} XP
             </p>
           </div>
         </div>
       </div>
-
-      <Shortcuts unreadNotifications={unreadNotifications} className="-mt-[38px] px-4" />
     </header>
   );
 }

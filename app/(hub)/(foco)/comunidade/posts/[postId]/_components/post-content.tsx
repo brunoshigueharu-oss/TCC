@@ -13,7 +13,7 @@ type PostContentProps = {
 /** Cartão principal do post: autor, lição ligada, título, texto, tags e números. */
 export function PostContent({ post }: PostContentProps) {
   return (
-    <SurfaceCard as="article" aria-labelledby="titulo-do-post" className="flex flex-col gap-3 p-4">
+    <SurfaceCard as="article" aria-labelledby="titulo-do-post" className="flex flex-col gap-3 p-4 lg:gap-4 lg:p-6">
       <div className="flex items-center gap-2">
         <Link
           href={getPersonHref(post.author.username)}
@@ -40,10 +40,10 @@ export function PostContent({ post }: PostContentProps) {
         </Link>
       ) : null}
 
-      <h1 id="titulo-do-post" className="font-display text-[22px] leading-tight font-bold">
+      <h1 id="titulo-do-post" className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">
         {post.title}
       </h1>
-      <p className="text-[15px] leading-[1.5]">{post.body}</p>
+      <p className="text-[15px] leading-[1.5] lg:text-base lg:leading-relaxed">{post.body}</p>
 
       <ul aria-label="Tags" className="flex flex-wrap gap-1.5">
         {post.tags.map((tag) => (

@@ -22,7 +22,7 @@ export default async function LevelingPage({ searchParams }: PageProps<"/nivelam
 
   return (
     <>
-      <header className="sticky top-0 z-10 flex flex-col gap-2 bg-fundo px-4 pt-2 pb-3 ring-1 ring-linha/70">
+      <header className="sticky top-0 z-10 flex flex-col gap-2 bg-fundo px-4 pt-2 pb-3 ring-1 ring-linha/70 lg:static lg:mx-6 lg:rounded-2xl lg:px-6 lg:pt-3 lg:pb-4">
         <div className="flex items-center justify-between">
           <p className="text-[15px] font-semibold">
             Pergunta {position} de {questions.length}
@@ -37,10 +37,10 @@ export default async function LevelingPage({ searchParams }: PageProps<"/nivelam
         <ProgressBar value={position} max={questions.length} label="Progresso do nivelamento" />
       </header>
 
-      <main className="flex flex-1 flex-col gap-5 pt-5 pb-6">
-        <SurfaceCard className="flex flex-col gap-2 p-4">
+      <main className="flex flex-1 flex-col gap-5 pt-5 pb-6 lg:flex-none lg:gap-6 lg:px-6 lg:pt-6 lg:pb-0">
+        <SurfaceCard className="flex flex-col gap-2 p-4 lg:p-6">
           <p className="text-xs font-semibold text-texto-secundario">{question.topic}</p>
-          <h1 className="font-display text-[22px] leading-tight font-bold">{question.statement}</h1>
+          <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">{question.statement}</h1>
         </SurfaceCard>
 
         <LevelingForm

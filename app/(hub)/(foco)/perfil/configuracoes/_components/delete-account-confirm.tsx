@@ -6,7 +6,7 @@ import Link from "next/link";
  */
 export function DeleteAccountConfirm() {
   return (
-    <div role="alertdialog" aria-labelledby="excluir-titulo" className="flex flex-col gap-3 rounded-2xl bg-fundo p-4 ring-1 ring-texto">
+    <div role="alertdialog" aria-labelledby="excluir-titulo" className="flex flex-col gap-3 rounded-2xl bg-fundo p-4 ring-1 ring-texto lg:col-span-2">
       <p id="excluir-titulo" className="font-display text-lg leading-snug font-bold">
         Excluir a conta de vez?
       </p>

@@ -28,14 +28,19 @@ export default async function PublicProfilePage({
   const [firstName] = person.name.split(" ");
 
   return (
-    <>
+    <div className="contents lg:mx-auto lg:block lg:w-full lg:max-w-[1040px]">
       <BackBar href="/comunidade" label="Comunidade · Perfil" />
-      <main className="flex flex-col gap-7 pt-5 pb-8">
-        <PersonSummary person={person} isCurrentUser={isCurrentUser} />
-        <PersonBadges firstName={firstName} badges={person.badges} />
-        <PersonPosts firstName={firstName} posts={person.posts} />
-        <PersonCourses courses={person.courses} />
+      <main className="flex flex-col gap-7 pt-5 pb-8 lg:flex-row lg:items-start lg:gap-6 lg:pt-6 lg:pb-0 xl:gap-8">
+        {/* Computador: resumo e selos numa coluna fixa à esquerda; atividade à direita. */}
+        <div className="contents lg:sticky lg:top-20 lg:flex lg:w-72 lg:shrink-0 lg:flex-col lg:gap-7 xl:w-80">
+          <PersonSummary person={person} isCurrentUser={isCurrentUser} />
+          <PersonBadges firstName={firstName} badges={person.badges} />
+        </div>
+        <div className="contents lg:flex lg:min-w-0 lg:flex-1 lg:flex-col lg:gap-7">
+          <PersonPosts firstName={firstName} posts={person.posts} />
+          <PersonCourses courses={person.courses} />
+        </div>
       </main>
-    </>
+    </div>
   );
 }

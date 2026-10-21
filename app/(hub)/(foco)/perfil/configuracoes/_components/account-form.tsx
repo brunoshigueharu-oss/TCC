@@ -54,15 +54,18 @@ export function AccountForm({ defaultValues }: AccountFormProps) {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(handleSubmit)} noValidate className="flex flex-col gap-5 p-4">
-      <FieldGroup className="gap-4">
+    <form onSubmit={form.handleSubmit(handleSubmit)} noValidate className="flex flex-col gap-5 p-4 lg:p-6">
+      <FieldGroup className="gap-4 lg:grid lg:grid-cols-2 lg:gap-x-5">
         {fields.map((item) => (
           <Controller
             key={item.name}
             name={item.name}
             control={form.control}
             render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
+              <Field
+                data-invalid={fieldState.invalid}
+                className={item.name === "role" ? "lg:col-span-2" : undefined}
+              >
                 <FieldLabel htmlFor={`conta-${item.name}`} className="text-sm font-semibold">
                   {item.label}
                 </FieldLabel>
@@ -84,11 +87,11 @@ export function AccountForm({ defaultValues }: AccountFormProps) {
       <Button
         type="submit"
         disabled={isPending || !form.formState.isDirty}
-        className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
+        className="h-12 w-full lg:w-auto lg:min-w-56 lg:self-end lg:px-8 rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
       >
         {isPending ? "Salvando..." : "Salvar alterações"}
       </Button>
-      <p role="status" className="-mt-2 text-center text-sm text-texto-secundario empty:hidden">
+      <p role="status" className="-mt-2 text-center text-sm text-texto-secundario empty:hidden lg:text-right">
         {feedback}
       </p>
     </form>

@@ -18,7 +18,7 @@ function formatQuestionsTitle(count: number) {
 /** Dúvidas abertas no fio de dúvidas das aulas que a pessoa está fazendo. */
 export function OpenQuestions({ questions }: OpenQuestionsProps) {
   return (
-    <section aria-labelledby="duvidas" className="flex flex-col gap-2">
+    <section aria-labelledby="duvidas" className="flex flex-col gap-2 lg:col-span-2">
       <SectionHeading
         id="duvidas"
         title={formatQuestionsTitle(questions.length)}
@@ -27,12 +27,12 @@ export function OpenQuestions({ questions }: OpenQuestionsProps) {
         tone="comunidade"
       />
 
-      <div className="mx-4 overflow-hidden rounded-2xl bg-fundo ring-1 ring-linha/70">
+      <div className="mx-4 overflow-hidden rounded-2xl bg-fundo ring-1 ring-linha/70 lg:mx-0">
         <div className="flex items-center">
-          <p className="flex-1 p-4 font-display text-lg leading-snug font-bold">
+          <p className="flex-1 p-4 font-display text-lg leading-snug font-bold lg:px-6 lg:text-xl">
             Sua turma está tirando dúvidas agora
           </p>
-          <div className="flex w-[36%] shrink-0 justify-center rounded-l-[999px] bg-comunidade/15 py-2">
+          <div className="flex w-[36%] shrink-0 justify-center rounded-l-[999px] bg-comunidade/15 py-2 lg:w-[240px]">
             <BauhausShapes composition="duvidas" className="size-24" />
           </div>
         </div>
@@ -40,7 +40,7 @@ export function OpenQuestions({ questions }: OpenQuestionsProps) {
         <ul className="divide-y divide-linha border-t border-linha">
           {questions.map((question) => (
             <li key={question.id}>
-              <Link href={question.href} className="flex flex-col gap-1 px-4 py-3">
+              <Link href={question.href} className="flex flex-col gap-1 px-4 py-3 lg:px-6 lg:py-4 lg:transition-colors lg:hover:bg-superficie">
                 <span className="text-sm leading-[1.4] font-semibold">{question.title}</span>
                 <span className="text-xs text-texto-secundario">
                   Lição {formatTwoDigits(question.lessonNumber)} · {formatAnswers(question.answers)}

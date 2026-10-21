@@ -30,7 +30,7 @@ export default async function ActivityResultPage({
   return (
     <>
       <BackBar href="/educacao/praticar" label="Praticar" />
-      <main className="flex flex-col gap-7 pt-5 pb-8">
+      <main className="flex flex-col gap-7 pt-5 pb-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-6 lg:gap-y-8 lg:px-8 lg:pt-8">
         <ResultSummary
           title={activity.shortTitle}
           met={summary.met}
@@ -46,15 +46,15 @@ export default async function ActivityResultPage({
           </SurfaceCard>
         </section>
 
-        <div className="flex gap-3 px-4">
+        <div className="flex gap-3 px-4 lg:col-span-2 lg:justify-end lg:px-0">
           <ActionLink
             href={`/educacao/praticar/${activity.id}`}
             variant="secondary"
-            className="h-12 flex-1"
+            className="h-12 flex-1 lg:w-44 lg:flex-none"
           >
             Refazer
           </ActionLink>
-          <ActionLink href={`/educacao/praticar/${nextActivity.id}`} className="flex-[2]">
+          <ActionLink href={`/educacao/praticar/${nextActivity.id}`} className="flex-[2] lg:w-60 lg:flex-none">
             Próxima atividade
           </ActionLink>
         </div>

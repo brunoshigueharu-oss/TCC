@@ -47,7 +47,7 @@ export function NotificationList({ id, title, icon, items }: NotificationListPro
 
             return (
               <li key={item.id}>
-                <Link href={item.href} className="flex gap-3 px-4 py-3">
+                <Link href={item.href} className="flex gap-3 px-4 py-3 lg:gap-4 lg:px-5 lg:py-4 lg:transition-colors lg:hover:bg-superficie">
                   <span
                     aria-hidden
                     className={cn("flex size-10 shrink-0 items-center justify-center rounded-xl", toneClass)}

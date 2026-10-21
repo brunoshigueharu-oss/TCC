@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { inputClass, labelClass, submitButtonClass } from "../../_lib/form-styles";
-import { loginSchema, type LoginInput } from "../../_lib/schemas";
+import { IS_ENTRY_VALIDATION_ENABLED, loginSchema, type LoginInput } from "../../_lib/schemas";
 import { signIn } from "../_actions/sign-in";
 
 /** Formulário de login: e-mail, senha e link de recuperação. */
@@ -17,7 +17,7 @@ export function LoginForm() {
   const [isPending, startTransition] = useTransition();
   const [serverMessage, setServerMessage] = useState<string>();
   const form = useForm<LoginInput>({
-    resolver: zodResolver(loginSchema),
+    resolver: IS_ENTRY_VALIDATION_ENABLED ? zodResolver(loginSchema) : undefined,
     defaultValues: { email: "", password: "" },
   });
 
@@ -30,7 +30,7 @@ export function LoginForm() {
   }
 
   return (
-    <form noValidate onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-4 p-4">
+    <form noValidate onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-4 p-4 lg:p-6">
       <FieldGroup className="gap-4">
         <Controller
           name="email"

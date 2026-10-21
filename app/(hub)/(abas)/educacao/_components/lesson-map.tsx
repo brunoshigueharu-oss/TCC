@@ -95,7 +95,7 @@ export function LessonMap({ trackModule }: LessonMapProps) {
         icon={ListOrdered}
         tone="trilha"
       />
-      <SurfaceCard as="div" className="px-4 py-3">
+      <SurfaceCard as="div" className="px-4 py-3 lg:px-6 lg:py-5">
         <ol>
           {trackModule.lessons.map((lesson) => (
             <li key={lesson.id}>

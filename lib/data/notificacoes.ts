@@ -103,3 +103,8 @@ export const notifications: HubNotification[] = z.array(notificationSchema).pars
     href: "/comunidade/pessoas/pedro",
   },
 ]);
+
+/** Quantos avisos ainda não foram lidos — vira a bolinha no Perfil. */
+export function countUnreadNotifications(items: HubNotification[] = notifications) {
+  return items.filter((item) => item.isUnread).length;
+}
