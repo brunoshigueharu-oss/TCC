@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1800" height="1840" viewBox="0 0 1800 1840" role="img" aria-labelledby="titulo descricao">
+  <title id="titulo">Prancha geral — logo e mascote</title>
+  <desc id="descricao">Duas reconstruções, duas construções, quatro alternativas e provas de redução e transparência.</desc>
+  <g id="fundo" inkscape:groupmode="layer" inkscape:label="Fundo">
+    <rect id="papel" x="0" y="0" width="1800" height="1840" fill="#ffffff" />
+    <rect id="amostra-roxa" x="955" y="1340" width="375" height="215" fill="#674b7b" />
+    <rect id="amostra-escura" x="1350" y="1340" width="375" height="215" fill="#211915" />
+  </g>
+  <g id="arte" inkscape:groupmode="layer" inkscape:label="Arte">
+    <g id="principal-0" transform="translate(60 170) scale(0.67)">
+      <path id="principal-0-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+      <path id="principal-0-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+      <path id="principal-0-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="principal-0-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+      <path id="principal-0-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="principal-0-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="principal-1" transform="translate(500 170) scale(0.67)">
+      <path id="principal-1-braco-direito" d="M345 365 A90 90 0 0 0 525 365 A17.5 17.5 0 0 0 490 365 A55 55 0 0 1 380 365 Z" fill="#3d294f" />
+      <ellipse id="principal-1-tentaculo-externo-esquerdo" cx="240" cy="420" rx="20" ry="140" transform="rotate(-6 240 420)" fill="#3d294f" />
+      <ellipse id="principal-1-tentaculo-externo-direito" cx="360" cy="420" rx="20" ry="140" transform="rotate(6 360 420)" fill="#3d294f" />
+      <ellipse id="principal-1-tentaculo-interno-esquerdo" cx="280" cy="420" rx="25" ry="150" transform="rotate(-4 280 420)" fill="#523960" />
+      <ellipse id="principal-1-tentaculo-interno-direito" cx="320" cy="420" rx="25" ry="150" transform="rotate(4 320 420)" fill="#523960" />
+      <circle id="principal-1-cabeca" cx="300" cy="200" r="170" fill="#674b7b" />
+      <rect id="principal-1-ponte-dos-oculos" x="170" y="211.25" width="260" height="17.5" fill="#211915" />
+      <path id="principal-1-armacao-esquerdo" d="M55 220 A115 115 0 1 0 285 220 A115 115 0 1 0 55 220 Z M72.5 220 A97.5 97.5 0 1 0 267.5 220 A97.5 97.5 0 1 0 72.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="principal-1-interior-do-aro-esquerdo" cx="170" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="principal-1-olho-esquerdo" cx="170" cy="220" r="75" fill="#ffffff" />
+      <rect id="principal-1-pupila-esquerdo" x="136.25" y="212.5" width="67.5" height="15" fill="#211915" />
+      <path id="principal-1-armacao-direito" d="M315 220 A115 115 0 1 0 545 220 A115 115 0 1 0 315 220 Z M332.5 220 A97.5 97.5 0 1 0 527.5 220 A97.5 97.5 0 1 0 332.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="principal-1-interior-do-aro-direito" cx="430" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="principal-1-olho-direito" cx="430" cy="220" r="75" fill="#ffffff" />
+      <rect id="principal-1-pupila-direito" x="396.25" y="212.5" width="67.5" height="15" fill="#211915" />
+      <path id="principal-1-sorriso" d="M277.5 295 H322.5 A22.5 22.5 0 0 1 277.5 295 Z" fill="#ffffff" />
+    </g>
+    <g id="principal-2" transform="translate(940 170) scale(0.67)" opacity=".18">
+      <path id="principal-2-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+      <path id="principal-2-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+      <path id="principal-2-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="principal-2-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+      <path id="principal-2-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="principal-2-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="principal-3" transform="translate(1380 170) scale(0.67)" opacity=".18">
+      <path id="principal-3-braco-direito" d="M345 365 A90 90 0 0 0 525 365 A17.5 17.5 0 0 0 490 365 A55 55 0 0 1 380 365 Z" fill="#3d294f" />
+      <ellipse id="principal-3-tentaculo-externo-esquerdo" cx="240" cy="420" rx="20" ry="140" transform="rotate(-6 240 420)" fill="#3d294f" />
+      <ellipse id="principal-3-tentaculo-externo-direito" cx="360" cy="420" rx="20" ry="140" transform="rotate(6 360 420)" fill="#3d294f" />
+      <ellipse id="principal-3-tentaculo-interno-esquerdo" cx="280" cy="420" rx="25" ry="150" transform="rotate(-4 280 420)" fill="#523960" />
+      <ellipse id="principal-3-tentaculo-interno-direito" cx="320" cy="420" rx="25" ry="150" transform="rotate(4 320 420)" fill="#523960" />
+      <circle id="principal-3-cabeca" cx="300" cy="200" r="170" fill="#674b7b" />
+      <rect id="principal-3-ponte-dos-oculos" x="170" y="211.25" width="260" height="17.5" fill="#211915" />
+      <path id="principal-3-armacao-esquerdo" d="M55 220 A115 115 0 1 0 285 220 A115 115 0 1 0 55 220 Z M72.5 220 A97.5 97.5 0 1 0 267.5 220 A97.5 97.5 0 1 0 72.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="principal-3-interior-do-aro-esquerdo" cx="170" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="principal-3-olho-esquerdo" cx="170" cy="220" r="75" fill="#ffffff" />
+      <rect id="principal-3-pupila-esquerdo" x="136.25" y="212.5" width="67.5" height="15" fill="#211915" />
+      <path id="principal-3-armacao-direito" d="M315 220 A115 115 0 1 0 545 220 A115 115 0 1 0 315 220 Z M332.5 220 A97.5 97.5 0 1 0 527.5 220 A97.5 97.5 0 1 0 332.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="principal-3-interior-do-aro-direito" cx="430" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="principal-3-olho-direito" cx="430" cy="220" r="75" fill="#ffffff" />
+      <rect id="principal-3-pupila-direito" x="396.25" y="212.5" width="67.5" height="15" fill="#211915" />
+      <path id="principal-3-sorriso" d="M277.5 295 H322.5 A22.5 22.5 0 0 1 277.5 295 Z" fill="#ffffff" />
+    </g>
+    <g id="alternativa-0" transform="translate(60 735) scale(0.67)">
+      <path id="alternativa-0-silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#211915" fill-rule="evenodd" />
+      <rect id="alternativa-0-pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(45 210 295)" />
+      <rect id="alternativa-0-pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(-45 390 295)" />
+    </g>
+    <g id="alternativa-1" transform="translate(500 735) scale(0.67)">
+      <path id="alternativa-1-tentaculos-em-leque" d="M170 340 H430 L516 355 A145 145 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A145 145 0 0 1 84 355 Z" fill="#211915" />
+      <path id="alternativa-1-cabeca-e-armacoes-circulares" d="M132.074106 183.525593 A170 170 0 0 1 467.925894 183.525593 A92 92 0 0 1 401.221717 346.580248 A170 170 0 0 1 198.778283 346.580248 A92 92 0 0 1 132.074106 183.525593 Z M125 255 A65 65 0 1 0 255 255 A65 65 0 1 0 125 255 Z M345 255 A65 65 0 1 0 475 255 A65 65 0 1 0 345 255 Z" fill="#211915" fill-rule="evenodd" />
+      <rect id="alternativa-1-pupila-esquerda" x="160" y="247.5" width="60" height="15" fill="#211915" />
+      <rect id="alternativa-1-pupila-direita" x="380" y="247.5" width="60" height="15" fill="#211915" />
+    </g>
+    <g id="alternativa-2" transform="translate(940 735) scale(0.67)">
+      <path id="alternativa-2-braco-direito" d="M345 365 A90 90 0 0 0 525 365 A17.5 17.5 0 0 0 490 365 A55 55 0 0 1 380 365 Z" fill="#3d294f" />
+      <g id="alternativa-2-braco-esquerdo-espelho" transform="translate(600 0) scale(-1 1)">
+        <path id="alternativa-2-braco-esquerdo" d="M345 365 A90 90 0 0 0 525 365 A17.5 17.5 0 0 0 490 365 A55 55 0 0 1 380 365 Z" fill="#3d294f" />
+      </g>
+      <ellipse id="alternativa-2-tentaculo-externo-esquerdo" cx="240" cy="420" rx="20" ry="140" transform="rotate(-6 240 420)" fill="#3d294f" />
+      <ellipse id="alternativa-2-tentaculo-externo-direito" cx="360" cy="420" rx="20" ry="140" transform="rotate(6 360 420)" fill="#3d294f" />
+      <ellipse id="alternativa-2-tentaculo-interno-esquerdo" cx="280" cy="420" rx="25" ry="150" transform="rotate(-4 280 420)" fill="#523960" />
+      <ellipse id="alternativa-2-tentaculo-interno-direito" cx="320" cy="420" rx="25" ry="150" transform="rotate(4 320 420)" fill="#523960" />
+      <circle id="alternativa-2-cabeca" cx="300" cy="200" r="170" fill="#674b7b" />
+      <rect id="alternativa-2-ponte-dos-oculos" x="170" y="211.25" width="260" height="17.5" fill="#211915" />
+      <path id="alternativa-2-armacao-esquerdo" d="M55 220 A115 115 0 1 0 285 220 A115 115 0 1 0 55 220 Z M72.5 220 A97.5 97.5 0 1 0 267.5 220 A97.5 97.5 0 1 0 72.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="alternativa-2-interior-do-aro-esquerdo" cx="170" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="alternativa-2-olho-esquerdo" cx="170" cy="220" r="75" fill="#ffffff" />
+      <rect id="alternativa-2-pupila-esquerdo" x="136.25" y="212.5" width="67.5" height="15" fill="#211915" />
+      <path id="alternativa-2-armacao-direito" d="M315 220 A115 115 0 1 0 545 220 A115 115 0 1 0 315 220 Z M332.5 220 A97.5 97.5 0 1 0 527.5 220 A97.5 97.5 0 1 0 332.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="alternativa-2-interior-do-aro-direito" cx="430" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="alternativa-2-olho-direito" cx="430" cy="220" r="75" fill="#ffffff" />
+      <rect id="alternativa-2-pupila-direito" x="396.25" y="212.5" width="67.5" height="15" fill="#211915" />
+      <path id="alternativa-2-sorriso" d="M277.5 295 H322.5 A22.5 22.5 0 0 1 277.5 295 Z" fill="#ffffff" />
+      <circle id="alternativa-2-ventosa-direita-1" cx="494.388523" cy="406.584292" r="5.5" fill="#674b7b" />
+      <circle id="alternativa-2-ventosa-direita-2" cx="465.639824" cy="430.707315" r="5.5" fill="#674b7b" />
+      <circle id="alternativa-2-ventosa-direita-3" cx="428.681209" cy="437.224116" r="5.5" fill="#674b7b" />
+      <circle id="alternativa-2-ventosa-esquerda-1" cx="105.611477" cy="406.584292" r="5.5" fill="#674b7b" />
+      <circle id="alternativa-2-ventosa-esquerda-2" cx="134.360176" cy="430.707315" r="5.5" fill="#674b7b" />
+      <circle id="alternativa-2-ventosa-esquerda-3" cx="171.318791" cy="437.224116" r="5.5" fill="#674b7b" />
+    </g>
+    <g id="alternativa-3" transform="translate(1380 735) scale(0.67)">
+      <path id="alternativa-3-braco-direito" d="M345 365 A90 90 0 0 0 525 365 A17.5 17.5 0 0 0 490 365 A55 55 0 0 1 380 365 Z" fill="#3d294f" />
+      <ellipse id="alternativa-3-tentaculo-externo-esquerdo" cx="240" cy="420" rx="20" ry="140" transform="rotate(-6 240 420)" fill="#3d294f" />
+      <ellipse id="alternativa-3-tentaculo-externo-direito" cx="360" cy="420" rx="20" ry="140" transform="rotate(6 360 420)" fill="#3d294f" />
+      <ellipse id="alternativa-3-tentaculo-interno-esquerdo" cx="280" cy="420" rx="25" ry="150" transform="rotate(-4 280 420)" fill="#523960" />
+      <ellipse id="alternativa-3-tentaculo-interno-direito" cx="320" cy="420" rx="25" ry="150" transform="rotate(4 320 420)" fill="#523960" />
+      <circle id="alternativa-3-cabeca" cx="300" cy="200" r="170" fill="#674b7b" />
+      <rect id="alternativa-3-ponte-dos-oculos" x="170" y="211.25" width="260" height="17.5" fill="#211915" />
+      <path id="alternativa-3-armacao-esquerdo" d="M55 220 A115 115 0 1 0 285 220 A115 115 0 1 0 55 220 Z M72.5 220 A97.5 97.5 0 1 0 267.5 220 A97.5 97.5 0 1 0 72.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="alternativa-3-interior-do-aro-esquerdo" cx="170" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="alternativa-3-olho-esquerdo" cx="170" cy="220" r="75" fill="#ffffff" />
+      <circle id="alternativa-3-pupila-atenta-esquerdo" cx="170" cy="220" r="20" fill="#211915" />
+      <path id="alternativa-3-armacao-direito" d="M315 220 A115 115 0 1 0 545 220 A115 115 0 1 0 315 220 Z M332.5 220 A97.5 97.5 0 1 0 527.5 220 A97.5 97.5 0 1 0 332.5 220 Z" fill="#211915" fill-rule="evenodd" />
+      <circle id="alternativa-3-interior-do-aro-direito" cx="430" cy="220" r="97.5" fill="#674b7b" />
+      <circle id="alternativa-3-olho-direito" cx="430" cy="220" r="75" fill="#ffffff" />
+      <circle id="alternativa-3-pupila-atenta-direito" cx="430" cy="220" r="20" fill="#211915" />
+      <path id="alternativa-3-sorriso" d="M277.5 295 H322.5 A22.5 22.5 0 0 1 277.5 295 Z" fill="#ffffff" />
+    </g>
+    <g id="reducao-logo-16" transform="translate(290 1360) scale(0.02666666666666667)">
+      <path id="reducao-logo-16-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+      <path id="reducao-logo-16-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+      <path id="reducao-logo-16-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="reducao-logo-16-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+      <path id="reducao-logo-16-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="reducao-logo-16-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="reducao-micro-16" transform="translate(290 1420) scale(0.02666666666666667)">
+      <path id="reducao-micro-16-silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#211915" fill-rule="evenodd" />
+      <rect id="reducao-micro-16-pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(45 210 295)" />
+      <rect id="reducao-micro-16-pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(-45 390 295)" />
+    </g>
+    <g id="reducao-logo-24" transform="translate(406 1360) scale(0.04)">
+      <path id="reducao-logo-24-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+      <path id="reducao-logo-24-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+      <path id="reducao-logo-24-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="reducao-logo-24-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+      <path id="reducao-logo-24-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="reducao-logo-24-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="reducao-micro-24" transform="translate(406 1420) scale(0.04)">
+      <path id="reducao-micro-24-silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#211915" fill-rule="evenodd" />
+      <rect id="reducao-micro-24-pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(45 210 295)" />
+      <rect id="reducao-micro-24-pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(-45 390 295)" />
+    </g>
+    <g id="reducao-logo-32" transform="translate(522 1360) scale(0.05333333333333334)">
+      <path id="reducao-logo-32-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+      <path id="reducao-logo-32-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+      <path id="reducao-logo-32-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="reducao-logo-32-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+      <path id="reducao-logo-32-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="reducao-logo-32-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="reducao-micro-32" transform="translate(522 1420) scale(0.05333333333333334)">
+      <path id="reducao-micro-32-silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#211915" fill-rule="evenodd" />
+      <rect id="reducao-micro-32-pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(45 210 295)" />
+      <rect id="reducao-micro-32-pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(-45 390 295)" />
+    </g>
+    <g id="reducao-logo-48" transform="translate(638 1360) scale(0.08)">
+      <path id="reducao-logo-48-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+      <path id="reducao-logo-48-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+      <path id="reducao-logo-48-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="reducao-logo-48-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+      <path id="reducao-logo-48-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="reducao-logo-48-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="reducao-micro-48" transform="translate(638 1420) scale(0.08)">
+      <path id="reducao-micro-48-silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#211915" fill-rule="evenodd" />
+      <rect id="reducao-micro-48-pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(45 210 295)" />
+      <rect id="reducao-micro-48-pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(-45 390 295)" />
+    </g>
+    <g id="reducao-logo-64" transform="translate(754 1360) scale(0.10666666666666667)">
+      <path id="reducao-logo-64-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+      <path id="reducao-logo-64-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+      <path id="reducao-logo-64-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="reducao-logo-64-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+      <path id="reducao-logo-64-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="reducao-logo-64-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="reducao-micro-64" transform="translate(754 1420) scale(0.10666666666666667)">
+      <path id="reducao-micro-64-silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#211915" fill-rule="evenodd" />
+      <rect id="reducao-micro-64-pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(45 210 295)" />
+      <rect id="reducao-micro-64-pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(-45 390 295)" />
+    </g>
+    <g id="logo-reversa" transform="translate(968 1335) scale(0.36)">
+      <path id="logo-reversa-cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#ffffff" />
+      <path id="logo-reversa-corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#ffffff" />
+      <path id="logo-reversa-aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#ffffff" fill-rule="evenodd" transform="rotate(45 200 295)" />
+      <rect id="logo-reversa-pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#ffffff" transform="rotate(45 200 295)" />
+      <path id="logo-reversa-aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#ffffff" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+      <rect id="logo-reversa-pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#ffffff" transform="rotate(-45 400 295)" />
+    </g>
+    <g id="micro-reversa" transform="translate(1510 1335) scale(0.36)">
+      <path id="micro-reversa-silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#ffffff" fill-rule="evenodd" />
+      <rect id="micro-reversa-pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#ffffff" transform="rotate(45 210 295)" />
+      <rect id="micro-reversa-pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#ffffff" transform="rotate(-45 390 295)" />
+    </g>
+  </g>
+  <g id="construcao" inkscape:groupmode="layer" inkscape:label="Construção">
+    <g id="guias-2" transform="translate(940 170) scale(0.67)">
+      <g id="guias-2-malha-de-um-modulo">
+        <line x1="0" y1="0" x2="0" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="0" x2="600" y2="0" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="10" y1="0" x2="10" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="10" x2="600" y2="10" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="20" y1="0" x2="20" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="20" x2="600" y2="20" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="30" y1="0" x2="30" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="30" x2="600" y2="30" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="40" y1="0" x2="40" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="40" x2="600" y2="40" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="50" y1="0" x2="50" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="50" x2="600" y2="50" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="60" y1="0" x2="60" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="60" x2="600" y2="60" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="70" y1="0" x2="70" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="70" x2="600" y2="70" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="80" y1="0" x2="80" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="80" x2="600" y2="80" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="90" y1="0" x2="90" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="90" x2="600" y2="90" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="100" y1="0" x2="100" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="100" x2="600" y2="100" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="110" y1="0" x2="110" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="110" x2="600" y2="110" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="120" y1="0" x2="120" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="120" x2="600" y2="120" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="130" y1="0" x2="130" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="130" x2="600" y2="130" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="140" y1="0" x2="140" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="140" x2="600" y2="140" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="150" y1="0" x2="150" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="150" x2="600" y2="150" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="160" y1="0" x2="160" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="160" x2="600" y2="160" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="170" y1="0" x2="170" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="170" x2="600" y2="170" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="180" y1="0" x2="180" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="180" x2="600" y2="180" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="190" y1="0" x2="190" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="190" x2="600" y2="190" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="200" y1="0" x2="200" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="200" x2="600" y2="200" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="210" y1="0" x2="210" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="210" x2="600" y2="210" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="220" y1="0" x2="220" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="220" x2="600" y2="220" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="230" y1="0" x2="230" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="230" x2="600" y2="230" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="240" y1="0" x2="240" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="240" x2="600" y2="240" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="250" y1="0" x2="250" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="250" x2="600" y2="250" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="260" y1="0" x2="260" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="260" x2="600" y2="260" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="270" y1="0" x2="270" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="270" x2="600" y2="270" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="280" y1="0" x2="280" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="280" x2="600" y2="280" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="290" y1="0" x2="290" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="290" x2="600" y2="290" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="300" y1="0" x2="300" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="300" x2="600" y2="300" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="310" y1="0" x2="310" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="310" x2="600" y2="310" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="320" y1="0" x2="320" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="320" x2="600" y2="320" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="330" y1="0" x2="330" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="330" x2="600" y2="330" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="340" y1="0" x2="340" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="340" x2="600" y2="340" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="350" y1="0" x2="350" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="350" x2="600" y2="350" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="360" y1="0" x2="360" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="360" x2="600" y2="360" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="370" y1="0" x2="370" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="370" x2="600" y2="370" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="380" y1="0" x2="380" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="380" x2="600" y2="380" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="390" y1="0" x2="390" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="390" x2="600" y2="390" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="400" y1="0" x2="400" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="400" x2="600" y2="400" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="410" y1="0" x2="410" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="410" x2="600" y2="410" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="420" y1="0" x2="420" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="420" x2="600" y2="420" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="430" y1="0" x2="430" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="430" x2="600" y2="430" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="440" y1="0" x2="440" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="440" x2="600" y2="440" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="450" y1="0" x2="450" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="450" x2="600" y2="450" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="460" y1="0" x2="460" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="460" x2="600" y2="460" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="470" y1="0" x2="470" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="470" x2="600" y2="470" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="480" y1="0" x2="480" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="480" x2="600" y2="480" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="490" y1="0" x2="490" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="490" x2="600" y2="490" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="500" y1="0" x2="500" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="500" x2="600" y2="500" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="510" y1="0" x2="510" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="510" x2="600" y2="510" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="520" y1="0" x2="520" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="520" x2="600" y2="520" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="530" y1="0" x2="530" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="530" x2="600" y2="530" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="540" y1="0" x2="540" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="540" x2="600" y2="540" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="550" y1="0" x2="550" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="550" x2="600" y2="550" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="560" y1="0" x2="560" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="560" x2="600" y2="560" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="570" y1="0" x2="570" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="570" x2="600" y2="570" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="580" y1="0" x2="580" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="580" x2="600" y2="580" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="590" y1="0" x2="590" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="590" x2="600" y2="590" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="600" y1="0" x2="600" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="600" x2="600" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+      </g>
+      <g id="guias-2-circulos-elipses-e-eixos" stroke="#957da7" stroke-width="1.15" fill="none">
+        <circle id="guias-2-gerador-cranio" cx="300" cy="215" r="180" fill="none" />
+        <circle id="guias-2-gerador-das-pontas" cx="300" cy="400" r="170" fill="none" />
+        <circle id="guias-2-gerador-asa-direita" cx="363.29299" cy="267.244697" r="160" fill="none" opacity=".38" stroke-dasharray="3 5" />
+        <line x1="358.29299" y1="267.244697" x2="368.29299" y2="267.244697" />
+        <line x1="363.29299" y1="262.244697" x2="363.29299" y2="272.244697" />
+        <circle id="guias-2-gerador-asa-esquerda" cx="236.70701" cy="267.244697" r="160" fill="none" opacity=".38" stroke-dasharray="3 5" />
+        <line x1="231.70701" y1="267.244697" x2="241.70701" y2="267.244697" />
+        <line x1="236.70701" y1="262.244697" x2="236.70701" y2="272.244697" />
+        <ellipse id="guias-2-gerador-200-90" cx="200" cy="295" rx="90" ry="70" transform="rotate(45 200 295)" fill="none" />
+        <ellipse id="guias-2-gerador-200-70" cx="200" cy="295" rx="70" ry="50" transform="rotate(45 200 295)" fill="none" />
+        <ellipse id="guias-2-gerador-200-45" cx="200" cy="295" rx="45" ry="32.5" transform="rotate(45 200 295)" fill="none" />
+        <line x1="132.824856" y1="227.824856" x2="267.175144" y2="362.175144" stroke-dasharray="5 4" />
+        <line x1="195" y1="295" x2="205" y2="295" />
+        <line x1="200" y1="290" x2="200" y2="300" />
+        <ellipse id="guias-2-gerador-400-90" cx="400" cy="295" rx="90" ry="70" transform="rotate(-45 400 295)" fill="none" />
+        <ellipse id="guias-2-gerador-400-70" cx="400" cy="295" rx="70" ry="50" transform="rotate(-45 400 295)" fill="none" />
+        <ellipse id="guias-2-gerador-400-45" cx="400" cy="295" rx="45" ry="32.5" transform="rotate(-45 400 295)" fill="none" />
+        <line x1="332.824856" y1="362.175144" x2="467.175144" y2="227.824856" stroke-dasharray="5 4" />
+        <line x1="395" y1="295" x2="405" y2="295" />
+        <line x1="400" y1="290" x2="400" y2="300" />
+        <line x1="300" y1="400" x2="458.603863" y2="473.958196" stroke-dasharray="4 4" />
+        <line x1="300" y1="400" x2="423.743687" y2="523.743687" stroke-dasharray="4 4" />
+        <line x1="300" y1="400" x2="373.958196" y2="558.603863" stroke-dasharray="4 4" />
+        <line x1="300" y1="400" x2="321.327135" y2="573.695577" stroke-dasharray="4 4" />
+        <line x1="300" y1="400" x2="278.672865" y2="573.695577" stroke-dasharray="4 4" />
+        <line x1="300" y1="400" x2="226.041804" y2="558.603863" stroke-dasharray="4 4" />
+        <line x1="300" y1="400" x2="176.256313" y2="523.743687" stroke-dasharray="4 4" />
+        <line x1="300" y1="400" x2="141.396137" y2="473.958196" stroke-dasharray="4 4" />
+        <line x1="300" y1="0" x2="300" y2="600" stroke-dasharray="7 5" />
+        <line x1="80" y1="295" x2="520" y2="295" stroke-dasharray="7 5" />
+        <line x1="295" y1="215" x2="305" y2="215" />
+        <line x1="300" y1="210" x2="300" y2="220" />
+        <line x1="295" y1="400" x2="305" y2="400" />
+        <line x1="300" y1="395" x2="300" y2="405" />
+      </g>
+      <g id="guias-2-cota-120-480-20" stroke="#3d294f" stroke-width="1">
+        <line x1="120" y1="20" x2="480" y2="20" />
+        <line x1="120" y1="15" x2="120" y2="25" />
+        <line x1="480" y1="15" x2="480" y2="25" />
+      </g>
+      <text x="300.0" y="12" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#3d294f" text-anchor="middle">36u</text>
+      <g id="guias-2-cota-200-400-190" stroke="#3d294f" stroke-width="1">
+        <line x1="200" y1="190" x2="400" y2="190" />
+        <line x1="200" y1="185" x2="200" y2="195" />
+        <line x1="400" y1="185" x2="400" y2="195" />
+      </g>
+      <text x="300.0" y="182" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#3d294f" text-anchor="middle">20u</text>
+      <g id="guias-2-cota-280-320-315" stroke="#3d294f" stroke-width="1">
+        <line x1="280" y1="315" x2="320" y2="315" />
+        <line x1="280" y1="310" x2="280" y2="320" />
+        <line x1="320" y1="310" x2="320" y2="320" />
+      </g>
+      <text x="300.0" y="307" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#3d294f" text-anchor="middle">4u</text>
+    </g>
+    <g id="guias-3" transform="translate(1380 170) scale(0.67)">
+      <g id="guias-3-malha-de-um-modulo">
+        <line x1="0" y1="0" x2="0" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="0" x2="600" y2="0" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="10" y1="0" x2="10" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="10" x2="600" y2="10" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="20" y1="0" x2="20" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="20" x2="600" y2="20" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="30" y1="0" x2="30" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="30" x2="600" y2="30" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="40" y1="0" x2="40" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="40" x2="600" y2="40" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="50" y1="0" x2="50" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="50" x2="600" y2="50" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="60" y1="0" x2="60" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="60" x2="600" y2="60" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="70" y1="0" x2="70" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="70" x2="600" y2="70" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="80" y1="0" x2="80" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="80" x2="600" y2="80" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="90" y1="0" x2="90" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="90" x2="600" y2="90" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="100" y1="0" x2="100" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="100" x2="600" y2="100" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="110" y1="0" x2="110" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="110" x2="600" y2="110" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="120" y1="0" x2="120" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="120" x2="600" y2="120" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="130" y1="0" x2="130" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="130" x2="600" y2="130" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="140" y1="0" x2="140" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="140" x2="600" y2="140" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="150" y1="0" x2="150" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="150" x2="600" y2="150" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="160" y1="0" x2="160" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="160" x2="600" y2="160" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="170" y1="0" x2="170" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="170" x2="600" y2="170" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="180" y1="0" x2="180" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="180" x2="600" y2="180" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="190" y1="0" x2="190" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="190" x2="600" y2="190" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="200" y1="0" x2="200" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="200" x2="600" y2="200" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="210" y1="0" x2="210" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="210" x2="600" y2="210" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="220" y1="0" x2="220" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="220" x2="600" y2="220" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="230" y1="0" x2="230" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="230" x2="600" y2="230" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="240" y1="0" x2="240" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="240" x2="600" y2="240" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="250" y1="0" x2="250" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="250" x2="600" y2="250" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="260" y1="0" x2="260" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="260" x2="600" y2="260" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="270" y1="0" x2="270" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="270" x2="600" y2="270" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="280" y1="0" x2="280" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="280" x2="600" y2="280" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="290" y1="0" x2="290" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="290" x2="600" y2="290" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="300" y1="0" x2="300" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="300" x2="600" y2="300" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="310" y1="0" x2="310" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="310" x2="600" y2="310" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="320" y1="0" x2="320" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="320" x2="600" y2="320" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="330" y1="0" x2="330" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="330" x2="600" y2="330" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="340" y1="0" x2="340" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="340" x2="600" y2="340" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="350" y1="0" x2="350" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="350" x2="600" y2="350" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="360" y1="0" x2="360" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="360" x2="600" y2="360" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="370" y1="0" x2="370" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="370" x2="600" y2="370" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="380" y1="0" x2="380" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="380" x2="600" y2="380" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="390" y1="0" x2="390" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="390" x2="600" y2="390" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="400" y1="0" x2="400" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="400" x2="600" y2="400" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="410" y1="0" x2="410" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="410" x2="600" y2="410" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="420" y1="0" x2="420" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="420" x2="600" y2="420" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="430" y1="0" x2="430" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="430" x2="600" y2="430" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="440" y1="0" x2="440" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="440" x2="600" y2="440" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="450" y1="0" x2="450" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="450" x2="600" y2="450" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="460" y1="0" x2="460" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="460" x2="600" y2="460" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="470" y1="0" x2="470" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="470" x2="600" y2="470" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="480" y1="0" x2="480" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="480" x2="600" y2="480" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="490" y1="0" x2="490" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="490" x2="600" y2="490" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="500" y1="0" x2="500" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="500" x2="600" y2="500" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="510" y1="0" x2="510" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="510" x2="600" y2="510" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="520" y1="0" x2="520" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="520" x2="600" y2="520" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="530" y1="0" x2="530" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="530" x2="600" y2="530" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="540" y1="0" x2="540" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="540" x2="600" y2="540" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="550" y1="0" x2="550" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="550" x2="600" y2="550" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="560" y1="0" x2="560" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="560" x2="600" y2="560" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="570" y1="0" x2="570" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="570" x2="600" y2="570" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="580" y1="0" x2="580" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="580" x2="600" y2="580" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="590" y1="0" x2="590" y2="600" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="0" y1="590" x2="600" y2="590" stroke="#957da7" stroke-width=".65" opacity=".12" />
+        <line x1="600" y1="0" x2="600" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+        <line x1="0" y1="600" x2="600" y2="600" stroke="#957da7" stroke-width=".65" opacity=".3" />
+      </g>
+      <g id="guias-3-circulos-elipses-e-eixos" stroke="#957da7" stroke-width="1.15" fill="none">
+        <circle id="guias-3-gerador-cabeca" cx="300" cy="200" r="170" fill="none" />
+        <line x1="295" y1="200" x2="305" y2="200" />
+        <line x1="300" y1="195" x2="300" y2="205" />
+        <circle id="guias-3-gerador-170-115" cx="170" cy="220" r="115" fill="none" />
+        <circle id="guias-3-gerador-170-97.5" cx="170" cy="220" r="97.5" fill="none" />
+        <circle id="guias-3-gerador-170-75" cx="170" cy="220" r="75" fill="none" />
+        <line x1="165" y1="220" x2="175" y2="220" />
+        <line x1="170" y1="215" x2="170" y2="225" />
+        <circle id="guias-3-gerador-430-115" cx="430" cy="220" r="115" fill="none" />
+        <circle id="guias-3-gerador-430-97.5" cx="430" cy="220" r="97.5" fill="none" />
+        <circle id="guias-3-gerador-430-75" cx="430" cy="220" r="75" fill="none" />
+        <line x1="425" y1="220" x2="435" y2="220" />
+        <line x1="430" y1="215" x2="430" y2="225" />
+        <ellipse id="guias-3-gerador-tentaculo-240" cx="240" cy="420" rx="20" ry="140" transform="rotate(-6 240 420)" fill="none" />
+        <line x1="254.633985" y1="559.233065" x2="225.366015" y2="280.766935" stroke-dasharray="4 4" />
+        <ellipse id="guias-3-gerador-tentaculo-360" cx="360" cy="420" rx="20" ry="140" transform="rotate(6 360 420)" fill="none" />
+        <line x1="345.366015" y1="559.233065" x2="374.633985" y2="280.766935" stroke-dasharray="4 4" />
+        <ellipse id="guias-3-gerador-tentaculo-280" cx="280" cy="420" rx="25" ry="150" transform="rotate(-4 280 420)" fill="none" />
+        <line x1="290.463471" y1="569.634608" x2="269.536529" y2="270.365392" stroke-dasharray="4 4" />
+        <ellipse id="guias-3-gerador-tentaculo-320" cx="320" cy="420" rx="25" ry="150" transform="rotate(4 320 420)" fill="none" />
+        <line x1="309.536529" y1="569.634608" x2="330.463471" y2="270.365392" stroke-dasharray="4 4" />
+        <circle id="guias-3-gerador-braco-90" cx="435" cy="365" r="90" fill="none" />
+        <circle id="guias-3-gerador-braco-55" cx="435" cy="365" r="55" fill="none" />
+        <circle id="guias-3-gerador-ponta-braco" cx="507.5" cy="365" r="17.5" fill="none" />
+        <line x1="430" y1="365" x2="440" y2="365" />
+        <line x1="435" y1="360" x2="435" y2="370" />
+        <circle id="guias-3-gerador-sorriso" cx="300" cy="295" r="22.5" fill="none" />
+        <line x1="300" y1="0" x2="300" y2="600" stroke-dasharray="7 5" />
+        <line x1="25" y1="220" x2="575" y2="220" stroke-dasharray="7 5" />
+      </g>
+      <g id="guias-3-cota-130-470-15" stroke="#3d294f" stroke-width="1">
+        <line x1="130" y1="15" x2="470" y2="15" />
+        <line x1="130" y1="10" x2="130" y2="20" />
+        <line x1="470" y1="10" x2="470" y2="20" />
+      </g>
+      <text x="300.0" y="7" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#3d294f" text-anchor="middle">34u</text>
+      <g id="guias-3-cota-170-430-80" stroke="#3d294f" stroke-width="1">
+        <line x1="170" y1="80" x2="430" y2="80" />
+        <line x1="170" y1="75" x2="170" y2="85" />
+        <line x1="430" y1="75" x2="430" y2="85" />
+      </g>
+      <text x="300.0" y="72" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#3d294f" text-anchor="middle">26u</text>
+      <g id="guias-3-cota-315-345-200" stroke="#3d294f" stroke-width="1">
+        <line x1="315" y1="200" x2="345" y2="200" />
+        <line x1="315" y1="195" x2="315" y2="205" />
+        <line x1="345" y1="195" x2="345" y2="205" />
+      </g>
+      <text x="330.0" y="192" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" fill="#3d294f" text-anchor="middle">3u</text>
+    </g>
+  </g>
+  <g id="legendas" inkscape:groupmode="layer" inkscape:label="Legendas">
+    <text x="60" y="65" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" fill="#211915" text-anchor="start">UM POLVO, DUAS ESCALAS</text>
+    <text x="60" y="100" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#674b7b" text-anchor="start">Reconstrução geométrica e caminhos de evolução · estudo vetorial para Bruno</text>
+    <text x="60" y="146" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#674b7b" text-anchor="start">01 / REFERÊNCIAS RECONSTRUÍDAS</text>
+    <text x="60" y="610" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">Logo</text>
+    <text x="60" y="640" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Silhueta e expressão preservadas.</text>
+    <text x="500" y="610" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">Mascote</text>
+    <text x="500" y="640" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Pose original, círculos concêntricos.</text>
+    <text x="940" y="610" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">Construção da logo</text>
+    <text x="940" y="640" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Simetria, elipses e leque radial.</text>
+    <text x="1380" y="610" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">Construção do mascote</text>
+    <text x="1380" y="640" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Círculos, elipses e tangências.</text>
+    <text x="60" y="710" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#674b7b" text-anchor="start">02 / ALTERNATIVAS COM PROPÓSITO</text>
+    <text x="60" y="1175" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">A1 · Logo óptica</text>
+    <text x="60" y="1207" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Menos contornos, pupilas maiores.</text>
+    <text x="60" y="1232" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Prioridade: leitura entre 16 e 32 px.</text>
+    <text x="500" y="1175" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">A2 · Logo circular</text>
+    <text x="500" y="1207" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Olhos e expressão próximos do mascote.</text>
+    <text x="500" y="1232" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Prioridade: unidade entre os dois sinais.</text>
+    <text x="940" y="1175" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">B1 · Acolhimento</text>
+    <text x="940" y="1207" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Dois braços e ventosas nos gestos.</text>
+    <text x="940" y="1232" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Prioridade: recepção e celebração.</text>
+    <text x="1380" y="1175" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#211915" text-anchor="start">B2 · Atenção</text>
+    <text x="1380" y="1207" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Pupilas abertas, mesma anatomia.</text>
+    <text x="1380" y="1232" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#211915" text-anchor="start">Prioridade: instrução e descoberta.</text>
+    <text x="60" y="1310" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#674b7b" text-anchor="start">03 / TESTE DE REDUÇÃO E DE FUNDO</text>
+    <text x="60" y="1350" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#211915" text-anchor="start">Tamanho nominal</text>
+    <text x="60" y="1395" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#211915" text-anchor="start">Logo reconstruída</text>
+    <text x="60" y="1455" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#211915" text-anchor="start">Alternativa óptica</text>
+    <text x="290" y="1350" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#674b7b" text-anchor="start">16 px</text>
+    <text x="406" y="1350" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#674b7b" text-anchor="start">24 px</text>
+    <text x="522" y="1350" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#674b7b" text-anchor="start">32 px</text>
+    <text x="638" y="1350" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#674b7b" text-anchor="start">48 px</text>
+    <text x="754" y="1350" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#674b7b" text-anchor="start">64 px</text>
+    <text x="60" y="1530" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#674b7b" text-anchor="start">Comparar a 100%: reduzir a prancha também reduz estas amostras.</text>
+    <text x="1175" y="1415" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ffffff" text-anchor="start">Uma tinta.</text>
+    <text x="1175" y="1443" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#ffffff" text-anchor="start">Recortes</text>
+    <text x="1175" y="1465" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#ffffff" text-anchor="start">transparentes.</text>
+    <text x="1370" y="1415" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ffffff" text-anchor="start">Óptica</text>
+    <text x="1370" y="1443" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#ffffff" text-anchor="start">em negativo.</text>
+    <text x="60" y="1645" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#674b7b" text-anchor="start">SISTEMA COMPARTILHADO</text>
+    <text x="60" y="1685" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#211915" text-anchor="start">u = 10 · eixo x = 30u · pares espelhados · círculos e elipses · paleta provisória</text>
+    <text x="60" y="1723" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#211915" text-anchor="start">A logo usa inclinação e recortes; o mascote mantém olhos frontais e saudação. As alternativas testam a aproximação entre eles.</text>
+    <text x="60" y="1780" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#674b7b" text-anchor="start">Arte, Construção e Legendas são grupos separados. Arquivos individuais sem fundo e sem texto na marca.</text>
+  </g>
+</svg>

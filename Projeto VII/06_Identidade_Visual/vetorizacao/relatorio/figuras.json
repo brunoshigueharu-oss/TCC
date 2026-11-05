@@ -1,0 +1,62 @@
+[
+  {
+    "nome": "fig-01-ponto-de-partida",
+    "largura": 1600,
+    "altura": 500
+  },
+  {
+    "nome": "fig-02-logo-rodada-1",
+    "largura": 1600,
+    "altura": 590
+  },
+  {
+    "nome": "fig-03-logo-construcao-rodada-1",
+    "largura": 1600,
+    "altura": 770
+  },
+  {
+    "nome": "fig-04-mascote-rodada-1",
+    "largura": 1600,
+    "altura": 590
+  },
+  {
+    "nome": "fig-05-mascote-construcao-rodada-1",
+    "largura": 1600,
+    "altura": 710
+  },
+  {
+    "nome": "fig-06-alternativas-rodada-1",
+    "largura": 1600,
+    "altura": 1172
+  },
+  {
+    "nome": "fig-07-variacoes-rodada-2",
+    "largura": 1600,
+    "altura": 800
+  },
+  {
+    "nome": "fig-08-rodada-3",
+    "largura": 1600,
+    "altura": 430
+  },
+  {
+    "nome": "fig-09-tres-versoes",
+    "largura": 1600,
+    "altura": 690
+  },
+  {
+    "nome": "fig-10-sobreposicao",
+    "largura": 1600,
+    "altura": 830
+  },
+  {
+    "nome": "fig-11-construcao-a",
+    "largura": 1600,
+    "altura": 1032
+  },
+  {
+    "nome": "fig-12-construcao-b",
+    "largura": 1600,
+    "altura": 1032
+  }
+]

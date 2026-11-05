@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 430">
+<rect width="1600" height="430" fill="#ffffff"/>
+<rect x="0.0" y="0" width="300.8" height="360" fill="#f6f4f8"/>
+<image href="../claude/rodada-3/logo-nova-construida.svg" x="24.0" y="24" width="252.8" height="312" preserveAspectRatio="xMidYMid meet"/>
+<text x="0.0" y="398" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Reconstruída</text>
+<rect x="324.8" y="0" width="300.8" height="360" fill="#f6f4f8"/>
+<image href="../claude/rodada-3/alt-1-reduzida.svg" x="348.8" y="24" width="252.8" height="312" preserveAspectRatio="xMidYMid meet"/>
+<text x="324.8" y="398" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Reduzida</text>
+<rect x="649.6" y="0" width="300.8" height="360" fill="#f6f4f8"/>
+<image href="../claude/rodada-3/alt-2-oculos-redondos.svg" x="673.6" y="24" width="252.8" height="312" preserveAspectRatio="xMidYMid meet"/>
+<text x="649.6" y="398" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Óculos redondos</text>
+<rect x="974.4" y="0" width="300.8" height="360" fill="#f6f4f8"/>
+<image href="../claude/rodada-3/alt-3-feliz.svg" x="998.4" y="24" width="252.8" height="312" preserveAspectRatio="xMidYMid meet"/>
+<text x="974.4" y="398" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Feliz</text>
+<rect x="1299.2" y="0" width="300.8" height="360" fill="#f6f4f8"/>
+<image href="../claude/rodada-3/alt-4-piscadela.svg" x="1323.2" y="24" width="252.8" height="312" preserveAspectRatio="xMidYMid meet"/>
+<text x="1299.2" y="398" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Piscadela</text>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 590">
+<rect width="1600" height="590" fill="#ffffff"/>
+<rect x="0.0" y="0" width="517.3" height="520" fill="#f6f4f8"/>
+<image href="../fontes/logo-original.svg" x="24.0" y="24" width="469.3" height="472" preserveAspectRatio="xMidYMid meet"/>
+<text x="0.0" y="558" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Original</text>
+<rect x="541.3" y="0" width="517.3" height="520" fill="#f6f4f8"/>
+<image href="../claude/logo-construida.svg" x="565.3" y="24" width="469.3" height="472" preserveAspectRatio="xMidYMid meet"/>
+<text x="541.3" y="558" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Claude</text>
+<rect x="1082.7" y="0" width="517.3" height="520" fill="#f6f4f8"/>
+<image href="../codex/logo-final.svg" x="1106.7" y="24" width="469.3" height="472" preserveAspectRatio="xMidYMid meet"/>
+<text x="1082.7" y="558" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Codex</text>
+</svg>

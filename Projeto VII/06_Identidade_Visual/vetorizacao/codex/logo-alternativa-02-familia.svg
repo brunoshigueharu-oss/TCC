@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="600" height="600" viewBox="0 0 600 600" role="img" aria-labelledby="titulo descricao">
+  <title id="titulo">Logo — alternativa circular</title>
+  <desc id="descricao">Olhos circulares e pupilas horizontais aproximam o símbolo do mascote.</desc>
+  <g id="arte" inkscape:groupmode="layer" inkscape:label="Arte">
+    <path id="tentaculos-em-leque" d="M170 340 H430 L516 355 A145 145 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A145 145 0 0 1 84 355 Z" fill="#211915" />
+    <path id="cabeca-e-armacoes-circulares" d="M132.074106 183.525593 A170 170 0 0 1 467.925894 183.525593 A92 92 0 0 1 401.221717 346.580248 A170 170 0 0 1 198.778283 346.580248 A92 92 0 0 1 132.074106 183.525593 Z M125 255 A65 65 0 1 0 255 255 A65 65 0 1 0 125 255 Z M345 255 A65 65 0 1 0 475 255 A65 65 0 1 0 345 255 Z" fill="#211915" fill-rule="evenodd" />
+    <rect id="pupila-esquerda" x="160" y="247.5" width="60" height="15" fill="#211915" />
+    <rect id="pupila-direita" x="380" y="247.5" width="60" height="15" fill="#211915" />
+  </g>
+</svg>

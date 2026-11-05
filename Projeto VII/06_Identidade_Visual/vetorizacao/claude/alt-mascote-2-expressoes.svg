@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-850 -135 1700 305">
+<title>Alternativa de mascote 2 — expressões</title>
+
+<g id="expressoes">
+<g transform="translate(-680 0)">
+<g id="neutro-mascote">
+<g id="neutro-cabeca">
+<circle cx="0" cy="-15" r="100" fill="#674b7b"/>
+<circle cx="-80" cy="0" r="60" fill="#674b7b"/>
+<circle cx="80" cy="0" r="60" fill="#674b7b"/>
+</g>
+<g id="neutro-brancos-dos-olhos">
+<circle cx="-80" cy="0" r="45" fill="#ffffff"/>
+<circle cx="80" cy="0" r="45" fill="#ffffff"/>
+</g>
+<g id="neutro-oculos">
+<path d="M-150,0c0,-38.66 31.34,-70 70,-70c36.98,0 67.26,28.67 69.82,65h20.35c2.56,-36.33 32.85,-65 69.82,-65c38.66,0 70,31.34 70,70c0,38.66 -31.34,70 -70,70c-36.98,0 -67.26,-28.67 -69.82,-65l-20.35,0c-2.56,36.33 -32.85,65 -69.82,65c-38.66,0 -70,-31.34 -70,-70zM-80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60zM80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60z" fill="#211915"/>
+</g>
+<g id="neutro-olhos-neutro">
+<rect x="-100" y="-5" width="40" height="10" fill="#211915"/>
+<rect x="60" y="-5" width="40" height="10" fill="#211915"/>
+</g>
+<g id="neutro-boca-neutro">
+<path d="M-15,45 A15,15 0 0 0 15,45 Z" fill="#ffffff"/>
+</g>
+</g>
+<text x="0" y="140" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#211915" text-anchor="middle">neutro</text>
+</g>
+<g transform="translate(-340 0)">
+<g id="feliz-mascote">
+<g id="feliz-cabeca">
+<circle cx="0" cy="-15" r="100" fill="#674b7b"/>
+<circle cx="-80" cy="0" r="60" fill="#674b7b"/>
+<circle cx="80" cy="0" r="60" fill="#674b7b"/>
+</g>
+<g id="feliz-brancos-dos-olhos">
+<circle cx="-80" cy="0" r="45" fill="#ffffff"/>
+<circle cx="80" cy="0" r="45" fill="#ffffff"/>
+</g>
+<g id="feliz-oculos">
+<path d="M-150,0c0,-38.66 31.34,-70 70,-70c36.98,0 67.26,28.67 69.82,65h20.35c2.56,-36.33 32.85,-65 69.82,-65c38.66,0 70,31.34 70,70c0,38.66 -31.34,70 -70,70c-36.98,0 -67.26,-28.67 -69.82,-65l-20.35,0c-2.56,36.33 -32.85,65 -69.82,65c-38.66,0 -70,-31.34 -70,-70zM-80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60zM80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60z" fill="#211915"/>
+</g>
+<g id="feliz-olhos-feliz">
+<path d="M-100,10 A20,20 0 0 1 -60,10" fill="none" stroke="#211915" stroke-width="10"/>
+<path d="M60,10 A20,20 0 0 1 100,10" fill="none" stroke="#211915" stroke-width="10"/>
+</g>
+<g id="feliz-boca-feliz">
+<path d="M-22.5,45 A22.5,22.5 0 0 0 22.5,45 Z" fill="#ffffff"/>
+</g>
+</g>
+<text x="0" y="140" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#211915" text-anchor="middle">feliz</text>
+</g>
+<g transform="translate(0 0)">
+<g id="focado-mascote">
+<g id="focado-cabeca">
+<circle cx="0" cy="-15" r="100" fill="#674b7b"/>
+<circle cx="-80" cy="0" r="60" fill="#674b7b"/>
+<circle cx="80" cy="0" r="60" fill="#674b7b"/>
+</g>
+<g id="focado-brancos-dos-olhos">
+<circle cx="-80" cy="0" r="45" fill="#ffffff"/>
+<circle cx="80" cy="0" r="45" fill="#ffffff"/>
+</g>
+<g id="focado-oculos">
+<path d="M-150,0c0,-38.66 31.34,-70 70,-70c36.98,0 67.26,28.67 69.82,65h20.35c2.56,-36.33 32.85,-65 69.82,-65c38.66,0 70,31.34 70,70c0,38.66 -31.34,70 -70,70c-36.98,0 -67.26,-28.67 -69.82,-65l-20.35,0c-2.56,36.33 -32.85,65 -69.82,65c-38.66,0 -70,-31.34 -70,-70zM-80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60zM80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60z" fill="#211915"/>
+</g>
+<g id="focado-olhos-focado">
+<line x1="-94.14" y1="-14.14" x2="-65.86" y2="14.14" fill="none" stroke="#211915" stroke-width="10"/>
+<line x1="65.86" y1="14.14" x2="94.14" y2="-14.14" fill="none" stroke="#211915" stroke-width="10"/>
+</g>
+<g id="focado-boca-focado">
+<path d="M-15,45 A15,15 0 0 0 15,45 Z" fill="#ffffff"/>
+</g>
+</g>
+<text x="0" y="140" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#211915" text-anchor="middle">focado</text>
+</g>
+<g transform="translate(340 0)">
+<g id="triste-mascote">
+<g id="triste-cabeca">
+<circle cx="0" cy="-15" r="100" fill="#674b7b"/>
+<circle cx="-80" cy="0" r="60" fill="#674b7b"/>
+<circle cx="80" cy="0" r="60" fill="#674b7b"/>
+</g>
+<g id="triste-brancos-dos-olhos">
+<circle cx="-80" cy="0" r="45" fill="#ffffff"/>
+<circle cx="80" cy="0" r="45" fill="#ffffff"/>
+</g>
+<g id="triste-oculos">
+<path d="M-150,0c0,-38.66 31.34,-70 70,-70c36.98,0 67.26,28.67 69.82,65h20.35c2.56,-36.33 32.85,-65 69.82,-65c38.66,0 70,31.34 70,70c0,38.66 -31.34,70 -70,70c-36.98,0 -67.26,-28.67 -69.82,-65l-20.35,0c-2.56,36.33 -32.85,65 -69.82,65c-38.66,0 -70,-31.34 -70,-70zM-80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60zM80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60z" fill="#211915"/>
+</g>
+<g id="triste-olhos-triste">
+<line x1="-94.14" y1="8.49" x2="-65.86" y2="-8.49" fill="none" stroke="#211915" stroke-width="10"/>
+<line x1="65.86" y1="-8.49" x2="94.14" y2="8.49" fill="none" stroke="#211915" stroke-width="10"/>
+</g>
+<g id="triste-boca-triste">
+<path d="M-15,62.5 A15,15 0 0 1 15,62.5" fill="none" stroke="#ffffff" stroke-width="7.5"/>
+</g>
+</g>
+<text x="0" y="140" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#211915" text-anchor="middle">triste</text>
+</g>
+<g transform="translate(680 0)">
+<g id="surpreso-mascote">
+<g id="surpreso-cabeca">
+<circle cx="0" cy="-15" r="100" fill="#674b7b"/>
+<circle cx="-80" cy="0" r="60" fill="#674b7b"/>
+<circle cx="80" cy="0" r="60" fill="#674b7b"/>
+</g>
+<g id="surpreso-brancos-dos-olhos">
+<circle cx="-80" cy="0" r="45" fill="#ffffff"/>
+<circle cx="80" cy="0" r="45" fill="#ffffff"/>
+</g>
+<g id="surpreso-oculos">
+<path d="M-150,0c0,-38.66 31.34,-70 70,-70c36.98,0 67.26,28.67 69.82,65h20.35c2.56,-36.33 32.85,-65 69.82,-65c38.66,0 70,31.34 70,70c0,38.66 -31.34,70 -70,70c-36.98,0 -67.26,-28.67 -69.82,-65l-20.35,0c-2.56,36.33 -32.85,65 -69.82,65c-38.66,0 -70,-31.34 -70,-70zM-80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60zM80,60c33.14,0 60,-26.86 60,-60c0,-33.14 -26.86,-60 -60,-60c-33.14,0 -60,26.86 -60,60c0,33.14 26.86,60 60,60z" fill="#211915"/>
+</g>
+<g id="surpreso-olhos-surpreso">
+<circle cx="-80" cy="0" r="12.5" fill="#211915"/>
+<circle cx="80" cy="0" r="12.5" fill="#211915"/>
+</g>
+<g id="surpreso-boca-surpreso">
+<circle cx="0" cy="57.5" r="10" fill="#ffffff"/>
+</g>
+</g>
+<text x="0" y="140" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#211915" text-anchor="middle">surpreso</text>
+</g>
+</g>
+</svg>

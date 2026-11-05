@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="600" height="600" viewBox="0 0 600 600" role="img" aria-labelledby="titulo descricao">
+  <title id="titulo">Logo — reconstrução geométrica</title>
+  <desc id="descricao">Silhueta simétrica, elipses a 45 graus e recortes transparentes. Módulo de 10 unidades.</desc>
+  <g id="arte" inkscape:groupmode="layer" inkscape:label="Arte">
+    <path id="cabeca-circular" d="M123.655421 251.091405 A180 180 0 1 1 476.344579 251.091405 A90 70 -45 0 0 320 305 L280 305 A90 70 45 0 0 123.655421 251.091405 Z" fill="#211915" />
+    <path id="corpo-e-seis-tentaculos" d="M84 315 L125.314124 306.046265 A90 70 45 0 0 279.915205 325 L320.084795 325 A90 70 -45 0 0 474.685876 306.046265 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 Z" fill="#211915" />
+    <path id="aro-esquerdo" d="M130 295 A70 50 0 1 0 270 295 A70 50 0 1 0 130 295 Z M155 295 A45 32.5 0 1 0 245 295 A45 32.5 0 1 0 155 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(45 200 295)" />
+    <rect id="pupila-esquerdo" x="177.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(45 200 295)" />
+    <path id="aro-direito" d="M330 295 A70 50 0 1 0 470 295 A70 50 0 1 0 330 295 Z M355 295 A45 32.5 0 1 0 445 295 A45 32.5 0 1 0 355 295 Z" fill="#211915" fill-rule="evenodd" transform="rotate(-45 400 295)" />
+    <rect id="pupila-direito" x="377.5" y="288.75" width="45" height="12.5" fill="#211915" transform="rotate(-45 400 295)" />
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 710">
+<rect width="1600" height="710" fill="#ffffff"/>
+<rect x="0.0" y="0" width="788.0" height="640" fill="#ffffff"/>
+<image href="../claude/mascote-construcao.svg" x="0.0" y="0" width="788.0" height="640" preserveAspectRatio="xMidYMid meet"/>
+<text x="0.0" y="678" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Claude</text>
+<rect x="812.0" y="0" width="788.0" height="640" fill="#ffffff"/>
+<image href="../codex/mascote-construcao.svg" x="812.0" y="0" width="788.0" height="640" preserveAspectRatio="xMidYMid meet"/>
+<text x="812.0" y="678" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Codex</text>
+</svg>

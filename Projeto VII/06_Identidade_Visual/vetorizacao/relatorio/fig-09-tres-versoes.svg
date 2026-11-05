@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 690">
+<rect width="1600" height="690" fill="#ffffff"/>
+<rect x="0.0" y="0" width="517.3" height="620" fill="#f6f4f8"/>
+<image href="../fontes/logo-bruno-v3.svg" x="24.0" y="24" width="469.3" height="572" preserveAspectRatio="xMidYMid meet"/>
+<text x="0.0" y="658" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Versão do autor</text>
+<rect x="541.3" y="0" width="517.3" height="620" fill="#f6f4f8"/>
+<image href="../claude/rodada-4/a-logo.svg" x="565.3" y="24" width="469.3" height="572" preserveAspectRatio="xMidYMid meet"/>
+<text x="541.3" y="658" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">A · Fiel corrigida</text>
+<rect x="1082.7" y="0" width="517.3" height="620" fill="#f6f4f8"/>
+<image href="../claude/rodada-4/b-logo.svg" x="1106.7" y="24" width="469.3" height="572" preserveAspectRatio="xMidYMid meet"/>
+<text x="1082.7" y="658" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">B · Proposta</text>
+</svg>

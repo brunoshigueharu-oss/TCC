@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="600" height="600" viewBox="0 0 600 600" role="img" aria-labelledby="titulo descricao">
+  <title id="titulo">Logo — alternativa óptica</title>
+  <desc id="descricao">Aberturas únicas e pupilas reforçadas para 16 a 32 pixels; uma única cor e fundo transparente.</desc>
+  <g id="arte" inkscape:groupmode="layer" inkscape:label="Arte">
+    <path id="silhueta-com-aberturas-opticas" d="M150.333705 315 A180 180 0 1 1 449.666295 315 L516 315 A160 160 0 0 1 390 425 L454.072324 471.845104 A170 170 0 0 1 420.208153 520.208153 L345.886115 465.532164 L371.845104 554.072324 A170 170 0 0 1 320.717788 568.732846 L300 510 L279.282212 568.732846 A170 170 0 0 1 228.154896 554.072324 L254.113885 465.532164 L179.791847 520.208153 A170 170 0 0 1 145.927676 471.845104 L210 425 A160 160 0 0 1 84 315 L150.333705 315 Z M164.745166 249.745166 A64 48 45 1 0 255.254834 340.254834 A64 48 45 1 0 164.745166 249.745166 Z M344.745166 340.254834 A64 48 -45 1 0 435.254834 249.745166 A64 48 -45 1 0 344.745166 340.254834 Z" fill="#211915" fill-rule="evenodd" />
+    <rect id="pupila-optica-esquerda" x="187.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(45 210 295)" />
+    <rect id="pupila-optica-direita" x="367.5" y="283.75" width="45" height="22.5" fill="#211915" transform="rotate(-45 390 295)" />
+  </g>
+</svg>

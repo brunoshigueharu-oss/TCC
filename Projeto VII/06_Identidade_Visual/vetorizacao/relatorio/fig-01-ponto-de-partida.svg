@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500">
+<rect width="1600" height="500" fill="#ffffff"/>
+<rect x="0.0" y="0" width="352.7" height="430" fill="#f6f4f8"/>
+<image href="../fontes/logo-original.svg" x="24.0" y="24" width="304.7" height="382" preserveAspectRatio="xMidYMid meet"/>
+<text x="0.0" y="468" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Logo</text>
+<rect x="376.7" y="0" width="352.7" height="430" fill="#f6f4f8"/>
+<image href="../fontes/mascote-original.svg" x="400.7" y="24" width="304.7" height="382" preserveAspectRatio="xMidYMid meet"/>
+<text x="376.7" y="468" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Mascote</text>
+<rect x="753.5" y="0" width="846.5" height="430" fill="#ffffff"/>
+<image href="../fontes/rascunhos-polvo.jpg" x="753.5" y="0" width="846.5" height="430" preserveAspectRatio="xMidYMid meet"/>
+<text x="753.5" y="468" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Rascunhos a lápis</text>
+</svg>

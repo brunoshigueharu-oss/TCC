@@ -1,0 +1,18 @@
+logo-alternativa-01-micro.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+logo-alternativa-02-familia.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+logo-construcao.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+logo-final.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+mascote-alternativa-01-acolhimento.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+mascote-alternativa-02-atencao.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+mascote-construcao.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+mascote-final.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+prancha-geral.svg: XML válido; IDs únicos; sem raster, curvas livres ou referências externas.
+logo-final: contorno dentro da área de 600 × 600; limites (84, 35, 516, 569).
+  Simetria raster: diferença média 0.04420/255 (antisserrilhamento).
+logo-alternativa-01-micro: contorno dentro da área de 600 × 600; limites (84, 35, 516, 569).
+  Simetria raster: diferença média 0.03389/255 (antisserrilhamento).
+logo-alternativa-02-familia: contorno dentro da área de 600 × 600; limites (84, 40, 516, 569).
+  Simetria raster: diferença média 0.03869/255 (antisserrilhamento).
+mascote-final: contorno dentro da área de 600 × 600; limites (55, 30, 545, 570).
+mascote-alternativa-01-acolhimento: contorno dentro da área de 600 × 600; limites (55, 30, 545, 570).
+mascote-alternativa-02-atencao: contorno dentro da área de 600 × 600; limites (55, 30, 545, 570).

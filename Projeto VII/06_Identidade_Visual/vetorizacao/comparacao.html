@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparação — Claude × Codex</title>
+<style>
+  body { margin: 0; padding: 32px; font-family: Helvetica, Arial, sans-serif; color: #211915; background: #fff; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  p.intro { margin: 0 0 32px; color: #6b6470; }
+  h2 { font-size: 16px; margin: 40px 0 12px; }
+  .linha { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .linha.duas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  figure { margin: 0; }
+  figure img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: #f6f4f8; padding: 16px; box-sizing: border-box; }
+  figure.larga img { aspect-ratio: auto; padding: 0; background: none; border: 1px solid #e6e2ea; }
+  figcaption { font-size: 13px; margin-top: 8px; }
+  figcaption b { display: inline-block; min-width: 64px; }
+  .alternativas { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 800px) { .linha, .linha.duas, .alternativas { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<h1>Logo e mascote: Claude × Codex</h1>
+<p class="intro">As duas IAs receberam o mesmo briefing (<a href="BRIEF.md">BRIEF.md</a>) e os mesmos arquivos de origem.</p>
+
+<h2>Logo</h2>
+<div class="linha">
+  <figure><img src="fontes/logo-original.svg" alt=""><figcaption><b>Original</b></figcaption></figure>
+  <figure><img src="claude/logo-construida.svg" alt=""><figcaption><b>Claude</b> construída</figcaption></figure>
+  <figure><img src="codex/logo-final.svg" alt=""><figcaption><b>Codex</b> final</figcaption></figure>
+</div>
+
+<h2>Construção da logo</h2>
+<div class="linha duas">
+  <figure><img src="claude/logo-construcao.svg" alt=""><figcaption><b>Claude</b></figcaption></figure>
+  <figure><img src="codex/logo-construcao.svg" alt=""><figcaption><b>Codex</b></figcaption></figure>
+</div>
+
+<h2>Mascote</h2>
+<div class="linha">
+  <figure><img src="fontes/mascote-original.svg" alt=""><figcaption><b>Original</b></figcaption></figure>
+  <figure><img src="claude/mascote-construido.svg" alt=""><figcaption><b>Claude</b> construído</figcaption></figure>
+  <figure><img src="codex/mascote-final.svg" alt=""><figcaption><b>Codex</b> final</figcaption></figure>
+</div>
+
+<h2>Construção do mascote</h2>
+<div class="linha duas">
+  <figure><img src="claude/mascote-construcao.svg" alt=""><figcaption><b>Claude</b></figcaption></figure>
+  <figure><img src="codex/mascote-construcao.svg" alt=""><figcaption><b>Codex</b></figcaption></figure>
+</div>
+
+<h2>Alternativas — Claude</h2>
+<div class="alternativas">
+  <figure><img src="claude/alt-logo-1-lente-simples.svg" alt=""><figcaption>Logo: lente simples</figcaption></figure>
+  <figure><img src="claude/alt-logo-2-rosto-do-mascote.svg" alt=""><figcaption>Logo: rosto do mascote</figcaption></figure>
+  <figure><img src="claude/alt-logo-3-icone-de-app.svg" alt=""><figcaption>Logo: ícone de app</figcaption></figure>
+  <figure><img src="claude/alt-mascote-1-dois-bracos.svg" alt=""><figcaption>Mascote: dois braços</figcaption></figure>
+  <figure><img src="claude/alt-mascote-2-expressoes.svg" alt=""><figcaption>Mascote: expressões</figcaption></figure>
+</div>
+
+<h2>Alternativas — Codex</h2>
+<div class="alternativas">
+  <figure><img src="codex/logo-alternativa-01-micro.svg" alt=""><figcaption>Logo: óptica (16–32 px)</figcaption></figure>
+  <figure><img src="codex/logo-alternativa-02-familia.svg" alt=""><figcaption>Logo: circular</figcaption></figure>
+  <figure><img src="codex/mascote-alternativa-01-acolhimento.svg" alt=""><figcaption>Mascote: acolhimento</figcaption></figure>
+  <figure><img src="codex/mascote-alternativa-02-atencao.svg" alt=""><figcaption>Mascote: atenção</figcaption></figure>
+</div>
+
+<h2>Pranchas gerais</h2>
+<div class="linha duas">
+  <figure class="larga"><img src="claude/prancha-geral.svg" alt=""><figcaption><b>Claude</b></figcaption></figure>
+  <figure class="larga"><img src="codex/prancha-geral.svg" alt=""><figcaption><b>Codex</b></figcaption></figure>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="600" height="600" viewBox="0 0 600 600" role="img" aria-labelledby="titulo descricao">
+  <title id="titulo">Mascote — reconstrução geométrica</title>
+  <desc id="descricao">Pose de saudação original; cabeça circular, óculos concêntricos, tentáculos elípticos e braço circular.</desc>
+  <g id="arte" inkscape:groupmode="layer" inkscape:label="Arte">
+    <path id="braco-direito" d="M345 365 A90 90 0 0 0 525 365 A17.5 17.5 0 0 0 490 365 A55 55 0 0 1 380 365 Z" fill="#3d294f" />
+    <ellipse id="tentaculo-externo-esquerdo" cx="240" cy="420" rx="20" ry="140" transform="rotate(-6 240 420)" fill="#3d294f" />
+    <ellipse id="tentaculo-externo-direito" cx="360" cy="420" rx="20" ry="140" transform="rotate(6 360 420)" fill="#3d294f" />
+    <ellipse id="tentaculo-interno-esquerdo" cx="280" cy="420" rx="25" ry="150" transform="rotate(-4 280 420)" fill="#523960" />
+    <ellipse id="tentaculo-interno-direito" cx="320" cy="420" rx="25" ry="150" transform="rotate(4 320 420)" fill="#523960" />
+    <circle id="cabeca" cx="300" cy="200" r="170" fill="#674b7b" />
+    <rect id="ponte-dos-oculos" x="170" y="211.25" width="260" height="17.5" fill="#211915" />
+    <path id="armacao-esquerdo" d="M55 220 A115 115 0 1 0 285 220 A115 115 0 1 0 55 220 Z M72.5 220 A97.5 97.5 0 1 0 267.5 220 A97.5 97.5 0 1 0 72.5 220 Z" fill="#211915" fill-rule="evenodd" />
+    <circle id="interior-do-aro-esquerdo" cx="170" cy="220" r="97.5" fill="#674b7b" />
+    <circle id="olho-esquerdo" cx="170" cy="220" r="75" fill="#ffffff" />
+    <rect id="pupila-esquerdo" x="136.25" y="212.5" width="67.5" height="15" fill="#211915" />
+    <path id="armacao-direito" d="M315 220 A115 115 0 1 0 545 220 A115 115 0 1 0 315 220 Z M332.5 220 A97.5 97.5 0 1 0 527.5 220 A97.5 97.5 0 1 0 332.5 220 Z" fill="#211915" fill-rule="evenodd" />
+    <circle id="interior-do-aro-direito" cx="430" cy="220" r="97.5" fill="#674b7b" />
+    <circle id="olho-direito" cx="430" cy="220" r="75" fill="#ffffff" />
+    <rect id="pupila-direito" x="396.25" y="212.5" width="67.5" height="15" fill="#211915" />
+    <path id="sorriso" d="M277.5 295 H322.5 A22.5 22.5 0 0 1 277.5 295 Z" fill="#ffffff" />
+  </g>
+</svg>

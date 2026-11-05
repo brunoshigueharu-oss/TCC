@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 830">
+<rect width="1600" height="830" fill="#ffffff"/>
+<rect x="0.0" y="0" width="788.0" height="760" fill="#f6f4f8"/>
+<image href="../claude/rodada-4/a-sobreposicao.svg" x="24.0" y="24" width="740.0" height="712" preserveAspectRatio="xMidYMid meet"/>
+<text x="0.0" y="798" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Contorno da versão A sobre o vetor do autor</text>
+<rect x="812.0" y="0" width="788.0" height="760" fill="#f6f4f8"/>
+<image href="../claude/rodada-4/b-sobreposicao.svg" x="836.0" y="24" width="740.0" height="712" preserveAspectRatio="xMidYMid meet"/>
+<text x="812.0" y="798" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#211915">Contorno da versão B sobre o vetor do autor</text>
+</svg>
