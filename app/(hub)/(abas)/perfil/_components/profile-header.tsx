@@ -17,7 +17,7 @@ type ProfileHeaderProps = {
   unreadNotifications: number;
 };
 
-const iconButtonClass = "flex size-11 shrink-0 items-center justify-center rounded-xl bg-superficie";
+const iconButtonClass = "flex size-11 shrink-0 items-center justify-center rounded-full bg-superficie transition-colors hover:bg-superficie-forte";
 
 /**
  * Topo de Meu perfil (Figma: "Cabeçalho de identidade" + "Identificação"):
@@ -31,7 +31,7 @@ export function ProfileHeader({ person, nextLevelXp, weeklyRank, unreadNotificat
     <header className="flex flex-col gap-5 rounded-b-[28px] bg-fundo px-4 pt-4 pb-5 ring-1 ring-linha/70 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-x-12 lg:gap-y-3 lg:rounded-[28px] lg:px-8 lg:py-7">
       <div className="flex items-center gap-2 lg:col-start-2 lg:row-start-1 lg:justify-end">
         <span aria-hidden className="size-[26px] shrink-0 rounded-full bg-superficie-forte lg:hidden" />
-        <span className="flex-1 text-sm font-semibold lg:hidden">código &amp; design</span>
+        <span className="flex-1 font-display text-[15px] font-bold lg:hidden">BASE8</span>
         <Link
           href="/perfil/notificacoes"
           aria-label={unreadNotifications > 0 ? `Notificações, ${unreadNotifications} não lidas` : "Notificações"}

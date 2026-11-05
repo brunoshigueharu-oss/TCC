@@ -1,38 +1,32 @@
-import { ActionLink } from "@/components/action-link";
 import type { LandingData } from "@/lib/data/landing";
-import { BauhausPanel } from "./bauhaus-panel";
+import { ColorBurstLink } from "@/components/color-burst-link";
+import { ShuffleTitle } from "./shuffle-title";
 
-type LandingHeroProps = Pick<LandingData, "eyebrow" | "title" | "subtitle" | "primaryCta">;
+type LandingHeroProps = Pick<LandingData, "titleLines" | "subtitle" | "primaryCta">;
 
 /**
- * Herói da Landing: chamada no centro, ilustrações nas laterais. No celular o
- * texto vem primeiro e as duas ilustrações ficam lado a lado embaixo.
+ * Herói da Landing: só tipografia, centralizado e com muito respiro. As letras
+ * do título perto do cursor embaralham entre fontes e formas coloridas. Ao
+ * carregar, as palavras entram uma a uma saindo do desfoque (referência:
+ * typeflow.studio, "Product Launch").
  */
-export function LandingHero({ eyebrow, title, subtitle, primaryCta }: LandingHeroProps) {
+export function LandingHero({ titleLines, subtitle, primaryCta }: LandingHeroProps) {
   return (
     <section
       aria-labelledby="landing-titulo"
-      className="grid grid-cols-2 gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,600px)_minmax(0,1fr)] lg:items-center lg:gap-10"
+      // Começa logo abaixo do header e deixa a próxima seção aparecer na dobra.
+      className="flex flex-col items-center px-4 pt-14 pb-20 text-center sm:pt-16 lg:pt-20 lg:pb-24"
     >
-      <BauhausPanel side="esquerda" className="order-2 aspect-[4/5] lg:order-1" />
-
-      <div className="order-1 col-span-2 flex flex-col items-center gap-5 py-6 text-center lg:order-2 lg:col-span-1 lg:py-0">
-        <p className="text-xs font-semibold tracking-[0.14em] text-texto-secundario uppercase">
-          {eyebrow}
-        </p>
-        <h1
-          id="landing-titulo"
-          className="font-display text-[38px] leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl lg:text-[60px]"
-        >
-          {title}
-        </h1>
-        <p className="max-w-[460px] text-base leading-relaxed text-texto-secundario">{subtitle}</p>
-        <ActionLink href={primaryCta.href} className="mt-2 w-full max-w-[280px] sm:w-auto sm:px-8">
-          {primaryCta.label}
-        </ActionLink>
-      </div>
-
-      <BauhausPanel side="direita" className="order-3 aspect-[4/5]" />
+      <ShuffleTitle id="landing-titulo" lines={titleLines} />
+      <p className="mt-6 max-w-[560px] animate-fade-up [animation-delay:950ms] motion-reduce:animate-none text-base text-balance leading-relaxed text-texto-secundario sm:text-lg">
+        {subtitle}
+      </p>
+      <ColorBurstLink
+        href={primaryCta.href}
+        className="mt-7 animate-fade-up [animation-delay:1100ms] motion-reduce:animate-none"
+      >
+        {primaryCta.label}
+      </ColorBurstLink>
     </section>
   );
 }

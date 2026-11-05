@@ -5,7 +5,7 @@ import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { ActionLink } from "@/components/action-link";
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Field, FieldError, FieldLabel, FieldLegend, FieldSet } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
@@ -101,17 +101,13 @@ export function QuestionForm({
 
       <div className="flex gap-3 px-4 lg:justify-end lg:px-0">
         {previousHref ? (
-          <ActionLink href={previousHref} variant="secondary" className="h-12 flex-1 lg:w-44 lg:flex-none">
+          <ActionLink href={previousHref} variant="secondary" size="md" className="flex-1 lg:w-44 lg:flex-none">
             Anterior
           </ActionLink>
         ) : null}
-        <Button
-          type="submit"
-          disabled={isPending}
-          className="h-12 flex-1 lg:w-56 lg:flex-none rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
-        >
+        <ColorBurstButton type="submit" disabled={isPending} className="flex-1 lg:w-56 lg:flex-none">
           {isPending ? "Salvando…" : isLastQuestion ? "Ver resultado" : "Próxima"}
-        </Button>
+        </ColorBurstButton>
       </div>
     </form>
   );

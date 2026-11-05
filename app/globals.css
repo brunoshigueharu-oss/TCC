@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-figtree);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -75,28 +75,74 @@
   --color-comunidade: var(--hub-comunidade);
   --font-display: var(--font-instrument-sans);
   --font-texto: var(--font-figtree);
+  /* Só na animação do título da Landing (lib/fonts-landing.ts) */
+  --font-shuffle-serif: var(--font-instrument-serif);
+  --font-shuffle-mono: var(--font-shuffle-mono-src);
+  --font-shuffle-pixel: var(--font-pixelify-sans);
+  --font-shuffle-wide: var(--font-unbounded);
+
+  /* Entrada do título da Landing: cada palavra sai do desfoque e sobe. */
+  --animate-blur-in: blur-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* Subtítulo e CTA entram depois, só com fade e subida curta. */
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes blur-in {
+    from {
+      opacity: 0;
+      filter: blur(14px);
+      transform: translateY(0.25em);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* CTA da Landing (components/ink-burst.tsx): giro lento de cada mancha de tinta. */
+  --animate-blob-orbit: blob-orbit 4s linear infinite;
+
+  @keyframes blob-orbit {
+    from {
+      transform: rotate(0deg) translateX(10px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(10px) rotate(-360deg);
+    }
+  }
 }
 
 /* Tokens do shadcn alinhados à "Paleta IDV" do hub (primário = verde-água/ação). */
 :root {
   --background: #ffffff;
-  --foreground: #1b1f3b;
+  --foreground: #18181b;
   --card: #ffffff;
-  --card-foreground: #1b1f3b;
+  --card-foreground: #18181b;
   --popover: #ffffff;
-  --popover-foreground: #1b1f3b;
-  --primary: #14b38e;
-  --primary-foreground: #1b1f3b;
+  --popover-foreground: #18181b;
+  --primary: #12a180;
+  --primary-foreground: #18181b;
   --secondary: #f1f2f6;
-  --secondary-foreground: #1b1f3b;
+  --secondary-foreground: #18181b;
   --muted: #f1f2f6;
-  --muted-foreground: #5a5e74;
+  --muted-foreground: #52525b;
   --accent: #f1f2f6;
-  --accent-foreground: #1b1f3b;
+  --accent-foreground: #18181b;
   --destructive: #e7000b;
   --border: #d5d7e0;
   --input: #d5d7e0;
-  --ring: #14b38e;
+  --ring: #12a180;
   --chart-1: #f54900;
   --chart-2: #009689;
   --chart-3: #104e64;
@@ -111,10 +157,10 @@
   --sidebar-accent-foreground: #171717;
   --sidebar-border: #e5e5e5;
   --sidebar-ring: #a1a1a1;
-  --journey-paper: #edefe9;
-  --journey-surface: #f7f8f3;
-  --journey-ink: #1f2420;
-  --journey-ink-soft: #56615b;
+  --journey-paper: #ffffff;
+  --journey-surface: #f4f4f5;
+  --journey-ink: #18181b;
+  --journey-ink-soft: #52525b;
   --journey-line: #c9cfc3;
   --journey-line-strong: #a9b29f;
   --journey-accent: #2b6e63;
@@ -124,15 +170,15 @@
   --journey-flag: #b0492e;
   --journey-flag-soft: #f1dad1;
   --hub-fundo: #ffffff;
-  --hub-texto: #1b1f3b;
-  --hub-texto-secundario: #5a5e74;
+  --hub-texto: #18181b;
+  --hub-texto-secundario: #52525b;
   --hub-linha: #d5d7e0;
   --hub-superficie: #f1f2f6;
   --hub-superficie-forte: #e3e5ec;
   /* Fundo de fora da coluna de celular no desktop (só protótipo) */
   --hub-moldura: #4a4a4a;
   --hub-desativado: #9a9dae;
-  --hub-acao: #14b38e;
+  --hub-acao: #12a180;
   --hub-trilha: #f5ee4a;
   --hub-pratica: #ff48b0;
   --hub-comunidade: #0b8fe0;

@@ -1,5 +1,6 @@
 import { Plug } from "lucide-react";
 
+import { brandButtonVariants } from "@/components/brand-button-variants";
 import type { AiTool } from "@/lib/data/uso-ias";
 
 type AiConnectCardProps = {
@@ -24,7 +25,8 @@ export function AiConnectCard({ title, description, tools }: AiConnectCardProps)
           <li key={tool.id}>
             <button
               type="button"
-              className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-acao text-sm font-semibold text-texto hover:bg-acao/90"
+              // Só visual no protótipo: pílula secundária, sem a tinta do primário.
+              className={brandButtonVariants({ variant: "secondary", size: "sm", className: "w-full" })}
             >
               <Plug aria-hidden className="size-4" strokeWidth={2} />
               Conectar {tool.name}

@@ -4,7 +4,7 @@ import { PenSquare, Search, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { BrandMark } from "@/app/_components/brand-mark";
+import { BrandMark } from "@/components/brand-mark";
 import { UnreadDot } from "@/components/unread-dot";
 import { cn } from "@/lib/utils";
 import { isActiveRoute, navDestinations } from "./nav-destinations";

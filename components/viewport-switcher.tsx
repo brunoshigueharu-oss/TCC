@@ -2,7 +2,7 @@
 
 import { Menu } from "@base-ui/react/menu";
 import { Check, Menu as MenuIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useRef, useState } from "react";
 
 import { ViewportFrame } from "@/components/viewport-frame";
@@ -30,8 +30,9 @@ const itemClass =
   "flex min-h-9 cursor-default items-center gap-3 rounded-md px-2.5 text-sm outline-hidden select-none data-highlighted:bg-superficie";
 
 /**
- * Ferramenta do protótipo: botão no canto superior direito para ver a tela
- * atual em tamanhos padrão de celular, tablet e computador.
+ * Ferramenta do protótipo: botão flutuante para ver a tela atual em tamanhos
+ * padrão de celular, tablet e computador. Fica no canto superior direito; na
+ * Landing desce para o inferior, porque lá o header ocupa a largura toda.
  */
 export function ViewportSwitcher() {
   const [presetId, setPresetId] = useViewportPreset();
@@ -41,6 +42,7 @@ export function ViewportSwitcher() {
   const [framePath, setFramePath] = useState(currentPath);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const router = useRouter();
+  const isLanding = usePathname() === "/";
 
   const preset = findViewportPreset(presetId);
 
@@ -66,12 +68,12 @@ export function ViewportSwitcher() {
       <Menu.Root>
         <Menu.Trigger
           aria-label="Escolher tamanho da tela"
-          className={`fixed top-3 right-3 z-[60] size-10 items-center justify-center rounded-full text-white shadow-lg ring-1 ring-black/10 outline-offset-2 focus-visible:outline-2 focus-visible:outline-acao ${preset ? "bg-acao" : "bg-texto"} ${isEmbedded ? "hidden" : "flex"}`}
+          className={`fixed z-[60] ${isLanding ? "right-4 bottom-4" : "top-3 right-3"} size-10 items-center justify-center rounded-full text-white shadow-lg ring-1 ring-black/10 outline-offset-2 focus-visible:outline-2 focus-visible:outline-acao ${preset ? "bg-acao" : "bg-texto"} ${isEmbedded ? "hidden" : "flex"}`}
         >
           <MenuIcon aria-hidden className="size-5" strokeWidth={2} />
         </Menu.Trigger>
         <Menu.Portal>
-          <Menu.Positioner className="z-[70] outline-hidden" sideOffset={8} align="end">
+          <Menu.Positioner className="z-[70] outline-hidden" side={isLanding ? "top" : "bottom"} sideOffset={8} align="end">
             <Menu.Popup className="max-h-(--available-height) w-64 origin-(--transform-origin) overflow-y-auto rounded-xl bg-fundo p-1.5 text-texto shadow-xl ring-1 ring-linha outline-hidden transition-[scale,opacity] duration-100 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
               <Menu.RadioGroup value={preset ? preset.id : REAL_SIZE} onValueChange={handleValueChange}>
                 <Menu.RadioItem value={REAL_SIZE} className={itemClass}>

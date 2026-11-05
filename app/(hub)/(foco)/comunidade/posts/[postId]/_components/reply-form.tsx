@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { replyToPost } from "../_actions/reply-to-post";
@@ -66,13 +66,9 @@ export function ReplyForm({ postId }: ReplyFormProps) {
                 }}
                 className="h-11 flex-1 rounded-xl border-linha bg-fundo px-3 text-[15px]"
               />
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="h-11 rounded-xl bg-acao px-4 text-sm font-semibold text-texto hover:bg-acao/90"
-              >
+              <ColorBurstButton type="submit" disabled={isSubmitting} size="sm">
                 {isSubmitting ? "Enviando…" : "Enviar"}
-              </Button>
+              </ColorBurstButton>
             </div>
             <FieldError errors={[fieldState.error]} className="text-xs" />
           </Field>

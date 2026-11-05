@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 
 import { SurfaceCard } from "@/components/surface-card";
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Field,
@@ -245,13 +245,9 @@ export function NewPostForm({ tagOptions, lessonOptions }: NewPostFormProps) {
       </main>
 
       <div className="sticky bottom-0 z-10 border-t border-linha bg-fundo px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] lg:flex lg:justify-end lg:px-8 lg:pb-4">
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90 lg:w-auto lg:min-w-48 lg:px-8"
-        >
+        <ColorBurstButton type="submit" disabled={isSubmitting} className="w-full lg:w-auto lg:min-w-48">
           {isSubmitting ? "Publicando…" : "Publicar"}
-        </Button>
+        </ColorBurstButton>
       </div>
     </form>
   );

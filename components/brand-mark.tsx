@@ -7,12 +7,12 @@ type BrandMarkProps = {
   className?: string;
 };
 
-/** Logo provisório: círculo cinza + "código & design". */
+/** Logo provisório: círculo cinza + "BASE8". */
 export function BrandMark({ href, className }: BrandMarkProps) {
   return (
     <Link href={href} className={cn("flex min-h-11 items-center gap-2.5", className)}>
       <span aria-hidden className="size-[26px] rounded-full bg-superficie-forte" />
-      <span className="font-display text-[15px] font-bold">código &amp; design</span>
+      <span className="font-display text-[15px] font-bold">BASE8</span>
     </Link>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { publishCourse, type PublishResult } from "../_actions/publish-course";
 
 /** Botão Publicar: a Server Action confere o checklist e devolve o resultado. */
@@ -15,13 +15,9 @@ export function PublishButton({ courseId }: { courseId: string }) {
   return (
     <form action={formAction} className="flex flex-col gap-2">
       <input type="hidden" name="courseId" value={courseId} />
-      <Button
-        type="submit"
-        disabled={isPending}
-        className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
-      >
+      <ColorBurstButton type="submit" disabled={isPending} className="w-full">
         {isPending ? "Publicando…" : "Publicar"}
-      </Button>
+      </ColorBurstButton>
       {result ? (
         <p
           role={result.success ? "status" : "alert"}

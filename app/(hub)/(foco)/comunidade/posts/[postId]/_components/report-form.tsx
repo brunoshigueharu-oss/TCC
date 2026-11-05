@@ -1,10 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
+import { ColorBurstLink } from "@/components/color-burst-link";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import {
   Field,
   FieldError,
@@ -102,20 +102,12 @@ export function ReportForm({ postId, closeHref }: ReportFormProps) {
       ) : null}
 
       <div className="grid grid-cols-2 gap-3">
-        <Link
-          href={closeHref}
-          scroll={false}
-          className="flex h-12 items-center justify-center rounded-xl bg-fundo text-[15px] font-semibold ring-1 ring-linha"
-        >
+        <ColorBurstLink href={closeHref} scroll={false} variant="secondary">
           Cancelar
-        </Link>
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="h-12 rounded-xl bg-texto text-[15px] font-semibold text-fundo hover:bg-texto/90"
-        >
+        </ColorBurstLink>
+        <ColorBurstButton type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Enviando…" : "Enviar denúncia"}
-        </Button>
+        </ColorBurstButton>
       </div>
     </form>
   );

@@ -76,7 +76,7 @@ export default async function ProficiencyResultPage({
               Refazer teste
             </ActionLink>
           )}
-          <ActionLink href="/educacao" variant="secondary" className="h-12 lg:w-56">
+          <ActionLink href="/educacao" variant="secondary" size="md" className="lg:w-56">
             Voltar à Educação
           </ActionLink>
         </div>

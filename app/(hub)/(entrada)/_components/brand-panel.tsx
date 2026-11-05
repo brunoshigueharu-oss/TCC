@@ -1,4 +1,4 @@
-import { BrandMark } from "@/app/_components/brand-mark";
+import { BrandMark } from "@/components/brand-mark";
 import { WelcomeShapes } from "./welcome-shapes";
 
 /**

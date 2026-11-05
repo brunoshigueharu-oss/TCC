@@ -6,7 +6,7 @@ import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { SurfaceCard } from "@/components/surface-card";
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import type { LevelingOption } from "@/lib/data/entrada";
@@ -94,9 +94,9 @@ export function LevelingForm({
       />
 
       <div className="mt-auto flex flex-col gap-2 px-4 lg:px-0">
-        <Button type="submit" disabled={isPending} className={submitButtonClass}>
+        <ColorBurstButton type="submit" disabled={isPending} className={submitButtonClass}>
           {submitLabel}
-        </Button>
+        </ColorBurstButton>
         <p className="text-center text-xs text-texto-secundario">
           O nivelamento só indica por onde começar. Não vale XP.
         </p>

@@ -1,4 +1,4 @@
-import { BrandMark } from "./brand-mark";
+import { BrandMark } from "@/components/brand-mark";
 
 type LandingFooterProps = {
   links: string[];

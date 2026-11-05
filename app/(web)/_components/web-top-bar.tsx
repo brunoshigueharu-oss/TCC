@@ -1,25 +1,22 @@
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+
+import { BrandMark } from "@/components/brand-mark";
+import { ColorBurstLink } from "@/components/color-burst-link";
 
 /**
- * Barra superior das telas de computador: logo provisório (círculo cinza +
- * "código & design") e o atalho de volta para o app.
+ * Barra superior das telas de computador, no mesmo padrão do header da
+ * Landing: fundo translúcido com desfoque, logo à esquerda e o atalho de volta
+ * para o app como pílula secundária.
  */
 export function WebTopBar() {
   return (
-    <header className="sticky top-0 z-10 bg-fundo ring-1 ring-linha/70">
+    <header className="sticky top-0 z-10 bg-fundo/85 ring-1 ring-linha/70 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-4 lg:px-10">
-        <Link href="/" className="flex min-h-11 items-center gap-2.5">
-          <span aria-hidden className="size-[26px] rounded-full bg-superficie-forte" />
-          <span className="font-display text-[15px] font-bold">código &amp; design</span>
-        </Link>
-        <Link
-          href="/inicio"
-          className="flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-semibold ring-1 ring-linha"
-        >
-          <ArrowLeft aria-hidden className="size-4" strokeWidth={2} />
+        <BrandMark href="/" />
+        <ColorBurstLink href="/inicio" variant="secondary" size="sm">
+          <ArrowLeft aria-hidden strokeWidth={2} />
           Voltar ao app
-        </Link>
+        </ColorBurstLink>
       </div>
     </header>
   );

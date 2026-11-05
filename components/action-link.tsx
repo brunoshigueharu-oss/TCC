@@ -1,32 +1,20 @@
-import Link from "next/link";
 import type { ComponentProps } from "react";
 
-import { cn } from "@/lib/utils";
+import { ColorBurstLink } from "./color-burst-link";
 
 type ActionLinkVariant = "primary" | "secondary";
 
-const variantClasses: Record<ActionLinkVariant, string> = {
-  primary: "h-12 bg-acao px-5 text-[15px]",
-  secondary: "h-11 bg-fundo px-4 text-sm ring-1 ring-linha",
-};
-
-type ActionLinkProps = ComponentProps<typeof Link> & {
+type ActionLinkProps = ComponentProps<typeof ColorBurstLink> & {
   variant?: ActionLinkVariant;
 };
 
 /**
- * Link com cara de botão (Figma: "Botão · ..."). Primário = verde-água com
- * texto azul-noite, ação principal da tela; secundário = branco com contorno.
+ * Link de ação das telas do hub, no padrão do CTA da Landing. Primário =
+ * pílula azul-noite com tinta no hover (ação principal da tela, 48px);
+ * secundário = pílula branca com contorno (44px).
  */
-export function ActionLink({ variant = "primary", className, ...props }: ActionLinkProps) {
+export function ActionLink({ variant = "primary", size, ...props }: ActionLinkProps) {
   return (
-    <Link
-      className={cn(
-        "flex items-center justify-center rounded-xl font-semibold text-texto transition-transform active:scale-[0.98]",
-        variantClasses[variant],
-        className,
-      )}
-      {...props}
-    />
+    <ColorBurstLink variant={variant} size={size ?? (variant === "primary" ? "md" : "sm")} {...props} />
   );
 }

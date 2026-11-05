@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { inputClass, labelClass, submitButtonClass } from "../../_lib/form-styles";
@@ -88,9 +88,9 @@ export function LoginForm() {
         </p>
       ) : null}
 
-      <Button type="submit" disabled={isPending} className={submitButtonClass}>
+      <ColorBurstButton type="submit" disabled={isPending} className={submitButtonClass}>
         {isPending ? "Entrando…" : "Entrar"}
-      </Button>
+      </ColorBurstButton>
     </form>
   );
 }

@@ -6,7 +6,7 @@ import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { SurfaceCard } from "@/components/surface-card";
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import type { ChoiceOption } from "@/lib/data/entrada";
@@ -84,9 +84,9 @@ export function OnboardingForm({ stepId, legend, options, nextHref }: Onboarding
       />
 
       <div className="mt-auto px-4 lg:px-0">
-        <Button type="submit" disabled={isPending} className={submitButtonClass}>
+        <ColorBurstButton type="submit" disabled={isPending} className={submitButtonClass}>
           Continuar
-        </Button>
+        </ColorBurstButton>
       </div>
     </form>
   );

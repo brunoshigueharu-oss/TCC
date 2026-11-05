@@ -50,7 +50,8 @@ export default async function ActivityResultPage({
           <ActionLink
             href={`/educacao/praticar/${activity.id}`}
             variant="secondary"
-            className="h-12 flex-1 lg:w-44 lg:flex-none"
+            size="md"
+            className="flex-1 lg:w-44 lg:flex-none"
           >
             Refazer
           </ActionLink>

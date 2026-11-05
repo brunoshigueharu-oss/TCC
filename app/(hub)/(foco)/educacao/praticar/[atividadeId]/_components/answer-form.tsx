@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import { SectionHeading } from "@/components/section-heading";
 import { SurfaceCard } from "@/components/surface-card";
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import {
   Field,
   FieldDescription,
@@ -90,13 +90,13 @@ export function AnswerForm({ activityId }: AnswerFormProps) {
               )}
             />
             <FieldError errors={[form.formState.errors.root]} />
-            <Button
+            <ColorBurstButton
               type="submit"
               disabled={isPending}
-              className="h-12 w-full rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90 lg:w-auto lg:min-w-56 lg:self-end lg:px-8"
+              className="w-full lg:w-auto lg:min-w-56 lg:self-end"
             >
               {isPending ? "Enviando…" : "Enviar para avaliação"}
-            </Button>
+            </ColorBurstButton>
           </FieldGroup>
         </form>
       </SurfaceCard>

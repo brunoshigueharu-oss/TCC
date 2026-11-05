@@ -14,11 +14,28 @@ const featureSchema = z.object({
   tone: toneSchema,
 });
 
+const showcaseItemSchema = z.object({
+  id: z.string(),
+  /** Rótulo acima da peça, como o nome de um frame no canvas. */
+  caption: z.string(),
+  /** Site de verdade, aberto em nova aba. */
+  url: z.url(),
+  /** Print local (`/showcase/...`) ou imagem de divulgação do próprio site. */
+  image: z.string(),
+  imageAlt: z.string(),
+});
+
 const landingSchema = z.object({
-  eyebrow: z.string(),
-  title: z.string(),
+  /** Uma linha por item; cada palavra ganha a moldura de seleção no hover. */
+  titleLines: z.array(z.string()).min(1),
   subtitle: z.string(),
   primaryCta: z.object({ label: z.string(), href: z.string() }),
+  showcase: z.object({
+    title: z.string(),
+    /** Peça que abre no centro da faixa. */
+    initialId: z.string(),
+    items: z.array(showcaseItemSchema).min(3),
+  }),
   features: z.array(featureSchema).length(3),
   preview: z.object({
     moduleLabel: z.string(),
@@ -29,15 +46,62 @@ const landingSchema = z.object({
   footerLinks: z.array(z.string()),
 });
 
+export type ShowcaseItem = z.infer<typeof showcaseItemSchema>;
 export type LandingFeature = z.infer<typeof featureSchema>;
 export type LandingData = z.infer<typeof landingSchema>;
 
 export const landingData: LandingData = landingSchema.parse({
-  eyebrow: "Para designers",
-  title: "Aprenda a utilizar IAs de código, sua imaginação é o limite.",
-  subtitle:
-    "Trilha prática, exercícios com feedback de IA e uma comunidade de designers para tirar dúvidas. Gratuito.",
+  titleLines: ["Sua imaginação", "é o limite."],
+  subtitle: "Aprenda a forma correta de usar IAs de código no mundo criativo.",
   primaryCta: { label: "Começar agora", href: "/cadastro" },
+  showcase: {
+    title: "O que dá pra criar com IA de código",
+    initialId: "portfolio",
+    items: [
+      {
+        id: "jogo",
+        caption: "Um jogo no navegador",
+        url: "https://fly.pieter.com",
+        image: "https://fly.pieter.com/assets/fly_social_image.png",
+        imageAlt: "Simulador de voo multijogador fly.pieter.com, com aviões sobre um cenário em blocos",
+      },
+      {
+        id: "site",
+        caption: "Um site de estúdio",
+        url: "https://lusion.co",
+        image: "https://lusion.co/assets/meta/social_sharing.jpg",
+        imageAlt: "Site do estúdio Lusion, com peças 3D azuis, brancas e pretas",
+      },
+      {
+        id: "portfolio",
+        caption: "Um portfólio que se mexe",
+        url: "https://bruno-simon.com",
+        image: "https://bruno-simon.com/social/share-image.png",
+        imageAlt: "Portfólio 3D de Bruno Simon, com um carrinho vermelho em um cenário de blocos",
+      },
+      {
+        id: "crm",
+        caption: "Um sistema para seus clientes",
+        url: "https://twenty.com",
+        image: "/showcase/crm-twenty.jpg",
+        imageAlt: "CRM Twenty, com tabela de empresas e um chat de IA ao lado",
+      },
+      {
+        id: "audio",
+        caption: "Um plugin de áudio",
+        url: "https://vital.audio",
+        image: "/showcase/audio-vital.jpg",
+        imageAlt: "Site do sintetizador Vital, com o logo em V roxo sobre fundo escuro",
+      },
+      {
+        id: "video",
+        caption: "Um vídeo gerado em código",
+        url: "https://www.githubunwrapped.com",
+        image: "/showcase/video-github-unwrapped.jpg",
+        imageAlt: "GitHub Unwrapped, que gera um vídeo personalizado do ano de cada pessoa",
+      },
+    ],
+  },
   features: [
     {
       id: "trilha",

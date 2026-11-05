@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Field,
@@ -126,9 +126,9 @@ export function SignUpForm() {
         </p>
       ) : null}
 
-      <Button type="submit" disabled={isPending} className={submitButtonClass}>
+      <ColorBurstButton type="submit" disabled={isPending} className={submitButtonClass}>
         {isPending ? "Criando conta…" : "Criar conta"}
-      </Button>
+      </ColorBurstButton>
     </form>
   );
 }

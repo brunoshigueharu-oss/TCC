@@ -5,6 +5,8 @@ import { FileText, Link2, Paperclip, Plus, Video, X } from "lucide-react";
 import { useState, useTransition, type ChangeEvent } from "react";
 import { Controller, useForm } from "react-hook-form";
 
+import { brandButtonVariants } from "@/components/brand-button-variants";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Button } from "@/components/ui/button";
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -14,8 +16,7 @@ import { saveLesson, type SaveLessonResult } from "../_actions/save-lesson";
 import { lessonFormSchema, type LessonFormValues } from "../_schemas/lesson-form";
 
 const inputClass = "h-11 rounded-xl bg-fundo px-3 text-[15px] md:text-[15px]";
-const outlineButtonClass =
-  "h-11 rounded-xl bg-fundo px-4 text-sm font-semibold text-texto ring-1 ring-linha hover:bg-superficie";
+const outlineButtonClass = brandButtonVariants({ variant: "secondary", size: "sm" });
 
 type LessonEditorProps = {
   courseId: string;
@@ -145,7 +146,7 @@ export function LessonEditor({ courseId, lesson, lessonNumber, totalLessons }: L
                     type="button"
                     onClick={handleRemoveVideo}
                     aria-label="Remover vídeo"
-                    className="flex size-9 items-center justify-center rounded-lg hover:bg-superficie"
+                    className="flex size-9 items-center justify-center rounded-full hover:bg-superficie"
                   >
                     <X aria-hidden className="size-4" strokeWidth={2} />
                   </button>
@@ -164,17 +165,17 @@ export function LessonEditor({ courseId, lesson, lessonNumber, totalLessons }: L
 
               <div className="flex flex-wrap justify-center gap-2">
                 {videoName ? null : (
-                  <label className={`${outlineButtonClass} flex cursor-pointer items-center gap-2 focus-within:ring-2 focus-within:ring-ring`}>
+                  <label className={`${outlineButtonClass} cursor-pointer focus-within:ring-2 focus-within:ring-texto`}>
                     <Video aria-hidden className="size-4" strokeWidth={2} />
                     Enviar vídeo
                     <input type="file" accept="video/*" onChange={handleVideoChange} className="sr-only" />
                   </label>
                 )}
                 {isWriting ? null : (
-                  <Button type="button" onClick={() => setIsWriting(true)} className={outlineButtonClass}>
+                  <ColorBurstButton type="button" onClick={() => setIsWriting(true)} variant="secondary" size="sm">
                     <FileText aria-hidden strokeWidth={2} />
                     Escrever texto
-                  </Button>
+                  </ColorBurstButton>
                 )}
               </div>
             </div>
@@ -204,7 +205,7 @@ export function LessonEditor({ courseId, lesson, lessonNumber, totalLessons }: L
             <Button
               type="button"
               disabled
-              className="h-11 rounded-xl border border-dashed border-linha bg-fundo px-3 text-sm font-semibold text-texto"
+              className="h-11 rounded-full border border-dashed border-linha bg-fundo px-5 text-sm font-semibold text-texto"
             >
               <Plus aria-hidden strokeWidth={2.5} />
               Adicionar material
@@ -223,13 +224,9 @@ export function LessonEditor({ courseId, lesson, lessonNumber, totalLessons }: L
             {result.message}
           </p>
         ) : null}
-        <Button
-          type="submit"
-          disabled={isPending}
-          className="h-12 rounded-xl bg-fundo px-6 text-[15px] font-semibold text-texto ring-1 ring-texto hover:bg-superficie"
-        >
+        <ColorBurstButton type="submit" disabled={isPending} variant="secondary">
           {isPending ? "Salvando…" : "Salvar aula"}
-        </Button>
+        </ColorBurstButton>
       </div>
     </form>
   );

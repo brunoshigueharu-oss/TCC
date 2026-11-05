@@ -18,7 +18,7 @@ type BackBarProps = {
 export function BackBar({ href, label, action }: BackBarProps) {
   return (
     <header className="sticky top-0 z-10 flex h-14 items-center gap-1 bg-fundo px-2 ring-1 ring-linha/70 lg:in-data-[shell=abas]:top-4 lg:in-data-[shell=abas]:rounded-2xl lg:in-data-[shell=abas]:px-3">
-      <Link href={href} aria-label="Voltar" className="flex size-11 items-center justify-center rounded-xl">
+      <Link href={href} aria-label="Voltar" className="flex size-11 items-center justify-center rounded-full transition-colors hover:bg-superficie">
         <ArrowLeft aria-hidden className="size-[22px]" strokeWidth={1.75} />
       </Link>
       <span className="min-w-0 flex-1 truncate text-[15px] font-semibold">{label}</span>

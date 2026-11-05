@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { accountSchema, type AccountInput } from "@/lib/data/perfil";
@@ -84,13 +84,13 @@ export function AccountForm({ defaultValues }: AccountFormProps) {
         ))}
       </FieldGroup>
 
-      <Button
+      <ColorBurstButton
         type="submit"
         disabled={isPending || !form.formState.isDirty}
-        className="h-12 w-full lg:w-auto lg:min-w-56 lg:self-end lg:px-8 rounded-xl bg-acao text-[15px] font-semibold text-texto hover:bg-acao/90"
+        className="w-full lg:w-auto lg:min-w-56 lg:self-end"
       >
         {isPending ? "Salvando..." : "Salvar alterações"}
-      </Button>
+      </ColorBurstButton>
       <p role="status" className="-mt-2 text-center text-sm text-texto-secundario empty:hidden lg:text-right">
         {feedback}
       </p>

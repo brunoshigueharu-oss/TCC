@@ -61,7 +61,7 @@ export default async function CoursePlayerPage({
 
         <nav aria-label="Navegar entre aulas" className="flex gap-3 px-4 lg:justify-end lg:px-0">
           {isFirst ? null : (
-            <ActionLink href={playerHref(current - 1)} variant="secondary" className="h-12 flex-1 lg:w-44 lg:flex-none">
+            <ActionLink href={playerHref(current - 1)} variant="secondary" size="md" className="flex-1 lg:w-44 lg:flex-none">
               Anterior
             </ActionLink>
           )}

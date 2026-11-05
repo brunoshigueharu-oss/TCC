@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { SurfaceCard } from "@/components/surface-card";
-import { Button } from "@/components/ui/button";
+import { ColorBurstButton } from "@/components/color-burst-button";
 import { Field, FieldContent, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Switch } from "@/components/ui/switch";
 import type { ConsentItem } from "@/lib/data/entrada";
@@ -85,9 +85,9 @@ export function ConsentForm({ items, termsSummary }: ConsentFormProps) {
       ) : null}
 
       <div className="mt-auto px-4 lg:px-0">
-        <Button type="submit" disabled={isPending} className={submitButtonClass}>
+        <ColorBurstButton type="submit" disabled={isPending} className={submitButtonClass}>
           {isPending ? "Salvando…" : "Aceitar e continuar"}
-        </Button>
+        </ColorBurstButton>
       </div>
     </form>
   );
