@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tcc-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3002"
+      ],
+      "port": 3002
+    },
+    {
+      "name": "pontilhismo-proto",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "-e",
+        "const h=require('http'),f=require('fs'),p=require('path');const r=p.resolve('prototipos/pontilhismo');h.createServer((q,s)=>{const u=decodeURIComponent(q.url.split('?')[0]);const fp=p.join(r,u==='/'?'index.html':u);if(!fp.startsWith(r))return s.writeHead(403).end();f.readFile(fp,(e,b)=>{if(e)return s.writeHead(404).end();s.writeHead(200,{'Content-Type':fp.endsWith('.html')?'text/html; charset=utf-8':'application/octet-stream'}).end(b)})}).listen(process.env.PORT||4310)"
+      ],
+      "port": 4310
+    }
+  ]
+}

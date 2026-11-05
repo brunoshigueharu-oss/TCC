@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/Users/brunohigashi/Documents/Claude Code/TCC/.codex/hooks/init.js'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/Users/brunohigashi/Documents/Claude Code/TCC/.codex/hooks/session-stop.js'"
+          }
+        ]
+      }
+    ]
+  }
+}
