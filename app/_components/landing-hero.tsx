@@ -1,5 +1,6 @@
 import type { LandingData } from "@/lib/data/landing";
 import { ColorBurstLink } from "@/components/color-burst-link";
+import { AsciiBloom } from "./ascii-bloom";
 import { ShuffleTitle } from "./shuffle-title";
 
 type LandingHeroProps = Pick<LandingData, "titleLines" | "subtitle" | "primaryCta">;
@@ -15,8 +16,19 @@ export function LandingHero({ titleLines, subtitle, primaryCta }: LandingHeroPro
     <section
       aria-labelledby="landing-titulo"
       // Começa logo abaixo do header e deixa a próxima seção aparecer na dobra.
-      className="flex flex-col items-center px-4 pt-14 pb-20 text-center sm:pt-16 lg:pt-20 lg:pb-24"
+      className="relative flex flex-col items-center px-4 pt-14 pb-20 text-center sm:pt-16 lg:pt-20 lg:pb-24"
     >
+      {/* Enfeites nas laterais, só onde sobra espaço ao lado do título (~840px de largura). */}
+      <AsciiBloom
+        flower="lirio"
+        src="/landing/lirio.mp4"
+        className="absolute top-1/2 left-0 hidden aspect-square w-[calc(50vw-425px)] max-w-[520px] -translate-y-1/2 xl:block"
+      />
+      <AsciiBloom
+        flower="gerbera"
+        src="/landing/gerbera.mp4"
+        className="absolute top-1/2 right-0 hidden aspect-square w-[calc(50vw-425px)] max-w-[520px] -translate-y-1/2 xl:block"
+      />
       <ShuffleTitle id="landing-titulo" lines={titleLines} />
       <p className="mt-6 max-w-[560px] animate-fade-up [animation-delay:950ms] motion-reduce:animate-none text-base text-balance leading-relaxed text-texto-secundario sm:text-lg">
         {subtitle}

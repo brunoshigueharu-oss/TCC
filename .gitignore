@@ -32,3 +32,16 @@ next-env.d.ts
 # local tool state
 .playwright-mcp/
 .superpowers/
+
+# mídias brutas do protótipo (pesadas, ~50 MB): ficam só na máquina.
+# Os vídeos que o site usa (public/) vão no git, senão somem no deploy.
+prototipos/pontilhismo/betta.jpg
+prototipos/pontilhismo/betta.mp4
+prototipos/pontilhismo/betta-saida.mp4
+prototipos/pontilhismo/flor.mp4
+prototipos/pontilhismo/planta.mp4
+prototipos/pontilhismo/dalia.mp4
+prototipos/pontilhismo/betta-loop.mp4
+prototipos/pontilhismo/gatinho.mp4
+prototipos/pontilhismo/gatinho2.mp4
+prototipos/pontilhismo/florescer.mp4
