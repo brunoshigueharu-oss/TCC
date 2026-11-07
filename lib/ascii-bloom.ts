@@ -154,10 +154,24 @@ function bloomScene(preset: BloomPreset, page: BloomPage): AsciiScene {
   };
 }
 
+/** Cache das cenas: a mesma flor/fundo devolve sempre o mesmo objeto (o palco compara por identidade). */
+const scenes = new Map<string, AsciiScene>();
+
+/** Cena da flor, para mostrar num palco (`createAsciiStage`). */
+export function bloomSceneFor(flower: BloomFlower, page: BloomPage = "light") {
+  const key = `${flower}:${page}`;
+  let scene = scenes.get(key);
+  if (!scene) {
+    scene = bloomScene(PRESETS[flower], page);
+    scenes.set(key, scene);
+  }
+  return scene;
+}
+
 /**
  * Liga a animação no canvas. Devolve a função que desliga tudo (quadros
  * guardados, observadores e o laço de desenho).
  */
 export function startAsciiBloom(canvas: HTMLCanvasElement, { flower, src, page = "light" }: AsciiBloomOptions) {
-  return startAsciiScene(canvas, bloomScene(PRESETS[flower], page), src);
+  return startAsciiScene(canvas, bloomSceneFor(flower, page), src);
 }

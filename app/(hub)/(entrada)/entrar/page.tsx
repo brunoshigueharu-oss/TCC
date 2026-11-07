@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { SurfaceCard } from "@/components/surface-card";
 import { BrandHeader } from "../_components/brand-header";
+import { SocialSignIn } from "../_components/social-sign-in";
 import { WelcomeCard } from "../_components/welcome-card";
 import { LoginForm } from "./_components/login-form";
 
@@ -35,6 +36,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/entrar">) 
         ) : null}
 
         <SurfaceCard>
+          <SocialSignIn destination="/inicio" />
           <LoginForm />
         </SurfaceCard>
 

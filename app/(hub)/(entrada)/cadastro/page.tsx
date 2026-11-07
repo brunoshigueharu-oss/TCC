@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { SurfaceCard } from "@/components/surface-card";
 import { BrandHeader } from "../_components/brand-header";
+import { SocialSignIn } from "../_components/social-sign-in";
 import { WelcomeCard } from "../_components/welcome-card";
 import { SignUpForm } from "./_components/sign-up-form";
 
@@ -21,6 +22,7 @@ export default function SignUpPage() {
         />
 
         <SurfaceCard>
+          <SocialSignIn destination="/onboarding" />
           <SignUpForm />
         </SurfaceCard>
 

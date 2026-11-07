@@ -295,30 +295,277 @@ function readFontFamily(canvas: HTMLCanvasElement) {
 }
 
 /**
- * Liga a cena no canvas. Só baixa o vídeo quando o canvas aparece na tela.
- * Devolve a função que desliga tudo (quadros guardados, observadores e o laço de desenho).
+ * Troca de cena (`show` com outra cena): as letras do desenho atual andam até
+ * as casas do próximo, mudando de cor e embaralhando o caractere no caminho.
+ * As duas cenas continuam animando durante a troca: cada letra sai de onde a
+ * cena velha está agora e chega onde a nova está agora (nada congela).
+ * `ms`: duração total; `spread`: fração do tempo em que as partidas se espalham
+ * (da esquerda para a direita, com ruído); `handoff`: fração final, com todas
+ * as letras já pousadas, em que a cena nova assume no lugar delas;
+ * `scatter`: desvio máximo do caminho, em células.
  */
-export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, src: string) {
+const MORPH = { ms: 2600, spread: 0.55, handoff: 0.25, scatter: 4 } as const;
+/** Caracteres cheios usados no embaralhamento do meio da troca. */
+const SCRAMBLE = "=+*#%@";
+
+/**
+ * Letra pronta para pintar (posição, caractere, cor, opacidade e tamanho da
+ * célula); `cell`: casa na grade da cena (-1 = letra em voo).
+ */
+type Glyph = { x: number; y: number; ch: string; r: number; g: number; b: number; a: number; size: number; cell: number };
+
+/** Lista de letras reaproveitada entre quadros (evita criar objetos a cada quadro). */
+type GlyphList = { items: Glyph[]; count: number };
+
+const createGlyphList = (): GlyphList => ({ items: [], count: 0 });
+
+function pushGlyph(list: GlyphList, x: number, y: number, ch: string, r: number, g: number, b: number, a: number, size: number, cell: number) {
+  let item = list.items[list.count];
+  if (!item) {
+    item = { x: 0, y: 0, ch: "", r: 0, g: 0, b: 0, a: 0, size: 0, cell: -1 };
+    list.items.push(item);
+  }
+  item.x = x;
+  item.y = y;
+  item.ch = ch;
+  item.r = r;
+  item.g = g;
+  item.b = b;
+  item.a = a;
+  item.size = size;
+  item.cell = cell;
+  list.count++;
+}
+
+/** Copia as letras ativas (a lista original continua sendo reaproveitada). */
+const snapshotGlyphs = (list: GlyphList): Glyph[] => list.items.slice(0, list.count).map((item) => ({ ...item }));
+
+/** Letra em voo durante a troca de cena: de `from` (cena velha) para `to` (cena nova). */
+type MorphParticle = { from: Glyph; to: Glyph; delay: number; jx: number; jy: number; ch: string };
+
+type Morph = {
+  start: number;
+  particles: MorphParticle[];
+  /** Letras de partida e de chegada (cada uma uma vez só; várias letras em voo podem dividir a mesma). */
+  sources: Glyph[];
+  targets: Glyph[];
+  /** Cena que está saindo: continua animando até a troca acabar. */
+  outgoing: Layer | null;
+};
+
+/** Índice casa da grade → letra da lista neste quadro (-1 = casa vazia). */
+function indexByCell(list: GlyphList, size: number, index: Int32Array<ArrayBuffer>): Int32Array<ArrayBuffer> {
+  const map = index.length === size ? index : new Int32Array(size);
+  map.fill(-1);
+  for (let i = 0; i < list.count; i++) {
+    const cell = list.items[i].cell;
+    if (cell >= 0 && cell < size) map[cell] = i;
+  }
+  return map;
+}
+
+/** Quanto a letra some por quadro quando a cena andou e não há casa ocupada por perto. */
+const VACATED_FADE = 0.8;
+/** Até quantas casas a letra procura uma casa ocupada quando a dela esvazia. */
+const FOLLOW_RADIUS = 3;
+
+/**
+ * Atualiza a letra guardada com a da cena ao vivo. A cena continua animando:
+ * se a casa da letra esvaziou, ela pula para a casa ocupada mais próxima (anda
+ * junto com o desenho); sem nenhuma por perto, vai sumindo. Assim nada pousa
+ * num lugar vazio — era isso que deixava um "fantasma" no fim da troca.
+ */
+function followLive(glyph: Glyph, list: GlyphList, map: Int32Array, cols: number, rows: number) {
+  if (glyph.cell < 0 || glyph.cell >= map.length) return;
+  let i = map[glyph.cell];
+  if (i < 0) {
+    const gx = glyph.cell % cols;
+    const gy = (glyph.cell / cols) | 0;
+    for (let ring = 1; ring <= FOLLOW_RADIUS && i < 0; ring++)
+      for (let dy = -ring; dy <= ring && i < 0; dy++)
+        for (let dx = -ring; dx <= ring; dx++) {
+          if (Math.abs(dx) !== ring && Math.abs(dy) !== ring) continue;
+          const x = gx + dx;
+          const y = gy + dy;
+          if (x < 0 || y < 0 || x >= cols || y >= rows) continue;
+          const found = map[y * cols + x];
+          if (found >= 0) {
+            i = found;
+            glyph.cell = y * cols + x;
+            break;
+          }
+        }
+  }
+  if (i < 0) {
+    glyph.a *= VACATED_FADE;
+    return;
+  }
+  const live = list.items[i];
+  glyph.a = live.a;
+  glyph.x = live.x;
+  glyph.y = live.y;
+  glyph.ch = live.ch;
+  glyph.r = live.r;
+  glyph.g = live.g;
+  glyph.b = live.b;
+  glyph.size = live.size;
+}
+
+/** Uma cena ligada ao palco, com seus quadros guardados. */
+type Layer = {
+  scene: AsciiScene;
+  src: string;
+  clock: ReturnType<AsciiScene["createClock"]>;
+  frames: Frame[];
+  abort: AbortController;
+  isCaptured: boolean;
+  hasFailed: boolean;
+  hasStartedCapture: boolean;
+  grid: Grid | null;
+  /** Já entra inteira (veio de uma troca de cena): pula a pincelada de entrada. */
+  isRevealed: boolean;
+};
+
+/**
+ * Casa cada letra da cena velha com a letra mais próxima da nova, comparando
+ * as duas silhuetas esticadas para a mesma caixa (o rabo do peixe vai para a
+ * ponta do gato, a cabeça para a cabeça). Letras novas que ninguém pegou saem
+ * da letra velha mais próxima. Sem uma das cenas, as letras só aparecem/somem.
+ */
+function pairGlyphs(from: Glyph[], to: Glyph[], cell: number): MorphParticle[] {
+  const particle = (a: Glyph, b: Glyph, sourceX: number): MorphParticle => {
+    const angle = Math.random() * Math.PI * 2;
+    const scatter = Math.random() * MORPH.scatter * cell;
+    return {
+      from: a,
+      to: b,
+      // partida da esquerda para a direita, com ruído: parece uma onda que mistura as letras
+      delay: MORPH.spread * (0.55 * Math.random() + 0.45 * sourceX),
+      jx: Math.cos(angle) * scatter,
+      jy: Math.sin(angle) * scatter,
+      ch: a.ch,
+    };
+  };
+  if (!from.length) return to.map((b) => particle({ ...b, a: 0 }, b, Math.random()));
+  if (!to.length) return from.map((a) => particle(a, { ...a, a: 0 }, Math.random()));
+
+  const box = (list: Glyph[]) => {
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+    for (const { x, y } of list) {
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+    const w = maxX - minX || 1;
+    const h = maxY - minY || 1;
+    return list.map(({ x, y }) => [(x - minX) / w, (y - minY) / h] as const);
+  };
+  const nFrom = box(from);
+  const nTo = box(to);
+  const nearestTo = buildNearest(nTo);
+  const nearestFrom = buildNearest(nFrom);
+
+  const particles: MorphParticle[] = [];
+  const isTaken = new Uint8Array(to.length);
+  for (let i = 0; i < from.length; i++) {
+    const j = nearestTo(nFrom[i]);
+    isTaken[j] = 1;
+    particles.push(particle(from[i], to[j], nFrom[i][0]));
+  }
+  for (let j = 0; j < to.length; j++) {
+    if (isTaken[j]) continue;
+    const i = nearestFrom(nTo[j]);
+    particles.push(particle(from[i], to[j], nFrom[i][0]));
+  }
+  return particles;
+}
+
+/** Lado da grade de baldes da busca de vizinho (pontos normalizados em 0–1). */
+const BUCKETS = 32;
+
+/**
+ * Prepara a busca do ponto mais próximo (pontos em 0–1) com uma grade de
+ * baldes: procura em anéis crescentes em volta do balde do ponto, em vez de
+ * comparar com todos (o quadro em que a troca começa não engasga).
+ */
+function buildNearest(points: (readonly [number, number])[]) {
+  const bucketOf = (v: number) => Math.min(BUCKETS - 1, Math.max(0, Math.floor(v * BUCKETS)));
+  const buckets: number[][] = Array.from({ length: BUCKETS * BUCKETS }, () => []);
+  points.forEach(([x, y], k) => buckets[bucketOf(y) * BUCKETS + bucketOf(x)].push(k));
+  return ([px, py]: readonly [number, number]) => {
+    const bx = bucketOf(px);
+    const by = bucketOf(py);
+    let best = 0;
+    let bestDist2 = Infinity;
+    for (let ring = 0; ring < BUCKETS; ring++) {
+      // nada mais perto fora deste anel: para
+      const reach = (ring - 1) / BUCKETS;
+      if (ring > 0 && reach > 0 && reach * reach > bestDist2) break;
+      for (let y = by - ring; y <= by + ring; y++) {
+        if (y < 0 || y >= BUCKETS) continue;
+        for (let x = bx - ring; x <= bx + ring; x++) {
+          if (x < 0 || x >= BUCKETS) continue;
+          // só a borda do anel (o miolo já foi visto)
+          if (ring > 0 && y !== by - ring && y !== by + ring && x !== bx - ring && x !== bx + ring) continue;
+          for (const k of buckets[y * BUCKETS + x]) {
+            const dx = points[k][0] - px;
+            const dy = points[k][1] - py;
+            const dist2 = dx * dx + dy * dy;
+            if (dist2 < bestDist2) {
+              bestDist2 = dist2;
+              best = k;
+            }
+          }
+        }
+      }
+    }
+    return best;
+  };
+}
+
+/** Palco: um canvas que mostra uma cena por vez e troca de cena com morph. */
+export type AsciiStage = {
+  /** Mostra a cena; se já houver outra na tela, as letras se transformam nela. */
+  show: (scene: AsciiScene, src: string) => void;
+  /** Desliga tudo (quadros guardados, observadores e o laço de desenho). */
+  stop: () => void;
+};
+
+/**
+ * Liga o palco no canvas. Cada cena só baixa o vídeo quando o canvas aparece
+ * na tela; a próxima cena é preparada enquanto a atual continua animando.
+ */
+export function createAsciiStage(canvas: HTMLCanvasElement): AsciiStage {
   const maybeContext = canvas.getContext("2d");
-  if (!maybeContext) return () => {};
+  if (!maybeContext) return { show: () => {}, stop: () => {} };
   const ctx: CanvasRenderingContext2D = maybeContext;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fontFamily = readFontFamily(canvas);
-  const clock = scene.createClock();
-  const frames: Frame[] = [];
-  const abort = new AbortController();
   const rgb: Rgb = [0, 0, 0];
   const mouse = { x: -1e4, y: -1e4 };
-  let isCaptured = false;
-  let hasFailed = false;
-  let hasStartedCapture = false;
+  /** O que foi pintado no último quadro (ponto de partida de uma troca de cena). */
+  const drawn = createGlyphList();
+  /** Rascunho da cena nova no instante em que a troca começa. */
+  const target = createGlyphList();
+  /** Cenas ao vivo durante a troca (a que sai e a que entra) e o índice casa → letra de cada uma. */
+  const outgoingLive = createGlyphList();
+  const incomingLive = createGlyphList();
+  let outgoingIndex = new Int32Array(0);
+  let incomingIndex = new Int32Array(0);
+  let current: Layer | null = null;
+  let pending: Layer | null = null;
+  let morph: Morph | null = null;
   let isStopped = false;
   let isVisible = false;
   let W = 0;
   let H = 0;
   let DPR = 0;
-  let grid: Grid | null = null;
+  let cellSize = 0;
   let raf = 0;
   // buffers da máscara de manchas grandes, refeitos só quando a grade muda de tamanho
   let lit = new Uint8Array(0);
@@ -329,26 +576,49 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
   // a fonte da página só baixa quando usada no DOM: pede o peso 900 para o canvas
   document.fonts.load(`${GLYPH.weight} 16px ${fontFamily}`).then(schedule, () => {});
 
-  function startCapture() {
-    if (hasStartedCapture) return;
-    hasStartedCapture = true;
-    captureFrames(src, scene, frames, abort.signal)
-      .then(() => {
-        isCaptured = true;
-        schedule();
-      })
-      .catch(() => (hasFailed = true));
+  function createLayer(scene: AsciiScene, src: string): Layer {
+    return {
+      scene,
+      src,
+      clock: scene.createClock(),
+      frames: [],
+      abort: new AbortController(),
+      isCaptured: false,
+      hasFailed: false,
+      hasStartedCapture: false,
+      grid: null,
+      isRevealed: false,
+    };
   }
 
-  function currentPose(g: Grid, now: number): Pose {
+  function releaseLayer(layer: Layer) {
+    layer.abort.abort();
+    layer.frames.forEach((f) => f.bmp.close());
+    layer.frames.length = 0;
+  }
+
+  function startCapture(layer: Layer) {
+    if (layer.hasStartedCapture) return;
+    layer.hasStartedCapture = true;
+    captureFrames(layer.src, layer.scene, layer.frames, layer.abort.signal)
+      .then(() => {
+        layer.isCaptured = true;
+        schedule();
+      })
+      .catch(() => (layer.hasFailed = true));
+  }
+
+  function currentPose(layer: Layer, g: Grid, now: number): Pose {
+    const { frames, isCaptured, scene } = layer;
     const lastFrameT = frames[frames.length - 1].t;
-    const pose = reducedMotion ? scene.staticPose : clock(now, now - g.start, { isCaptured, lastFrameT });
+    const pose = reducedMotion ? scene.staticPose : layer.clock(now, Math.max(0, now - g.start), { isCaptured, lastFrameT });
     // durante a captura, o tempo não passa do último quadro guardado
     return isCaptured ? pose : { t: Math.min(pose.t, lastFrameT), rot: pose.rot };
   }
 
   /** Desenha o vídeo na grade pequena, girado em volta do pé do quadro e misturando quadros vizinhos. */
-  function sample(g: Grid, pose: Pose) {
+  function sample(layer: Layer, g: Grid, pose: Pose) {
+    const { frames, scene } = layer;
     let lo = 0;
     let hi = frames.length - 1;
     while (lo < hi) {
@@ -360,7 +630,7 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
     let b: Frame | undefined = frames[lo + 1];
     let bt = b?.t ?? 0;
     // loop: depois do último quadro vem o primeiro, misturado como os outros (sem travadinha)
-    if (!b && isCaptured && scene.loopEnd !== undefined) {
+    if (!b && layer.isCaptured && scene.loopEnd !== undefined) {
       b = frames[0];
       bt = scene.loopEnd;
     }
@@ -380,12 +650,12 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
       cx.drawImage(b.bmp, sx, sy, sw, sh, 0, 0, dw, dh);
       cx.globalAlpha = 1;
     }
-    if (scene.edgeFade) fadeEdges(cx, dw, dh, scene.edgeFade);
+    if (scene.edgeFade) fadeEdges(cx, scene.background, dw, dh, scene.edgeFade);
     cx.setTransform(1, 0, 0, 1, 0, 0);
     return cx.getImageData(0, 0, g.cols, g.rows).data;
   }
 
-  function fadeEdges(cx: CanvasRenderingContext2D, dw: number, dh: number, amount: number) {
+  function fadeEdges(cx: CanvasRenderingContext2D, background: string, dw: number, dh: number, amount: number) {
     const ex = dw * amount;
     const ey = dh * amount;
     const fades: [number, number, number, number, number, number, number, number][] = [
@@ -396,7 +666,7 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
     ];
     for (const [x0, y0, x1, y1, rx, ry, rw, rh] of fades) {
       const grad = cx.createLinearGradient(x0, y0, x1, y1);
-      grad.addColorStop(0, scene.background);
+      grad.addColorStop(0, background);
       grad.addColorStop(1, "transparent");
       cx.fillStyle = grad;
       cx.fillRect(rx, ry, rw, rh);
@@ -404,7 +674,7 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
   }
 
   /** Marca as células com tinta e guarda só as manchas grandes (vizinhança de 8). */
-  function bigBlobs(g: Grid, d: Uint8ClampedArray) {
+  function bigBlobs(scene: AsciiScene, g: Grid, d: Uint8ClampedArray) {
     const n = g.cols * g.rows;
     if (lit.length !== n) {
       lit = new Uint8Array(n);
@@ -449,7 +719,7 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
   }
 
   /** Realce de borda: luminosidade do ponto menos a média dos vizinhos com tinta. */
-  function edgeDetail(g: Grid, d: Uint8ClampedArray, gx: number, gy: number) {
+  function edgeDetail(scene: AsciiScene, g: Grid, d: Uint8ClampedArray, gx: number, gy: number) {
     let sum = 0;
     let n = 0;
     for (let k = 0; k < NEIGHBORS.length; k += 2) {
@@ -464,8 +734,9 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
     return n ? lightnessAt(d, (gy * g.cols + gx) * 4) - sum / n : 0;
   }
 
-  function buildGrid(now: number): Grid | null {
-    const first = frames[0];
+  function buildGrid(layer: Layer, start: number): Grid | null {
+    const first = layer.frames[0];
+    const { scene } = layer;
     // caractere proporcional ao palco, com piso para continuar legível em telas menores
     const cell = Math.max(scene.cell.min, Math.round(Math.min(W, H) / scene.cell.divisor));
     const cols = Math.ceil(W / cell);
@@ -492,14 +763,14 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
       cx,
       src: [crop.x * first.bmp.width, crop.y * first.bmp.height, fw, fh],
       dst: [(cols - dw) / 2, (rows - dh) / 2, dw, dh],
-      start: now,
+      start,
       particles: [],
       slots: [],
       slotOwner: new Int32Array(0),
     };
     g.slots = buildEightSlots(cell * EIGHT.spacing);
     g.slotOwner = new Int32Array(g.slots.length);
-    const d = sample(g, { t: first.t, rot: 0 });
+    const d = sample(layer, g, { t: first.t, rot: 0 });
     // entrada pela silhueta do primeiro quadro; o resto (o que surge depois) aparece no fim
     const index = new Int32Array(cols * rows).fill(-1);
     const litParticles: Particle[] = [];
@@ -518,18 +789,20 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
     orderStroke(litParticles, index, cols, rows);
     rest.forEach((p) => (p.order = 0.85 + Math.random() * 0.15));
     g.particles = litParticles.concat(rest);
+    cellSize = cell;
     return g;
   }
 
-  function render(g: Grid, now: number) {
-    const pose = currentPose(g, now);
+  /**
+   * Calcula as letras da cena neste quadro e as acrescenta em `out`, com a
+   * opacidade multiplicada por `alpha`. `isMagnetOn`: o mouse mexe nas letras.
+   */
+  function render(layer: Layer, g: Grid, now: number, out: GlyphList, alpha: number, isMagnetOn: boolean) {
+    const { scene } = layer;
+    const pose = currentPose(layer, g, now);
     const revealMs = now - g.start;
-    const d = sample(g, pose);
-    const mask = scene.keepBigBlobs ? bigBlobs(g, d) : null;
-    ctx.font = `${GLYPH.weight} ${g.cell * GLYPH.scale}px ${fontFamily}`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    const isMagnetOn = !reducedMotion;
+    const d = sample(layer, g, pose);
+    const mask = scene.keepBigBlobs ? bigBlobs(scene, g, d) : null;
     const grab2 = (MOUSE_RADIUS * EIGHT.grab) ** 2;
     const hold2 = (MOUSE_RADIUS * EIGHT.hold) ** 2;
     g.slotOwner.fill(-1);
@@ -540,7 +813,7 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
       // letra que some neste quadro (sem tinta, fora da mancha) solta a vaga
       const heldSlot = p.slot;
       p.slot = -1;
-      const e = reducedMotion ? 1 : ease((revealMs - p.order * REVEAL_MS) / EACH_MS);
+      const e = reducedMotion || layer.isRevealed ? 1 : ease((revealMs - p.order * REVEAL_MS) / EACH_MS);
       if (e <= 0) continue;
       const cellIndex = p.gy * g.cols + p.gx;
       if (mask && !mask[cellIndex]) continue;
@@ -550,7 +823,7 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
       const b = d[i + 2];
       const ink = scene.inkOf(r, gr, b);
       if (ink < INK_MIN) continue;
-      scene.color(r, gr, b, edgeDetail(g, d, p.gx, p.gy), rgb);
+      scene.color(r, gr, b, edgeDetail(scene, g, d, p.gx, p.gy), rgb);
       const luminance = (0.3 * rgb[0] + 0.59 * rgb[1] + 0.11 * rgb[2]) / 255;
       p.ink = ink;
       p.lum = scene.isDarkBackground ? 1 - luminance : luminance;
@@ -591,12 +864,9 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
       }
       p.x = p.tx + p.ox;
       p.y = p.ty + p.oy;
-      ctx.globalAlpha = e;
-      ctx.fillStyle = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
-      ctx.fillText(p.ch, p.x, p.y);
+      pushGlyph(out, p.x, p.y, p.ch, rgb[0], rgb[1], rgb[2], e * alpha, g.cell, cellIndex);
     }
     if (candidates.length) fillEightSlots(g, candidates);
-    ctx.globalAlpha = 1;
   }
 
   /**
@@ -629,15 +899,136 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
     }
   }
 
+  /** Letras em voo: posição, cor, opacidade e caractere misturados de uma cena para a outra. */
+  function renderMorph(m: Morph, k: number, out: GlyphList, alpha: number) {
+    // todas pousam antes da passagem final: nela, a cena nova assume com as letras já no lugar
+    const flight = k / (1 - MORPH.handoff);
+    const travel = 1 - MORPH.spread;
+    for (const p of m.particles) {
+      const u = Math.min(1, Math.max(0, (flight - p.delay) / travel));
+      const e = u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+      const { from, to } = p;
+      // desvia do caminho reto no meio do voo: as letras se espalham e se misturam
+      const bend = Math.sin(Math.PI * e);
+      if (e <= 0.12) p.ch = from.ch;
+      else if (e >= 0.88) p.ch = to.ch;
+      else if (Math.random() < 0.3) p.ch = SCRAMBLE[(Math.random() * SCRAMBLE.length) | 0];
+      pushGlyph(
+        out,
+        from.x + (to.x - from.x) * e + p.jx * bend,
+        from.y + (to.y - from.y) * e + p.jy * bend,
+        p.ch,
+        Math.round(from.r + (to.r - from.r) * e),
+        Math.round(from.g + (to.g - from.g) * e),
+        Math.round(from.b + (to.b - from.b) * e),
+        (from.a + (to.a - from.a) * e) * alpha,
+        // cada cena tem o próprio tamanho de letra: muda aos poucos durante o voo
+        from.size + (to.size - from.size) * e,
+        -1,
+      );
+    }
+  }
+
+  function paint(list: GlyphList) {
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    let fontPx = -1;
+    for (let i = 0; i < list.count; i++) {
+      const glyph = list.items[i];
+      if (glyph.a <= 0.01) continue;
+      // tamanho em meios pixels: troca a fonte só quando muda de verdade
+      const px = Math.round(glyph.size * GLYPH.scale * 2) / 2;
+      if (px !== fontPx) {
+        fontPx = px;
+        ctx.font = `${GLYPH.weight} ${px}px ${fontFamily}`;
+      }
+      ctx.globalAlpha = Math.min(1, glyph.a);
+      ctx.fillStyle = `rgb(${glyph.r},${glyph.g},${glyph.b})`;
+      ctx.fillText(glyph.ch, glyph.x, glyph.y);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  /** Encerra a troca em andamento e solta a cena que estava saindo. */
+  function endMorph() {
+    if (morph?.outgoing) releaseLayer(morph.outgoing);
+    morph = null;
+  }
+
+  /** A cena seguinte tem o primeiro quadro: começa a troca a partir do que está na tela. */
+  function beginMorph(next: Layer, now: number) {
+    const from = snapshotGlyphs(drawn);
+    // troca interrompida por outra: a cena que ainda saía já não aparece
+    endMorph();
+    const outgoing = current;
+    current = next;
+    pending = null;
+    // sem nada na tela (ou menos movimento): só entra, com a pincelada de sempre
+    const grid = from.length && !reducedMotion ? buildGrid(next, now) : null;
+    if (!grid) {
+      if (outgoing) releaseLayer(outgoing);
+      return;
+    }
+    // a cena nova já começa a animar agora, por baixo das letras em voo
+    next.grid = grid;
+    next.isRevealed = true;
+    target.count = 0;
+    render(next, grid, now, target, 1, false);
+    const targets = snapshotGlyphs(target);
+    morph = { start: now, particles: pairGlyphs(from, targets, cellSize), sources: from, targets, outgoing };
+  }
+
+  /** As duas cenas andam um quadro; as letras em voo seguem a casa delas em cada uma. */
+  function followScenes(m: Morph, layer: Layer | null, now: number) {
+    outgoingLive.count = 0;
+    incomingLive.count = 0;
+    const out = m.outgoing;
+    if (out?.grid) {
+      render(out, out.grid, now, outgoingLive, 1, false);
+      outgoingIndex = indexByCell(outgoingLive, out.grid.cols * out.grid.rows, outgoingIndex);
+    }
+    if (layer?.grid) {
+      render(layer, layer.grid, now, incomingLive, 1, false);
+      incomingIndex = indexByCell(incomingLive, layer.grid.cols * layer.grid.rows, incomingIndex);
+    }
+    if (out?.grid) for (const glyph of m.sources) followLive(glyph, outgoingLive, outgoingIndex, out.grid.cols, out.grid.rows);
+    if (layer?.grid) for (const glyph of m.targets) followLive(glyph, incomingLive, incomingIndex, layer.grid.cols, layer.grid.rows);
+  }
+
   function draw(now: number) {
     raf = 0;
-    if (hasFailed || isStopped) return;
-    if (!grid && frames.length && W > 10) grid = buildGrid(now);
+    if (isStopped) return;
+    if (pending?.hasFailed) {
+      releaseLayer(pending);
+      pending = null;
+    }
+    if (pending && pending.frames.length && W > 10) beginMorph(pending, now);
+    const layer = current;
+    if (layer && !layer.grid && layer.frames.length && W > 10) layer.grid = buildGrid(layer, now);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    if (grid) render(grid, now);
+    drawn.count = 0;
+    if (morph) {
+      const k = (now - morph.start) / MORPH.ms;
+      if (k >= 1) endMorph();
+      else {
+        followScenes(morph, layer, now);
+        // fim da troca: a cena nova, já animada, assume no lugar das letras em voo
+        const handoff = Math.min(1, Math.max(0, (k - (1 - MORPH.handoff)) / MORPH.handoff));
+        renderMorph(morph, k, drawn, 1 - handoff);
+        if (handoff > 0) {
+          for (let i = 0; i < incomingLive.count; i++) {
+            const glyph = incomingLive.items[i];
+            pushGlyph(drawn, glyph.x, glyph.y, glyph.ch, glyph.r, glyph.g, glyph.b, glyph.a * handoff, glyph.size, glyph.cell);
+          }
+        }
+      }
+    }
+    if (!morph && layer?.grid) render(layer, layer.grid, now, drawn, 1, !reducedMotion);
+    paint(drawn);
     // menos movimento: a imagem é fixa, então para depois de desenhar o vídeo inteiro uma vez
-    if (!reducedMotion || !isCaptured || !grid) schedule();
+    const isSettled = reducedMotion && !pending && !!layer?.isCaptured && !!layer.grid;
+    if (!isSettled && !(layer?.hasFailed && !pending)) schedule();
   }
 
   function schedule() {
@@ -654,7 +1045,12 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
     H = r.height;
     canvas.width = Math.round(W * DPR);
     canvas.height = Math.round(H * DPR);
-    grid = null; // refaz a grade (e a entrada) no próximo quadro
+    // refaz a grade (e a entrada) no próximo quadro; uma troca no meio do caminho é cortada
+    endMorph();
+    if (current) {
+      current.grid = null;
+      current.isRevealed = false;
+    }
     schedule();
   }
 
@@ -667,7 +1063,10 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
   // fora da tela (ou oculto por `hidden`): não baixa o vídeo e para o laço de desenho
   const visibilityObserver = new IntersectionObserver(([entry]) => {
     isVisible = entry.isIntersecting;
-    if (isVisible) startCapture();
+    if (isVisible) {
+      if (current) startCapture(current);
+      if (pending) startCapture(pending);
+    }
     schedule();
   });
   visibilityObserver.observe(canvas);
@@ -685,15 +1084,39 @@ export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, sr
 
   resize();
 
-  return () => {
-    isStopped = true;
-    abort.abort();
-    cancelAnimationFrame(raf);
-    clearTimeout(resizeTimer);
-    resizeObserver.disconnect();
-    visibilityObserver.disconnect();
-    canvas.removeEventListener("pointermove", handlePointerMove);
-    canvas.removeEventListener("pointerleave", handlePointerLeave);
-    frames.forEach((f) => f.bmp.close());
+  return {
+    show(scene, src) {
+      if (isStopped) return;
+      const shown = pending ?? current;
+      if (shown && shown.scene === scene && shown.src === src) return;
+      if (pending) releaseLayer(pending);
+      const layer = createLayer(scene, src);
+      if (current) pending = layer;
+      else current = layer;
+      if (isVisible) startCapture(layer);
+      schedule();
+    },
+    stop() {
+      isStopped = true;
+      cancelAnimationFrame(raf);
+      clearTimeout(resizeTimer);
+      resizeObserver.disconnect();
+      visibilityObserver.disconnect();
+      canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerleave", handlePointerLeave);
+      endMorph();
+      if (current) releaseLayer(current);
+      if (pending) releaseLayer(pending);
+    },
   };
+}
+
+/**
+ * Liga uma cena só no canvas. Devolve a função que desliga tudo (quadros
+ * guardados, observadores e o laço de desenho).
+ */
+export function startAsciiScene(canvas: HTMLCanvasElement, scene: AsciiScene, src: string) {
+  const stage = createAsciiStage(canvas);
+  stage.show(scene, src);
+  return stage.stop;
 }

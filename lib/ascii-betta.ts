@@ -31,7 +31,7 @@ const smoothstep = (a: number, b: number, x: number) => {
   return u * u * (3 - 2 * u);
 };
 
-const BETTA_SCENE: AsciiScene = {
+export const BETTA_SCENE: AsciiScene = {
   // sobra para a grade; ~213 quadros na memória
   frameWidth: 300,
   capture: CLIP,

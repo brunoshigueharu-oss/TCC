@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base 8 — carregando</title>
+<style>
+  :root { --bg: #ffffff; --fg: #1B1F3B; --muted: #8a8ca3; }
+  body.preto { --bg: #0b0c14; --fg: #f3f4fa; --muted: #6d7090; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--bg); color: var(--fg); display: grid; place-items: center; font-family: ui-monospace, Menlo, monospace; transition: background .4s; }
+  .wrap { display: grid; justify-items: center; gap: 18px; }
+  canvas { display: block; }
+  .label { font-size: 13px; letter-spacing: .18em; text-transform: lowercase; color: var(--muted); min-width: 13ch; }
+  .painel { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; font: 12px ui-sans-serif, system-ui, sans-serif; }
+  .painel button { font: inherit; border: 1px solid #d5d7e0; background: var(--bg); color: var(--fg); padding: 5px 10px; border-radius: 8px; cursor: pointer; }
+  .painel button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <canvas id="c" aria-label="Bola 8 desenhada com caracteres, carregando" role="img"></canvas>
+  <div class="label" id="label">carregando</div>
+</div>
+<div class="painel">
+  <button data-modo="opacidade">opacidade</button>
+  <button data-modo="cor">cores</button>
+  <button data-fundo="branco">branco</button>
+  <button data-fundo="preto">preto</button>
+</div>
+<script>
+// Paleta IDV (Risografia + verde-água)
+const PALETTE = {
+  noite: "#1B1F3B", verde: "#12A180", rosa: "#FF48B0", limao: "#F5EE4A", azul: "#0B8FE0",
+};
+const CHARS = " .:-=+*#%@";
+
+/** Geometria em células (grade quadrada). */
+const R = 17;                 // raio da bola
+const RING = { inner: 1.2, outer: 1.32, segments: 12, gap: 0.42 }; // contorno-spinner, em frações de R
+const DISC = 0.56;            // disco branco do 8 (fração de R)
+const SPIN_MS = 1000;         // uma volta do spinner
+const FLICKER_MS = 140;       // de quanto em quanto tempo as letras trocam um pouco
+const N = Math.ceil(R * RING.outer) * 2 + 3; // lado da grade
+
+const params = new URLSearchParams(location.search);
+const state = {
+  modo: params.get("modo") === "cor" ? "cor" : "opacidade",
+  fundo: params.get("fundo") === "preto" ? "preto" : "branco",
+};
+
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+let cell = 10;
+
+function resize() {
+  cell = Math.max(7, Math.min(12, Math.floor(Math.min(innerWidth, innerHeight) * 0.6 / N)));
+  const dpr = devicePixelRatio || 1;
+  canvas.width = canvas.height = N * cell * dpr;
+  canvas.style.width = canvas.style.height = `${N * cell}px`;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+/** Máscara do "8" desenhada numa tela pequena e lida de volta como grade. */
+function eightMask() {
+  const size = Math.ceil(DISC * R * 2);
+  const off = document.createElement("canvas");
+  off.width = off.height = size * 8;
+  const o = off.getContext("2d");
+  o.fillStyle = "#000";
+  o.font = `800 ${size * 8 * 0.86}px ui-sans-serif, system-ui, sans-serif`;
+  o.textAlign = "center"; o.textBaseline = "middle";
+  o.fillText("8", off.width / 2, off.height / 2 + size * 0.5);
+  const data = o.getImageData(0, 0, off.width, off.height).data;
+  return (gx, gy) => { // gx, gy em células relativas ao centro do disco
+    const px = Math.floor((gx + size / 2) * 8 + 4), py = Math.floor((gy + size / 2) * 8 + 4);
+    if (px < 0 || py < 0 || px >= off.width || py >= off.height) return 0;
+    return data[(py * off.width + px) * 4 + 3] / 255;
+  };
+}
+
+/** Monta as células uma vez: posição, papel (bola, disco, oito, anel) e densidade. */
+function buildCells() {
+  const eight = eightMask();
+  const c = (N - 1) / 2;
+  // o disco do 8 fica um pouco acima e à esquerda, como numa bola de verdade
+  const disc = { x: -R * 0.08, y: -R * 0.1 };
+  const light = normalize([-0.5, -0.6, 0.75]);
+  const cells = [];
+  for (let gy = 0; gy < N; gy++) for (let gx = 0; gx < N; gx++) {
+    const x = gx - c, y = gy - c;
+    const d = Math.hypot(x, y) / R;
+    if (d <= 1) {
+      const z = Math.sqrt(Math.max(0, 1 - d * d));
+      const n = [x / R, y / R, z];
+      const lambert = Math.max(0, dot(n, light));
+      const spec = Math.pow(Math.max(0, dot(reflect(light, n), [0, 0, 1])), 18);
+      const dd = Math.hypot(x - disc.x, y - disc.y) / R;
+      if (dd <= DISC) {
+        const ink = eight(x - disc.x, y - disc.y);
+        if (ink > 0.4) cells.push({ gx, gy, role: "oito", dens: 0.85 });
+        else if (dd > DISC - 0.07) cells.push({ gx, gy, role: "aro", dens: 0.25 });
+        continue; // resto do disco fica em branco
+      }
+      if (spec > 0.7) continue; // brilho: buraco no desenho
+      // bola preta: quase toda densa, só clareia um pouco perto da luz
+      const dens = clamp(1 - lambert * 0.3 - spec * 0.7, 0.2, 1);
+      cells.push({ gx, gy, role: "bola", dens });
+    } else if (d >= RING.inner && d <= RING.outer) {
+      const ang = (Math.atan2(y, x) + Math.PI * 2.5) % (Math.PI * 2); // 0 = topo, sentido horário
+      const seg = ang / (Math.PI * 2) * RING.segments;
+      const frac = seg - Math.floor(seg);
+      if (frac < RING.gap / 2 || frac > 1 - RING.gap / 2) continue; // vão entre os traços
+      cells.push({ gx, gy, role: "anel", seg: Math.floor(seg), dens: 0.9 });
+    }
+  }
+  for (const cl of cells) cl.ch = pickChar(cl.dens);
+  return cells;
+}
+
+function pickChar(dens) {
+  const k = Math.round(clamp(dens + (Math.random() - 0.5) * 0.25, 0, 1) * (CHARS.length - 1));
+  return CHARS[Math.max(1, k)];
+}
+
+const RING_COLORS = [PALETTE.verde, PALETTE.azul, PALETTE.rosa, PALETTE.limao];
+
+function draw(now) {
+  const dark = state.fundo === "preto";
+  const ink = dark ? "#f3f4fa" : PALETTE.noite;
+  ctx.clearRect(0, 0, N * cell, N * cell);
+  ctx.font = `800 ${cell * 1.25}px ui-monospace, Menlo, monospace`;
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  // cabeça do spinner, andando em degraus como o spinner do iOS
+  const head = Math.floor((now % SPIN_MS) / SPIN_MS * RING.segments);
+  for (const cl of cells) {
+    let alpha = 1, color = ink;
+    if (cl.role === "anel") {
+      const behind = (head - cl.seg + RING.segments) % RING.segments; // 0 = cabeça
+      const fade = 1 - behind / RING.segments;
+      if (state.modo === "opacidade") { alpha = 0.12 + 0.88 * fade * fade; }
+      else {
+        color = RING_COLORS[Math.floor(now / SPIN_MS) % RING_COLORS.length];
+        alpha = behind < 4 ? 1 - behind * 0.2 : 0.08;
+        if (behind >= 4) color = ink;
+      }
+    } else if (cl.role === "aro") alpha = 0.35;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.fillText(cl.ch, (cl.gx + 0.5) * cell, (cl.gy + 0.5) * cell);
+  }
+  ctx.globalAlpha = 1;
+}
+
+let lastFlicker = 0;
+function frame(now) {
+  if (now - lastFlicker > FLICKER_MS) {
+    lastFlicker = now;
+    for (const cl of cells) if (Math.random() < 0.12) cl.ch = pickChar(cl.dens);
+  }
+  draw(now);
+  label.textContent = "carregando" + ".".repeat(Math.floor(now / 400) % 4);
+  requestAnimationFrame(frame);
+}
+
+// util
+function dot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+function normalize(v) { const l = Math.hypot(...v); return v.map((x) => x / l); }
+function reflect(l, n) { const k = 2 * dot(l, n); return [n[0] * k - l[0], n[1] * k - l[1], n[2] * k - l[2]]; }
+function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+
+// painel
+function syncPanel() {
+  document.body.classList.toggle("preto", state.fundo === "preto");
+  for (const b of document.querySelectorAll(".painel button")) {
+    b.setAttribute("aria-pressed", String(b.dataset.modo === state.modo || b.dataset.fundo === state.fundo));
+  }
+}
+document.querySelector(".painel").addEventListener("click", (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.modo) state.modo = b.dataset.modo;
+  if (b.dataset.fundo) state.fundo = b.dataset.fundo;
+  syncPanel();
+});
+
+const label = document.getElementById("label");
+let cells;
+addEventListener("resize", resize);
+resize();
+cells = buildCells();
+syncPanel();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

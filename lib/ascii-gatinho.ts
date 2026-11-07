@@ -49,7 +49,7 @@ function pingPong(seconds: number, length: number) {
   return (u < 1 ? u : 2 - u) * length;
 }
 
-const GATINHO_SCENE: AsciiScene = {
+export const GATINHO_SCENE: AsciiScene = {
   frameWidth: 256,
   capture: CLIP,
   crop: { x: 0.224, y: 0.049, w: 0.734, h: 0.93 },

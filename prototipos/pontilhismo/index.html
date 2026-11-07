@@ -79,7 +79,8 @@ const sources = [];
 
 // ---------- carregamento e análise da imagem ----------
 function loadImage(src) {
-  return new Promise(res => { const im = new Image(); im.onload = () => res(im); im.src = src; });
+  // foto faltando resolve null: os temas de vídeo seguem funcionando sem ela
+  return new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
 }
 
 /** Foto em fundo preto: brilho = presença do peixe. As bordas escuras das nadadeiras somem aos poucos. */
@@ -1021,7 +1022,7 @@ function frame(now) {
       return;
     }
   }
-  if (isFlor) { requestAnimationFrame(frame); return; } // flor ainda carregando
+  if (isFlor || !sources.length) { requestAnimationFrame(frame); return; } // flor carregando ou foto faltando
   const moving = !REDUCED && state.motion === "wave";
   const M = MOTION, k = view.k;
   // corpo inteiro: flutua e inclina
@@ -1071,8 +1072,8 @@ function resize() {
 }
 function rebuild() {
   vgrid = null; eyeGrid = null; // vídeo e olho refazem a grade (e a entrada) no próximo quadro
-  if (!sources.length || W <= 10) return; // foto ainda carregando
-  particles = makeParticles(buildTargets(sources[state.img]));
+  if (W <= 10) return;
+  if (sources.length) particles = makeParticles(buildTargets(sources[state.img])); // sem foto: só os temas de vídeo
   startTime = performance.now();
 }
 function syncButtons() {
@@ -1105,7 +1106,7 @@ document.addEventListener("mouseout", e => { if (!e.relatedTarget) mouse.x = mou
 let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { resize(); if (W > 10) rebuild(); }, 150); }).observe(canvas);
 
 (async () => {
-  for (const it of IMAGES) sources.push(analyse(await loadImage(it.src)));
+  for (const it of IMAGES) { const im = await loadImage(it.src); if (im) sources.push(analyse(im)); }
   applyOnly();
   // ?fundo=preto|branco|noite vence o fundo fixo do tema (para comparar sem editar o tema)
   const fundo = new URLSearchParams(location.search).get("fundo");
