@@ -1,43 +1,33 @@
 import type { Metadata } from "next";
 
-import { SurfaceCard } from "@/components/surface-card";
 import { BrandHeader } from "../_components/brand-header";
 import { parsePosition } from "../_lib/parse-position";
 import { OnboardingForm } from "./_components/onboarding-form";
-import { StepIndicator } from "./_components/step-indicator";
 import { getOnboardingSteps } from "./_data-access/get-onboarding";
 
 export const metadata: Metadata = { title: "Primeiros passos" };
 
 /**
- * Onboarding (Figma: "Onboarding"). Três perguntas de escolha única; o passo
- * atual fica na URL (`?passo=N`). O último passo leva ao consentimento.
+ * Onboarding: três perguntas de escolha única; o passo atual fica na URL
+ * (`?passo=N`, que também troca o desenho do painel). O último leva aos dados.
  */
 export default async function OnboardingPage({ searchParams }: PageProps<"/onboarding">) {
   const steps = await getOnboardingSteps();
   const position = parsePosition((await searchParams).passo, steps.length);
   const step = steps[position - 1];
   const isLastStep = position === steps.length;
-  const nextHref = isLastStep ? "/consentimento" : `/onboarding?passo=${position + 1}`;
 
   return (
     <>
       <BrandHeader />
-      <main className="flex flex-1 flex-col gap-5 pt-2 pb-6 lg:flex-none lg:gap-6 lg:px-6 lg:pt-0 lg:pb-0">
-        <SurfaceCard className="flex flex-col gap-4 p-4 lg:gap-5 lg:p-6">
-          <StepIndicator current={position} labels={steps.map(({ shortLabel }) => shortLabel)} />
-          <div className="flex flex-col gap-1">
-            <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">{step.title}</h1>
-            <p className="text-sm text-texto-secundario">{step.description}</p>
-          </div>
-        </SurfaceCard>
-
+      <main className="flex flex-1 flex-col px-4 pt-6 pb-8 lg:flex-none lg:px-0 lg:pt-0 lg:pb-0">
         <OnboardingForm
           key={step.id}
-          stepId={step.id}
-          legend={step.title}
-          options={step.options}
-          nextHref={nextHref}
+          step={step}
+          position={position}
+          total={steps.length}
+          nextHref={isLastStep ? "/consentimento" : `/onboarding?passo=${position + 1}`}
+          previousHref={position > 1 ? `/onboarding?passo=${position - 1}` : null}
         />
       </main>
     </>

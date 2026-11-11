@@ -1,8 +1,13 @@
 import "server-only";
 
-import { entradaData, type LevelingQuestion } from "@/lib/data/entrada";
+import { entradaData, type LevelingQuestion, type LevelingResult } from "@/lib/data/entrada";
 
-/** Perguntas do nivelamento, na ordem em que aparecem. */
-export async function getLevelingQuestions(): Promise<LevelingQuestion[]> {
-  return entradaData.levelingQuestions;
+export type LevelingData = {
+  questions: LevelingQuestion[];
+  results: LevelingResult[];
+};
+
+/** Perguntas do nivelamento, na ordem, e os pontos de partida possíveis. */
+export async function getLeveling(): Promise<LevelingData> {
+  return { questions: entradaData.levelingQuestions, results: entradaData.levelingResults };
 }

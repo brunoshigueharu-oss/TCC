@@ -1,8 +1,6 @@
-import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 import { SectionHeading } from "@/components/section-heading";
-import { SurfaceCard } from "@/components/surface-card";
 import type { PersonCourse } from "@/lib/data/pessoas";
 
 type PersonCoursesProps = {
@@ -14,27 +12,25 @@ export function PersonCourses({ courses }: PersonCoursesProps) {
   if (courses.length === 0) return null;
 
   return (
-    <section aria-labelledby="cursos-pessoa" className="flex flex-col gap-2">
-      <SectionHeading
-        id="cursos-pessoa"
-        title="Minicursos publicados"
-        icon={GraduationCap}
-        tone="comunidade"
-      />
-      <SurfaceCard>
-        <ul className="divide-y divide-linha">
-          {courses.map((course) => (
-            <li key={course.id}>
-              <Link href={`/educacao/cursos/${course.id}`} className="flex flex-col gap-1 px-4 py-3 lg:px-5 lg:py-4 lg:transition-colors lg:hover:bg-superficie">
-                <span className="text-sm font-semibold">{course.title}</span>
-                <span className="text-xs text-texto-secundario">
-                  {course.lessons} aulas · {course.students} pessoas inscritas
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </SurfaceCard>
+    <section aria-labelledby="cursos-pessoa" className="flex flex-col">
+      <SectionHeading id="cursos-pessoa" title="Minicursos" tone="comunidade" />
+      <ul className="mx-4 divide-y divide-linha lg:mx-0">
+        {courses.map((course) => (
+          <li key={course.id}>
+            <Link
+              href={`/educacao/cursos/${course.id}`}
+              className="flex flex-col gap-1 rounded-sm py-3 outline-none focus-visible:ring-2 focus-visible:ring-texto"
+            >
+              <span className="text-[15px] font-medium hover:underline hover:underline-offset-4">
+                {course.title}
+              </span>
+              <span className="font-mono text-[11px] text-texto-secundario">
+                {course.lessons} aulas · {course.students} inscritos
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

@@ -1,28 +1,36 @@
 import { cn } from "@/lib/utils";
 
-// Classes literais: o Tailwind não enxerga nomes montados dinamicamente.
-const avatarColors = ["bg-pratica", "bg-trilha", "bg-comunidade", "bg-acao"] as const;
+type AvatarSize = "xs" | "sm" | "md" | "lg";
 
-/** Cor estável por pessoa, a partir do nome de usuário. */
-function pickAvatarColor(username: string) {
-  const sum = [...username].reduce((total, char) => total + char.charCodeAt(0), 0);
-  return avatarColors[sum % avatarColors.length];
-}
+// Classes literais: o Tailwind não enxerga nomes montados dinamicamente.
+const sizeClasses: Record<AvatarSize, string> = {
+  xs: "size-5 text-[10px]",
+  sm: "size-7 text-xs",
+  md: "size-10 text-[15px]",
+  lg: "size-16 text-2xl lg:size-20 lg:text-[28px]",
+};
 
 type PersonAvatarProps = {
-  username: string;
   name: string;
+  size?: AvatarSize;
   className?: string;
 };
 
-/** Avatar provisório: círculo na cor de um pilar com a inicial da pessoa. */
-export function PersonAvatar({ username, name, className }: PersonAvatarProps) {
+/**
+ * Avatar provisório: monograma neutro (inicial do nome sobre cinza frio).
+ * Sem cor por pessoa — na Comunidade a cor fica para o estado dos posts.
+ */
+export function PersonAvatar({
+  name,
+  size = "sm",
+  className,
+}: PersonAvatarProps) {
   return (
     <span
       aria-hidden
       className={cn(
-        "flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-texto",
-        pickAvatarColor(username),
+        "flex shrink-0 items-center justify-center rounded-full bg-superficie-forte font-display font-medium text-texto",
+        sizeClasses[size],
         className,
       )}
     >

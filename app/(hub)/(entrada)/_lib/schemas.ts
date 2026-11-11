@@ -10,7 +10,12 @@ export const IS_ENTRY_VALIDATION_ENABLED = false;
 /** Tamanho mínimo da senha (repetido no texto de ajuda do cadastro). */
 export const PASSWORD_MIN_LENGTH = 8;
 
-const emailField = z.email("Informe um e-mail válido.");
+const emailField = z.email("Informe um e-mail válido, como voce@email.com.");
+
+/** Confere o e-mail enquanto a pessoa digita (marca de "ok" no campo). */
+export function isValidEmail(value: string) {
+  return z.email().safeParse(value).success;
+}
 
 export const loginSchema = z.object({
   email: emailField,
@@ -22,7 +27,9 @@ export const signUpSchema = z.object({
   email: emailField,
   password: z
     .string()
-    .min(PASSWORD_MIN_LENGTH, `A senha precisa ter pelo menos ${PASSWORD_MIN_LENGTH} caracteres.`),
+    .min(PASSWORD_MIN_LENGTH, `A senha precisa ter pelo menos ${PASSWORD_MIN_LENGTH} caracteres.`)
+    .regex(/[a-zA-ZÀ-ÿ]/, "Inclua pelo menos uma letra na senha.")
+    .regex(/\d/, "Inclua pelo menos um número na senha."),
   acceptedTerms: z.boolean().refine((value) => value, {
     message: "Para criar a conta, aceite os Termos de uso e a Política de privacidade.",
   }),

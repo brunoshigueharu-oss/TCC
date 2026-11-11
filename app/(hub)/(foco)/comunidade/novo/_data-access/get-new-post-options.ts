@@ -1,13 +1,22 @@
 import "server-only";
 
-import { listLessonOptions, listTags, type CommunityTag, type LessonOption } from "@/lib/data/comunidade";
+import {
+  listLessonOptions,
+  listPostTeasers,
+  listTags,
+  type CommunityTag,
+  type LessonOption,
+  type PostTeaser,
+} from "@/lib/data/comunidade";
 
 export type NewPostOptions = {
   tags: CommunityTag[];
   lessons: LessonOption[];
+  /** Posts existentes, para sugerir dúvidas parecidas enquanto a pessoa escreve. */
+  teasers: PostTeaser[];
 };
 
-/** Opções do formulário de novo post: tags e lições que podem ser ligadas. */
+/** Opções do editor de novo post: tags, lições que podem ser ligadas e posts existentes. */
 export async function getNewPostOptions(): Promise<NewPostOptions> {
-  return { tags: listTags(), lessons: listLessonOptions() };
+  return { tags: listTags(), lessons: listLessonOptions(), teasers: listPostTeasers() };
 }

@@ -6,17 +6,18 @@ import { getNewPostOptions } from "./_data-access/get-new-post-options";
 
 export const metadata: Metadata = { title: "Novo post" };
 
-/** Criar post (Figma: "Criar post"). Sem barra inferior; rodapé fixo "Publicar". */
+/** Editor de post: limpo e focado, com prévia e dúvidas parecidas. */
 export default async function NewPostPage() {
-  const { tags, lessons } = await getNewPostOptions();
+  const { tags, lessons, teasers } = await getNewPostOptions();
 
   return (
-    <>
+    <div className="flex flex-1 flex-col bg-fundo">
       <BackBar href="/comunidade" label="Novo post" />
       <NewPostForm
         tagOptions={tags.map((tag) => ({ slug: tag.slug, label: tag.label }))}
         lessonOptions={lessons}
+        teasers={teasers}
       />
-    </>
+    </div>
   );
 }

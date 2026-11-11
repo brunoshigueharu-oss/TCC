@@ -40,6 +40,17 @@ const levelingQuestionSchema = z.object({
   topic: z.string(),
   statement: z.string(),
   options: z.array(levelingOptionSchema).length(4),
+  /** Alternativa esperada (só pesa no ponto de partida; não vale XP). */
+  answer: z.enum(["A", "B", "C", "D"]),
+});
+
+/** Ponto de partida sugerido conforme quantas respostas batem. */
+const levelingResultSchema = z.object({
+  minScore: z.number().int().nonnegative(),
+  title: z.string(),
+  description: z.string(),
+  ctaLabel: z.string(),
+  href: z.string(),
 });
 
 const entradaSchema = z.object({
@@ -48,6 +59,8 @@ const entradaSchema = z.object({
   /** Resumo dos termos, aberto pelo link da tela de consentimento. */
   termsSummary: z.array(z.string()),
   levelingQuestions: z.array(levelingQuestionSchema).min(1),
+  /** Do maior `minScore` para o menor. */
+  levelingResults: z.array(levelingResultSchema).min(1),
 });
 
 export type ChoiceOption = z.infer<typeof choiceOptionSchema>;
@@ -56,6 +69,7 @@ export type ConsentItem = z.infer<typeof consentItemSchema>;
 export type ConsentItemId = ConsentItem["id"];
 export type LevelingOption = z.infer<typeof levelingOptionSchema>;
 export type LevelingQuestion = z.infer<typeof levelingQuestionSchema>;
+export type LevelingResult = z.infer<typeof levelingResultSchema>;
 export type EntradaData = z.infer<typeof entradaSchema>;
 
 export const entradaData: EntradaData = entradaSchema.parse({
@@ -182,6 +196,7 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Publica o site automaticamente na internet." },
         { letter: "D", text: "Copia uma tela pronta de outro site." },
       ],
+      answer: "B",
     },
     {
       id: "n2",
@@ -196,6 +211,7 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Refaça todo o código com mais cuidado." },
         { letter: "D", text: "Deixe a tela mais completa e bonita." },
       ],
+      answer: "B",
     },
     {
       id: "n3",
@@ -207,6 +223,7 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Remova os cartões." },
         { letter: "D", text: "Aumente o tamanho da fonte." },
       ],
+      answer: "A",
     },
     {
       id: "n4",
@@ -218,6 +235,7 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Desenhar o botão como imagem." },
         { letter: "D", text: "Criar um botão diferente para cada tela." },
       ],
+      answer: "B",
     },
     {
       id: "n5",
@@ -229,6 +247,7 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Uma animação de transição." },
         { letter: "D", text: "Um ícone ao lado do interruptor." },
       ],
+      answer: "B",
     },
     {
       id: "n6",
@@ -240,6 +259,7 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Diminua tudo pela metade." },
         { letter: "D", text: "Esconda o conteúdo no celular." },
       ],
+      answer: "B",
     },
     {
       id: "n7",
@@ -251,6 +271,7 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Dar ao botão um nome acessível, lido por leitores de tela." },
         { letter: "D", text: "Usar uma cor mais chamativa." },
       ],
+      answer: "C",
     },
     {
       id: "n8",
@@ -262,6 +283,30 @@ export const entradaData: EntradaData = entradaSchema.parse({
         { letter: "C", text: "Abrir a tela e conferir se o resultado é o esperado." },
         { letter: "D", text: "Apagar a versão anterior." },
       ],
+      answer: "C",
+    },
+  ],
+  levelingResults: [
+    {
+      minScore: 7,
+      title: "Você já domina o básico.",
+      description: "Suas respostas mostram método. Faça o teste de proficiência para pular o módulo 1 e ganhar o selo.",
+      ctaLabel: "Fazer o teste de proficiência",
+      href: "/educacao/proficiencia",
+    },
+    {
+      minScore: 4,
+      title: "Comece pela lição 03, Ajustando o resultado.",
+      description: "Os fundamentos você já tem. A partir daqui, o foco é pedir ajustes precisos e reaproveitar componentes.",
+      ctaLabel: "Ir para a lição 03",
+      href: "/educacao/licao/m1-l3",
+    },
+    {
+      minScore: 0,
+      title: "Comece pela lição 01, O que é IA de código.",
+      description: "Um começo tranquilo: em 8 minutos você entende o que a IA faz com o seu pedido e já escreve o primeiro prompt.",
+      ctaLabel: "Ir para a lição 01",
+      href: "/educacao/licao/m1-l1",
     },
   ],
 });

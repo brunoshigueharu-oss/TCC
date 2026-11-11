@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BackBar } from "@/components/back-bar";
+import { SectionHeading } from "@/components/section-heading";
+import { PostList } from "../../_components/post-list";
+import { PersonAnswers } from "./_components/person-answers";
 import { PersonBadges } from "./_components/person-badges";
 import { PersonCourses } from "./_components/person-courses";
-import { PersonPosts } from "./_components/person-posts";
 import { PersonSummary } from "./_components/person-summary";
 import { getPerson } from "./_data-access/get-person";
 
@@ -16,7 +18,7 @@ export async function generateMetadata({
   return { title: found ? found.person.name : "Perfil" };
 }
 
-/** Perfil público de uma pessoa da comunidade (Figma: "Perfil público"). */
+/** Perfil público de uma pessoa da comunidade, no mesmo padrão editorial do feed. */
 export default async function PublicProfilePage({
   params,
 }: PageProps<"/comunidade/pessoas/[usuario]">) {
@@ -24,20 +26,38 @@ export default async function PublicProfilePage({
   const found = await getPerson(usuario);
   if (!found) notFound();
 
-  const { person, isCurrentUser } = found;
+  const { person, isCurrentUser, posts, answers } = found;
   const [firstName] = person.name.split(" ");
 
   return (
-    <div className="contents lg:mx-auto lg:block lg:w-full lg:max-w-[1040px]">
-      <BackBar href="/comunidade" label="Comunidade · Perfil" />
-      <main className="flex flex-col gap-7 pt-5 pb-8 lg:flex-row lg:items-start lg:gap-6 lg:pt-6 lg:pb-0 xl:gap-8">
-        {/* Computador: resumo e selos numa coluna fixa à esquerda; atividade à direita. */}
-        <div className="contents lg:sticky lg:top-20 lg:flex lg:w-72 lg:shrink-0 lg:flex-col lg:gap-7 xl:w-80">
-          <PersonSummary person={person} isCurrentUser={isCurrentUser} />
-          <PersonBadges firstName={firstName} badges={person.badges} />
+    <div className="flex flex-1 flex-col">
+      <BackBar href="/comunidade" label="Comunidade" />
+      <PersonSummary
+        person={person}
+        isCurrentUser={isCurrentUser}
+        postsCount={posts.length}
+        acceptedCount={answers.filter((answer) => answer.isHelpful).length}
+      />
+      <main className="flex flex-col gap-10 pt-8 pb-10 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start lg:gap-12 lg:pb-0">
+        <div className="flex min-w-0 flex-col gap-10">
+          <section aria-labelledby="posts-pessoa" className="flex flex-col">
+            <SectionHeading
+              id="posts-pessoa"
+              title="Posts"
+              tone="comunidade"
+              meta={String(posts.length).padStart(2, "0")}
+            />
+            <PostList
+              posts={posts}
+              isAuthorHidden
+              hasEmptyAction={false}
+              emptyMessage={`${firstName} ainda não publicou na comunidade.`}
+            />
+          </section>
+          <PersonAnswers firstName={firstName} answers={answers} />
         </div>
-        <div className="contents lg:flex lg:min-w-0 lg:flex-1 lg:flex-col lg:gap-7">
-          <PersonPosts firstName={firstName} posts={person.posts} />
+        <div className="flex flex-col gap-10 lg:sticky lg:top-24">
+          <PersonBadges firstName={firstName} badges={person.badges} />
           <PersonCourses courses={person.courses} />
         </div>
       </main>
