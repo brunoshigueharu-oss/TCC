@@ -26,7 +26,7 @@ export function WeekHighlight({ highlight }: WeekHighlightProps) {
           <p className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.08em] uppercase">
             <span aria-hidden className="size-2 rounded-[2px] bg-tinta" />
             <span id="destaque-semana">Destaque da semana</span>
-            <span className="font-mono font-normal tracking-normal normal-case opacity-70">
+            <span className="hidden font-mono font-normal tracking-normal normal-case opacity-70 sm:inline">
               · {post.votes} votos · {formatAnswers(post.answersCount)}
             </span>
           </p>
