@@ -1,99 +1,121 @@
-import { Check, CircleHelp, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ActionLink } from "@/components/action-link";
-import { BackBar } from "@/components/back-bar";
-import { SectionHeading } from "@/components/section-heading";
-import { SurfaceCard } from "@/components/surface-card";
 import { getModuleProgress } from "@/lib/data/trilha";
+import { formatTwoDigits } from "@/lib/format";
 import { getTrackModule } from "../../_data-access/get-track";
 
 export const metadata: Metadata = { title: "Checkpoint" };
 
 /** Revisão no fim do módulo (Figma: "Checkpoint"). */
-export default async function CheckpointPage({
-  params,
-}: PageProps<"/educacao/checkpoint/[moduloId]">) {
+export default async function CheckpointPage({ params }: PageProps<"/educacao/checkpoint/[moduloId]">) {
   const { moduloId } = await params;
   const trackModule = await getTrackModule(moduloId);
   if (!trackModule) notFound();
 
   const { checkpoint } = trackModule;
   const progress = getModuleProgress(trackModule);
+  const isLocked = checkpoint.status === "bloqueado";
+
+  const figures = [
+    { label: "XP no módulo", value: `+${progress.xpEarned}` },
+    { label: "Lições", value: `${formatTwoDigits(progress.completed)}/${formatTwoDigits(progress.total)}` },
+    { label: "Perguntas", value: formatTwoDigits(checkpoint.quickQuestions.length) },
+  ];
 
   return (
-    <>
-      <BackBar href="/educacao" label={`Trilha · Módulo ${trackModule.number}`} />
-      {/* Computador: resumo e botão à esquerda; conteúdo da revisão à direita. */}
-      <main className="flex flex-col gap-7 pt-5 pb-8 lg:grid lg:grid-cols-[360px_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:items-start lg:gap-x-8 lg:gap-y-4 lg:pt-6 lg:pb-0">
-        <SurfaceCard className="flex flex-col gap-4 p-4 lg:col-start-1 lg:row-start-1 lg:p-5">
-          <div className="flex flex-col gap-1.5">
-            <h1 className="font-display text-[22px] leading-tight font-bold">
-              Checkpoint — Módulo {trackModule.number}
-            </h1>
-            <p className="text-sm text-texto-secundario">
-              Revise o módulo antes de seguir para o próximo.
-            </p>
-          </div>
-          <dl className="grid grid-cols-2 gap-3">
-            <div className="flex flex-col gap-1 rounded-xl bg-trilha/30 p-3">
-              <dt className="text-xs font-semibold">XP ganho no módulo</dt>
-              <dd className="font-display text-[22px] leading-none font-bold">+{progress.xpEarned} XP</dd>
-            </div>
-            <div className="flex flex-col gap-1 rounded-xl bg-superficie p-3">
-              <dt className="text-xs font-semibold text-texto-secundario">Lições</dt>
-              <dd className="font-display text-[22px] leading-none font-bold">
-                {progress.completed} de {progress.total}
-              </dd>
-            </div>
+    <main className="flex flex-col pb-10 lg:pb-0">
+      <div className="flex h-14 items-center px-2 lg:px-0">
+        <Link
+          href="/educacao"
+          className="group flex h-11 items-center gap-2 rounded-full px-3 text-sm text-texto-secundario outline-none transition-colors hover:text-texto focus-visible:ring-2 focus-visible:ring-texto lg:-ml-3"
+        >
+          <ArrowLeft aria-hidden className="size-4 transition-transform duration-200 group-hover:-translate-x-0.5" strokeWidth={2} />
+          Trilha · Módulo {formatTwoDigits(trackModule.number)}
+        </Link>
+      </div>
+
+      <div className="flex flex-col gap-12 px-4 pt-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-x-16 lg:px-0 lg:pt-8">
+        <header className="flex flex-col gap-6 lg:sticky lg:top-8 lg:self-start">
+          <p className="flex items-center gap-3 font-mono text-[11px] tracking-wide text-texto-secundario uppercase">
+            <span>Checkpoint · Módulo {formatTwoDigits(trackModule.number)}</span>
+            <span aria-hidden className="h-px w-6 bg-linha" />
+            <span>{isLocked ? "Libera ao fim do módulo" : "Liberado"}</span>
+          </p>
+          <h1 className="font-display text-[40px] leading-[0.98] font-medium tracking-[-0.045em] text-balance lg:text-[60px]">
+            {trackModule.title}
+          </h1>
+          <p className="max-w-[44ch] text-[17px] leading-[1.6] text-texto-secundario">
+            Revise o módulo antes de seguir para o próximo. São perguntas rápidas, sem nota de corte.
+          </p>
+          <dl className="grid grid-cols-3 gap-4 pt-2">
+            {figures.map((figure) => (
+              <div key={figure.label} className="flex flex-col gap-2 border-t border-linha pt-3">
+                <dt className="text-xs font-semibold tracking-[0.08em] text-texto-secundario uppercase">{figure.label}</dt>
+                <dd className="font-mono text-2xl font-light tabular-nums">{figure.value}</dd>
+              </div>
+            ))}
           </dl>
-        </SurfaceCard>
-
-        <div className="contents lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:flex lg:flex-col lg:gap-7">
-          <section aria-labelledby="aprendeu" className="flex flex-col gap-2">
-            <SectionHeading id="aprendeu" title="O que você aprendeu" icon={Sparkles} tone="trilha" />
-            <SurfaceCard>
-              <ul className="divide-y divide-linha">
-                {checkpoint.learned.map((item) => (
-                  <li key={item} className="flex items-start gap-3 px-4 py-3 text-sm">
-                    <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-trilha">
-                      <Check aria-hidden className="size-3" strokeWidth={3} />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </SurfaceCard>
-          </section>
-
-          <section aria-labelledby="perguntas" className="flex flex-col gap-2">
-            <SectionHeading
-              id="perguntas"
-              title={`Perguntas rápidas · ${checkpoint.quickQuestions.length}`}
-              icon={CircleHelp}
-              tone="pratica"
-            />
-            <SurfaceCard>
-              <ol className="divide-y divide-linha">
-                {checkpoint.quickQuestions.map((question, index) => (
-                  <li key={question.text} className="flex flex-col gap-1 px-4 py-3">
-                    <span className="text-sm font-semibold">
-                      {index + 1}. {question.text}
-                    </span>
-                    <span className="text-xs text-texto-secundario">{question.kind}</span>
-                  </li>
-                ))}
-              </ol>
-            </SurfaceCard>
-          </section>
-        </div>
-
-        <div className="px-4 lg:col-start-1 lg:row-start-2 lg:px-0">
           {/* A tela de revisão do checkpoint não existe no mapa: por enquanto leva às práticas. */}
-          <ActionLink href="/educacao/praticar">Fazer revisão</ActionLink>
+          <ActionLink href="/educacao/praticar" className="self-start">
+            Fazer revisão
+            <ArrowRight aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </ActionLink>
+        </header>
+
+        <div className="flex flex-col gap-12">
+          <section aria-labelledby="aprendeu" className="flex flex-col">
+            <h2
+              id="aprendeu"
+              className="flex min-h-11 items-center gap-2.5 border-b border-texto text-xs font-semibold tracking-[0.08em] uppercase"
+            >
+              <span aria-hidden className="size-2 rounded-[2px] bg-trilha" />
+              O que você aprendeu
+            </h2>
+            <ol>
+              {checkpoint.learned.map((item, index) => (
+                <li key={item} className="flex gap-4 border-b border-linha py-4">
+                  <span className="w-6 shrink-0 pt-1 font-mono text-[11px] text-texto-secundario tabular-nums">
+                    {formatTwoDigits(index + 1)}
+                  </span>
+                  <span className="font-display text-xl leading-snug font-medium tracking-[-0.02em]">{item}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="perguntas" className="flex flex-col">
+            <h2
+              id="perguntas"
+              className="flex min-h-11 items-center justify-between gap-3 border-b border-texto text-xs font-semibold tracking-[0.08em] uppercase"
+            >
+              <span className="flex items-center gap-2.5">
+                <span aria-hidden className="size-2 rounded-[2px] bg-pratica" />
+                Perguntas rápidas
+              </span>
+              <span className="font-mono text-[11px] font-normal text-texto-secundario tabular-nums">
+                {formatTwoDigits(checkpoint.quickQuestions.length)}
+              </span>
+            </h2>
+            <ol>
+              {checkpoint.quickQuestions.map((question, index) => (
+                <li key={question.text} className="flex gap-4 border-b border-linha py-4">
+                  <span className="w-6 shrink-0 pt-0.5 font-mono text-[11px] text-texto-secundario tabular-nums">
+                    {formatTwoDigits(index + 1)}
+                  </span>
+                  <span className="flex flex-1 flex-col gap-1">
+                    <span className="text-[15px] leading-snug lg:text-base">{question.text}</span>
+                    <span className="font-mono text-[11px] tracking-wide text-texto-secundario uppercase">{question.kind}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
