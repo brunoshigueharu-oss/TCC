@@ -27,11 +27,11 @@ export function ReportSheet({ postId }: ReportSheetProps) {
           aria-modal="true"
           aria-labelledby="titulo-denuncia"
           aria-describedby="descricao-denuncia"
-          className="relative flex max-h-[90dvh] flex-col gap-4 overflow-y-auto rounded-t-[28px] bg-fundo px-4 pt-3 pb-[max(16px,env(safe-area-inset-bottom))] lg:w-full lg:max-w-[520px] lg:rounded-[28px] lg:px-6 lg:pt-6 lg:pb-6 lg:shadow-xl"
+          className="relative flex max-h-[90dvh] flex-col gap-4 overflow-y-auto rounded-t-2xl bg-fundo px-4 pt-3 pb-[max(16px,env(safe-area-inset-bottom))] lg:w-full lg:max-w-[520px] lg:rounded-2xl lg:px-6 lg:pt-6 lg:pb-6 lg:ring-1 lg:ring-linha"
         >
           <span aria-hidden className="mx-auto h-1 w-10 rounded-full bg-superficie-forte lg:hidden" />
           <div className="flex flex-col gap-1">
-            <h2 id="titulo-denuncia" className="font-display text-[22px] leading-tight font-bold">
+            <h2 id="titulo-denuncia" className="font-display text-[26px] leading-tight font-medium tracking-[-0.03em]">
               Denunciar post
             </h2>
             <p id="descricao-denuncia" className="text-sm leading-[1.45] text-texto-secundario">
