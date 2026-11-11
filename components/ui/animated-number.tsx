@@ -3,15 +3,27 @@
 import { animate, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
-import { formatNumber } from "@/lib/format";
+import { formatCompact, formatNumber, formatTwoDigits } from "@/lib/format";
 import { cn } from "@/lib/utils";
+
+/** Formatos prontos — use estes quando o pai for Server Component (funções não atravessam). */
+const presets = {
+  milhar: formatNumber,
+  "dois-digitos": formatTwoDigits,
+  compacto: formatCompact,
+} as const;
+
+export type AnimatedNumberFormat = keyof typeof presets;
 
 type AnimatedNumberProps = {
   value: number;
   /** Duração da contagem, em segundos. */
   duration?: number;
-  /** Formata o número mostrado (padrão: milhar pt-BR, "1.240"). */
-  format?: (value: number) => string;
+  /**
+   * Formato: `"milhar"` (padrão, "1.240"), `"dois-digitos"` ("07"),
+   * `"compacto"` ("1,2 mil") ou uma função (só a partir de Client Components).
+   */
+  format?: AnimatedNumberFormat | ((value: number) => string);
   className?: string;
 };
 
@@ -21,7 +33,8 @@ type AnimatedNumberProps = {
  * JS); `tabular-nums` evita que a largura dance. Com `prefers-reduced-motion`
  * o número só troca.
  */
-export function AnimatedNumber({ value, duration = 0.9, format = formatNumber, className }: AnimatedNumberProps) {
+export function AnimatedNumber({ value, duration = 0.9, format: formatProp = "milhar", className }: AnimatedNumberProps) {
+  const format = typeof formatProp === "function" ? formatProp : presets[formatProp];
   const ref = useRef<HTMLSpanElement>(null);
   const previous = useRef(0);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });

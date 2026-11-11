@@ -7,22 +7,18 @@ const statusLabel: Record<ReportStatus, string> = {
   resolvida: "Resolvida",
 };
 
-/** Classes literais por status (o Tailwind não lê nomes montados). */
-const statusClass: Record<ReportStatus, string> = {
-  pendente: "bg-fundo ring-1 ring-texto",
-  "em-analise": "bg-trilha/30 ring-1 ring-trilha",
-  resolvida: "bg-acao/15 ring-1 ring-acao",
+/** Marcador por status (classes literais: o Tailwind não lê nomes montados). */
+const statusMarker: Record<ReportStatus, string> = {
+  pendente: "bg-pratica",
+  "em-analise": "bg-trilha",
+  resolvida: "bg-acao",
 };
 
-/** Etiqueta do status da denúncia. */
+/** Status da denúncia: quadradinho na cor + rótulo, sem caixa. */
 export function StatusBadge({ status }: { status: ReportStatus }) {
   return (
-    <span
-      className={cn(
-        "inline-flex h-6 items-center rounded-md px-2 text-xs font-semibold whitespace-nowrap",
-        statusClass[status],
-      )}
-    >
+    <span className="inline-flex items-center gap-2 text-xs font-semibold whitespace-nowrap">
+      <span aria-hidden className={cn("size-2 rounded-[2px]", statusMarker[status])} />
       {statusLabel[status]}
     </span>
   );
