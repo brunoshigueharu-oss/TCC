@@ -1,6 +1,8 @@
 import { Flag, type LucideIcon, Shield, UserRound, Users } from "lucide-react";
 import Link from "next/link";
 
+import { formatTwoDigits } from "@/lib/format";
+
 type SidebarItem = { label: string; icon: LucideIcon };
 
 /** Áreas do painel que ainda não existem no protótipo. */
@@ -16,25 +18,25 @@ type ModerationSidebarProps = {
 
 /**
  * Menu do painel do moderador. Só "Denúncias" funciona no protótipo; os outros
- * itens aparecem desativados. No celular vira uma faixa horizontal.
+ * itens aparecem desativados, com "em breve". No celular vira uma faixa
+ * horizontal.
  */
 export function ModerationSidebar({ pendingCount }: ModerationSidebarProps) {
   return (
-    <nav aria-label="Painel do moderador" className="flex flex-col gap-2">
-      <p className="text-xs font-semibold tracking-[0.08em] text-texto-secundario uppercase">
-        Painel do moderador
-      </p>
-      <ul className="flex gap-2 overflow-x-auto [scrollbar-width:none] lg:flex-col lg:overflow-visible [&::-webkit-scrollbar]:hidden">
+    <nav aria-label="Painel do moderador" className="flex flex-col gap-3 pt-6 lg:sticky lg:top-16 lg:self-start lg:py-10 lg:pr-6">
+      <p className="text-[11px] font-semibold tracking-[0.08em] text-texto-secundario uppercase">Painel</p>
+      <ul className="flex gap-1 overflow-x-auto [scrollbar-width:none] lg:flex-col lg:overflow-visible [&::-webkit-scrollbar]:hidden">
         <li className="shrink-0">
           <Link
             href="/moderacao"
             aria-current="page"
-            className="flex min-h-11 items-center gap-3 rounded-xl bg-fundo px-3 text-sm font-semibold ring-1 ring-texto"
+            className="relative flex min-h-11 items-center gap-3 rounded-lg bg-superficie px-3 text-sm font-semibold outline-none focus-visible:ring-2 focus-visible:ring-texto"
           >
-            <Flag aria-hidden className="size-4" strokeWidth={2} />
+            <Flag aria-hidden className="size-4" strokeWidth={1.75} />
             Denúncias
-            <span className="ml-auto rounded-md bg-texto px-1.5 py-0.5 text-xs font-bold text-fundo">
-              {pendingCount}
+            <span className="ml-auto font-mono text-[11px] font-medium tabular-nums">
+              {formatTwoDigits(pendingCount)}
+              <span className="sr-only"> pendentes</span>
             </span>
           </Link>
         </li>
@@ -42,11 +44,12 @@ export function ModerationSidebar({ pendingCount }: ModerationSidebarProps) {
           <li key={label} className="shrink-0">
             <span
               aria-disabled="true"
-              className="flex min-h-11 items-center gap-3 rounded-xl px-3 text-sm font-medium text-desativado"
+              className="flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium text-desativado"
             >
-              <Icon aria-hidden className="size-4" strokeWidth={2} />
+              <Icon aria-hidden className="size-4" strokeWidth={1.75} />
               {label}
-              <span className="sr-only">(em breve)</span>
+              <span className="ml-auto hidden font-mono text-[10px] uppercase lg:inline">em breve</span>
+              <span className="sr-only lg:hidden">(em breve)</span>
             </span>
           </li>
         ))}

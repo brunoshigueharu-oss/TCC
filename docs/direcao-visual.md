@@ -81,3 +81,53 @@ Os tokens do hub invertem sozinhos sob `.dark` (`app/globals.css`). Regras:
 
 Linear, Vercel, Read.cv, Teenage Engineering, Are.na, Stripe Press,
 Rauno Freiberg (rauno.me), Family (family.co) para microinterações.
+
+## Casca do hub (navegação e transições)
+
+- **Paleta de comandos** (`components/command-palette/`): ⌘K / Ctrl+K ou `/`
+  abrem de qualquer tela do hub, das telas web e da 404. Busca difusa por
+  telas, lições, atividades, cursos, posts, pessoas e ações; mostra recentes
+  com o campo vazio. O índice é montado no servidor em `lib/command-index.ts`
+  a partir de `lib/data/*` — tela nova = uma linha lá. Para abrir de um botão:
+  `<CommandPaletteTrigger />` (campo "Buscar ⌘K") ou `variant="icon"` (lupa),
+  ou `openCommandPalette()` em código cliente.
+- **Atalhos globais**: `G` depois `H`/`C`/`E`/`P` (destinos), `G` `N`
+  (notificações), `G` `S` (configurações), `⌥T` (tema), `⌘B` (recolher a
+  barra lateral). Não disparam com o foco num campo de texto.
+- **Barra lateral** recolhe para ícones (lembra a escolha; dicas com o nome e
+  o atalho). Indicadores de item ativo deslizam (motion `layoutId`) na
+  lateral e na barra inferior. No celular, a faixa do topo (`MobileTopBar`)
+  traz a lupa e o tema.
+- **Transições**: `template.tsx` dos grupos `(abas)`, `(foco)` e `(web)`
+  envolvem a tela em `PageTransition` (React `<ViewTransition>`): a antiga
+  some em 110ms, a nova entra com fade + 6px. Barra fina de carregamento no
+  topo (`NavigationProgress`, alimentada por `instrumentation-client.ts`).
+  `loading.tsx` usam `PageSkeleton`; `error.tsx` usam `ErrorState`.
+- **Tema**: o script que evita o clarão mora em `components/theme-init.ts`
+  (módulo de servidor). Não importe constantes de um arquivo `"use client"`
+  num Server Component — vira referência e o valor some.
+
+## Primitivos
+
+Todos usam só tokens (funcionam nos dois temas), têm foco visível
+(`ring-2 ring-texto`) e área de toque de 44px. `Button` (`components/ui/button`)
+é o botão utilitário — pílula escura, contorno, fantasma; a ação principal
+segue em `ColorBurstButton`/`ActionLink`. `Input`/`Textarea` têm hover, foco
+com borda escura e halo leve, erro em vermelho. `Checkbox`/`Radio` de 20px
+com alvo ampliado, `Switch` em verde-água com polegar que estica ao pressionar.
+**Novos:** `Tooltip` (`ui/tooltip`, aceita `shortcut`; agrupe com
+`TooltipProvider` para abrir em sequência sem espera) — reforço, nunca o
+único nome do gatilho. `Kbd`/`KbdGroup` (`ui/kbd`) — tecla em mono; para
+atalhos com ⌘/Ctrl automático use `ShortcutKeys` da paleta. `Skeleton`/
+`SkeletonText` (`ui/skeleton`) — blocos neutros com pulso lento; o contêiner
+leva `aria-busy`. `Toast` (`ui/toast`) — chame `toast({ title, description,
+tone: "sucesso" | "erro" | "neutro" })` de qualquer Client Component; o
+`<Toaster />` já está no layout raiz (canto inferior, acima da barra no
+celular). `AnimatedNumber` (`ui/animated-number`) — conta até o valor ao
+entrar na tela; de Server Component passe `format="milhar" | "dois-digitos" |
+"compacto"` (funções não atravessam). Também: `ProgressBar` agora é um
+`role="progressbar"` que cresce ao aparecer (`isStatic` desliga), `Chip` com
+hover/pressão, `BackBar` translúcida com linha, `UserAvatar` (iniciais em
+mono), `AsciiFlourish` (flor ASCII ajustada ao tema, para vazios e
+exceções) e `BrandMark` tipográfica (BASE + "8" em mono num quadrado de linha;
+`compact` mostra só o monograma).

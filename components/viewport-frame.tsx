@@ -43,14 +43,14 @@ export function ViewportFrame({ preset, src, iframeRef }: ViewportFrameProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col overscroll-contain bg-neutral-800 text-white">
+    <div className="fixed inset-0 z-50 flex flex-col overscroll-contain bg-moldura text-papel">
       <div className="flex h-14 shrink-0 items-center gap-2 pr-16 pl-4 text-sm">
-        <span className="font-semibold">{preset.label}</span>
-        <span className="text-white/60 tabular-nums">
+        <span className="font-mono text-[13px] font-medium">{preset.label}</span>
+        <span className="font-mono text-[13px] text-papel/60 tabular-nums">
           {preset.width} × {preset.height}
         </span>
         {scale < 1 && (
-          <span className="rounded bg-white/10 px-1.5 py-0.5 text-xs text-white/70 tabular-nums">
+          <span className="rounded bg-papel/10 px-1.5 py-0.5 text-xs text-papel/70 tabular-nums">
             {Math.round(scale * 100)}%
           </span>
         )}
@@ -58,7 +58,7 @@ export function ViewportFrame({ preset, src, iframeRef }: ViewportFrameProps) {
       <div ref={stageRef} className="flex min-h-0 flex-1 items-center justify-center px-6 pb-6">
         <div
           style={frameStyle}
-          className="h-(--frame-h) w-(--frame-w) shrink-0 overflow-hidden rounded-md bg-white shadow-2xl ring-1 ring-white/15"
+          className="h-(--frame-h) w-(--frame-w) shrink-0 overflow-hidden rounded-md bg-fundo shadow-2xl ring-1 ring-papel/15"
         >
           <iframe
             ref={iframeRef}

@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+/* Barra lateral recolhida: `data-nav="recolhida"` em <html> (components/side-nav.tsx). */
+@custom-variant nav-recolhida (&:is([data-nav="recolhida"] [data-side-nav] *, [data-nav="recolhida"] [data-side-nav]));
 
 @theme inline {
   --color-background: var(--background);
@@ -111,6 +113,57 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Esqueletos de carregamento (components/ui/skeleton.tsx): pulso lento. */
+  --animate-skeleton: skeleton-pulse 1.6s ease-in-out infinite;
+
+  @keyframes skeleton-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  /* Telas de carregamento: só aparecem se a espera passar de ~200ms. */
+  --animate-late-in: late-in 0.3s ease-out 0.2s both;
+
+  @keyframes late-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Barra de progresso (components/progress-bar.tsx): cresce da esquerda. */
+  --animate-progress-in: progress-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes progress-in {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Entrada de painéis flutuantes (paleta de comandos). */
+  --animate-pop-in: pop-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
   }
 
@@ -256,6 +309,45 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/*
+ * Transição entre telas (components/page-transition.tsx): a tela antiga some
+ * rápido, a nova entra com fade e 6px de subida. A casca (barra lateral,
+ * barra inferior) fica fora da animação porque não muda.
+ */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-old(.pagina) {
+  animation: 110ms ease-in both pagina-sai;
+}
+::view-transition-new(.pagina) {
+  animation: 260ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both pagina-entra;
+}
+::view-transition-group(.pagina) {
+  animation-duration: 0s;
+}
+
+@keyframes pagina-sai {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes pagina-entra {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
 

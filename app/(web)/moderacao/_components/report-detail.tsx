@@ -1,4 +1,3 @@
-import { SurfaceCard } from "@/components/surface-card";
 import type { Report } from "@/lib/data/moderacao";
 import { formatFullDate } from "./format-date";
 import { ReportDecision } from "./report-decision";
@@ -15,7 +14,10 @@ function formatWarnings(count: number) {
   return count === 1 ? "1 advertência anterior" : `${count} advertências anteriores`;
 }
 
-/** Painel lateral com o item denunciado, o contexto e as ações. */
+/**
+ * Painel lateral com o item denunciado em destaque (citação grande), os
+ * fatos em linhas e as decisões. Fica preso ao rolar no computador.
+ */
 export function ReportDetail({ report }: { report: Report }) {
   const facts = [
     { label: "Onde", value: report.location },
@@ -26,33 +28,38 @@ export function ReportDetail({ report }: { report: Report }) {
   ];
 
   return (
-    <SurfaceCard as="aside" aria-labelledby="detalhe-titulo" className="mx-0 flex flex-col gap-4 p-5">
-      <div className="flex items-center justify-between gap-3">
-        <h2 id="detalhe-titulo" className="font-display text-lg font-bold">
-          Detalhe da denúncia
+    <aside aria-labelledby="detalhe-titulo" className="flex flex-col gap-6 xl:sticky xl:top-24">
+      <div className="flex items-center justify-between gap-3 border-b border-linha pb-3">
+        <h2 id="detalhe-titulo" className="text-xs font-semibold tracking-[0.08em] uppercase">
+          Detalhe
         </h2>
         <StatusBadge status={report.status} />
       </div>
 
-      <blockquote className="rounded-xl bg-superficie p-3">
-        <p className="text-xs font-semibold text-texto-secundario">{report.kind}</p>
-        <p className="mt-1 text-[15px] leading-snug">“{report.excerpt}”</p>
-      </blockquote>
+      <figure className="flex flex-col gap-2">
+        <figcaption className="font-mono text-[11px] text-texto-secundario uppercase">{report.kind}</figcaption>
+        <blockquote className="border-l-2 border-texto pl-4 font-display text-[22px] leading-snug font-medium tracking-[-0.02em]">
+          “{report.excerpt}”
+        </blockquote>
+      </figure>
 
-      <dl className="flex flex-col gap-3 text-sm">
+      <dl className="flex flex-col border-t border-linha text-sm">
         {facts.map((fact) => (
-          <div key={fact.label} className="flex flex-col gap-0.5">
-            <dt className="text-xs text-texto-secundario">{fact.label}</dt>
+          <div key={fact.label} className="grid grid-cols-[112px_minmax(0,1fr)] gap-3 border-b border-linha py-2.5">
+            <dt className="text-texto-secundario">{fact.label}</dt>
             <dd>{fact.value}</dd>
           </div>
         ))}
       </dl>
 
       {report.status === "resolvida" ? (
-        <p className="rounded-xl bg-acao/15 p-3 text-sm">Esta denúncia já foi resolvida.</p>
+        <p className="flex items-center gap-2 text-sm text-texto-secundario">
+          <span aria-hidden className="size-2 rounded-[2px] bg-acao" />
+          Esta denúncia já foi resolvida.
+        </p>
       ) : (
         <ReportDecision key={report.id} reportId={report.id} />
       )}
-    </SurfaceCard>
+    </aside>
   );
 }

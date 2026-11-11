@@ -5,17 +5,12 @@ import { useSyncExternalStore } from "react";
 
 import { cn } from "@/lib/utils";
 
-/** Chave do tema no localStorage. Precisa bater com `themeInitScript`. */
-export const THEME_STORAGE_KEY = "base8-tema";
+import { DARK_CLASS, THEME_EVENT, THEME_STORAGE_KEY } from "./theme-init";
 
-const DARK_CLASS = "dark";
-const THEME_EVENT = "base8-tema-mudou";
-
-/**
- * Roda antes da primeira pintura (no `<head>`): aplica o tema salvo ou, sem
- * escolha salva, o do sistema — evita o clarão branco ao abrir no escuro.
- */
-export const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");var d=t?t==="escuro":matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("${DARK_CLASS}",d)}catch(e){}})()`;
+// Reexportados por compatibilidade. No Server Component, importe de
+// `./theme-init` — valores vindos de um módulo "use client" viram referência
+// de cliente e o script não chega ao HTML.
+export { THEME_STORAGE_KEY, themeInitScript } from "./theme-init";
 
 function subscribe(onChange: () => void) {
   window.addEventListener(THEME_EVENT, onChange);
@@ -59,7 +54,7 @@ export function ThemeToggle({ variant = "icon", className }: ThemeToggleProps) {
       onClick={() => setDarkTheme(!isDark)}
       aria-label={variant === "icon" ? `Mudar para ${label.toLowerCase()}` : undefined}
       className={cn(
-        "flex items-center text-texto-secundario outline-none transition-colors hover:text-texto focus-visible:ring-2 focus-visible:ring-texto",
+        "flex items-center text-texto-secundario outline-none transition-[color,background-color,transform] duration-200 hover:text-texto active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-texto",
         variant === "icon"
           ? "size-11 justify-center rounded-full hover:bg-superficie"
           : "min-h-11 w-full gap-3 rounded-xl px-3 text-[15px] font-medium hover:bg-superficie",
@@ -67,7 +62,7 @@ export function ThemeToggle({ variant = "icon", className }: ThemeToggleProps) {
       )}
     >
       <Icon aria-hidden className="size-5" strokeWidth={1.75} />
-      {variant === "row" ? label : null}
+      {variant === "row" ? <span className="nav-recolhida:sr-only">{label}</span> : null}
     </button>
   );
 }

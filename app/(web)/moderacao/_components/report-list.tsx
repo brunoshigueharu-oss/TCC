@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { SurfaceCard } from "@/components/surface-card";
 import type { Report } from "@/lib/data/moderacao";
 import { cn } from "@/lib/utils";
 import type { StatusFilter } from "../_data-access/get-moderation-data";
@@ -9,7 +8,7 @@ import { StatusBadge } from "./status-badge";
 
 /** Mesmas colunas no cabeçalho e nas linhas (a partir de md). */
 const columnsClass =
-  "md:grid md:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)_minmax(0,1fr)_56px_96px] md:items-center md:gap-4";
+  "md:grid md:grid-cols-[minmax(0,2.4fr)_minmax(0,1fr)_minmax(0,1fr)_52px_104px] md:items-center md:gap-4";
 
 type ReportListProps = {
   items: Report[];
@@ -22,34 +21,37 @@ function kindLabel(report: Report) {
 }
 
 /**
- * Fila de denúncias. Cada linha é um link que abre o item no painel de
- * detalhe (`?item=`), mantendo o filtro atual. No celular vira lista empilhada.
+ * Fila de denúncias em linhas (tabela no computador, lista empilhada no
+ * celular). Cada linha abre o item no painel de detalhe (`?item=`), mantendo
+ * o filtro. A selecionada ganha régua à esquerda e fundo suave.
  */
 export function ReportList({ items, filter, selectedId }: ReportListProps) {
   if (items.length === 0) {
     return (
-      <SurfaceCard className="mx-0 p-6 text-center text-sm text-texto-secundario">
-        Nenhuma denúncia neste filtro.
-      </SurfaceCard>
+      <div className="flex flex-col gap-2 border-y border-linha py-10">
+        <p className="font-mono text-[11px] text-texto-secundario">00 itens</p>
+        <p className="font-display text-2xl font-medium tracking-[-0.03em]">Fila limpa neste filtro.</p>
+        <p className="text-sm text-texto-secundario">Nenhuma denúncia com este status no momento.</p>
+      </div>
     );
   }
 
   return (
-    <SurfaceCard className="mx-0">
+    <div>
       <div
         aria-hidden
         className={cn(
-          "hidden border-b border-linha px-4 py-3 text-xs font-semibold text-texto-secundario",
+          "hidden border-b border-linha pb-2 font-mono text-[11px] text-texto-secundario uppercase",
           columnsClass,
         )}
       >
-        <span>Conteúdo</span>
+        <span className="pl-4">Conteúdo</span>
         <span>Motivo</span>
         <span>Denunciado por</span>
         <span>Data</span>
         <span>Status</span>
       </div>
-      <ul className="divide-y divide-linha">
+      <ul className="divide-y divide-linha border-b border-linha">
         {items.map((report) => {
           const isSelected = report.id === selectedId;
 
@@ -60,21 +62,26 @@ export function ReportList({ items, filter, selectedId }: ReportListProps) {
                 scroll={false}
                 aria-current={isSelected ? "true" : undefined}
                 className={cn(
-                  "flex flex-col gap-1.5 px-4 py-3 text-sm transition-colors hover:bg-superficie",
+                  "relative flex min-h-16 flex-col gap-1.5 py-3 pr-2 pl-4 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-texto focus-visible:ring-inset",
                   columnsClass,
-                  isSelected && "bg-comunidade/15 shadow-[inset_3px_0_0_var(--color-texto)]",
+                  isSelected ? "bg-superficie" : "hover:bg-superficie/60",
                 )}
               >
+                {isSelected ? (
+                  <span aria-hidden className="absolute top-2 bottom-2 left-0 w-0.5 rounded-full bg-texto" />
+                ) : null}
                 <span className="flex min-w-0 flex-col gap-0.5">
-                  <span className="text-xs text-texto-secundario">{kindLabel(report)}</span>
-                  <span className={cn("truncate", isSelected && "font-semibold")}>{report.excerpt}</span>
+                  <span className="font-mono text-[11px] text-texto-secundario">{kindLabel(report)}</span>
+                  <span className={cn("truncate", isSelected ? "font-semibold" : "font-medium")}>{report.excerpt}</span>
                 </span>
                 <span className="text-xs text-texto-secundario md:hidden">
                   {report.reason} · {report.reportedBy} · {formatShortDate(report.reportedAt)}
                 </span>
-                <span className="hidden truncate md:block">{report.reason}</span>
-                <span className="hidden truncate md:block">{report.reportedBy}</span>
-                <span className="hidden md:block">{formatShortDate(report.reportedAt)}</span>
+                <span className="hidden truncate text-texto-secundario md:block">{report.reason}</span>
+                <span className="hidden truncate text-texto-secundario md:block">{report.reportedBy}</span>
+                <span className="hidden font-mono text-xs text-texto-secundario tabular-nums md:block">
+                  {formatShortDate(report.reportedAt)}
+                </span>
                 <span>
                   <StatusBadge status={report.status} />
                 </span>
@@ -83,6 +90,6 @@ export function ReportList({ items, filter, selectedId }: ReportListProps) {
           );
         })}
       </ul>
-    </SurfaceCard>
+    </div>
   );
 }

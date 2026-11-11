@@ -1,25 +1,22 @@
+import type { CSSProperties } from "react";
+
 import { cn } from "@/lib/utils";
 
 /** Cor de pilar usada no preenchimento (Figma: cor/trilha, cor/pratica, ...). */
 export type ProgressTone = "trilha" | "pratica" | "comunidade" | "acao";
 
 /**
- * Padrão = cápsula fina (cantos arredondados, estilo Spotify). "square" fica
- * disponível para casos pontuais.
+ * Padrão = cápsula fina (cantos arredondados). "square" = régua reta, boa
+ * para encostar em linhas e bordas.
  */
 export type ProgressShape = "rounded" | "square";
 
 // Classes literais: o Tailwind não enxerga nomes montados dinamicamente.
 const toneClasses: Record<ProgressTone, string> = {
-  trilha: "[&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-trilha [&::-moz-progress-bar]:bg-trilha",
-  pratica: "[&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-pratica [&::-moz-progress-bar]:bg-pratica",
-  comunidade: "[&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-comunidade [&::-moz-progress-bar]:bg-comunidade",
-  acao: "[&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-acao [&::-moz-progress-bar]:bg-acao",
-};
-
-const shapeClasses: Record<ProgressShape, string> = {
-  rounded: "h-1.5 overflow-hidden rounded-full",
-  square: "h-1.5",
+  trilha: "bg-trilha",
+  pratica: "bg-pratica",
+  comunidade: "bg-comunidade",
+  acao: "bg-acao",
 };
 
 type ProgressBarProps = {
@@ -29,30 +26,53 @@ type ProgressBarProps = {
   shape?: ProgressShape;
   /** Texto lido por leitores de tela. */
   label: string;
+  /** Desliga a animação de entrada (ex.: barra que muda a cada passo). */
+  isStatic?: boolean;
   className?: string;
 };
 
-/** Barra de progresso sem contorno, no estilo das telas do hub. */
+type FillStyle = CSSProperties & Record<"--progress", string>;
+
+/**
+ * Barra de progresso sem contorno. O preenchimento cresce da esquerda ao
+ * aparecer e desliza quando o valor muda. A altura padrão é 6px; troque pelo
+ * `className` (`h-1`, `h-0.5`).
+ */
 export function ProgressBar({
   value,
   max,
   tone = "trilha",
   shape = "rounded",
   label,
+  isStatic = false,
   className,
 }: ProgressBarProps) {
+  const safeMax = max > 0 ? max : 1;
+  const clamped = Math.min(Math.max(value, 0), safeMax);
+  const fillStyle: FillStyle = { "--progress": `${(clamped / safeMax) * 100}%` };
+
   return (
-    <progress
-      value={value}
-      max={max}
+    <div
+      role="progressbar"
       aria-label={label}
+      aria-valuemin={0}
+      aria-valuemax={safeMax}
+      aria-valuenow={clamped}
       className={cn(
-        "block w-full appearance-none bg-superficie-forte",
-        "[&::-webkit-progress-bar]:bg-superficie-forte",
-        shapeClasses[shape],
-        toneClasses[tone],
+        "block h-1.5 w-full overflow-hidden bg-superficie-forte",
+        shape === "rounded" && "rounded-full",
         className,
       )}
-    />
+    >
+      <span
+        style={fillStyle}
+        className={cn(
+          "block h-full w-(--progress) origin-left transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          shape === "rounded" && "rounded-full",
+          !isStatic && "animate-progress-in",
+          toneClasses[tone],
+        )}
+      />
+    </div>
   );
 }
