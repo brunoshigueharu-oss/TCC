@@ -1,3 +1,4 @@
+import { HubCommandPalette } from "@/components/command-palette";
 import { hubFontClasses } from "@/lib/fonts";
 
 /**
@@ -6,11 +7,13 @@ import { hubFontClasses } from "@/lib/fonts";
  * - `(abas)`: barra lateral + conteúdo largo
  * - `(foco)`: coluna central mais larga, sem navegação
  * - `(entrada)`: coluna central estreita
+ * A paleta de comandos (⌘K, "/") vale em todas as telas do hub.
  */
 export default function HubLayout({ children }: LayoutProps<"/">) {
   return (
     <div className={`${hubFontClasses} flex min-h-dvh flex-col bg-moldura font-texto text-texto lg:bg-fundo`}>
       {children}
+      <HubCommandPalette />
     </div>
   );
 }

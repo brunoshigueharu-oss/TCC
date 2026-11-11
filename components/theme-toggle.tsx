@@ -59,7 +59,7 @@ export function ThemeToggle({ variant = "icon", className }: ThemeToggleProps) {
       onClick={() => setDarkTheme(!isDark)}
       aria-label={variant === "icon" ? `Mudar para ${label.toLowerCase()}` : undefined}
       className={cn(
-        "flex items-center text-texto-secundario outline-none transition-colors hover:text-texto focus-visible:ring-2 focus-visible:ring-texto",
+        "flex items-center text-texto-secundario outline-none transition-[color,background-color,transform] duration-200 hover:text-texto active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-texto",
         variant === "icon"
           ? "size-11 justify-center rounded-full hover:bg-superficie"
           : "min-h-11 w-full gap-3 rounded-xl px-3 text-[15px] font-medium hover:bg-superficie",
@@ -67,7 +67,7 @@ export function ThemeToggle({ variant = "icon", className }: ThemeToggleProps) {
       )}
     >
       <Icon aria-hidden className="size-5" strokeWidth={1.75} />
-      {variant === "row" ? label : null}
+      {variant === "row" ? <span className="nav-recolhida:sr-only">{label}</span> : null}
     </button>
   );
 }

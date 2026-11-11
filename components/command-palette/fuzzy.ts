@@ -22,6 +22,9 @@ const SCORE = {
   adjacent: 4,
 } as const;
 
+/** Na busca espalhada, o trecho casado pode ter no máximo N × o tamanho do termo. */
+const MAX_SPREAD = 3;
+
 /** Peso de cada campo: título vale mais que palavra-chave, que vale mais que contexto. */
 const FIELD_WEIGHT = { label: 1, keyword: 0.7, hint: 0.5 } as const;
 
@@ -41,13 +44,17 @@ export function scoreTerm(term: string, text: string) {
   // Busca espalhada só vale para termos com 3+ letras, senão tudo casa com tudo.
   if (term.length < 3) return 0;
   let position = -1;
+  let first = -1;
   let adjacent = 0;
   for (const char of term) {
     const next = text.indexOf(char, position + 1);
     if (next === -1) return 0;
+    if (first === -1) first = next;
     if (next === position + 1) adjacent += 1;
     position = next;
   }
+  // Letras espalhadas demais ("cfg" em "Como faço ... grid") não contam.
+  if (position - first + 1 > term.length * MAX_SPREAD) return 0;
   return SCORE.subsequence + adjacent * SCORE.adjacent;
 }
 

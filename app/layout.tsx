@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 
+import { NavigationProgress } from "@/components/navigation-progress";
+import { navInitScript } from "@/components/side-nav-init";
 import { themeInitScript } from "@/components/theme-toggle";
+import { Toaster } from "@/components/ui/toast";
 import { ViewportSwitcher } from "@/components/viewport-switcher";
 import { hubFontClasses } from "@/lib/fonts";
 
@@ -30,10 +33,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript + navInitScript }} />
       </head>
       <body>
+        <NavigationProgress />
         {children}
+        <Toaster />
         <ViewportSwitcher />
       </body>
     </html>

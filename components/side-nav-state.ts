@@ -1,17 +1,10 @@
+"use client";
+
 import { useSyncExternalStore } from "react";
 
-/** Chave no localStorage. Precisa bater com `navInitScript`. */
-const NAV_STORAGE_KEY = "base8-nav";
-const NAV_ATTRIBUTE = "data-nav";
-const COLLAPSED = "recolhida";
-const NAV_EVENT = "base8-nav-mudou";
+import { COLLAPSED, NAV_ATTRIBUTE, NAV_STORAGE_KEY } from "./side-nav-init";
 
-/**
- * Roda antes da primeira pintura (no `<head>`): aplica a barra lateral
- * recolhida salva, para a coluna não "pular" de largura ao carregar. A
- * largura em si é CSS (variante `nav-recolhida` em `app/globals.css`).
- */
-export const navInitScript = `(function(){try{if(localStorage.getItem("${NAV_STORAGE_KEY}")==="${COLLAPSED}")document.documentElement.setAttribute("${NAV_ATTRIBUTE}","${COLLAPSED}")}catch(e){}})()`;
+const NAV_EVENT = "base8-nav-mudou";
 
 function subscribe(onChange: () => void) {
   window.addEventListener(NAV_EVENT, onChange);
