@@ -2,34 +2,60 @@ import type { Metadata } from "next";
 
 import { landingData } from "@/lib/data/landing";
 import { hubFontClasses } from "@/lib/fonts";
-import { FeatureCards } from "./_components/feature-cards";
+import { ClosingSection } from "./_components/closing-section";
+import { DemoSection } from "./_components/demo/demo-section";
+import { FaqSection } from "./_components/faq-section";
 import { LandingFooter } from "./_components/landing-footer";
 import { LandingHeader } from "./_components/landing-header";
 import { LandingHero } from "./_components/landing-hero";
-import { ProductPreview } from "./_components/product-preview";
+import { PillarsSection } from "./_components/pillars-section";
+import { ProblemSection } from "./_components/problem-section";
+import { ProofSection } from "./_components/proof-section";
 import { ShowcaseCanvas } from "./_components/showcase/showcase-canvas";
 
+const TITLE = "BASE8 · Aprenda IA de código para designers";
+const DESCRIPTION =
+  "Trilha, prática com parecer de IA, comunidade e teste de proficiência para designers que querem criar com IA de código.";
+
 export const metadata: Metadata = {
-  title: { absolute: "BASE8 · Aprenda IA de código para designers" },
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "BASE8",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
-/** Landing (web, Figma 61:17). Conteúdo estático de `lib/data/landing.ts`. */
+/**
+ * Landing (web). Narrativa de rolagem: herói → vitrine → problema → como
+ * funciona → demonstração → números → perguntas → chamada final.
+ * Conteúdo estático de `lib/data/landing.ts`.
+ */
 export default function LandingPage() {
-  const { features, preview, footerLinks, showcase, ...hero } = landingData;
+  const { nav, showcase, problem, pillars, demo, proof, faq, closing, footer, ...hero } = landingData;
 
   return (
     <div className={`${hubFontClasses} flex min-h-dvh flex-col bg-fundo font-texto text-texto`}>
-      <LandingHeader />
+      <LandingHeader nav={nav} />
       <main className="flex flex-1 flex-col">
         <LandingHero {...hero} />
         <ShowcaseCanvas showcase={showcase} />
-        {/* Seções abaixo do herói: provisórias até o conteúdo final ser definido. */}
-        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-14 px-4 pt-14 pb-20 lg:gap-20 lg:pt-20 lg:px-10">
-          <FeatureCards features={features} />
-          <ProductPreview preview={preview} />
-        </div>
+        <ProblemSection problem={problem} index={1} />
+        <PillarsSection pillars={pillars} index={2} />
+        <DemoSection demo={demo} index={3} />
+        <ProofSection proof={proof} index={4} />
+        <FaqSection faq={faq} index={5} />
+        <ClosingSection closing={closing} />
       </main>
-      <LandingFooter links={footerLinks} />
+      <LandingFooter footer={footer} />
     </div>
   );
 }
