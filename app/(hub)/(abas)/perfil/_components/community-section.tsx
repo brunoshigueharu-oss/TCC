@@ -1,9 +1,9 @@
-import { ChevronRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { SectionHeading } from "@/components/section-heading";
-import { SurfaceCard } from "@/components/surface-card";
 import type { Profile } from "@/lib/data/perfil";
+import { CountUp } from "./motion/count-up";
 
 type CommunitySectionProps = {
   community: Profile["community"];
@@ -13,37 +13,36 @@ type CommunitySectionProps = {
 /** Números da participação na comunidade + link para o perfil público. */
 export function CommunitySection({ community, username }: CommunitySectionProps) {
   const stats = [
-    { label: "Posts", value: community.posts },
-    { label: "Respostas", value: community.answers },
-    { label: "Votos de útil", value: community.helpfulVotes },
+    { label: "Posts publicados", value: community.posts },
+    { label: "Respostas dadas", value: community.answers },
+    { label: "Votos de útil recebidos", value: community.helpfulVotes },
   ];
 
   return (
-    <section aria-labelledby="atividade-comunidade" className="flex flex-col gap-2">
-      <SectionHeading
-        id="atividade-comunidade"
-        title="Atividade na comunidade"
-        href="/comunidade"
-        icon={MessageCircle}
-        tone="comunidade"
-      />
-      <SurfaceCard>
-        <dl className="grid grid-cols-3 divide-x divide-linha py-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col-reverse items-center gap-1 px-2">
-              <dt className="text-center text-xs text-texto-secundario">{stat.label}</dt>
-              <dd className="font-display text-[22px] leading-none font-bold">{stat.value}</dd>
-            </div>
-          ))}
-        </dl>
-        <Link
-          href={`/comunidade/pessoas/${username}`}
-          className="flex min-h-12 items-center gap-3 border-t border-linha px-4"
-        >
-          <span className="flex-1 text-sm font-semibold">Ver meu perfil público</span>
-          <ChevronRight aria-hidden className="size-4" strokeWidth={2.5} />
-        </Link>
-      </SurfaceCard>
+    <section aria-labelledby="atividade-comunidade" className="flex flex-col lg:col-span-5">
+      <SectionHeading id="atividade-comunidade" title="Na comunidade" href="/comunidade" tone="comunidade" />
+
+      <dl className="mx-4 divide-y divide-linha lg:mx-0">
+        {stats.map((stat) => (
+          <div key={stat.label} className="flex items-baseline justify-between gap-4 py-3.5">
+            <dt className="text-[15px] text-texto-secundario">{stat.label}</dt>
+            <dd className="font-mono text-2xl leading-none font-light tracking-[-0.04em] tabular-nums">
+              <CountUp value={stat.value} format="twoDigits" duration={0.6} />
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <Link
+        href={`/comunidade/pessoas/${username}`}
+        className="group mx-4 flex min-h-12 items-center justify-between gap-3 border-y border-linha text-sm font-semibold outline-none transition-colors hover:bg-superficie focus-visible:bg-superficie lg:mx-0 lg:-mx-3 lg:rounded-lg lg:border-b-0 lg:px-3"
+      >
+        Ver meu perfil público
+        <ArrowUpRight
+          aria-hidden
+          className="size-4 text-texto-secundario transition-[color,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-texto"
+          strokeWidth={2}
+        />
+      </Link>
     </section>
   );
 }

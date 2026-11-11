@@ -11,7 +11,17 @@ export type AiUsageTabOption = {
   isConnected: boolean;
 };
 
+/** Uma ferramenta dentro do gráfico: tokens por dia e total da semana. */
+export type AiUsageSeries = {
+  id: AiToolId;
+  name: string;
+  tokensByDay: number[];
+  totalTokens: number;
+};
+
 export type AiUsageData = {
+  /** Séries somadas na aba escolhida, na ordem fixa das ferramentas. */
+  series: AiUsageSeries[];
   tabs: AiUsageTabOption[];
   selectedTab: AiUsageTab;
   /** Ferramentas ainda sem conexão — viram botões "Conectar". */
@@ -60,6 +70,11 @@ export async function getAiUsage(selectedTab: AiUsageTab): Promise<AiUsageData> 
     selectedTab,
     disconnectedTools: aiTools.filter((tool) => tool.usage === null).map(({ id, name }) => ({ id, name })),
     sourceNames: sources.map((tool) => tool.name),
+    series: sources.flatMap((tool) => {
+      if (!tool.usage) return [];
+      const tokensByDay = tool.usage.week.map((day) => day.tokens);
+      return [{ id: tool.id, name: tool.name, tokensByDay, totalTokens: tokensByDay.reduce((sum, value) => sum + value, 0) }];
+    }),
     usage: sumUsage(sources.flatMap((tool) => (tool.usage ? [tool.usage] : []))),
   };
 }

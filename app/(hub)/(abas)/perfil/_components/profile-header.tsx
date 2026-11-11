@@ -1,86 +1,76 @@
-import { Bell, ChevronRight, Settings, Trophy } from "lucide-react";
+import { Bell, Settings } from "lucide-react";
 import Link from "next/link";
 
-import { ProgressBar } from "@/components/progress-bar";
 import type { Person } from "@/lib/data/pessoas";
-import { formatNumber, formatTwoDigits } from "@/lib/format";
-import { cn } from "@/lib/utils";
-import { PersonAvatar } from "./person-avatar";
 
-/** Acima disso o selo mostra "99+". */
+/** Acima disso o contador mostra "99+". */
 const BADGE_MAX = 99;
 
 type ProfileHeaderProps = {
   person: Person;
-  nextLevelXp: number;
-  weeklyRank: number;
+  memberSince: string;
   unreadNotifications: number;
 };
 
-const iconButtonClass = "flex size-11 shrink-0 items-center justify-center rounded-full bg-superficie transition-colors hover:bg-superficie-forte";
+const iconLinkClass =
+  "relative flex size-11 shrink-0 items-center justify-center rounded-full border border-linha text-texto-secundario outline-none transition-[color,border-color,background-color,transform] duration-200 hover:border-texto hover:bg-superficie hover:text-texto focus-visible:ring-2 focus-visible:ring-texto active:scale-95";
+
+function getInitials(name: string) {
+  const [first = "", last = ""] = name.split(" ");
+  return `${first.charAt(0)}${last.charAt(0)}`;
+}
 
 /**
- * Topo de Meu perfil (Figma: "Cabeçalho de identidade" + "Identificação"):
- * marca, atalhos de avisos e configurações, avatar, nível, XP e o atalho
- * para o ranking de amigos.
+ * Cabeçalho de pessoa: monograma em linha fina, nome grande e apertado, e os
+ * atalhos de avisos e configurações. Sem cartão e sem cor: só tipografia.
  */
-export function ProfileHeader({ person, nextLevelXp, weeklyRank, unreadNotifications }: ProfileHeaderProps) {
-  const missingXp = Math.max(nextLevelXp - person.xp, 0);
-
+export function ProfileHeader({ person, memberSince, unreadNotifications }: ProfileHeaderProps) {
   return (
-    <header className="flex flex-col gap-5 rounded-b-[28px] bg-fundo px-4 pt-4 pb-5 ring-1 ring-linha/70 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-x-12 lg:gap-y-3 lg:rounded-[28px] lg:px-8 lg:py-7">
-      <div className="flex items-center gap-2 lg:col-start-2 lg:row-start-1 lg:justify-end">
-        <span aria-hidden className="size-[26px] shrink-0 rounded-full bg-superficie-forte lg:hidden" />
-        <span className="flex-1 font-display text-[15px] font-bold lg:hidden">BASE8</span>
-        <Link
-          href="/perfil/notificacoes"
-          aria-label={unreadNotifications > 0 ? `Notificações, ${unreadNotifications} não lidas` : "Notificações"}
-          className={cn(iconButtonClass, "relative")}
-        >
-          <Bell aria-hidden className="size-5" strokeWidth={1.75} />
-          {unreadNotifications > 0 ? (
-            <span
-              aria-hidden
-              className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-pratica px-1 text-[11px] font-bold text-texto ring-2 ring-fundo"
-            >
-              {unreadNotifications > BADGE_MAX ? `${BADGE_MAX}+` : unreadNotifications}
-            </span>
-          ) : null}
-        </Link>
-        <Link href="/perfil/configuracoes" aria-label="Configurações" className={iconButtonClass}>
-          <Settings aria-hidden className="size-5" strokeWidth={1.75} />
-        </Link>
+    <header className="flex flex-col gap-6 px-4 pt-8 pb-6 lg:px-0 lg:pt-4 lg:pb-8">
+      <div className="flex items-center justify-between gap-4">
+        <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.08em] text-texto-secundario uppercase">
+          <span aria-hidden className="size-2 rounded-[2px] bg-acao" />
+          Perfil
+          <span className="font-mono font-normal tracking-normal normal-case">desde {memberSince}</span>
+        </p>
+        <nav aria-label="Atalhos do perfil" className="flex items-center gap-2">
+          <Link
+            href="/perfil/notificacoes"
+            aria-label={unreadNotifications > 0 ? `Notificações, ${unreadNotifications} não lidas` : "Notificações"}
+            className={iconLinkClass}
+          >
+            <Bell aria-hidden className="size-[18px]" strokeWidth={1.75} />
+            {unreadNotifications > 0 ? (
+              <span
+                aria-hidden
+                className="absolute -top-1 -right-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-texto px-1 font-mono text-[10px] font-medium text-fundo tabular-nums ring-2 ring-fundo"
+              >
+                {unreadNotifications > BADGE_MAX ? `${BADGE_MAX}+` : unreadNotifications}
+              </span>
+            ) : null}
+          </Link>
+          <Link href="/perfil/configuracoes" aria-label="Configurações" className={iconLinkClass}>
+            <Settings aria-hidden className="size-[18px]" strokeWidth={1.75} />
+          </Link>
+        </nav>
       </div>
 
-      <div className="flex items-center gap-4 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:gap-6 lg:self-center">
-        <PersonAvatar name={person.name} tone={person.avatarTone} size="lg" />
-        <div className="flex min-w-0 flex-col gap-0.5">
-          <h1 className="font-display text-[22px] leading-tight font-bold lg:text-[28px]">{person.name}</h1>
-          <p className="text-sm text-texto-secundario">
-            @{person.username} · {person.role}
-          </p>
-          <p className="text-sm font-semibold">
-            Nível {formatTwoDigits(person.level)} · {formatNumber(person.xp)} XP
+      <div className="flex items-center gap-4 lg:gap-7">
+        <span
+          aria-hidden
+          className="flex size-16 shrink-0 items-center justify-center rounded-full border border-texto font-display text-xl font-medium tracking-[-0.02em] lg:size-24 lg:text-[32px]"
+        >
+          {getInitials(person.name)}
+        </span>
+        <div className="flex min-w-0 flex-col gap-1.5 lg:gap-2">
+          <h1 className="animate-blur-in font-display text-[34px] leading-[1.02] font-medium tracking-[-0.04em] text-balance motion-reduce:animate-none lg:text-[60px]">
+            {person.name}
+          </h1>
+          <p className="text-[15px] text-texto-secundario">
+            <span className="font-mono text-sm">@{person.username}</span> · {person.role}
           </p>
         </div>
       </div>
-
-      <div className="flex flex-col gap-2 rounded-2xl bg-superficie p-4 lg:col-start-2 lg:row-start-2">
-        <ProgressBar value={person.xp} max={nextLevelXp} label="Progresso até o próximo nível" />
-        <p className="text-xs text-texto-secundario">
-          Faltam {formatNumber(missingXp)} XP para o nível {formatTwoDigits(person.level + 1)}.
-        </p>
-      </div>
-
-      <Link
-        href="/perfil/ranking"
-        className="flex min-h-12 items-center gap-3 rounded-2xl px-4 ring-1 ring-linha lg:col-start-2 lg:row-start-3 lg:transition-colors lg:hover:bg-superficie"
-      >
-        <Trophy aria-hidden className="size-5" strokeWidth={1.75} />
-        <span className="flex-1 text-[15px] font-semibold">Ranking de amigos</span>
-        <span className="text-sm text-texto-secundario">{weeklyRank}º na semana</span>
-        <ChevronRight aria-hidden className="size-4" strokeWidth={2.5} />
-      </Link>
     </header>
   );
 }

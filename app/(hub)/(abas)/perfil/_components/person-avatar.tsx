@@ -5,11 +5,11 @@ type AvatarSize = "sm" | "lg";
 
 // Classes literais: o Tailwind não enxerga nomes montados dinamicamente.
 const toneClasses: Record<AvatarTone, string> = {
-  noite: "bg-texto text-trilha",
-  trilha: "bg-trilha text-texto",
-  pratica: "bg-pratica text-texto",
-  comunidade: "bg-comunidade text-texto",
-  acao: "bg-acao text-texto",
+  noite: "bg-tinta text-trilha",
+  trilha: "bg-trilha text-tinta",
+  pratica: "bg-pratica text-tinta",
+  comunidade: "bg-comunidade text-tinta",
+  acao: "bg-acao text-tinta",
 };
 
 const sizeClasses: Record<AvatarSize, string> = {
@@ -29,7 +29,7 @@ export function PersonAvatar({ name, tone, size = "sm" }: PersonAvatarProps) {
     <span
       aria-hidden
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-full font-display font-bold",
+        "flex shrink-0 items-center justify-center rounded-full font-display font-medium",
         toneClasses[tone],
         sizeClasses[size],
       )}
