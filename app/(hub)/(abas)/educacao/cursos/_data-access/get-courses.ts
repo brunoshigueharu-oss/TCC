@@ -26,3 +26,8 @@ export async function getCourseTags(): Promise<CourseTag[]> {
 export async function getCourse(courseId: string): Promise<Course | null> {
   return courses.find((course) => course.id === courseId) ?? null;
 }
+
+/** Posição do curso na estante (1, 2, 3...), usada na capa. */
+export async function getCourseNumber(courseId: string): Promise<number> {
+  return courses.findIndex((course) => course.id === courseId) + 1;
+}

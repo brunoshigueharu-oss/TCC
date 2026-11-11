@@ -8,6 +8,8 @@ import { z } from "zod";
 
 const tagSchema = z.enum(["prompts", "layout", "componentes", "estado", "acessibilidade", "ferramentas"]);
 
+const coverPatternSchema = z.enum(["horizontais", "diagonais", "ondas", "grade"]);
+
 const courseLessonSchema = z.object({
   number: z.number().int().positive(),
   title: z.string(),
@@ -27,13 +29,14 @@ const courseSchema = z.object({
     role: z.string(),
   }),
   tags: z.array(tagSchema).min(1),
-  /** Composição geométrica provisória da capa (até chegarem as ilustrações). */
-  cover: z.enum(["circulo", "quadrado", "arco"]),
+  /** Padrão de linhas da capa tipográfica (ver `course-cover.tsx`). */
+  cover: coverPatternSchema,
   /** Aulas que a pessoa logada já assistiu. */
   completedLessons: z.number().int().nonnegative(),
   lessons: z.array(courseLessonSchema).min(1),
 });
 
+export type CoverPattern = z.infer<typeof coverPatternSchema>;
 export type CourseTag = z.infer<typeof tagSchema>;
 export type CourseLesson = z.infer<typeof courseLessonSchema>;
 export type Course = z.infer<typeof courseSchema>;
@@ -58,7 +61,7 @@ export const courses: Course[] = z.array(courseSchema).parse([
       "Como preparar um arquivo do Figma para que a IA de código entenda a estrutura da tela, e como revisar o que ela entrega antes de seguir.",
     author: { username: "rafael", name: "Rafael Souza", role: "Designer de produto" },
     tags: ["ferramentas", "layout"],
-    cover: "quadrado",
+    cover: "horizontais",
     completedLessons: 2,
     lessons: [
       {
@@ -112,7 +115,7 @@ export const courses: Course[] = z.array(courseSchema).parse([
       "Transformar a paleta e a tipografia do seu projeto em tokens que a IA de código usa de forma consistente em todas as telas.",
     author: { username: "ana", name: "Ana Lima", role: "Designer de sistemas" },
     tags: ["componentes", "prompts"],
-    cover: "circulo",
+    cover: "ondas",
     completedLessons: 0,
     lessons: [
       {
@@ -152,7 +155,7 @@ export const courses: Course[] = z.array(courseSchema).parse([
       "Pedir à IA estados de carregamento, erro e vazio, e pequenas animações que ajudam a pessoa a entender o que aconteceu na tela.",
     author: { username: "julia", name: "Júlia Rocha", role: "Designer de interação" },
     tags: ["estado", "acessibilidade"],
-    cover: "arco",
+    cover: "diagonais",
     completedLessons: 0,
     lessons: [
       {
@@ -188,6 +191,79 @@ export const courses: Course[] = z.array(courseSchema).parse([
         title: "Documentar para o time",
         minutes: 6,
         summary: "Registrar os estados criados para quem continuar o projeto.",
+        questionsCount: 0,
+      },
+    ],
+  },
+  {
+    id: "acessibilidade-no-prompt",
+    title: "Acessibilidade desde o prompt",
+    description:
+      "Contraste, foco visível, rótulos e alvos de toque: como pedir uma interface acessível logo na primeira versão, em vez de corrigir depois.",
+    author: { username: "marina", name: "Marina Alves", role: "Designer de acessibilidade" },
+    tags: ["acessibilidade", "prompts"],
+    cover: "grade",
+    completedLessons: 0,
+    lessons: [
+      {
+        number: 1,
+        title: "O que a IA esquece sozinha",
+        minutes: 7,
+        summary: "Os problemas de acessibilidade mais comuns no código gerado sem orientação.",
+        questionsCount: 4,
+      },
+      {
+        number: 2,
+        title: "Contraste e cor",
+        minutes: 9,
+        summary: "Pedir contraste mínimo e nunca comunicar estado só pela cor.",
+        questionsCount: 2,
+      },
+      {
+        number: 3,
+        title: "Teclado e foco",
+        minutes: 10,
+        summary: "Ordem de foco, foco visível e atalhos que não atrapalham leitores de tela.",
+        questionsCount: 3,
+      },
+      {
+        number: 4,
+        title: "Revisar com o leitor de tela",
+        minutes: 12,
+        summary: "Um roteiro curto para ouvir a tela gerada antes de entregar.",
+        questionsCount: 1,
+      },
+    ],
+  },
+  {
+    id: "layout-responsivo",
+    title: "Layout responsivo em poucas frases",
+    description:
+      "Descrever o comportamento de uma tela entre celular e computador com poucas regras claras, sem desenhar cada largura.",
+    author: { username: "rafael", name: "Rafael Souza", role: "Designer de produto" },
+    tags: ["layout", "prompts"],
+    cover: "diagonais",
+    completedLessons: 3,
+    lessons: [
+      {
+        number: 1,
+        title: "Pensar em regras, não em telas",
+        minutes: 6,
+        summary: "Colunas, quebras e prioridades descritas como regras.",
+        questionsCount: 2,
+      },
+      {
+        number: 2,
+        title: "Quebras de layout no pedido",
+        minutes: 8,
+        summary: "Quando citar larguras e quando deixar o conteúdo decidir.",
+        questionsCount: 5,
+      },
+      {
+        number: 3,
+        title: "Conferir em três larguras",
+        minutes: 7,
+        summary: "Celular, tablet e computador: o mínimo para revisar.",
         questionsCount: 0,
       },
     ],
