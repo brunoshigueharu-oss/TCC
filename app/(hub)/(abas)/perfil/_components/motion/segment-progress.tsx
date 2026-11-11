@@ -12,15 +12,17 @@ type SegmentProgressProps = {
   segments: SegmentState[];
   /** Texto lido por leitores de tela (ex.: "2 de 6 lições concluídas"). */
   label: string;
-  tone?: Tone;
+  /** Cor dos concluídos; `tinta` = cor do texto (lê bem nos dois temas). */
+  tone?: Tone | "tinta";
   className?: string;
 };
 
 /**
  * Progresso em segmentos: um traço por lição. Os concluídos preenchem em
- * sequência ao entrar na tela; o atual fica pela metade.
+ * sequência ao entrar na tela; o atual fica pela metade. Padrão em tinta:
+ * o limão da trilha some sobre o branco, então ele fica só no marcador.
  */
-export function SegmentProgress({ segments, label, tone = "trilha", className }: SegmentProgressProps) {
+export function SegmentProgress({ segments, label, tone = "tinta", className }: SegmentProgressProps) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -29,7 +31,10 @@ export function SegmentProgress({ segments, label, tone = "trilha", className }:
         <span key={index} className="h-1.5 flex-1 overflow-hidden rounded-full bg-superficie-forte">
           {state === "todo" ? null : (
             <motion.span
-              className={cn("block h-full w-full origin-left rounded-full", toneBg[tone])}
+              className={cn(
+                "block h-full w-full origin-left rounded-full",
+                tone === "tinta" ? "bg-texto" : toneBg[tone],
+              )}
               initial={shouldReduceMotion ? false : { scaleX: 0 }}
               whileInView={{ scaleX: state === "done" ? 1 : 0.5 }}
               viewport={{ once: true }}

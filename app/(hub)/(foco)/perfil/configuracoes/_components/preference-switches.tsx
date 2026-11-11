@@ -18,7 +18,7 @@ type PreferenceSwitchesProps = {
 };
 
 /**
- * Lista de interruptores dentro do cartão. Cada troca vai para a Server
+ * Lista de interruptores em linhas. Cada troca vai para a Server
  * Action; se ela recusar, o interruptor volta ao estado anterior.
  */
 export function PreferenceSwitches({ items, initialValues }: PreferenceSwitchesProps) {
@@ -45,18 +45,18 @@ export function PreferenceSwitches({ items, initialValues }: PreferenceSwitchesP
           const labelId = `preferencia-${item.key}`;
           return (
             <li key={item.key}>
-              <div className="flex min-h-14 items-center gap-3 px-4 py-3">
+              <div className="flex min-h-16 items-center gap-4 py-3">
                 <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                  <span id={labelId} className="text-sm font-semibold">
+                  <span id={labelId} className="text-[15px] font-medium">
                     {item.label}
                   </span>
                   {item.description ? (
-                    <span className="text-xs text-texto-secundario">{item.description}</span>
+                    <span className="text-sm leading-snug text-texto-secundario">{item.description}</span>
                   ) : null}
                 </span>
                 <Switch
                   aria-labelledby={labelId}
-                  className="mr-2 data-checked:bg-acao data-unchecked:bg-superficie-forte"
+                  className="data-checked:bg-acao data-unchecked:bg-superficie-forte"
                   checked={values[item.key]}
                   onCheckedChange={(checked) => handleChange(item.key, checked)}
                 />
@@ -66,7 +66,7 @@ export function PreferenceSwitches({ items, initialValues }: PreferenceSwitchesP
         })}
       </ul>
       {hasError ? (
-        <p role="alert" className="border-t border-linha px-4 py-3 text-sm">
+        <p role="alert" className="border-t border-linha py-3 text-sm font-medium">
           Não foi possível salvar. Tente de novo.
         </p>
       ) : null}

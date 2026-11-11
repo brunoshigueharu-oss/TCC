@@ -74,7 +74,7 @@ export function ProfileStats({ level, xp, nextLevelXp, streakDays, longestStreak
       </dl>
 
       <div className="flex flex-col gap-2.5 border-t border-linha py-4">
-        <FillLine value={xp} max={nextLevelXp} tone="trilha" label="Progresso até o próximo nível" />
+        <FillLine value={xp} max={nextLevelXp} label="Progresso até o próximo nível" />
         <p className="flex items-baseline justify-between gap-4 text-xs text-texto-secundario">
           <span>
             Faltam <span className="font-medium text-texto">{formatNumber(missingXp)} XP</span> para o nível{" "}

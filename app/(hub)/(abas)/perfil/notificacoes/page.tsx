@@ -1,17 +1,12 @@
-import { CalendarDays, Clock } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BackBar } from "@/components/back-bar";
+import { formatTwoDigits } from "@/lib/format";
 import { NotificationList } from "./_components/notification-list";
 import { getNotifications } from "./_data-access/get-notifications";
 
 export const metadata: Metadata = { title: "Notificações" };
-
-function formatUnread(count: number) {
-  if (count === 0) return "Tudo em dia";
-  return count === 1 ? "1 não lida" : `${count} não lidas`;
-}
 
 /**
  * Notificações (Figma: "Notificações"), agrupadas em hoje e esta semana. Mora
@@ -24,23 +19,34 @@ export default async function NotificationsPage({ searchParams }: PageProps<"/pe
   return (
     <>
       <BackBar href="/perfil" label="Notificações" />
-      <main className="flex flex-col gap-7 pt-4 pb-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6 lg:pt-6 lg:pb-0">
-        <div className="-mb-3 flex min-h-11 items-center justify-between gap-3 px-4 lg:col-span-2 lg:mb-0 lg:px-0">
-          <p className="text-sm font-semibold" aria-live="polite">
-            {formatUnread(unreadCount)}
-          </p>
+      <main className="flex flex-col gap-10 pb-10 lg:pb-0">
+        <header className="flex items-end justify-between gap-4 px-4 pt-8 lg:px-0 lg:pt-10">
+          <div className="flex flex-col gap-3">
+            <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.08em] text-texto-secundario uppercase">
+              <span aria-hidden className="size-2 rounded-[2px] bg-acao" />
+              Avisos
+            </p>
+            <p aria-live="polite" className="flex items-baseline gap-3">
+              <span className="font-mono text-[72px] leading-[0.85] font-extralight tracking-[-0.06em] tabular-nums lg:text-[96px]">
+                {formatTwoDigits(unreadCount)}
+              </span>
+              <span className="font-display text-xl font-medium tracking-[-0.02em] text-texto-secundario">
+                {unreadCount === 0 ? "tudo em dia" : unreadCount === 1 ? "não lida" : "não lidas"}
+              </span>
+            </p>
+          </div>
           {unreadCount > 0 ? (
             <Link
               href="/perfil/notificacoes?lidas=1"
               scroll={false}
-              className="flex min-h-11 items-center text-sm font-semibold underline underline-offset-4"
+              className="flex min-h-11 items-center text-sm font-semibold underline decoration-linha underline-offset-4 outline-none transition-colors hover:decoration-texto focus-visible:decoration-texto"
             >
               Marcar todas como lidas
             </Link>
           ) : null}
-        </div>
-        <NotificationList id="hoje" title="Hoje" icon={Clock} items={today} />
-        <NotificationList id="semana" title="Esta semana" icon={CalendarDays} items={thisWeek} />
+        </header>
+        <NotificationList id="hoje" title="Hoje" items={today} />
+        <NotificationList id="semana" title="Esta semana" items={thisWeek} />
       </main>
     </>
   );

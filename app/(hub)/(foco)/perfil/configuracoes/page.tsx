@@ -1,13 +1,13 @@
-import { Bell, ChevronRight, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BackBar } from "@/components/back-bar";
-import { SectionHeading } from "@/components/section-heading";
-import { SurfaceCard } from "@/components/surface-card";
 import { AccountForm } from "./_components/account-form";
 import { DeleteAccountConfirm } from "./_components/delete-account-confirm";
 import { PreferenceSwitches, type PreferenceItem } from "./_components/preference-switches";
+import { SettingsGroup } from "./_components/settings-group";
+import { ThemeChoice } from "./_components/theme-choice";
 import { getSettings } from "./_data-access/get-settings";
 
 export const metadata: Metadata = { title: "Configurações" };
@@ -36,74 +36,96 @@ const privacyItems: PreferenceItem[] = [
   },
 ];
 
+const rowLinkClass =
+  "group flex min-h-14 items-center justify-between gap-3 text-[15px] font-medium outline-none transition-colors hover:text-texto focus-visible:underline";
+
 /** Configurações da conta (Figma: "Configurações"). Tela sem barra inferior. */
 export default async function SettingsPage({ searchParams }: PageProps<"/perfil/configuracoes">) {
   const { account, preferences } = await getSettings();
   const isConfirmingDelete = (await searchParams).excluir === "1";
 
   return (
-    <>
+    <div className="flex flex-1 flex-col bg-fundo">
       <BackBar href="/perfil" label="Configurações" />
-      <main className="flex flex-col gap-7 pt-5 pb-8 lg:gap-8 lg:px-8 lg:pt-8">
-        <section aria-labelledby="dados-conta" className="flex flex-col gap-2">
-          <SectionHeading id="dados-conta" title="Dados da conta" icon={UserRound} tone="acao" />
-          <SurfaceCard>
-            <AccountForm defaultValues={account} />
-          </SurfaceCard>
-        </section>
-
-        <div className="flex flex-col gap-7 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6">
-          <section aria-labelledby="notificacoes-config" className="flex flex-col gap-2">
-            <SectionHeading id="notificacoes-config" title="Notificações" icon={Bell} tone="acao" />
-            <SurfaceCard>
-              <PreferenceSwitches items={notificationItems} initialValues={preferences} />
-            </SurfaceCard>
-          </section>
-
-          <section aria-labelledby="privacidade" className="flex flex-col gap-2">
-            <SectionHeading
-              id="privacidade"
-              title="Privacidade e consentimento"
-              icon={ShieldCheck}
-              tone="acao"
-            />
-            <SurfaceCard>
-              <PreferenceSwitches items={privacyItems} initialValues={preferences} />
-              <Link
-                href="/consentimento"
-                className="flex min-h-12 items-center gap-3 border-t border-linha px-4"
-              >
-                <span className="flex-1 text-sm font-semibold">Rever o termo de consentimento</span>
-                <ChevronRight aria-hidden className="size-4" strokeWidth={2.5} />
-              </Link>
-            </SurfaceCard>
-          </section>
-        </div>
-
-        <section aria-label="Sair ou excluir a conta" className="flex flex-col gap-3 px-4 lg:grid lg:grid-cols-2 lg:px-0">
-          <Link
-            href="/entrar"
-            className="flex h-12 items-center justify-center rounded-xl bg-texto text-[15px] font-semibold text-fundo transition-transform active:scale-[0.98]"
-          >
-            Sair da conta
-          </Link>
-          {isConfirmingDelete ? (
-            <DeleteAccountConfirm />
-          ) : (
-            <Link
-              href="/perfil/configuracoes?excluir=1"
-              scroll={false}
-              className="flex h-11 items-center justify-center rounded-xl text-sm font-semibold ring-1 ring-texto lg:h-12"
-            >
-              Excluir conta
-            </Link>
-          )}
-          <p className="text-xs text-texto-secundario lg:col-span-2">
-            Ao excluir a conta, seu progresso, selos e XP são apagados. Posts e respostas na
-            comunidade ficam anônimos.
+      <main className="flex flex-col gap-10 pt-8 pb-12 lg:px-10 lg:pt-12">
+        <header className="flex flex-col gap-3 px-4 lg:px-0">
+          <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.08em] text-texto-secundario uppercase">
+            <span aria-hidden className="size-2 rounded-[2px] bg-acao" />
+            Perfil
           </p>
-        </section>
+          <h1 className="font-display text-[40px] leading-[1.02] font-medium tracking-[-0.04em] lg:text-[56px]">
+            Configurações
+          </h1>
+        </header>
+
+        <SettingsGroup
+          id="dados-conta"
+          index="01"
+          title="Conta"
+          description="Como você aparece para a turma e onde recebe os avisos."
+        >
+          <AccountForm defaultValues={account} />
+        </SettingsGroup>
+
+        <SettingsGroup id="aparencia" index="02" title="Aparência" description="Escolha o tema do hub.">
+          <ThemeChoice />
+        </SettingsGroup>
+
+        <SettingsGroup
+          id="notificacoes-config"
+          index="03"
+          title="Notificações"
+          description="Respostas às suas dúvidas, avaliações de prática e novidades da trilha."
+        >
+          <PreferenceSwitches items={notificationItems} initialValues={preferences} />
+        </SettingsGroup>
+
+        <SettingsGroup
+          id="privacidade"
+          index="04"
+          title="Privacidade"
+          description="O que outras pessoas veem e como seus dados são usados."
+        >
+          <PreferenceSwitches items={privacyItems} initialValues={preferences} />
+          <Link href="/consentimento" className={rowLinkClass}>
+            Rever o termo de consentimento
+            <ArrowUpRight
+              aria-hidden
+              className="size-4 text-texto-secundario transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              strokeWidth={2}
+            />
+          </Link>
+        </SettingsGroup>
+
+        <SettingsGroup
+          id="sessao"
+          index="05"
+          title="Sessão"
+          description="Ao excluir a conta, seu progresso, selos e XP são apagados. Posts e respostas na comunidade ficam anônimos."
+        >
+          <Link href="/entrar" className={rowLinkClass}>
+            Sair da conta
+            <ArrowUpRight
+              aria-hidden
+              className="size-4 text-texto-secundario transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              strokeWidth={2}
+            />
+          </Link>
+          <div className="py-3">
+            {isConfirmingDelete ? (
+              <DeleteAccountConfirm />
+            ) : (
+              <Link
+                href="/perfil/configuracoes?excluir=1"
+                scroll={false}
+                className="flex min-h-11 items-center text-[15px] font-medium text-texto-secundario underline decoration-linha underline-offset-4 outline-none transition-colors hover:text-texto hover:decoration-texto focus-visible:decoration-texto"
+              >
+                Excluir conta
+              </Link>
+            )}
+          </div>
+        </SettingsGroup>
       </main>
-    </>
+    </div>
   );
 }
