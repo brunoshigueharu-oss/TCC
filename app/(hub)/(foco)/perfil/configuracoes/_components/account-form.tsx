@@ -54,7 +54,7 @@ export function AccountForm({ defaultValues }: AccountFormProps) {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(handleSubmit)} noValidate className="flex flex-col gap-5 p-4 lg:p-6">
+    <form onSubmit={form.handleSubmit(handleSubmit)} noValidate className="flex flex-col gap-5 py-5">
       <FieldGroup className="gap-4 lg:grid lg:grid-cols-2 lg:gap-x-5">
         {fields.map((item) => (
           <Controller
@@ -66,7 +66,7 @@ export function AccountForm({ defaultValues }: AccountFormProps) {
                 data-invalid={fieldState.invalid}
                 className={item.name === "role" ? "lg:col-span-2" : undefined}
               >
-                <FieldLabel htmlFor={`conta-${item.name}`} className="text-sm font-semibold">
+                <FieldLabel htmlFor={`conta-${item.name}`} className="text-sm font-medium text-texto-secundario">
                   {item.label}
                 </FieldLabel>
                 <Input

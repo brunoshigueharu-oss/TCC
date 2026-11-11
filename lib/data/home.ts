@@ -12,9 +12,31 @@ const openQuestionSchema = z.object({
   lessonNumber: z.number().int().positive(),
   answers: z.number().int().nonnegative(),
   href: z.string(),
+  /** Quem perguntou (primeiro nome). */
+  author: z.string(),
+  /** Tempo relativo, já escrito para exibição. */
+  timeLabel: z.string(),
 });
 
+/** Limites da meta diária que a pessoa pode escolher na Home. */
+export const DAILY_GOAL_MIN = 1;
+export const DAILY_GOAL_MAX = 5;
+
+export const dailyGoalInputSchema = z.object({
+  target: z.number().int().min(DAILY_GOAL_MIN).max(DAILY_GOAL_MAX),
+});
+export type DailyGoalInput = z.infer<typeof dailyGoalInputSchema>;
+
 const homeSchema = z.object({
+  /** "Hoje" do protótipo — bate com a semana de `lib/data/perfil.ts` (sexta). */
+  today: z.object({
+    weekday: z.string(),
+    dateLabel: z.string(),
+  }),
+  /** Minutos estudados na semana (lições + práticas). */
+  studyMinutes: z.number().int().nonnegative(),
+  /** Dúvidas da turma que a pessoa respondeu na semana. */
+  answersGiven: z.number().int().nonnegative(),
   user: z.object({
     firstName: z.string(),
     level: z.number().int().positive(),
@@ -35,6 +57,9 @@ export type OpenQuestion = z.infer<typeof openQuestionSchema>;
 export type HomeData = z.infer<typeof homeSchema>;
 
 export const homeData: HomeData = homeSchema.parse({
+  today: { weekday: "Sexta-feira", dateLabel: "13 nov 2026" },
+  studyMinutes: 96,
+  answersGiven: 2,
   user: { firstName: "Marina", level: 3, xp: 1240 },
   dailyGoal: { done: 2, target: 3 },
   weeklyXp: { xp: 320, friendsRank: 4 },
@@ -45,6 +70,8 @@ export const homeData: HomeData = homeSchema.parse({
       lessonNumber: 3,
       answers: 3,
       href: "/comunidade/posts/grid-layout",
+      author: "Marina",
+      timeLabel: "há 18 min",
     },
     {
       id: "estado-componente",
@@ -52,6 +79,26 @@ export const homeData: HomeData = homeSchema.parse({
       lessonNumber: 2,
       answers: 0,
       href: "/comunidade/posts/estado-componente",
+      author: "Caio",
+      timeLabel: "há 2 h",
+    },
+    {
+      id: "prompt-mobile",
+      title: "O prompt de exemplo funciona no mobile também?",
+      lessonNumber: 3,
+      answers: 1,
+      href: "/comunidade/posts/prompt-mobile",
+      author: "Rafael",
+      timeLabel: "ontem",
+    },
+    {
+      id: "ia-muda-arquivos",
+      title: "A IA mexeu em arquivos que eu não pedi. Como evitar?",
+      lessonNumber: 3,
+      answers: 2,
+      href: "/comunidade/posts/ia-muda-arquivos",
+      author: "Júlia",
+      timeLabel: "ontem",
     },
   ],
 });

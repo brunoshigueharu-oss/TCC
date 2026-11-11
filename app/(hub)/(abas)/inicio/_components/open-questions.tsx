@@ -1,55 +1,66 @@
-import { MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
+import { SectionHeading } from "@/components/section-heading";
 import type { OpenQuestion } from "@/lib/data/home";
 import { formatAnswers, formatTwoDigits } from "@/lib/format";
-import { BauhausShapes } from "./bauhaus-shapes";
-import { SectionHeading } from "@/components/section-heading";
 
 type OpenQuestionsProps = {
   questions: OpenQuestion[];
 };
 
-function formatQuestionsTitle(count: number) {
-  if (count === 0) return "Nenhuma dúvida aberta";
-  return count === 1 ? "1 dúvida aberta nas suas aulas" : `${count} dúvidas abertas nas suas aulas`;
-}
-
-/** Dúvidas abertas no fio de dúvidas das aulas que a pessoa está fazendo. */
+/** Dúvidas abertas no fio das aulas que a pessoa está fazendo: lista de linhas. */
 export function OpenQuestions({ questions }: OpenQuestionsProps) {
   return (
-    <section aria-labelledby="duvidas" className="flex flex-col gap-2 lg:col-span-2">
+    <section aria-labelledby="duvidas" className="flex flex-col lg:col-span-7">
       <SectionHeading
         id="duvidas"
-        title={formatQuestionsTitle(questions.length)}
+        title="Dúvidas abertas da turma"
         href="/comunidade"
-        icon={MessageCircle}
         tone="comunidade"
+        meta={formatTwoDigits(questions.length)}
       />
 
-      <div className="mx-4 overflow-hidden rounded-2xl bg-fundo ring-1 ring-linha/70 lg:mx-0">
-        <div className="flex items-center">
-          <p className="flex-1 p-4 font-display text-lg leading-snug font-bold lg:px-6 lg:text-xl">
-            Sua turma está tirando dúvidas agora
-          </p>
-          <div className="flex w-[36%] shrink-0 justify-center rounded-l-[999px] bg-comunidade/15 py-2 lg:w-[240px]">
-            <BauhausShapes composition="duvidas" className="size-24" />
-          </div>
-        </div>
-
-        <ul className="divide-y divide-linha border-t border-linha">
+      {questions.length === 0 ? (
+        <p className="px-4 py-6 text-sm text-texto-secundario lg:px-0">
+          Nenhuma dúvida aberta nas suas aulas. Quando alguém perguntar, aparece aqui.
+        </p>
+      ) : (
+        <ul className="mx-4 divide-y divide-linha border-b border-linha lg:mx-0">
           {questions.map((question) => (
             <li key={question.id}>
-              <Link href={question.href} className="flex flex-col gap-1 px-4 py-3 lg:px-6 lg:py-4 lg:transition-colors lg:hover:bg-superficie">
-                <span className="text-sm leading-[1.4] font-semibold">{question.title}</span>
-                <span className="text-xs text-texto-secundario">
-                  Lição {formatTwoDigits(question.lessonNumber)} · {formatAnswers(question.answers)}
+              <Link
+                href={question.href}
+                className="group flex items-start gap-4 py-4 outline-none transition-colors hover:bg-superficie focus-visible:bg-superficie lg:-mx-3 lg:rounded-lg lg:px-3"
+              >
+                <span className="flex min-w-0 flex-1 flex-col gap-1.5">
+                  <span className="text-[15px] leading-snug font-medium text-pretty lg:text-base">{question.title}</span>
+                  <span className="flex flex-wrap items-center gap-x-2 text-xs text-texto-secundario">
+                    <span>
+                      {question.author} · Lição {formatTwoDigits(question.lessonNumber)}
+                    </span>
+                    <span className="font-mono tabular-nums">{question.timeLabel}</span>
+                  </span>
                 </span>
+                <span
+                  className={
+                    question.answers === 0
+                      ? "mt-0.5 shrink-0 rounded-full border border-texto px-2 py-0.5 text-[11px] font-semibold whitespace-nowrap"
+                      : "mt-0.5 shrink-0 py-0.5 text-xs whitespace-nowrap text-texto-secundario"
+                  }
+                >
+                  {formatAnswers(question.answers)}
+                </span>
+                <ArrowUpRight
+                  aria-hidden
+                  className="mt-1 size-4 shrink-0 text-desativado transition-[color,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-texto"
+                  strokeWidth={2}
+                />
               </Link>
             </li>
           ))}
         </ul>
-      </div>
+      )}
     </section>
   );
 }
