@@ -12,7 +12,7 @@ export default function TabsLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex min-h-dvh flex-1">
       <SideNav hasUnreadNotifications={hasUnreadNotifications} />
-      <div className="mx-auto flex w-full max-w-[480px] min-w-0 flex-1 flex-col bg-superficie lg:max-w-none">
+      <div className="mx-auto flex w-full max-w-[480px] min-w-0 flex-1 flex-col bg-fundo lg:max-w-none">
         <div data-shell="abas" className="flex w-full flex-1 flex-col lg:mx-auto lg:max-w-[1200px] lg:px-10 lg:pt-8 lg:pb-12">
           {children}
         </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 
+import { themeInitScript } from "@/components/theme-toggle";
 import { ViewportSwitcher } from "@/components/viewport-switcher";
 import { hubFontClasses } from "@/lib/fonts";
 
@@ -25,7 +26,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="pt-BR"
       className={`${hubFontClasses} ${geistMono.variable} antialiased`}
+      // A classe `dark` é aplicada pelo script abaixo, antes da hidratação.
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         {children}
         <ViewportSwitcher />

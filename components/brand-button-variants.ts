@@ -14,7 +14,7 @@ export const brandButtonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-texto text-fundo hover:bg-acao hover:text-texto focus-visible:bg-acao focus-visible:text-texto",
+          "bg-texto text-fundo hover:bg-acao hover:text-tinta focus-visible:bg-acao focus-visible:text-tinta",
         secondary: "bg-fundo text-texto ring-1 ring-linha hover:bg-superficie hover:ring-texto",
       },
       size: {

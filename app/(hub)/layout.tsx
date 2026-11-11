@@ -9,7 +9,7 @@ import { hubFontClasses } from "@/lib/fonts";
  */
 export default function HubLayout({ children }: LayoutProps<"/">) {
   return (
-    <div className={`${hubFontClasses} flex min-h-dvh flex-col bg-moldura font-texto text-texto lg:bg-superficie`}>
+    <div className={`${hubFontClasses} flex min-h-dvh flex-col bg-moldura font-texto text-texto lg:bg-fundo`}>
       {children}
     </div>
   );

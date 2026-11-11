@@ -73,6 +73,10 @@
   --color-trilha: var(--hub-trilha);
   --color-pratica: var(--hub-pratica);
   --color-comunidade: var(--hub-comunidade);
+  /* Tinta fixa: texto/ícone sobre cor viva (não inverte no tema escuro). */
+  --color-tinta: var(--hub-tinta);
+  /* Papel fixo: branco que não inverte (texto sobre foto, sobre tinta). */
+  --color-papel: var(--hub-papel);
   --font-display: var(--font-instrument-sans);
   --font-texto: var(--font-figtree);
   /* Só na animação do título da Landing (lib/fonts-landing.ts) */
@@ -182,40 +186,53 @@
   --hub-trilha: #f5ee4a;
   --hub-pratica: #ff48b0;
   --hub-comunidade: #0b8fe0;
+  --hub-tinta: #18181b;
+  --hub-papel: #ffffff;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #fafafa;
-  --card: #171717;
-  --card-foreground: #fafafa;
-  --popover: #171717;
-  --popover-foreground: #fafafa;
-  --primary: #e5e5e5;
-  --primary-foreground: #171717;
-  --secondary: #262626;
-  --secondary-foreground: #fafafa;
-  --muted: #262626;
-  --muted-foreground: #a1a1a1;
-  --accent: #262626;
-  --accent-foreground: #fafafa;
+  color-scheme: dark;
+  --background: #0e0f13;
+  --foreground: #f4f4f6;
+  --card: #17181e;
+  --card-foreground: #f4f4f6;
+  --popover: #17181e;
+  --popover-foreground: #f4f4f6;
+  --primary: #2fc4a0;
+  --primary-foreground: #18181b;
+  --secondary: #17181e;
+  --secondary-foreground: #f4f4f6;
+  --muted: #17181e;
+  --muted-foreground: #a3a6b4;
+  --accent: #23252e;
+  --accent-foreground: #f4f4f6;
   --destructive: #ff6467;
-  --border: color-mix(in oklab, #ffffff 10%, transparent);
-  --input: color-mix(in oklab, #ffffff 15%, transparent);
-  --ring: #737373;
+  --border: #2a2c36;
+  --input: #2a2c36;
+  --ring: #2fc4a0;
   --chart-1: #1447e6;
   --chart-2: #00bc7d;
   --chart-3: #fe9a00;
   --chart-4: #ad46ff;
   --chart-5: #ff2056;
-  --sidebar: #171717;
-  --sidebar-foreground: #fafafa;
-  --sidebar-primary: #1447e6;
-  --sidebar-primary-foreground: #fafafa;
-  --sidebar-accent: #262626;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: color-mix(in oklab, #ffffff 10%, transparent);
-  --sidebar-ring: #525252;
+  --sidebar: #0e0f13;
+  --sidebar-foreground: #f4f4f6;
+  --sidebar-primary: #2fc4a0;
+  --sidebar-primary-foreground: #18181b;
+  --sidebar-accent: #23252e;
+  --sidebar-accent-foreground: #f4f4f6;
+  --sidebar-border: #2a2c36;
+  --sidebar-ring: #5d6070;
+  /* Hub no escuro: azul-noite frio, mesmas cores de pilar. */
+  --hub-fundo: #0e0f13;
+  --hub-texto: #f4f4f6;
+  --hub-texto-secundario: #a3a6b4;
+  --hub-linha: #2a2c36;
+  --hub-superficie: #17181e;
+  --hub-superficie-forte: #23252e;
+  --hub-moldura: #050506;
+  --hub-desativado: #5d6070;
+  --hub-acao: #2fc4a0;
   --journey-paper: #141815;
   --journey-surface: #1b211d;
   --journey-ink: #e7e9e1;

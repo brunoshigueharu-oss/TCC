@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { BrandMark } from "@/components/brand-mark";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { UnreadDot } from "@/components/unread-dot";
 import { cn } from "@/lib/utils";
 import { isActiveRoute, navDestinations } from "./nav-destinations";
@@ -26,16 +27,15 @@ function SideNavItem({ label, href, icon: Icon, isActive, hasDot = false }: Side
         aria-current={isActive ? "page" : undefined}
         aria-label={hasDot ? `${label}, há notificações novas` : undefined}
         className={cn(
-          "flex min-h-11 items-center gap-3 rounded-xl px-3 text-[15px] font-medium transition-colors",
+          "flex min-h-11 items-center gap-3 rounded-xl px-3 text-[15px] font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-texto",
           isActive ? "bg-superficie text-texto" : "text-texto-secundario hover:bg-superficie hover:text-texto",
         )}
       >
         <span className="relative">
           <Icon
             aria-hidden
-            className={cn("size-[22px]", isActive && "text-acao")}
+            className="size-5"
             strokeWidth={isActive ? 2 : 1.75}
-            fill={isActive ? "currentColor" : "none"}
           />
           {hasDot ? <UnreadDot /> : null}
         </span>
@@ -82,6 +82,9 @@ export function SideNav({ hasUnreadNotifications }: { hasUnreadNotifications: bo
           {toolLinks.map((link) => (
             <SideNavItem key={link.href} {...link} isActive={false} />
           ))}
+          <li>
+            <ThemeToggle variant="row" />
+          </li>
         </ul>
       </div>
     </aside>

@@ -22,7 +22,7 @@ export function BottomNav({ hasUnreadNotifications }: BottomNavProps) {
   return (
     <nav
       aria-label="Navegação principal"
-      className="sticky bottom-0 z-10 border-t border-linha bg-fundo px-2 pt-2 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden"
+      className="sticky bottom-0 z-10 border-t border-linha bg-fundo/90 px-2 backdrop-blur-md pt-2 pb-[max(12px,env(safe-area-inset-bottom))] lg:hidden"
     >
       <ul className="grid grid-cols-4">
         {navDestinations.map(({ label, href, icon: Icon, matches }) => {
@@ -45,7 +45,7 @@ export function BottomNav({ hasUnreadNotifications }: BottomNavProps) {
                 <span className="relative">
                   <Icon
                     aria-hidden
-                    className={cn("size-6", isActive && "text-acao")}
+                    className="size-6"
                     strokeWidth={isActive ? 2 : 1.75}
                     fill={isActive ? "currentColor" : "none"}
                   />
