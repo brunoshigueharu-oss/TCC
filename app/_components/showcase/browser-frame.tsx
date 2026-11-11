@@ -10,7 +10,7 @@ type BrowserFrameProps = {
 export function BrowserFrame({ url, image, imageAlt }: BrowserFrameProps) {
   const host = new URL(url).hostname.replace(/^www\./, "");
   return (
-    <div className="flex size-full flex-col bg-white">
+    <div className="flex size-full flex-col bg-fundo">
       <div className="flex shrink-0 items-center gap-1.5 border-b border-linha px-3 py-2">
         <span className="size-2 rounded-full bg-pratica" />
         <span className="size-2 rounded-full bg-trilha" />

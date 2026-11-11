@@ -119,7 +119,7 @@ export function ShowcaseStrip({ title, items, initialIndex }: ShowcaseStripProps
                     tabIndex={isActive ? 0 : -1}
                     aria-hidden={!isActive || undefined}
                     className={cn(
-                      "flex items-center gap-1 self-center rounded-full bg-white px-3 py-1 text-xs font-medium whitespace-nowrap text-texto shadow-[0_4px_12px_-6px_rgb(24_24_27/0.3)] transition-[opacity,translate,background-color] duration-300 hover:bg-comunidade hover:text-white focus-visible:ring-2 focus-visible:ring-acao focus-visible:outline-none",
+                      "flex items-center gap-1 self-center rounded-full bg-papel px-3 py-1 text-xs font-medium whitespace-nowrap text-tinta shadow-[0_4px_12px_-6px_rgb(24_24_27/0.3)] transition-[opacity,translate,background-color] duration-300 hover:bg-comunidade hover:text-papel focus-visible:ring-2 focus-visible:ring-acao focus-visible:outline-none",
                       isActive ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-1 opacity-0",
                     )}
                   >

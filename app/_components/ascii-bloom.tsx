@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
+import { useIsDarkTheme } from "@/components/theme-toggle";
 import { startAsciiBloom, type BloomFlower, type BloomPage } from "@/lib/ascii-bloom";
 
 type AsciiBloomProps = {
@@ -9,7 +10,7 @@ type AsciiBloomProps = {
   flower: BloomFlower;
   /** URL do vídeo da flor (em `public/`). */
   src: string;
-  /** Fundo da página atrás do canvas: claro (padrão) ou escuro. */
+  /** Fundo da página atrás do canvas. Sem valor, segue o tema claro/escuro do site. */
   page?: BloomPage;
   className?: string;
 };
@@ -21,12 +22,14 @@ type AsciiBloomProps = {
  */
 export function AsciiBloom({ flower, src, page, className }: AsciiBloomProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const isDark = useIsDarkTheme();
+  const resolvedPage: BloomPage = page ?? (isDark ? "dark" : "light");
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    return startAsciiBloom(canvas, { flower, src, page });
-  }, [flower, src, page]);
+    return startAsciiBloom(canvas, { flower, src, page: resolvedPage });
+  }, [flower, src, resolvedPage]);
 
   return <canvas ref={canvasRef} aria-hidden className={className} />;
 }
