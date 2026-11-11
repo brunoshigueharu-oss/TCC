@@ -1,22 +1,38 @@
 import type { Metadata } from "next";
 
-import { HomeHero } from "./_components/home-hero";
-import { LessonCarousel } from "./_components/lesson-carousel";
+import { DailyGoal } from "./_components/daily-goal";
+import { HomeGreeting } from "./_components/home-greeting";
+import { NextStep } from "./_components/next-step";
 import { OpenQuestions } from "./_components/open-questions";
-import { WeeklyStats } from "./_components/weekly-stats";
+import { WeekNumbers } from "./_components/week-numbers";
+import { WeekSummary } from "./_components/week-summary";
 import { getHomeData } from "./_data-access/get-home-data";
 
 export const metadata: Metadata = { title: "Início" };
 
+/** Home: o painel editorial do dia (saudação, próximo passo, meta, semana, turma). */
 export default async function HomePage() {
-  const { user, currentLesson, dailyGoal, weeklyXp, openQuestions } = await getHomeData();
+  const { user, today, currentLesson, dailyGoal, weeklyXp, week, openQuestions } = await getHomeData();
 
   return (
-    <div className="flex flex-1 flex-col bg-superficie">
-      <HomeHero firstName={user.firstName} level={user.level} xp={user.xp} />
-      <main className="flex flex-col gap-7 pt-7 pb-8 lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-6 lg:gap-y-8 lg:pt-10 lg:pb-0">
-        {currentLesson ? <LessonCarousel current={currentLesson} /> : null}
-        <WeeklyStats dailyGoal={dailyGoal} weeklyXp={weeklyXp} />
+    <div className="flex flex-1 flex-col">
+      <HomeGreeting
+        firstName={user.firstName}
+        weekday={today.weekday}
+        dateLabel={today.dateLabel}
+        lessonTitle={currentLesson?.lesson.title ?? null}
+      />
+      <main className="flex flex-col gap-6 pb-10 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 lg:gap-y-10 lg:pb-0">
+        {currentLesson ? <NextStep current={currentLesson} /> : null}
+        <DailyGoal
+          done={dailyGoal.done}
+          initialTarget={dailyGoal.target}
+          remainingLessons={currentLesson?.remainingLessons ?? 0}
+          averageMinutes={currentLesson?.averageMinutes ?? 10}
+          moduleNumber={currentLesson?.moduleNumber ?? null}
+        />
+        <WeekNumbers week={week} friendsRank={weeklyXp.friendsRank} />
+        <WeekSummary week={week} />
         <OpenQuestions questions={openQuestions} />
       </main>
     </div>
