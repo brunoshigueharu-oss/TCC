@@ -1,9 +1,9 @@
-import { Check, Circle } from "lucide-react";
+import { Check } from "lucide-react";
 
-import { SurfaceCard } from "@/components/surface-card";
+import { ProgressBar } from "@/components/progress-bar";
 import type { CourseDraft, PublishCheck } from "@/lib/data/criar-minicurso";
+import { formatTwoDigits } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { CourseShapes } from "./course-shapes";
 import { PublishButton } from "./publish-button";
 
 type PublishPanelProps = {
@@ -13,50 +13,68 @@ type PublishPanelProps = {
 };
 
 /**
- * Coluna da direita: prévia do cartão como aparece em Cursos da comunidade,
- * checklist de publicação e o botão Publicar.
+ * Coluna da direita: prévia do cartão como aparece em Cursos da comunidade
+ * (a capa é tipográfica, no azul do pilar Comunidade — o único bloco de cor
+ * da tela), checklist com progresso e o botão Publicar.
  */
 export function PublishPanel({ course, totalMinutes, checklist }: PublishPanelProps) {
-  return (
-    <aside aria-label="Prévia e publicação" className="flex flex-col gap-4">
-      <SurfaceCard as="section" aria-labelledby="previa-titulo" className="mx-0">
-        <h2 id="previa-titulo" className="px-4 pt-4 text-xs font-semibold text-texto-secundario">
-          Prévia em Cursos da comunidade
-        </h2>
-        <div className="mx-4 mt-3 flex justify-center rounded-t-[999px] bg-comunidade/15 pt-4">
-          <CourseShapes className="h-24 w-auto" />
-        </div>
-        <div className="flex flex-col gap-1 p-4">
-          <p className="font-display text-lg leading-snug font-bold">{course.title}</p>
-          <p className="text-sm leading-snug text-texto-secundario">{course.summary}</p>
-          <p className="mt-1 text-xs text-texto-secundario">
-            por {course.author} · {course.lessons.length} aulas · {totalMinutes} min · gratuito
-          </p>
-          <ul className="mt-2 flex flex-wrap gap-1.5">
-            {course.tags.map((tag) => (
-              <li key={tag} className="rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-linha">
-                #{tag}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </SurfaceCard>
+  const doneCount = checklist.filter((check) => check.isDone).length;
 
-      <SurfaceCard as="section" aria-labelledby="publicar-titulo" className="mx-0 flex flex-col gap-3 p-4">
-        <h2 id="publicar-titulo" className="font-display text-base font-bold">
-          Antes de publicar
+  return (
+    <aside aria-label="Prévia e publicação" className="flex flex-col gap-8 xl:sticky xl:top-24">
+      <section aria-labelledby="previa-titulo" className="flex flex-col gap-3">
+        <h2 id="previa-titulo" className="border-b border-linha pb-3 text-xs font-semibold tracking-[0.08em] uppercase">
+          Prévia
         </h2>
-        <ul className="flex flex-col gap-2 text-sm">
+        <article className="overflow-hidden rounded-xl border border-linha">
+          <div className="flex aspect-[16/9] flex-col justify-between bg-comunidade p-4 text-tinta">
+            <span className="flex items-center justify-between font-mono text-[11px] uppercase">
+              <span>BASE8 / curso</span>
+              <span className="tabular-nums">{formatTwoDigits(course.lessons.length)} aulas</span>
+            </span>
+            <span className="max-w-[14ch] font-display text-[26px] leading-[1] font-medium tracking-[-0.04em]">
+              {course.title}
+            </span>
+          </div>
+          <div className="flex flex-col gap-1.5 p-4">
+            <p className="text-sm leading-snug text-texto-secundario">{course.summary}</p>
+            <p className="font-mono text-[11px] text-texto-secundario">
+              {course.author} · {totalMinutes} min · gratuito
+            </p>
+            <ul className="mt-1 flex flex-wrap gap-1.5">
+              {course.tags.map((tag) => (
+                <li key={tag} className="rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-linha">
+                  #{tag}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section aria-labelledby="publicar-titulo" className="flex flex-col gap-4">
+        <div className="flex items-baseline justify-between border-b border-linha pb-3">
+          <h2 id="publicar-titulo" className="text-xs font-semibold tracking-[0.08em] uppercase">
+            Antes de publicar
+          </h2>
+          <span className="font-mono text-[11px] text-texto-secundario tabular-nums">
+            {doneCount}/{checklist.length}
+          </span>
+        </div>
+        <ProgressBar value={doneCount} max={checklist.length} tone="acao" label="Requisitos para publicar" className="h-1" />
+        <ul className="flex flex-col gap-3 text-sm">
           {checklist.map((check) => (
-            <li key={check.id} className="flex items-start gap-2.5">
-              {check.isDone ? (
-                <span className="mt-px flex size-5 shrink-0 items-center justify-center rounded-full bg-acao">
-                  <Check aria-hidden className="size-3" strokeWidth={3} />
-                </span>
-              ) : (
-                <Circle aria-hidden className="mt-px size-5 shrink-0 text-desativado" strokeWidth={1.75} />
-              )}
-              <span className={cn(!check.isDone && "font-semibold")}>
+            <li key={check.id} className="flex items-start gap-3">
+              <span
+                aria-hidden
+                className={cn(
+                  "mt-px flex size-5 shrink-0 items-center justify-center rounded-full",
+                  check.isDone ? "bg-acao text-tinta" : "border border-dashed border-desativado",
+                )}
+              >
+                {check.isDone ? <Check className="size-3" strokeWidth={3} /> : null}
+              </span>
+              <span className={cn("leading-snug", check.isDone ? "text-texto-secundario" : "font-medium")}>
                 {check.label}
                 <span className="sr-only">{check.isDone ? " (feito)" : " (pendente)"}</span>
               </span>
@@ -64,7 +82,7 @@ export function PublishPanel({ course, totalMinutes, checklist }: PublishPanelPr
           ))}
         </ul>
         <PublishButton courseId={course.id} />
-      </SurfaceCard>
+      </section>
     </aside>
   );
 }
