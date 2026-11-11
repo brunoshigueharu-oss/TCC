@@ -5,17 +5,12 @@ import { useSyncExternalStore } from "react";
 
 import { cn } from "@/lib/utils";
 
-/** Chave do tema no localStorage. Precisa bater com `themeInitScript`. */
-export const THEME_STORAGE_KEY = "base8-tema";
+import { DARK_CLASS, THEME_EVENT, THEME_STORAGE_KEY } from "./theme-init";
 
-const DARK_CLASS = "dark";
-const THEME_EVENT = "base8-tema-mudou";
-
-/**
- * Roda antes da primeira pintura (no `<head>`): aplica o tema salvo ou, sem
- * escolha salva, o do sistema — evita o clarão branco ao abrir no escuro.
- */
-export const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");var d=t?t==="escuro":matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("${DARK_CLASS}",d)}catch(e){}})()`;
+// Reexportados por compatibilidade. No Server Component, importe de
+// `./theme-init` — valores vindos de um módulo "use client" viram referência
+// de cliente e o script não chega ao HTML.
+export { THEME_STORAGE_KEY, themeInitScript } from "./theme-init";
 
 function subscribe(onChange: () => void) {
   window.addEventListener(THEME_EVENT, onChange);
