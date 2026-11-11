@@ -14,8 +14,8 @@ type ProfileStatsProps = {
   weeklyRank: number;
 };
 
-const itemClass = "flex flex-col-reverse gap-3 py-5 lg:py-7";
-const valueClass = "font-mono text-[40px] leading-none font-extralight tracking-[-0.05em] tabular-nums lg:text-[64px]";
+const itemClass = "flex min-w-0 flex-col-reverse gap-3 py-5 xl:py-7";
+const valueClass = "font-mono text-[40px] leading-none font-extralight tracking-[-0.05em] tabular-nums lg:text-[52px] xl:text-[56px] 2xl:text-[64px]";
 const unitClass = "ml-1.5 font-sans text-sm font-medium tracking-normal text-texto-secundario";
 const labelClass = "text-xs font-semibold tracking-[0.08em] text-texto-secundario uppercase";
 
@@ -29,20 +29,20 @@ export function ProfileStats({ level, xp, nextLevelXp, streakDays, longestStreak
 
   return (
     <section aria-label="Resumo do progresso" className="mx-4 border-y border-linha lg:mx-0">
-      <dl className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-linha">
-        <div className={`${itemClass} border-b border-linha pr-4 lg:border-b-0 lg:pr-6`}>
+      <dl className="grid grid-cols-2 xl:grid-cols-4 xl:divide-x xl:divide-linha">
+        <div className={`${itemClass} border-b border-linha pr-4 xl:border-b-0 xl:pr-6`}>
           <dt className={labelClass}>Nível</dt>
           <dd className={valueClass}>
             <CountUp value={level} format="twoDigits" duration={0.6} />
           </dd>
         </div>
-        <div className={`${itemClass} border-b border-l border-linha pl-4 lg:border-b-0 lg:border-l-0 lg:px-6`}>
+        <div className={`${itemClass} border-b border-l border-linha pl-4 xl:border-b-0 xl:border-l-0 xl:px-6`}>
           <dt className={labelClass}>XP total</dt>
           <dd className={valueClass}>
             <CountUp value={xp} duration={1.1} />
           </dd>
         </div>
-        <div className={`${itemClass} pr-4 lg:px-6`}>
+        <div className={`${itemClass} pr-4 xl:px-6`}>
           <dt className={labelClass}>
             Sequência
             <span className="ml-2 font-mono font-normal tracking-normal normal-case">recorde {longestStreakDays}</span>
@@ -52,7 +52,7 @@ export function ProfileStats({ level, xp, nextLevelXp, streakDays, longestStreak
             <span className={unitClass}>{streakDays === 1 ? "dia" : "dias"}</span>
           </dd>
         </div>
-        <div className={`${itemClass} border-l border-linha pl-4 lg:border-l-0 lg:pl-6`}>
+        <div className={`${itemClass} border-l border-linha pl-4 xl:border-l-0 xl:pl-6`}>
           <dt className={labelClass}>
             <Link
               href="/perfil/ranking"
