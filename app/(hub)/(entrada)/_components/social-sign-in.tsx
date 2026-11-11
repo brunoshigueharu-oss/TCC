@@ -34,9 +34,9 @@ function AppleIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 const providers: Provider[] = [
-  { id: "google", label: "Continuar com Google", Icon: GoogleIcon },
-  { id: "github", label: "Continuar com GitHub", Icon: GitHubIcon },
-  { id: "apple", label: "Continuar com Apple", Icon: AppleIcon },
+  { id: "google", label: "Google", Icon: GoogleIcon },
+  { id: "github", label: "GitHub", Icon: GitHubIcon },
+  { id: "apple", label: "Apple", Icon: AppleIcon },
 ];
 
 type SocialSignInProps = {
@@ -45,15 +45,15 @@ type SocialSignInProps = {
 };
 
 /**
- * Opções de entrada por conta social (Google, GitHub, Apple), mostradas antes
- * do formulário de e-mail, com o divisor "ou" no fim.
+ * Entrada por conta social (Google, GitHub, Apple) em três botões lado a
+ * lado, com o divisor "ou com e-mail" embaixo.
  */
 export function SocialSignIn({ destination }: SocialSignInProps) {
   const action = continueWithProvider.bind(null, destination);
 
   return (
-    <div className="flex flex-col gap-4 px-4 pt-4 lg:px-6 lg:pt-6">
-      <form action={action} className="flex flex-col gap-3">
+    <div className="flex flex-col gap-6">
+      <form action={action} aria-label="Entrar com outra conta" className="grid grid-cols-3 gap-2">
         {providers.map(({ id, label, Icon }) => (
           <ColorBurstButton
             key={id}
@@ -61,17 +61,19 @@ export function SocialSignIn({ destination }: SocialSignInProps) {
             name="provider"
             value={id}
             variant="secondary"
-            className="w-full"
+            size="sm"
+            aria-label={`Continuar com ${label}`}
+            className="w-full px-3"
           >
             <Icon />
-            {label}
+            <span className="hidden sm:inline">{label}</span>
           </ColorBurstButton>
         ))}
       </form>
 
-      <div className="flex items-center gap-3 text-xs text-texto-secundario" aria-hidden="true">
+      <div className="flex items-center gap-3 font-mono text-[11px] text-texto-secundario" aria-hidden="true">
         <span className="h-px flex-1 bg-linha" />
-        ou
+        ou com e-mail
         <span className="h-px flex-1 bg-linha" />
       </div>
     </div>

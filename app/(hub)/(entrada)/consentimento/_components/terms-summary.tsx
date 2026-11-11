@@ -4,26 +4,28 @@ type TermsSummaryProps = {
   items: string[];
 };
 
-/**
- * "Ler Termos de uso e Política de privacidade": abre um resumo dentro do
- * próprio cartão (`<details>` nativo, sem JavaScript).
- */
+/** Resumo dos termos em linguagem simples, aberto no próprio fluxo (`<details>`). */
 export function TermsSummary({ items }: TermsSummaryProps) {
   return (
-    <details className="group border-t border-linha">
-      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 text-sm lg:px-6 font-semibold underline underline-offset-4 [&::-webkit-details-marker]:hidden">
-        Ler Termos de uso e Política de privacidade
+    <details className="group border-b border-linha">
+      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-sm text-sm font-semibold outline-none focus-visible:ring-2 focus-visible:ring-texto [&::-webkit-details-marker]:hidden">
+        Termos de uso e privacidade, em 4 pontos
         <ChevronDown
           aria-hidden
-          className="size-4 shrink-0 transition-transform group-open:rotate-180"
-          strokeWidth={2.5}
+          className="size-4 shrink-0 text-texto-secundario transition-transform duration-200 group-open:rotate-180"
+          strokeWidth={2}
         />
       </summary>
-      <ul className="flex list-disc flex-col gap-2 px-4 pb-4 pl-8 text-sm leading-relaxed text-texto-secundario lg:px-6 lg:pb-5 lg:pl-10">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
+      <ol className="flex flex-col gap-3 pb-5">
+        {items.map((item, index) => (
+          <li key={item} className="grid grid-cols-[2rem_minmax(0,1fr)] text-sm leading-relaxed text-texto-secundario">
+            <span aria-hidden className="font-mono text-[11px] tabular-nums">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            {item}
+          </li>
         ))}
-      </ul>
+      </ol>
     </details>
   );
 }
