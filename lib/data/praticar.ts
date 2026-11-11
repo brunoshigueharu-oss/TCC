@@ -117,6 +117,45 @@ export const practice: Practice = practiceSchema.parse({
           "Escala de 8 px aplicada do início ao fim e ajustes pedidos um de cada vez. Para a próxima, compare as duas larguras lado a lado antes de concluir.",
       },
     },
+    {
+      id: "pedir-estados",
+      kind: "prompt",
+      level: "Intermediário",
+      title: "Peça os estados de um botão sem refazer o componente",
+      shortTitle: "Peça os estados do botão",
+      minutes: 12,
+      xpReward: 40,
+      statement:
+        "Você já tem um botão pronto. Escreva um único prompt que acrescente os estados de hover, foco visível, desativado e carregando, sem mudar o visual padrão.",
+      criteria: [
+        "Diz o que manter do componente atual",
+        "Lista cada estado com o comportamento esperado",
+        "Inclui foco visível para quem usa teclado",
+      ],
+      sampleEvaluation: {
+        results: ["atendido", "parcial", "atendido"],
+        comment:
+          "Você protegeu o visual padrão e lembrou do foco. No estado “carregando”, diga o que acontece com o texto do botão e se ele pode ser clicado de novo.",
+      },
+    },
+    {
+      id: "contraste-cards",
+      kind: "revisao-de-codigo",
+      level: "Iniciante",
+      title: "Revise o contraste de uma lista de cards gerada pela IA",
+      shortTitle: "Revise o contraste dos cards",
+      minutes: 8,
+      xpReward: 25,
+      statement:
+        "A IA usou texto cinza-claro sobre fundo branco nos cards abaixo. Aponte onde o contraste falha e peça a correção usando os tokens do projeto.",
+      codeSample:
+        '<article class="bg-white p-4">\n  <h3 class="text-gray-400">Design tokens com IA</h3>\n  <p class="text-gray-300">4 aulas · 35 min</p>\n</article>',
+      criteria: ["Identifica os textos com pouco contraste", "Pede a correção com tokens, não com cores soltas"],
+      sampleEvaluation: {
+        results: ["atendido", "atendido"],
+        comment: "Diagnóstico certeiro e pedido em tokens. Vale citar a razão de contraste mínima (4,5:1) no prompt.",
+      },
+    },
   ],
 });
 
