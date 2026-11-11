@@ -30,7 +30,9 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/e
     getGlossary(),
     getPlaygroundScenario(),
   ]);
-  const initialStep = parseStep((await searchParams).etapa, lesson.steps.length);
+  const rawStep = (await searchParams).etapa;
+  const initialStep = parseStep(rawStep, lesson.steps.length);
+  const isInitiallyComplete = rawStep === "fim";
 
   return (
     <LessonPlayer
@@ -42,6 +44,7 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/e
       glossary={glossary}
       scenario={scenario}
       initialStep={initialStep}
+      isInitiallyComplete={isInitiallyComplete}
       sideContent={
         lesson.questionsCount > 0 ? (
           <LessonQuestions count={lesson.questionsCount} questions={lesson.questions} />

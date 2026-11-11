@@ -19,6 +19,8 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 type LessonPlayerProps = LessonPlayerData & {
   /** Etapa inicial (0-based), vinda de `?etapa=`. */
   initialStep: number;
+  /** `?etapa=fim`: abre direto na tela de conclusão. */
+  isInitiallyComplete?: boolean;
   /** Dúvidas da aula, renderizadas no servidor e encaixadas na lateral. */
   sideContent?: React.ReactNode;
 };
@@ -49,13 +51,14 @@ export function LessonPlayer({
   glossary,
   scenario,
   initialStep,
+  isInitiallyComplete = false,
   sideContent,
 }: LessonPlayerProps) {
   const total = lesson.steps.length;
   const [stepIndex, setStepIndex] = useState(initialStep);
   const [direction, setDirection] = useState(1);
-  const [furthest, setFurthest] = useState(initialStep);
-  const [isComplete, setIsComplete] = useState(false);
+  const [furthest, setFurthest] = useState(isInitiallyComplete ? lesson.steps.length - 1 : initialStep);
+  const [isComplete, setIsComplete] = useState(isInitiallyComplete);
   const [isFocusMode, setIsFocusMode] = useState(false);
   const [answers, setAnswers] = useState<Record<number, QuestionAnswer>>({});
   const rootRef = useRef<HTMLDivElement>(null);
