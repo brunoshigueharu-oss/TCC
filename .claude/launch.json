@@ -21,6 +21,26 @@
         "const h=require('http'),f=require('fs'),p=require('path');const r=p.resolve('prototipos/pontilhismo');h.createServer((q,s)=>{const u=decodeURIComponent(q.url.split('?')[0]);const fp=p.join(r,u==='/'?'index.html':u);if(!fp.startsWith(r))return s.writeHead(403).end();f.readFile(fp,(e,b)=>{if(e)return s.writeHead(404).end();s.writeHead(200,{'Content-Type':fp.endsWith('.html')?'text/html; charset=utf-8':'application/octet-stream'}).end(b)})}).listen(process.env.PORT||4310)"
       ],
       "port": 4310
+    },
+    {
+      "name": "apresentacao-processo",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "-e",
+        "const h=require('http'),f=require('fs'),p=require('path');const r=p.resolve('entregas/apresentacao-processo');const t={'.html':'text/html; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.webp':'image/webp','.pdf':'application/pdf','.css':'text/css','.js':'text/javascript','.mp4':'video/mp4','.gif':'image/gif','.woff2':'font/woff2'};h.createServer((q,s)=>{const u=decodeURIComponent(q.url.split('?')[0]);const fp=p.join(r,u==='/'?'apresentacao-processo.html':u);if(!fp.startsWith(r))return s.writeHead(403).end();f.readFile(fp,(e,b)=>{if(e)return s.writeHead(404).end();s.writeHead(200,{'Content-Type':t[p.extname(fp).toLowerCase()]||'application/octet-stream'}).end(b)})}).listen(process.env.PORT||4330)"
+      ],
+      "port": 4330,
+      "url": "http://localhost:4330"
+    },
+    {
+      "name": "pitch-tcc",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "/Users/brunohigashi/Documents/Claude Code/TCC/.claude/worktrees/clever-pascal-b61e0d/entregas/pitch-tcc/servir.cjs"
+      ],
+      "port": 4320,
+      "url": "http://localhost:4320",
+      "autoPort": false
     }
   ]
 }

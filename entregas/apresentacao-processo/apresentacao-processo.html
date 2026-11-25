@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Processo TCC — BASE8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+:root{
+  --branco:#fff; --noite:#1B1F3B; --rosa:#FF48B0; --verde:#12A180; --limao:#F5EE4A; --riso:#0B8FE0;
+  --texto:#18181b; --sec:#52525b; --ter:#71717a; --linha:#D5D7E0; --sup:#F1F2F6;
+  --c:var(--noite); --ink:var(--noite);
+}
+@page{size:1920px 1080px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#d9dbe2}
+body{font-family:Figtree,sans-serif;color:var(--texto);-webkit-print-color-adjust:exact;print-color-adjust:exact;counter-reset:pg}
+.s{width:1920px;height:1080px;background:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;margin:0 auto 40px;page-break-after:always;break-after:page;counter-increment:pg;padding:96px 120px 120px}
+.capa,.div{flex-direction:row}
+.mid{margin-top:auto;margin-bottom:auto}
+.pnw::after{color:#fff!important}
+.s>.t{flex:none}
+@media print{html,body{background:#fff}.s{margin:0}}
+.s.riso{--c:var(--riso);--ink:var(--riso)}
+.s.rosa{--c:var(--rosa);--ink:#E0329A}
+.s.limao{--c:var(--limao);--ink:var(--noite)}
+.s.verde{--c:var(--verde);--ink:var(--verde)}
+.s.noite{--c:var(--noite);--ink:var(--noite)}
+
+/* rodapé */
+.s:not(.nofoot)::after{content:counter(pg,decimal-leading-zero);position:absolute;right:120px;bottom:48px;font:500 18px/1 'JetBrains Mono',monospace;color:var(--ter)}
+.foot{position:absolute;left:120px;bottom:48px;font:500 15px/1 'Instrument Sans';letter-spacing:.18em;text-transform:uppercase;color:var(--ter);display:flex;gap:18px;align-items:center}
+.foot i{width:10px;height:10px;background:var(--c);display:inline-block}
+.s.limao .foot i{outline:1px solid #c9c23a}
+
+/* título duas linhas */
+.t{font-family:'Instrument Sans';text-transform:uppercase;color:var(--ink);line-height:.95;letter-spacing:-.005em;margin-bottom:44px}
+.t span{display:block;font-weight:400;font-size:64px}
+.t b{display:block;font-weight:700;font-size:64px}
+.s.limao .t{color:var(--noite)}
+.kicker{font:600 17px/1 'Instrument Sans';letter-spacing:.2em;text-transform:uppercase;color:var(--ink);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:12px;height:12px;background:var(--c)}
+p,li{font-size:27px;line-height:1.45;color:var(--sec);font-weight:400}
+strong{color:var(--texto);font-weight:600}
+.lead{font-size:30px;line-height:1.4;color:var(--texto);font-weight:400}
+.small{font-size:21px;line-height:1.45;color:var(--ter)}
+.mono{font-family:'JetBrains Mono',monospace}
+h3{font:600 27px/1.2 'Instrument Sans';color:var(--texto);margin-bottom:10px}
+ul.b{list-style:none}
+ul.b li{position:relative;padding-left:28px;margin-bottom:10px}
+ul.b li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;background:var(--c)}
+
+/* painel lateral colorido */
+.panel{position:absolute;top:0;right:0;bottom:0;width:560px;background:var(--c)}
+.panel.w420{width:420px}
+.panel svg{position:absolute;inset:0;width:100%;height:100%}
+.withpanel{width:1100px}
+
+/* grids */
+.row{display:flex;gap:40px}
+.col{flex:1}
+.card{background:var(--sup);padding:36px 36px;border-top:6px solid var(--c)}
+.card p{font-size:23px}
+.tag{display:inline-block;font:600 14px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;padding:8px 12px;background:var(--c);color:#fff;margin-bottom:16px}
+.s.limao .tag{color:var(--noite)}
+
+/* capa */
+.capa{padding:0;display:flex}
+.capa .l{flex:1;padding:110px 120px;display:flex;flex-direction:column;justify-content:space-between}
+.capa .r{width:760px;position:relative;background:var(--noite)}
+.capa h1{font:700 150px/.9 'Instrument Sans';letter-spacing:-.03em;color:var(--texto)}
+.capa h1 em{font-style:normal;font-weight:400}
+.logo8{display:inline-flex;align-items:center;gap:14px;font:700 54px/1 'Instrument Sans';letter-spacing:-.02em}
+.logo8 b{display:inline-grid;place-items:center;width:52px;height:60px;border:3px solid currentColor;border-radius:10px;font-size:36px;font-weight:500}
+
+/* divisor */
+.div{padding:0;display:flex;align-items:stretch}
+.div .l{flex:1;padding:120px;display:flex;flex-direction:column;justify-content:center}
+.div .num{font:700 220px/1 'Instrument Sans';color:var(--c);letter-spacing:-.04em}
+.div.limao .num{color:var(--noite)}
+.div h2{font:700 96px/.95 'Instrument Sans';text-transform:uppercase;color:var(--texto);margin:20px 0 30px}
+.div h2 span{font-weight:400;display:block}
+
+/* números */
+.stat{display:flex;align-items:center;gap:30px;padding:26px 0;border-bottom:1px solid var(--linha)}
+.stat .n{font:600 88px/1 'Instrument Sans';color:var(--ink);min-width:230px;letter-spacing:-.02em}
+.stat p{font-size:25px;flex:1}
+.stat .src{font:500 15px/1.3 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--ter);width:210px;text-align:right}
+
+/* timeline duplo diamante */
+.dd{display:flex;gap:0;margin-top:10px}
+.ph{flex:1;padding:0 34px 0 0;position:relative}
+.ph .dia{height:150px;position:relative;margin-bottom:34px}
+.ph .dia svg{width:100%;height:100%}
+.ph .st{font:600 15px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px;display:flex;gap:10px;align-items:center}
+.ph h3{font-size:34px;margin-bottom:4px}
+.ph .when{font:500 17px/1 'JetBrains Mono';color:var(--ter);margin-bottom:20px}
+.ph li{font-size:23px;margin-bottom:6px}
+.here{position:absolute;top:-58px;left:50%;transform:translateX(-50%);background:var(--noite);color:#fff;font:600 16px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;padding:12px 16px;white-space:nowrap}
+.here::after{content:"";position:absolute;left:50%;bottom:-10px;margin-left:-10px;border:10px solid transparent;border-bottom:0;border-top-color:var(--noite)}
+
+/* imagens */
+.shot{border:1px solid var(--linha);border-radius:18px;overflow:hidden;background:#fff;}
+.shot img{display:block;width:100%}
+.cap{font:500 15px/1.3 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--ter);margin-top:14px}
+.obj{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.obj figure{background:#fff}
+.obj .im{aspect-ratio:4/3;background:var(--sup);overflow:hidden}
+.obj img{width:100%;height:100%;object-fit:cover;display:block}
+.obj figcaption{padding-top:12px}
+.obj figcaption b{display:block;font:600 18px/1.2 'Instrument Sans';color:var(--texto);margin-bottom:4px}
+.obj figcaption span{font-size:16px;line-height:1.35;color:var(--sec);display:block}
+
+/* paleta */
+.pal{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:230px 230px;gap:0;border:1px solid var(--linha)}
+.sw{padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;color:#fff}
+.sw b{font:600 24px/1.1 'Instrument Sans'}
+.sw small{font:500 16px/1.3 'JetBrains Mono';opacity:.92}
+.sw em{font-style:normal;font:500 14px/1.2 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+
+/* canvas modelo de negócio */
+.lc{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:1fr 1fr 230px;gap:14px;height:740px}
+.lc>div{background:var(--sup);padding:22px 22px}
+.lc h4{font:600 14px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.lc p,.lc li{font-size:18px;line-height:1.4}
+.lc ul.b li{padding-left:18px;margin-bottom:6px}
+.lc ul.b li::before{width:7px;height:7px;top:.6em}
+.open{background:#fff!important;border:2px dashed var(--c)}
+
+.phones{display:flex;gap:30px;align-items:flex-start}
+.phone{width:318px;border-radius:30px;overflow:hidden;border:8px solid #18181b;background:#18181b}
+.phone img{display:block;width:100%;border-radius:22px}
+.ref li{font-size:21px;line-height:1.4;margin-bottom:8px;color:var(--sec)}
+
+.tb{width:100%;border-collapse:collapse}
+.tb th{font:600 17px/1.2 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-align:left;padding:0 18px 14px 0;border-bottom:2px solid var(--c)}
+.tb td{font-size:27px;line-height:1.3;color:var(--sec);padding:19px 22px 19px 0;border-bottom:1px solid var(--linha);vertical-align:top}
+.tb td:first-child{color:var(--texto);font-weight:600}
+.tb.num td:not(:first-child),.tb.num th:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-size:25px}
+.tb tr.tot td{color:var(--texto);font-weight:600;border-bottom:0;border-top:2px solid var(--c)}
+.bigs{display:grid;grid-template-columns:repeat(3,1fr);gap:0 60px}
+.bigs>div{padding:30px 0;border-top:1px solid rgba(255,255,255,.22)}
+.bigs .n{font:600 120px/1 'Instrument Sans';letter-spacing:-.03em;color:#fff}
+.bigs p{color:rgba(255,255,255,.78);font-size:25px;margin-top:10px}
+.s.escuro{background:var(--noite)}
+.s.escuro .t{color:#fff}.s.escuro .foot,.s.escuro::after{color:rgba(255,255,255,.6)!important}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.ep{background:var(--sup);padding:34px 30px 38px;border-top:6px solid var(--c)}
+.ep .k{font:500 16px/1 'JetBrains Mono',monospace;color:var(--ter);margin-bottom:12px}
+.ep h3{font-size:32px;margin-bottom:14px}
+.ep p{font-size:22px;line-height:1.4}
+.fase{flex:1;border-top:6px solid var(--c);padding-top:18px}
+.fase .k{font:500 17px/1 'JetBrains Mono',monospace;color:var(--ter);margin-bottom:10px}
+.fase h3{font-size:32px;margin-bottom:12px}.fase p{font-size:23px;line-height:1.4}
+.phone.sm{width:280px}
+
+.case h4{font:600 19px/1 'Instrument Sans';letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 22px}
+.case p,.case li{font-size:27px;line-height:1.45}
+.case ol{padding-left:30px}.case ol li{margin-bottom:6px;padding-left:6px}
+.valor{position:absolute;right:120px;top:96px;text-align:right}
+.valor small{display:block;font:600 15px/1 'Instrument Sans';letter-spacing:.18em;text-transform:uppercase;color:var(--ter);margin-bottom:8px}
+.valor b{font:700 34px/1 'Instrument Sans';color:var(--ink);letter-spacing:.02em}
+.q{font:500 38px/1.3 'Instrument Sans';color:var(--texto)}
+.q strong{font-weight:700}
+.passo{flex:1;border-top:6px solid var(--c);padding-top:20px}
+.passo .k{font:500 17px/1 'JetBrains Mono',monospace;color:var(--ter);margin-bottom:14px}
+.passo p{font-size:23px;line-height:1.4}
+.passo.final p{color:var(--texto)}
+.tb.bm td{font-size:21px}.tb.bm td:first-child{font-size:23px}
+</style>
+</head>
+<body>
+
+<section class="s capa nofoot">
+  <div class="l">
+    <div class="kicker" style="--c:var(--verde);color:var(--texto)">Projeto VII · TCC · Design PUCPR</div>
+    <div>
+      <h1><em>PROJETO</em><br>VII</h1>
+      <p class="lead" style="margin-top:40px;max-width:820px">O processo do TCC: pesquisa, definição, referências visuais, solução, modelo de negócio e campanha do BASE8.</p>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><p style="font:600 26px 'Instrument Sans';color:var(--texto)">Bruno Higashi</p><p class="small">Novembro de 2026</p></div>
+    </div>
+  </div>
+  <div class="r">
+    <svg viewBox="0 0 760 1080" style="position:absolute;inset:0;width:100%;height:100%">
+      <rect x="0" y="0" width="380" height="270" fill="#0B8FE0"/>
+      <rect x="380" y="0" width="380" height="270" fill="#F5EE4A"/>
+      <rect x="0" y="810" width="253" height="270" fill="#FF48B0"/>
+      <rect x="253" y="810" width="507" height="270" fill="#12A180"/>
+      <circle cx="380" cy="405" r="135" fill="none" stroke="#fff" stroke-width="3"/>
+      <circle cx="380" cy="675" r="135" fill="none" stroke="#fff" stroke-width="3"/>
+    </svg>
+    <img src="img/logo/BASE8_logo_branca@2x.png" style="position:absolute;left:150px;width:460px;top:612px">
+  </div>
+</section>
+
+<section class="s noite">
+  <h1 class="t" style=""><span>O</span><b>processo</b></h1>
+  <div class="mid">
+  <p class="lead" style="max-width:1300px;margin-top:-14px;margin-bottom:96px">Segui o Duplo Diamante, do Design Council. Descoberta, definição e desenvolvimento estão fechados. Agora estou na <strong>entrega</strong>: relatório final, apresentação e campanha.</p>
+  <div class="dd">
+    <div class="ph">
+      <div class="dia"><svg viewBox="0 0 400 150" preserveAspectRatio="none"><polygon points="0,75 200,0 400,75 200,150" fill="#0B8FE0"/></svg></div>
+      <div class="st" style="color:var(--riso)">✓ concluída</div>
+      <h3>Discover</h3><div class="when">ago – set</div>
+      <ul class="b" style="--c:var(--riso)"><li>Pesquisa exploratória em 5 eixos</li><li>Levantamento de público</li><li>Entrevista e questionário</li></ul>
+    </div>
+    <div class="ph">
+      <div class="dia"><svg viewBox="0 0 400 150" preserveAspectRatio="none"><polygon points="0,0 200,75 0,150" fill="#FF48B0"/><polygon points="0,0 400,75 0,150" fill="#FF48B0" opacity=".0"/><polygon points="0,0 400,75 0,150" fill="#FF48B0"/></svg></div>
+      <div class="st" style="color:#E0329A">✓ concluída</div>
+      <h3>Define</h3><div class="when">set</div>
+      <ul class="b" style="--c:var(--rosa)"><li>Pergunta projetual</li><li>Benchmarking de marca (4 refs)</li><li>DNA: valor, 4 pilares, 8 vertentes</li></ul>
+    </div>
+    <div class="ph">
+      
+      <div class="dia"><svg viewBox="0 0 400 150" preserveAspectRatio="none"><polygon points="0,75 200,0 400,75 200,150" fill="#12A180"/></svg></div>
+      <div class="st" style="color:var(--verde)">✓ concluída</div>
+      <h3>Develop</h3><div class="when">set – nov</div>
+      <ul class="b" style="--c:var(--verde)"><li>Benchmarking de estratégias</li><li>Solução, estrutura e telas</li><li>Identidade, nome e logo</li><li>Protótipo, negócio e campanha</li></ul>
+    </div>
+    <div class="ph">
+      <div class="here">Estou aqui</div><div class="dia"><svg viewBox="0 0 400 150" preserveAspectRatio="none"><polygon points="0,75 200,0 400,75 200,150" fill="#1B1F3B"/><polygon points="200,0 400,75 200,150" fill="#fff" opacity=".55"/></svg></div>
+      <div class="st" style="color:var(--noite)">● em andamento</div>
+      <h3>Deliver</h3><div class="when">nov</div>
+      <ul class="b" style="--c:var(--noite)"><li>Relatório final</li><li>Apresentação em 27/11</li><li>Peças da campanha</li></ul>
+    </div>
+  </div>
+  </div>
+  <div class="foot"><i></i>Visão geral</div>
+</section>
+
+<section class="s div riso nofoot">
+  <div class="l"><div class="num">01</div><h2><span>O que</span>pesquisei</h2><p class="lead" style="max-width:900px">Pesquisa exploratória, recorte de tema e de público, dados de mercado e pesquisa de campo. É a base que sustenta a pergunta projetual.</p></div>
+  <div class="panel" style="position:relative;width:640px"><svg viewBox="0 0 640 1080"><circle cx="320" cy="430" r="190" fill="none" stroke="#fff" stroke-width="18"/><line x1="455" y1="565" x2="590" y2="700" stroke="#fff" stroke-width="30" stroke-linecap="round"/><rect x="60" y="80" width="70" height="70" fill="#fff"/><rect x="150" y="160" width="40" height="40" fill="#fff"/><rect x="500" y="900" width="80" height="80" fill="#fff"/><rect x="440" y="960" width="36" height="36" fill="#fff"/></svg></div>
+</section>
+
+<section class="s riso">
+  <div class="withpanel mid">
+    <h1 class="t" style=""><span>Ponto de</span><b>partida</b></h1>
+    <div class="kicker">Questionamento inicial · agosto</div>
+    <p class="q">“De que forma o uso de agentes de código pode apoiar <strong>designers-empreendedores</strong> na ampliação do seu campo de atuação empresarial para <strong>áreas de negócio</strong> nas quais não possuem expertise (como viabilidade de mercado e produção)?”</p>
+    <p style="margin-top:50px;max-width:1000px">Foi a pergunta que abriu a pesquisa exploratória. Na fase de definição, o designer-empreendedor e as áreas de negócio saíram, e a tecnologia ganhou nome: <strong>IA de código</strong>.</p>
+  </div>
+  <div class="panel w420"><svg viewBox="0 0 420 1080"><rect x="90" y="300" width="240" height="160" fill="none" stroke="#fff" stroke-width="12"/><rect x="40" y="460" width="340" height="26" fill="#fff"/><circle cx="330" cy="140" r="40" fill="#fff"/><circle cx="420" cy="930" r="220" fill="#fff"/></svg></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style=""><span>Objetivos</span><b>da pesquisa</b></h1>
+  <div class="mid"><div class="row" style="gap:80px">
+    <div class="col"><div class="kicker">Fase 1 · entender</div><ul class="b" style="--c:var(--riso)"><li style="font-size:27px">Mapear como a IA generativa vem sendo estudada no <strong>processo de design</strong> e na ampliação de competências de designers e desenvolvedores.</li><li style="font-size:27px">Investigar <strong>frameworks de colaboração humano-IA</strong> aplicáveis a um designer atuando fora do seu domínio.</li><li style="font-size:27px">Levantar <strong>riscos e perspectivas críticas</strong> para orientar um uso responsável da IA.</li></ul></div>
+    <div class="col"><div class="kicker">Fase 2 · fazer</div><ul class="b" style="--c:var(--riso)"><li style="font-size:27px">Conduzir a pesquisa de mercado e de viabilidade <strong>com apoio de IA</strong>, documentando o processo.</li><li style="font-size:27px">Construir o artefato com <strong>ferramentas de IA de código</strong>.</li><li style="font-size:27px">Avaliar criticamente <strong>onde a IA ajudou, onde falhou</strong> e que validação humana continuou necessária.</li></ul></div>
+  </div></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style=""><span>Pesquisa</span><b>exploratória</b></h1>
+  <div class="mid"><div class="row" style="gap:28px">
+  <div class="col card"><span class="tag">Primeiro enfoque</span><h3 style="font-size:32px;margin-bottom:18px">Princípios de design para IA generativa</h3><ul class="b"><li style="font-size:21px">Design responsável</li><li style="font-size:21px">Para a variabilidade generativa</li><li style="font-size:21px">Para modelos mentais</li><li style="font-size:21px">Para cocriação</li><li style="font-size:21px">Para confiança e dependência apropriadas</li><li style="font-size:21px">Para a imperfeição</li></ul><p class="small" style="margin-top:14px;color:var(--sec)">A solução precisa atender a esses seis princípios.</p><p class="small" style="margin-top:10px">Weisz et al., CHI 2024</p></div><div class="col card"><span class="tag">Segundo enfoque</span><h3 style="font-size:32px;margin-bottom:18px">Colaboração humano-IA</h3><ul class="b"><li style="font-size:21px">Três níveis: <strong>assistência passiva</strong>, cocriação interativa e colaboração proativa</li><li style="font-size:21px">Sistema GSM (DALL-E + robótica): dar ao humano o controle da <strong>autonomia da IA</strong> aumenta a flexibilidade criativa sem perda de autoria</li></ul><p class="small" style="margin-top:14px;color:var(--sec)">Há frameworks consolidados, mas nenhum focado no designer usando IA para executar.</p><p class="small" style="margin-top:10px">ACM, 2023</p></div><div class="col card"><span class="tag">Terceiro enfoque</span><h3 style="font-size:32px;margin-bottom:18px">Riscos e perspectivas críticas</h3><ul class="b"><li style="font-size:21px"><strong>Deskilling:</strong> erosão de competências quando a execução é delegada à IA</li><li style="font-size:21px"><strong>Cognitive offloading:</strong> transferir também o julgamento, e não só a execução</li><li style="font-size:21px"><strong>Fixação de design:</strong> polir o resultado gerado em vez de entender o problema</li></ul><p class="small" style="margin-top:14px;color:var(--sec)">Pesquisas de 2024 a 2026 já documentam esses riscos.</p><p class="small" style="margin-top:10px">Ironies of AI-Assisted Design</p></div>
+  </div></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style=""><span>Recorte</span><b>de tema</b></h1>
+  <div class="mid">
+  <p class="lead" style="max-width:1560px;margin-bottom:60px">As IAs abrem um horizonte de oportunidades e, ao mesmo tempo, assustam justamente pelo que as torna inovadoras. Como na Revolução Industrial, o mercado já está se adaptando. Cabe às pessoas encontrar o caminho para se manterem atualizadas.</p>
+  <div class="row" style="gap:60px">
+    <div class="col"><div class="kicker">O mercado já adotou</div><p><strong>88%</strong> das organizações usam IA em ao menos uma função. O uso de IA generativa saltou de <strong>33% para 72%</strong> entre 2024 e 2025.</p><p class="small" style="margin-top:12px">McKinsey, 2025</p></div>
+    <div class="col"><div class="kicker">Quem sabe menos ganha mais</div><p>Com o GitHub Copilot, tarefas saem <strong>55% mais rápido</strong>. Iniciantes ganham 52% de produtividade; os mais experientes, 40%. A IA abre espaço para quem quer atuar <strong>fora da própria área</strong>.</p><p class="small" style="margin-top:12px">GitHub, 2022</p></div>
+    <div class="col"><div class="kicker">O paradoxo</div><p><strong>95%</strong> dos pilotos corporativos de IA generativa não geram impacto financeiro. O que falta é <strong>integrar as ferramentas ao trabalho</strong> de forma estruturada.</p><p class="small" style="margin-top:12px">MIT, 2025</p></div>
+  </div>
+  </div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style="margin-bottom:24px"><span>Justificativa</span><b>do recorte</b></h1>
+  <div class="mid"><div class="kicker">Desenvolvedores com IA de código</div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">88%</div><p>se sentiram mais produtivos.</p><div class="src">GitHub Research 2022</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">77%</div><p>gastam menos tempo buscando informação.</p><div class="src">GitHub Blog</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">87%</div><p>relatam menos esforço mental em tarefas repetitivas.</p><div class="src">GitHub Blog</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">88%</div><p>de aumento de produtividade em tarefas repetitivas.</p><div class="src">Menlo Ventures</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">55%</div><p>mais agilidade para completar uma tarefa de código com o GitHub Copilot.</p><div class="src">Microsoft</div></div></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style="margin-bottom:24px"><span>Justificativa</span><b>do recorte</b></h1>
+  <div class="mid"><div class="kicker">Empresas e mercado</div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">88%</div><p>das empresas globais já adotam IA em ao menos uma função de negócio.</p><div class="src">McKinsey 2025</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">40%</div><p>dos projetos de IA agêntica correm risco de cancelamento até 2027, por falhas de integração e custo.</p><div class="src">Gartner 2025</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">80%</div><p>dos usuários de ferramentas low-code estarão fora da área técnica de TI em 2026.</p><div class="src">Gartner 2026</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">95%</div><p>dos testes corporativos não geram valor por falta de adaptação ao fluxo de trabalho.</p><div class="src">MIT 2025</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">29%</div><p>dos desenvolvedores confiam totalmente no código gerado por IA: a validação humana continua.</p><div class="src">Uvik 2026</div></div></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style=""><span>Recorte</span><b>de público</b></h1>
+  <div class="mid"><div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+  <div class="card" style="padding:30px 36px"><span class="tag">Idade</span><p style="font-size:25px">Sem recorte fixo: do início de carreira a gestores e fundadores. O que define o público é a posição, e não a idade.</p></div><div class="card" style="padding:30px 36px"><span class="tag">Formação</span><p style="font-size:25px">Superior em design (gráfico, digital ou UX/UI) ou áreas próximas de produto e tecnologia. Inclui gestão em agências, estúdios e startups.</p></div><div class="card" style="padding:30px 36px"><span class="tag">Atuação</span><p style="font-size:25px">Design digital, gráfico, product design e áreas próximas. Como independente, em time interno ou à frente de uma operação.</p></div><div class="card" style="padding:30px 36px"><span class="tag">Posicionamento</span><p style="font-size:25px">Domina o design, mas quer <strong>ampliar a atuação</strong> para o que excede a sua formação, usando a IA de código como apoio.</p></div>
+  </div></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <div class="withpanel mid">
+    <h1 class="t" style=""><span>Relação com IA</span><b>e comunicação</b></h1>
+    <div class="kicker">Relação com IA</div>
+    <p>Já usa ou está começando a usar IA no trabalho e quer aplicá-la de forma <strong>mais estruturada</strong>. Não é um público que precisa ser convencido a experimentar: é um público que já experimenta. O problema deixa de ser convencer e passa a ser <strong>organizar</strong>.</p>
+    <div class="kicker" style="margin-top:56px">Comunicação</div>
+    <p><strong>Simples e didática</strong>, sem linguagem técnica demais. Traduz conceitos em benefícios concretos, usa analogias e exemplos práticos e guia a curva de aprendizado. Gera confiança e curiosidade a partir de <strong>resultados visíveis</strong>.</p>
+  </div>
+  <div class="panel w420"><svg viewBox="0 0 420 1080"><circle cx="210" cy="420" r="120" fill="none" stroke="#fff" stroke-width="12"/><circle cx="210" cy="660" r="120" fill="none" stroke="#fff" stroke-width="12"/><rect x="40" y="60" width="60" height="60" fill="#fff"/><rect x="320" y="960" width="60" height="60" fill="#fff"/></svg></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style="margin-bottom:24px"><span>Justificativa</span><b>do público</b></h1>
+  <div class="mid"><div class="kicker">Designers e criadores</div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">65%</div><p>dos designers já assumem mais responsabilidades de produto e engenharia.</p><div class="src">Designer Fund 2026</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">91%</div><p>dos designers usam IA toda semana em tarefas de design, contra 54% em 2025.</p><div class="src">Designer Fund 2026</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">50%</div><p>dos designers já enviaram código gerado por IA direto para produção.</p><div class="src">Designer Fund 2026</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">87%</div><p>dos criadores dizem que a IA generativa acelerou o crescimento do próprio negócio.</p><div class="src">Adobe 2026</div></div><div class="stat" style="padding:20px 0"><div class="n" style="font-size:78px;min-width:220px">41%</div><p>dos líderes de pequenas e médias empresas já pilotam agentes de IA em decisões.</p><div class="src">Upwork 2026</div></div></div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t"><span>Pesquisa</span><b>de campo</b></h1>
+  <div class="mid">
+  <div class="row" style="gap:40px">
+    <div class="col card">
+      <span class="tag">Questionário · n = 5</span>
+      <div style="font:600 96px/1 'Instrument Sans';color:var(--riso);margin:10px 0 6px">1,4<span style="font-size:40px;color:var(--ter)"> / 5</span></div>
+      <p>Confiança em aceitar código de IA <strong>sem revisão</strong>. Foi o resultado mais firme: nenhuma resposta acima de 2.</p>
+      <p style="margin-top:18px">Erros mais vistos: lógica de negócio (3 de 5) e segurança (2 de 5). Sensação de “perder prática”: 3,8 / 5.</p>
+    </div>
+    <div class="col card">
+      <span class="tag">Entrevista E1 · Dados / BI</span>
+      <h3 style="margin-top:10px">Revisão humana continua obrigatória</h3>
+      <p>Mesmo com uso diário e maduro.</p>
+      <h3 style="margin-top:22px">Resultado genérico vem de contexto fraco</h3>
+      <p>Um guia de marca bem montado, usado como contexto, evita a “cara de IA”.</p>
+      <h3 style="margin-top:22px">Entender o “como”, não só o “o quê”</h3>
+      <p>É a habilidade que ela recomenda para designers.</p>
+    </div>
+    <div class="col" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div style="border-left:8px solid var(--riso);padding-left:30px">
+        <p style="font:500 30px/1.35 'Instrument Sans';color:var(--texto)">“O designer pode seguir em frente e codar o frontend utilizando IA, desde que tenha noção mínima.”</p>
+        <p class="small" style="margin-top:14px">Respondente fullstack, questionário (texto levemente padronizado)</p>
+      </div>
+      <div>
+        <div class="kicker" style="margin-top:30px">Status</div>
+        <p style="font-size:21px">1 entrevista feita (meta 6 a 10). Roteiros E2 (gestão/MBA) e E3 (capacitação em IA) prontos, aplicação pendente. Por isso, os dados ainda são <strong>indícios</strong>.</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="foot"><i></i>01 · Pesquisa</div>
+</section>
+
+<section class="s div rosa nofoot">
+  <div class="l"><div class="num">02</div><h2><span>Como</span>defini</h2><p class="lead" style="max-width:900px">Pergunta projetual, benchmarking de marca, DNA do projeto e benchmarking de estratégias. São os critérios para julgar cada decisão.</p></div>
+  <div class="panel" style="position:relative;width:640px"><svg viewBox="0 0 640 1080"><g fill="none" stroke="#fff" stroke-width="10"><circle cx="320" cy="540" r="90"/><circle cx="320" cy="540" r="190"/><circle cx="320" cy="540" r="290"/><line x1="320" y1="250" x2="320" y2="350"/><line x1="320" y1="730" x2="320" y2="830"/><line x1="30" y1="540" x2="130" y2="540"/><line x1="510" y1="540" x2="610" y2="540"/></g></svg></div>
+</section>
+
+<section class="s rosa">
+  <div class="withpanel mid">
+    <h1 class="t" style=""><span>Pergunta</span><b>projetual</b></h1>
+    <p class="q" style="font-size:50px;line-height:1.25">Como posso <strong>potencializar as competências</strong> do designer e <strong>ampliar o alcance</strong> de sua atuação incorporando, por meio da <strong>IA de código</strong>, expertises técnicas que <strong>excedem sua formação</strong>?</p>
+  </div>
+  <div class="panel w420"><svg viewBox="0 0 420 1080"><circle cx="330" cy="140" r="56" fill="#fff"/><circle cx="170" cy="560" r="120" fill="#fff"/><circle cx="420" cy="930" r="250" fill="#fff"/><circle cx="60" cy="860" r="22" fill="#fff"/><circle cx="260" cy="330" r="30" fill="#fff"/></svg></div>
+  <div class="foot"><i></i>02 · Definição</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t" style=""><span>Como a pergunta</span><b>mudou</b></h1>
+  <div class="row" style="gap:36px">
+    <div class="passo"><div class="k">AGO · QUESTIONAMENTO INICIAL</div><p>“De que forma o uso de IA generativa pode apoiar <strong>designers-empreendedores</strong> na ampliação do seu campo de atuação empresarial para <strong>áreas de negócio</strong> nas quais não possuem expertise?”</p></div>
+    <div class="passo"><div class="k">SET · VERSÃO INTERMEDIÁRIA</div><p>“Como a <strong>IA agêntica</strong> pode apoiar designers a atuarem em campos empresariais fora do seu domínio técnico?”</p></div>
+    <div class="passo final"><div class="k">OUT · PERGUNTA FECHADA</div><p>“Como posso potencializar as competências do designer e ampliar o alcance de sua atuação incorporando, por meio da <strong>IA de código</strong>, expertises técnicas que excedem sua formação?”</p></div>
+  </div>
+  <div class="kicker" style="margin-top:70px">O que mudou</div>
+  <div class="row" style="gap:36px">
+    <div class="col"><h3>Saiu o designer-empreendedor</h3><p style="font-size:23px">O recorte não é abrir um negócio, e sim ampliar uma atuação que já existe.</p></div>
+    <div class="col"><h3>O limite é técnico</h3><p style="font-size:23px">“Áreas de negócio” virou “expertises técnicas”: 50% dos designers já põem código de IA em produção.</p></div>
+    <div class="col"><h3>IA de código</h3><p style="font-size:23px">“IA generativa” e “IA agêntica” eram amplas demais. O código é o limite que o designer está ultrapassando.</p></div>
+  </div>
+  <div class="foot"><i></i>02 · Definição</div>
+</section>
+
+<section class="s rosa" style="padding-right:60px">
+  <div style="display:flex;gap:40px;align-items:center;height:100%">
+    <div style="width:800px;flex:none">
+      <h1 class="t" style=""><span>Benchmarking</span><b>Duolingo</b></h1>
+      <p style="font-size:26px">O maior app de educação do mundo transformou uma missão séria numa experiência <strong>gamificada</strong>, viciante e com marca muito forte. É referência em três frentes: <strong>engajamento</strong> (gamificação, sequências, personalização por IA), comunicação de marca ousada e <strong>retenção</strong> em escala.</p>
+      <div class="kicker" style="margin-top:40px">Personalidade</div>
+      <p style="font:600 34px/1.2 'Instrument Sans';color:var(--texto)">Carismático e caótico</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:center"><svg width="760" height="760" viewBox="-430 -430 860 860"><circle r="410" fill="#FFE3F3"/><circle r="275" fill="#FFC2E5"/><circle r="135" fill="#FF48B0"/><line x1="0.0" y1="-275.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="-194.5" x2="289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="275.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="194.5" x2="289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="275.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="194.5" x2="-289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="-275.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="-194.5" x2="-289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="-135.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="8"/><line x1="135.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="8"/><line x1="0.0" y1="135.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="8"/><line x1="-135.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="8"/><circle r="135" fill="none" stroke="#fff" stroke-width="8"/><circle r="275" fill="none" stroke="#fff" stroke-width="8"/><text y="8" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="21" fill="#fff">ACESSIBILIDADE</text><text x="145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">GAMIFICAÇÃO</text><text x="145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">PERSONALIZAÇÃO</text><text x="-145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">IRREVERÊNCIA</text><text x="-145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">COMUNIDADE</text><text x="131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">lúdica</text><text x="316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">viciante</text><text x="316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">adaptativa</text><text x="131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">inteligente</text><text x="-131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">ousada</text><text x="-316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">sarcástica</text><text x="-316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">coletiva</text><text x="-131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">competitiva</text></svg></div>
+  </div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de marca</div>
+</section>
+
+<section class="s rosa" style="padding-right:60px">
+  <div style="display:flex;gap:40px;align-items:center;height:100%">
+    <div style="width:800px;flex:none">
+      <h1 class="t" style=""><span>Benchmarking</span><b>PAAR</b></h1>
+      <p style="font-size:26px">O Programa de Atletas de Alto Rendimento incorpora atletas às Forças Armadas com salário, centro de treinamento e equipe técnica. Em Paris 2024, os atletas do programa trouxeram <strong>11 das 20 medalhas</strong> do Brasil. É a tese deste projeto em forma de instituição: <strong>incorporar as expertises</strong> que o indivíduo não domina e liberá-lo para o que só ele faz.</p>
+      <div class="kicker" style="margin-top:40px">Personalidade</div>
+      <p style="font:600 34px/1.2 'Instrument Sans';color:var(--texto)">Disciplinado e patriótico</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:center"><svg width="760" height="760" viewBox="-430 -430 860 860"><circle r="410" fill="#FFE3F3"/><circle r="275" fill="#FFC2E5"/><circle r="135" fill="#FF48B0"/><line x1="0.0" y1="-275.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="-194.5" x2="289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="275.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="194.5" x2="289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="275.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="194.5" x2="-289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="-275.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="-194.5" x2="-289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="-135.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="8"/><line x1="135.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="8"/><line x1="0.0" y1="135.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="8"/><line x1="-135.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="8"/><circle r="135" fill="none" stroke="#fff" stroke-width="8"/><circle r="275" fill="none" stroke="#fff" stroke-width="8"/><text y="8" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="25" fill="#fff">INCORPORAÇÃO</text><text x="145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">ESTRUTURA</text><text x="145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">ESTABILIDADE</text><text x="-145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">REPRESENTAÇÃO</text><text x="-145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">MÉRITO</text><text x="131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">especializada</text><text x="316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">integrada</text><text x="316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">previsível</text><text x="131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">duradoura</text><text x="-131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">orgulhosa</text><text x="-316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">nacional</text><text x="-316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">exigente</text><text x="-131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">seletiva</text></svg></div>
+  </div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de marca</div>
+</section>
+
+<section class="s rosa" style="padding-right:60px">
+  <div style="display:flex;gap:40px;align-items:center;height:100%">
+    <div style="width:800px;flex:none">
+      <h1 class="t" style=""><span>Benchmarking</span><b>Patreon</b></h1>
+      <p style="font-size:26px">A plataforma de financiamento recorrente liga o criador direto ao seu público. Resolve o mesmo problema deste projeto em outro contexto: dar a um profissional autônomo a estrutura para <strong>operar sozinho</strong> o que antes exigia uma indústria. A plataforma assume pagamento e gestão; o criador fica com o seu <strong>ofício</strong>.</p>
+      <div class="kicker" style="margin-top:40px">Personalidade</div>
+      <p style="font:600 34px/1.2 'Instrument Sans';color:var(--texto)">Íntimo e encorajador</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:center"><svg width="760" height="760" viewBox="-430 -430 860 860"><circle r="410" fill="#FFE3F3"/><circle r="275" fill="#FFC2E5"/><circle r="135" fill="#FF48B0"/><line x1="0.0" y1="-275.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="-194.5" x2="289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="275.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="194.5" x2="289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="275.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="194.5" x2="-289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="-275.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="-194.5" x2="-289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="-135.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="8"/><line x1="135.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="8"/><line x1="0.0" y1="135.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="8"/><line x1="-135.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="8"/><circle r="135" fill="none" stroke="#fff" stroke-width="8"/><circle r="275" fill="none" stroke="#fff" stroke-width="8"/><text y="8" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="25" fill="#fff">INDEPENDÊNCIA</text><text x="145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">AUTORIA</text><text x="145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">PROXIMIDADE</text><text x="-145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">SUSTENTAÇÃO</text><text x="-145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">PERTENCIMENTO</text><text x="131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">livre</text><text x="316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">autoral</text><text x="316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">direta</text><text x="131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">humana</text><text x="-131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">recorrente</text><text x="-316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">confiável</text><text x="-316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">exclusiva</text><text x="-131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">íntima</text></svg></div>
+  </div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de marca</div>
+</section>
+
+<section class="s rosa" style="padding-right:60px">
+  <div style="display:flex;gap:40px;align-items:center;height:100%">
+    <div style="width:800px;flex:none">
+      <h1 class="t" style=""><span>Benchmarking</span><b>PUCPR</b></h1>
+      <p style="font-size:26px">A marca é voltada “para quem quer criar o futuro” e promete <strong>“questionamos o conhecido”</strong>: a postura do designer que vai além da sua formação. O discurso vira prática em metodologias ativas, no ecossistema Hotmilk e na formação humanística. E é onde este trabalho é feito, o que torna a análise <strong>próxima e verificável</strong>.</p>
+      <div class="kicker" style="margin-top:40px">Personalidade</div>
+      <p style="font:600 34px/1.2 'Instrument Sans';color:var(--texto)">Caloroso e encorajador</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:center"><svg width="760" height="760" viewBox="-430 -430 860 860"><circle r="410" fill="#FFE3F3"/><circle r="275" fill="#FFC2E5"/><circle r="135" fill="#FF48B0"/><line x1="0.0" y1="-275.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="-194.5" x2="289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="275.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="194.5" x2="289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="275.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="194.5" x2="-289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="-275.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="-194.5" x2="-289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="-135.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="8"/><line x1="135.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="8"/><line x1="0.0" y1="135.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="8"/><line x1="-135.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="8"/><circle r="135" fill="none" stroke="#fff" stroke-width="8"/><circle r="275" fill="none" stroke="#fff" stroke-width="8"/><text y="8" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="21" fill="#fff">QUESTIONAMENTO</text><text x="145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">INOVAÇÃO</text><text x="145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">EXCELÊNCIA</text><text x="-145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">HUMANISMO</text><text x="-145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">CONEXÃO</text><text x="131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">empreendedora</text><text x="316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">ágil</text><text x="316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">criteriosa</text><text x="131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">reconhecida</text><text x="-131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">marista</text><text x="-316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">comunitária</text><text x="-316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">global</text><text x="-131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">profissional</text></svg></div>
+  </div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de marca</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t" style=""><span>Benchmarking</span><b>síntese</b></h1>
+  <div class="mid">
+  <table class="tb bm"><tr><th style="width:16%">Referência</th><th style="width:20%">Valor</th><th style="width:40%">Diretrizes</th><th>Personalidade</th></tr>
+  <tr><td>Duolingo</td><td>Acessibilidade</td><td>Gamificação, personalização, irreverência, comunidade</td><td>Carismático, caótico</td></tr><tr><td>PAAR</td><td>Incorporação</td><td>Estrutura, estabilidade, representação, mérito</td><td>Disciplinado, patriótico</td></tr><tr><td>Patreon</td><td>Independência</td><td>Autoria, proximidade, sustentação, pertencimento</td><td>Íntimo, encorajador</td></tr><tr><td>PUCPR</td><td>Questionamento</td><td>Inovação, excelência, humanismo, conexão</td><td>Caloroso, encorajador</td></tr></table>
+  <p class="lead" style="margin-top:46px">Das quatro rodas saiu uma só: o <strong>DNA do projeto</strong>.</p>
+  </div>
+  <div class="foot"><i></i>02 · Definição</div>
+</section>
+
+<section class="s rosa" style="padding-right:0">
+  <div style="display:flex;gap:40px;align-items:center;height:100%">
+    <div style="width:760px">
+      <h1 class="t"><span>DNA do</span><b>projeto</b></h1>
+      <div class="kicker">Encorajador e didático</div>
+      <p class="lead">Ampliar o alcance da atuação do designer por meio de uma comunicação <strong>encorajadora e didática</strong>. Uma formação prática e sistêmica, com acesso personalizado e progressivo, que abre caminho para uma inovação ousada e gamificada, e leva esse alcance a uma conexão profissional e coletiva.</p>
+      <p class="small" style="margin-top:30px">Esses 13 termos viraram o vocabulário fixo do projeto: toda decisão volta a eles.</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:center"><svg width="860" height="860" viewBox="-430 -430 860 860"><circle r="410" fill="#FFE3F3"/><circle r="275" fill="#FFC2E5"/><circle r="135" fill="#FF48B0"/><line x1="0.0" y1="-275.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="-194.5" x2="289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="275.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="194.5" y1="194.5" x2="289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="275.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="194.5" x2="-289.9" y2="289.9" stroke="#fff" stroke-width="4"/><line x1="-275.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="4"/><line x1="-194.5" y1="-194.5" x2="-289.9" y2="-289.9" stroke="#fff" stroke-width="4"/><line x1="0.0" y1="-135.0" x2="0.0" y2="-410.0" stroke="#fff" stroke-width="8"/><line x1="135.0" y1="0.0" x2="410.0" y2="0.0" stroke="#fff" stroke-width="8"/><line x1="0.0" y1="135.0" x2="0.0" y2="410.0" stroke="#fff" stroke-width="8"/><line x1="-135.0" y1="0.0" x2="-410.0" y2="0.0" stroke="#fff" stroke-width="8"/><circle r="135" fill="none" stroke="#fff" stroke-width="8"/><circle r="275" fill="none" stroke="#fff" stroke-width="8"/><text y="8" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="21" fill="#fff">POTENCIALIZAÇÃO</text><text x="145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">HOLÍSTICA</text><text x="145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="19" fill="#1B1F3B">ACESSIBILIDADE</text><text x="-145.0" y="153.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">INOVAÇÃO</text><text x="-145.0" y="-137.0" text-anchor="middle" font-family="Instrument Sans" font-weight="700" font-size="23" fill="#1B1F3B">CONEXÃO</text><text x="131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">sistêmica</text><text x="316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">prática</text><text x="316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">personalizada</text><text x="131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">progressiva</text><text x="-131.1" y="323.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">gamificado</text><text x="-316.4" y="138.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">ousado</text><text x="-316.4" y="-124.1" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">profissional</text><text x="-131.1" y="-309.4" text-anchor="middle" font-family="Figtree" font-weight="500" font-size="20" fill="#1B1F3B">coletividade</text></svg></div>
+  </div>
+  <div class="foot"><i></i>02 · Definição</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t"><span>Benchmarking</span><b>de estratégias</b></h1>
+  <div class="mid">
+  <div class="row" style="gap:60px;margin-bottom:46px;align-items:flex-end">
+    <p class="lead" style="flex:1">Inverti a direção: parti de cada valor do DNA e busquei no mercado (e fora dele) quem entrega esse valor bem. Lidos juntos, os 13 princípios se resumem a cinco ideias.</p>
+    <div style="display:flex;gap:40px">
+      <div><div style="font:600 80px/1 'Instrument Sans';color:var(--ink)">13</div><p class="small">alvos do DNA</p></div>
+      <div><div style="font:600 80px/1 'Instrument Sans';color:var(--ink)">39</div><p class="small">fichas analisadas</p></div>
+    </div>
+  </div>
+  <div class="row" style="gap:20px">
+    <div class="col card"><div class="mono" style="font-size:30px;color:var(--ink);margin-bottom:12px">01</div><h3>Descobrir em vez de perguntar</h3><p>O sistema descobre o nível pelo que a pessoa faz, e não pelo que ela diz.</p><p class="small" style="margin-top:12px">Duolingo, faixas do judô</p></div>
+    <div class="col card"><div class="mono" style="font-size:30px;color:var(--ink);margin-bottom:12px">02</div><h3>A estrutura assume o técnico</h3><p>A ferramenta supre o que falta. A decisão de projeto fica com o designer.</p><p class="small" style="margin-top:12px">PAAR, v0, boxes da F1</p></div>
+    <div class="col card"><div class="mono" style="font-size:30px;color:var(--ink);margin-bottom:12px">03</div><h3>Artefato real como medida</h3><p>O progresso é o que a pessoa entrega, e não o tempo de tela.</p><p class="small" style="margin-top:12px">The Odin Project, Bauhaus</p></div>
+    <div class="col card"><div class="mono" style="font-size:30px;color:var(--ink);margin-bottom:12px">04</div><h3>Errar sem perder o conquistado</h3><p>A falha sempre tem uma saída barata. Nada de punição.</p><p class="small" style="margin-top:12px">Nintendo, Duolingo</p></div>
+    <div class="col card"><div class="mono" style="font-size:30px;color:var(--ink);margin-bottom:12px">05</div><h3>Pares no lugar do professor</h3><p>O apoio vem de pessoas com papéis claros, e não de uma autoridade única.</p><p class="small" style="margin-top:12px">GitHub, brigada de cozinha</p></div>
+  </div>
+  </div>
+  <div class="foot"><i></i>02 · Definição</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t" style=""><span>Benchmarking</span><b>de estratégias</b></h1>
+  <div class="valor"><small>Valor atingido</small><b>POTENCIALIZAÇÃO</b></div>
+  <div class="kicker" style="margin-top:-10px">PAAR · Programa de Atletas de Alto Rendimento</div>
+  <div class="mid"><div class="row case" style="gap:80px">
+    <div class="col"><h4>Como funciona</h4><ol><li>Cada Força abre edital público de alistamento voluntário.</li><li>A seleção converte o histórico esportivo em pontuação: medalhas viram nota.</li><li>Aprovado, o atleta recebe soldo, 13º, férias e assistência médica, com nutricionista e fisioterapeuta.</li><li>Treina nas instalações militares, com equipe multidisciplinar.</li><li>Em troca, representa as Forças Armadas e o Brasil. O vínculo dura até oito anos.</li></ol></div>
+    <div class="col"><h4>Por que é forte</h4><p>O programa não premia o resultado: <strong>financia a condição</strong> para o resultado. A bolsa por desempenho chega depois do pódio; o soldo chega antes e compra o que de fato trava, o <strong>tempo integral de prática</strong>. E o custo é baixo, porque a estrutura cara já existia: pista, piscina, médico. O atleta é realocado para dentro de algo que já estava de pé.</p></div>
+  </div></div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de estratégias</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t" style=""><span>Benchmarking</span><b>de estratégias</b></h1>
+  <div class="valor"><small>Valor atingido</small><b>POTENCIALIZAÇÃO</b></div>
+  <div class="kicker" style="margin-top:-10px">PAAR · Programa de Atletas de Alto Rendimento</div>
+  <div class="mid"><div class="row case" style="gap:80px">
+    <div class="col"><h4>Limite</h4><p>A porta de entrada é o <strong>resultado passado</strong>: o programa sustenta quem já performa, e não quem está começando. É um acelerador de elite, e não uma rampa de acesso. Some-se o vínculo temporário e a hierarquia militar: parte da autonomia sobre a própria trajetória fica com a instituição.</p></div>
+    <div class="col"><h4>Transferência</h4><p>Adoto o princípio de que <strong>a estrutura assume tudo</strong> que não é a competência central do designer. E recuso o critério de entrada por resultado prévio: aqui a incorporação precisa valer para quem <strong>ainda não tem portfólio técnico</strong>. Senão, o mecanismo entrega POTENCIALIZAÇÃO ao custo de ACESSIBILIDADE.</p></div>
+  </div></div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de estratégias</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t" style=""><span>Benchmarking</span><b>de estratégias</b></h1>
+  <div class="valor"><small>Valor atingido</small><b>HOLÍSTICA</b></div>
+  <div class="kicker" style="margin-top:-10px">PUCPR · Eixo humanístico + Projeto Comunitário</div>
+  <div class="mid"><div class="row case" style="gap:80px">
+    <div class="col"><h4>Como funciona</h4><ol><li>Cultura Religiosa, Ética e Filosofia entram na grade de todos os cursos, não como eletiva.</li><li>Essas disciplinas ficam nos períodos iniciais, antes da especialização.</li><li>Soma-se o Projeto Comunitário, com coordenação própria, separada da escola do aluno.</li><li>Todo estudante cumpre 30 horas de voluntariado em instituições parceiras.</li><li>O conjunto é a formação “Gente Boa”, apresentada como um diploma que complementa o do curso.</li></ol></div>
+    <div class="col"><h4>Por que é forte</h4><p>A visão do todo não é conteúdo extra: é <strong>obrigação estrutural</strong>. O aluno é colocado diante de alguém que não fala a língua do seu curso e tem de responder a ele. E, ao nomear o conjunto e apresentá-lo como credencial, a instituição transforma a “matéria obrigatória chata” em parte da <strong>identidade</strong> de quem se forma.</p></div>
+  </div></div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de estratégias</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t" style=""><span>Benchmarking</span><b>de estratégias</b></h1>
+  <div class="valor"><small>Valor atingido</small><b>HOLÍSTICA</b></div>
+  <div class="kicker" style="margin-top:-10px">PUCPR · Eixo humanístico + Projeto Comunitário</div>
+  <div class="mid"><div class="row case" style="gap:80px">
+    <div class="col"><h4>Limite</h4><p>O eixo fica nos períodos iniciais, quando o aluno ainda <strong>não tem repertório técnico</strong> para ligar a ética à sua prática: a conexão é oferecida antes de existir a peça a conectar. Na minha leitura, o Projeto Comunitário <strong>mede horas</strong>, e não integração. E a obrigatoriedade sem escolha é o mais fácil de esvaziar: vira taxa a pagar.</p></div>
+    <div class="col"><h4>Transferência</h4><p>O projeto adota a obrigação de <strong>responder a alguém de fora do design</strong>, mas troca a métrica: em vez de horas cumpridas, cada entrega feita com IA de código passa por um interlocutor do domínio invadido (dev, analista, gestor). E essa camada não fica no começo, porque aqui ela só faz sentido quando já existe <strong>artefato na mão</strong>.</p></div>
+  </div></div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de estratégias</div>
+</section>
+
+<section class="s rosa">
+  <h1 class="t" style=""><span>Benchmarking</span><b>de estratégias</b></h1>
+  <div class="valor"><small>Valor atingido</small><b>HOLÍSTICA</b></div>
+  <div class="kicker" style="margin-top:-10px">OMS · Checklist cirúrgico de segurança</div>
+  <div class="mid"><div class="row case" style="gap:80px">
+    <div class="col"><h4>Como funciona</h4><ol><li>São 19 itens, desenhados para melhorar a comunicação da equipe, e não a técnica cirúrgica.</li><li>O fluxo tem três paradas: antes da anestesia, antes da incisão e antes de o paciente sair da sala.</li><li>Cada item é dito em voz alta e respondido por quem responde por ele: cirurgião, anestesista, enfermagem.</li><li>É uma folha curta, e não um manual: cabe no tempo real do procedimento.</li><li>Antes da incisão, cada membro da equipe se apresenta por nome e função.</li></ol></div>
+    <div class="col"><h4>Por que é forte</h4><p>O todo não precisa ser aprendido: precisa estar <strong>presente no instante da decisão</strong>. Um ritual curto, obrigatório e falado faz mais do que um treinamento sobre pensamento sistêmico, porque age quando a informação ainda pode mudar a ação. Falar em voz alta transforma o saber de cada especialista em <strong>saber compartilhado</strong>.</p></div>
+  </div></div>
+  <div class="foot"><i></i>02 · Definição · Benchmarking de estratégias</div>
+</section>
+
+<section class="s div limao nofoot">
+  <div class="l"><div class="num">03</div><h2><span>Referências</span>visuais</h2><p class="lead" style="max-width:900px">Painel semântico, objetos de referência e a linguagem visual que saiu deles: paleta, tipografia, nome, logo, direção da interface e brandbook.</p></div>
+  <div class="panel" style="position:relative;width:640px"><svg viewBox="0 0 640 1080"><rect x="80" y="120" width="220" height="220" fill="#1B1F3B"/><rect x="340" y="120" width="220" height="220" fill="#FF48B0"/><rect x="80" y="380" width="220" height="220" fill="#0B8FE0"/><rect x="340" y="380" width="220" height="220" fill="#12A180"/><rect x="80" y="640" width="480" height="220" fill="#fff"/></svg></div>
+</section>
+
+<section class="s limao" style="padding-top:80px">
+  <div style="display:flex;gap:56px;height:100%">
+    <div style="width:520px;flex:none">
+      <h1 class="t"><span>Painel</span><b>semântico</b></h1>
+      <p style="font-size:23px">Reuni ilustrações, cartazes e peças de artistas que conversam com o público criativo. Foi daqui que a paleta nasceu.</p>
+      <div class="kicker" style="margin-top:34px">O que tirei dele</div>
+      <ul class="b" style="--c:var(--noite)">
+        <li style="font-size:21px"><strong>Cor saturada e chapada</strong> sobre fundo branco</li>
+        <li style="font-size:21px"><strong>Acúmulo de objetos</strong> que formam uma figura maior</li>
+        <li style="font-size:21px"><strong>Gesto e pincelada</strong> como sinal de mão humana</li>
+        <li style="font-size:21px">Personagens <strong>expressivos</strong>, nada infantil</li>
+      </ul>
+      <p class="small" style="margin-top:24px">Decisão: a interface fica sóbria. O apelo estético vem da <strong>ilustração e da cor</strong>.</p>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:30px">
+      <div class="shot" style="border-radius:8px"><img src="img/moodboard.jpg"></div>
+      <div class="cap">Moodboard do projeto · FigJam · imagens de artistas reunidas pelo autor</div>
+    </div>
+  </div>
+  <div class="foot"><i></i>03 · Referências visuais</div>
+</section>
+
+<section class="s limao">
+  <h1 class="t"><span>Objetos de</span><b>referência</b></h1>
+  <p class="lead" style="margin-top:-14px;margin-bottom:40px;max-width:1550px">Objetos que misturam design, tecnologia e aprendizado. Eles guiam o tom: ferramenta profissional com cara de objeto querido. Também viraram as letras do logotipo.</p>
+  <div class="obj">
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/01_risografo.jpg"></div><figcaption><b>Risógrafo</b><span>Origem da paleta: tinta chapada e cor sobreposta.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/02_braun-et66.jpg"></div><figcaption><b>Braun ET66</b><span>Tecnologia com o mínimo e um único acento de cor.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/03_xadrez-bauhaus.jpg"></div><figcaption><b>Xadrez Bauhaus</b><span>Cada peça é sua função reduzida à geometria.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/05_te-op1.jpg"></div><figcaption><b>Teenage Eng. OP-1</b><span>Profissional com cara de brinquedo sério.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/06_olivetti-valentine.jpg"></div><figcaption><b>Olivetti Valentine</b><span>Ferramenta de trabalho tratada como objeto pop.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/07_macintosh-128k.jpg"></div><figcaption><b>Macintosh 128K</b><span>A máquina acessível a quem não programava.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/08_game-boy.jpg"></div><figcaption><b>Game Boy</b><span>Tecnologia limitada e muito amada.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/11_arduino-uno.jpg"></div><figcaption><b>Arduino</b><span>Prototipar sem ser engenheiro.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/13_cartao-perfurado.jpg"></div><figcaption><b>Cartão perfurado</b><span>O primeiro código era físico: grade e binário.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/15_lego.jpg"></div><figcaption><b>LEGO</b><span>Peças pequenas viram estruturas grandes.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/20_regua-de-calculo.jpg"></div><figcaption><b>Régua de cálculo</b><span>A “IA” de antes: potencializava quem calculava.</span></figcaption></figure>
+    <figure><div class="im"><img src="../../Projeto VII/06_Identidade_Visual/referencias_objetos/23_terminal-vt100.jpg"></div><figcaption><b>Terminal VT100</b><span>A tela de texto onde o código vive.</span></figcaption></figure>
+  </div>
+  <div class="foot"><i></i>03 · Referências visuais</div>
+</section>
+
+<section class="s limao">
+  <h1 class="t"><span>Linguagem</span><b>visual</b></h1>
+  <div class="mid">
+  <div class="row" style="gap:70px">
+    <div style="width:980px">
+      <div class="kicker">Paleta · Risografia + verde-água</div>
+      <div class="pal">
+        <div class="sw" style="background:#fff;color:var(--noite);grid-row:span 2;border-right:1px solid var(--linha)"><em>Fundo</em><div><b>Possibilidades</b><br><small>#FFFFFF</small></div></div>
+        <div class="sw" style="background:#1B1F3B"><em>Base</em><div><b>Descoberta</b><br><small>#1B1F3B</small></div></div>
+        <div class="sw" style="background:#12A180"><em>Ação · Home</em><div><b>Criatividade</b><br><small>#12A180</small></div></div>
+        <div class="sw" style="background:#F5EE4A;color:var(--noite)"><em>Trilha</em><div><b>Adaptação</b><br><small>#F5EE4A</small></div></div>
+        <div class="sw" style="background:#FF48B0"><em>Praticar</em><div><b>Ousadia</b><br><small>#FF48B0</small></div></div>
+      </div>
+      <div class="sw" style="background:#0B8FE0;height:110px;flex-direction:row;align-items:center;border:1px solid var(--linha);border-top:0"><em>Comunidade</em><div style="margin-left:auto;text-align:right"><b>Conectividade</b> <small style="margin-left:10px">#0B8FE0</small></div></div>
+      <p class="small" style="margin-top:20px">Uma área, uma cor. Texto em cinzas frios. Branco puro, sem creme. Verde escurecido para passar no contraste com texto branco (3,3:1, texto grande).</p>
+    </div>
+    <div style="flex:1">
+      <div class="kicker">Tipografia</div>
+      <div style="border-bottom:1px solid var(--linha);padding-bottom:28px;margin-bottom:28px">
+        <div style="font:600 150px/1 'Instrument Sans';color:var(--texto);letter-spacing:-.03em">Aa</div>
+        <h3 style="margin-top:10px">Instrument Sans</h3>
+        <p style="font-size:20px">Títulos, nome e números. Grotesca com desenho atual e firme.</p>
+      </div>
+      <div>
+        <div style="font:300 150px/1 Figtree;color:var(--texto);letter-spacing:-.02em">Aa</div>
+        <h3 style="margin-top:10px">Figtree</h3>
+        <p style="font-size:20px">Texto corrido. Arredondada, leve e fácil de ler em tela pequena.</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="foot"><i></i>03 · Referências visuais</div>
+</section>
+
+<section class="s limao">
+  <h1 class="t" style=""><span>Nome</span><b>e logo</b></h1>
+  <div class="row" style="gap:80px">
+    <div style="width:620px;flex:none">
+      <ul class="b" style="--c:var(--noite)">
+        <li><strong>Base</strong> é fundamento: a base de design que o designer já tem, mais a base técnica que ele ganha.</li>
+        <li><strong>8</strong> são as oito vertentes do DNA.</li>
+        <li><strong>Base 8</strong> é o sistema octal da computação. E 8 em binário é 1000: “o oito que vale mil”.</li>
+      </ul>
+      <p class="small" style="margin-top:24px">Nome fechado em 23/10. Logo oficial em 24/11: “BASE” em Instrument Sans Bold, azul-noite, com a bola 8 colorida.</p>
+    </div>
+    <div style="flex:1">
+      <div class="shot" style="border-radius:8px;padding:70px 80px;background:#fff"><img src="img/logo/BASE8_logo_principal@2x.png" style="width:100%"></div>
+      <div class="row" style="gap:24px;margin-top:24px">
+        <div class="col"><div class="shot" style="border-radius:8px;height:230px;background:#fff;display:grid;place-items:center;padding:20px"><img src="img/rascunho-logo-crop.jpg" style="max-width:100%;max-height:190px;width:auto"></div><div class="cap">Rascunho: letras feitas de objetos</div></div>
+        <div class="col"><div class="shot" style="border-radius:8px;height:230px;background:#fff;display:grid;place-items:center;padding:20px"><img src="img/logo/BASE8_logo_construcao.png" style="max-width:100%;max-height:190px;width:auto"></div><div class="cap">Construção: grid de 34 × 9 módulos</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><i></i>03 · Referências visuais</div>
+</section>
+
+<section class="s limao">
+  <div style="display:flex;gap:70px;height:100%">
+    <div style="width:700px;flex:none">
+      <h1 class="t" style=""><span>Direção</span><b>da interface</b></h1>
+      <p style="font-size:24px">A primeira versão das telas ficou simples demais e divertida demais para um público profissional. Reescrevi a direção como <strong>editorial sóbria</strong>.</p>
+      <div class="kicker" style="margin-top:34px">Princípios</div>
+      <ul class="b" style="--c:var(--noite)"><li style="font-size:23px">A <strong>tipografia</strong> carrega a hierarquia</li><li style="font-size:23px"><strong>Linha</strong> antes de caixa</li><li style="font-size:23px">Fundo branco; a <strong>cor</strong> é acento, não enfeite</li><li style="font-size:23px">Gamificação com <strong>tratamento sóbrio</strong></li><li style="font-size:23px">Movimento <strong>curto</strong> e com propósito</li></ul>
+    </div>
+    <div style="flex:1;display:flex;gap:44px;justify-content:center;align-items:flex-start;padding-top:20px">
+      <div><div class="phone"><img src="img/m-inicio.png"></div><div class="cap">Antes</div></div>
+      <div><div class="phone"><img src="img/v2/m-inicio.jpg"></div><div class="cap">Depois</div></div>
+    </div>
+  </div>
+  <div class="foot"><i></i>03 · Referências visuais</div>
+</section>
+
+<section class="s limao" style="padding-top:80px">
+  <h1 class="t" style="margin-bottom:30px"><span>Ilustração</span><b>e tema escuro</b></h1>
+  <div class="row" style="gap:36px">
+    <div style="flex:1.25"><div class="shot" style="border-radius:8px"><img src="img/v2/w-landing.jpg"></div><div class="cap">Landing · flores em arte ASCII, geradas por código a partir de vídeo</div></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:22px">
+      <div><div class="shot" style="border-radius:8px"><img src="img/v2/w-inicio-escuro.jpg"></div><div class="cap">Tema escuro · os papéis de cor se mantêm</div></div>
+    </div>
+  </div>
+  <p style="margin-top:26px;font-size:22px;max-width:1500px">A ilustração da marca é feita de <strong>caracteres coloridos</strong>. Ela liga o apelo visual ao assunto do produto, que é o código, e ocupa o lugar que antes era de formas geométricas soltas.</p>
+  <div class="foot"><i></i>03 · Referências visuais</div>
+</section>
+
+<section class="s limao" style="padding-top:80px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px">
+    <h1 class="t" style="margin:0"><span>Brand</span><b>book</b></h1>
+    <p class="small" style="max-width:820px;text-align:right">32 pranchas geradas por script no Illustrator: nome, cores, aplicação, contraste, áreas, tipografia e a <strong>logo oficial</strong>.</p>
+  </div>
+  <div class="g3"><div class="shot" style="border-radius:6px"><img src="img/v2/bb-01.jpg"></div><div class="shot" style="border-radius:6px"><img src="img/v2/bb-09.jpg"></div><div class="shot" style="border-radius:6px"><img src="img/v2/bb-10.jpg"></div><div class="shot" style="border-radius:6px"><img src="img/v2/bb-11.jpg"></div><div class="shot" style="border-radius:6px"><img src="img/v2/bb-12.jpg"></div><div class="shot" style="border-radius:6px"><img src="img/v2/bb-13.jpg"></div></div>
+  <div class="foot"><i></i>03 · Referências visuais</div>
+</section>
+
+<section class="s div verde nofoot">
+  <div class="l"><div class="num">04</div><h2><span>Modelo de</span>solução</h2><p class="lead" style="max-width:900px">O BASE8: um hub web e mobile onde designers aprendem IA de código na prática e trocam com outros designers.</p></div>
+  <div class="panel" style="position:relative;width:640px"><svg viewBox="0 0 640 1080"><g fill="none" stroke="#fff" stroke-width="12"><circle cx="320" cy="400" r="150"/><circle cx="320" cy="690" r="150"/></g><circle cx="320" cy="400" r="40" fill="#fff"/></svg></div>
+</section>
+
+<section class="s verde">
+  <h1 class="t"><span>A</span><b>solução</b></h1>
+  <div class="mid">
+  <p class="lead" style="margin-top:-14px;margin-bottom:46px;max-width:1550px">Um hub que junta <strong>trilha de aprendizagem e comunidade</strong>. O designer não vira programador: ele ganha a parte técnica que falta e continua dono das decisões de projeto.</p>
+  <div class="row" style="gap:24px">
+    <div class="col card" style="--c:var(--noite)"><span class="tag">Entrada</span><h3>Onboarding + nivelamento</h3><p>Pergunta a área e o objetivo. Quem já usa IA faz um teste curto que define o ponto de partida.</p><p class="small" style="margin-top:14px">DNA: personalizada</p></div>
+    <div class="col card" style="--c:#c9c23a"><span class="tag" style="background:var(--limao);color:var(--noite)">Educação</span><h3>Trilha, Praticar, Cursos, Proficiência</h3><p>Lições curtas com prática na hora, checkpoints por módulo, cursos feitos pela comunidade e prova de proficiência.</p><p class="small" style="margin-top:14px">DNA: progressiva, sistêmica, prática</p></div>
+    <div class="col card" style="--c:var(--riso)"><span class="tag">Comunidade</span><h3>Feed só com tags</h3><p>Pergunta, projeto, dica ou recurso. Cada lição tem um fio de dúvidas, que liga Educação e Comunidade.</p><p class="small" style="margin-top:14px">DNA: coletividade, profissional</p></div>
+    <div class="col card" style="--c:var(--rosa)"><span class="tag">Perfil</span><h3>XP, nível e ranking de amigos</h3><p>XP é a única pontuação. Na comunidade, só resposta útil rende XP, com teto. Sem punição por ausência.</p><p class="small" style="margin-top:14px">DNA: gamificado</p></div>
+  </div>
+  <div class="row" style="margin-top:40px;gap:40px">
+    <p style="flex:1;font-size:21px"><strong>O que mudou no caminho:</strong> a primeira versão tinha um pet (polvo) com moedas e roupinhas. Tirei em 09/10 porque deixava o app infantil. O público é profissional.</p>
+    <p style="flex:1;font-size:21px"><strong>“Ousado”</strong> não virou tela: está na comunicação e no tom do projeto como um todo.</p>
+  </div>
+  </div>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde" style="padding-top:80px">
+  <div style="display:flex;gap:50px">
+    <div style="width:470px;flex:none">
+      <h1 class="t"><span>Estrutura e</span><b>referências</b></h1>
+      <p style="font-size:21px;margin-bottom:24px">Cada área do hub tem uma referência de produto e o que aproveito dela.</p>
+      <div style="display:grid;gap:16px">
+        <div><h3 style="font-size:22px;margin:0">Duolingo</h3><p style="font-size:18px">Trilha, nivelamento, “pular etapa”, XP por lição.</p></div>
+        <div><h3 style="font-size:22px;margin:0">Reddit</h3><p style="font-size:18px">Comunidades por área, tags no post, fio de comentários.</p></div>
+        <div><h3 style="font-size:22px;margin:0">Udemy</h3><p style="font-size:18px">Página de curso: “o que você vai aprender”, autor e inscrição.</p></div>
+        <div><h3 style="font-size:22px;margin:0">Patreon</h3><p style="font-size:18px">Perfil de criador e convite “seja um criador”.</p></div>
+        <div><h3 style="font-size:22px;margin:0">Gym Rats</h3><p style="font-size:18px">Grupo de amigos com placar.</p></div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="shot" style="border-radius:8px"><img src="img/estrutura.jpg"></div>
+      <div class="cap">Estrutura revisada do hub no FigJam · cada nó traz o valor do DNA e a referência visual</div>
+    </div>
+  </div>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <h1 class="t" style=""><span>O</span><b>protótipo</b></h1>
+    <div style="display:flex;gap:50px;text-align:right">
+      <div><div style="font:600 72px/1 'Instrument Sans';color:var(--verde)">31</div><p class="small">telas em código</p></div>
+      <div><div style="font:600 72px/1 'Instrument Sans';color:var(--verde)">2</div><p class="small">versões: celular e computador</p></div>
+    </div>
+  </div>
+  <div style="margin-top:-10px"><div class="phones"><div><div class="phone"><img src="img/v2/m-inicio.jpg"></div><div class="cap">Home</div></div><div><div class="phone"><img src="img/v2/m-educacao.jpg"></div><div class="cap">Trilha</div></div><div><div class="phone"><img src="img/v2/m-praticar.jpg"></div><div class="cap">Praticar</div></div><div><div class="phone"><img src="img/v2/m-comunidade.jpg"></div><div class="cap">Comunidade</div></div><div><div class="phone"><img src="img/v2/m-perfil.jpg"></div><div class="cap">Perfil</div></div></div></div>
+  <div class="foot"><i></i>04 · Solução · Protótipo de alta fidelidade em Next.js + React, construído com IA de código</div>
+</section>
+
+<section class="s verde">
+  <div style="display:flex;gap:60px;height:100%">
+    <div style="width:560px;flex:none">
+      <h1 class="t" style=""><span>Entrada e</span><b>nivelamento</b></h1>
+      <div class="kicker">Primeiro acesso</div>
+      <ul class="b"><li style="font-size:25px">Cadastro com e-mail ou conta de terceiros</li><li style="font-size:25px">Três perguntas: <strong>objetivo, área e experiência</strong> com IA</li><li style="font-size:25px">Consentimento separado por finalidade</li><li style="font-size:25px">Nivelamento com <strong>8 situações reais</strong> de projeto</li><li style="font-size:25px">Dá para responder “ainda não sei” ou pular</li></ul>
+      <p class="small" style="margin-top:22px">DNA: personalizada</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:flex-end;padding-top:6px"><div class="phones"><div><div class="phone"><img src="img/v2/m-entrar.jpg"></div><div class="cap">Entrar</div></div><div><div class="phone"><img src="img/v2/m-onboarding.jpg"></div><div class="cap">Onboarding</div></div><div><div class="phone"><img src="img/v2/m-nivelamento.jpg"></div><div class="cap">Nivelamento</div></div></div></div>
+  </div>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde">
+  <div style="display:flex;gap:60px;height:100%">
+    <div style="width:560px;flex:none">
+      <h1 class="t" style=""><span>Aprender</span><b>e praticar</b></h1>
+      <div class="kicker">Educação</div>
+      <ul class="b"><li style="font-size:25px">Lição curta em etapas: leitura, antes e depois, conferência e prática</li><li style="font-size:25px"><strong>Anotações e dúvidas da aula</strong> junto do conteúdo</li><li style="font-size:25px">Laboratório: ligar e desligar trechos do prompt e ver o resultado mudar</li><li style="font-size:25px">Atividade com <strong>parecer por critério</strong></li><li style="font-size:25px">Teste de proficiência: 10 questões, 70% para passar</li></ul>
+      <p class="small" style="margin-top:22px">DNA: progressiva, sistêmica, prática</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:flex-end;padding-top:6px"><div class="phones"><div><div class="phone"><img src="img/v2/m-licao.jpg"></div><div class="cap">Lição</div></div><div><div class="phone"><img src="img/v2/m-praticar.jpg"></div><div class="cap">Laboratório</div></div><div><div class="phone"><img src="img/v2/m-resultado.jpg"></div><div class="cap">Parecer</div></div></div></div>
+  </div>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde">
+  <div style="display:flex;gap:60px;height:100%">
+    <div style="width:560px;flex:none">
+      <h1 class="t" style=""><span>Comunidade</span><b>e perfil</b></h1>
+      <div class="kicker">Troca e progresso</div>
+      <ul class="b"><li style="font-size:25px">Feed <strong>por tags</strong>, sem feed genérico</li><li style="font-size:25px">Pergunta com trecho de prompt ou de código</li><li style="font-size:25px"><strong>Resposta aceita</strong> rende XP a quem ajudou</li><li style="font-size:25px">Dúvida ligada à lição aparece dentro da aula</li><li style="font-size:25px">Perfil: nível, XP, sequência, ranking de amigos e selos</li></ul>
+      <p class="small" style="margin-top:22px">DNA: coletividade, profissional, gamificado</p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:flex-end;padding-top:6px"><div class="phones"><div><div class="phone"><img src="img/v2/m-comunidade.jpg"></div><div class="cap">Feed</div></div><div><div class="phone"><img src="img/v2/m-post.jpg"></div><div class="cap">Post</div></div><div><div class="phone"><img src="img/v2/m-perfil.jpg"></div><div class="cap">Perfil</div></div></div></div>
+  </div>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde" style="padding-top:80px">
+  <h1 class="t" style="margin-bottom:34px"><span>Versão para</span><b>computador</b></h1>
+  <div class="mid">
+  <div class="row" style="gap:36px">
+    <div class="col"><div class="shot"><img src="img/v2/w-inicio.jpg"></div><div class="cap">Home · próximo passo e meta do dia</div></div>
+    <div class="col"><div class="shot"><img src="img/v2/w-licao.jpg"></div><div class="cap">Lição · roteiro, anotações e dúvidas da aula</div></div>
+  </div>
+  <p style="margin-top:34px;font-size:22px;max-width:1600px">O celular é para o <strong>hábito diário</strong>. O computador é para as <strong>sessões longas</strong>: praticar com a IA de código, escrever um post maior ou criar um minicurso. As duas versões usam o mesmo código.</p>
+  </div>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde" style="padding-top:80px">
+  <h1 class="t" style="margin-bottom:34px"><span>Ferramentas</span><b>para computador</b></h1>
+  <div class="mid">
+  <div class="row" style="gap:36px">
+    <div class="col"><div class="shot"><img src="img/v2/w-minicurso.jpg"></div><div class="cap">Criar minicurso · estrutura, aulas, prévia e lista antes de publicar</div></div>
+    <div class="col"><div class="shot"><img src="img/v2/w-moderacao.jpg"></div><div class="cap">Moderação · denúncia no contexto e decisão registrada</div></div>
+  </div>
+  <p style="margin-top:34px;font-size:22px;max-width:1600px">Se a comunidade alimenta o hub, a qualidade do conteúdo vira um ponto crítico. O editor dá a <strong>estrutura</strong> a quem cria, e a moderação é a <strong>resposta</strong> a esse risco.</p>
+  </div>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde" style="padding-top:80px">
+  <h1 class="t" style="margin-bottom:30px"><span>Landing</span><b>e objeto 3D</b></h1>
+  <div class="row" style="gap:36px">
+    <div style="flex:1.05"><div class="shot" style="border-radius:8px"><img src="img/v2/w-landing.jpg"></div><div class="cap">“Sua imaginação é o limite.”</div></div>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:start">
+      <div><div class="shot" style="border-radius:6px"><img src="img/v2/orb-k-1720.jpg"></div><div class="cap">Bolha de sabão</div></div><div><div class="shot" style="border-radius:6px"><img src="img/v2/orb-n-1900.jpg"></div><div class="cap">Bússola</div></div><div><div class="shot" style="border-radius:6px"><img src="img/v2/orb-n-3420.jpg"></div><div class="cap">Bola 8</div></div><div><div class="shot" style="border-radius:6px"><img src="img/v2/orb-v-tenis.jpg"></div><div class="cap">Bola de tênis</div></div>
+    </div>
+  </div>
+  <p style="margin-top:22px;font-size:22px;max-width:1600px">Ao rolar a página, um objeto 3D <strong>muda de forma</strong> e acompanha a leitura. Tudo foi feito em código, sem modelo pronto, e precisou de várias rodadas até convencer.</p>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s verde">
+  <h1 class="t" style=""><span>O que é real e</span><b>o que é simulado</b></h1>
+  <table class="tb"><tr><th style="width:30%">Parte</th><th style="width:35%">No protótipo</th><th>No produto final</th></tr>
+  <tr><td>Navegação e telas</td><td>Funcionam por completo</td><td>Sem mudança</td></tr><tr><td>Formulários</td><td>Validam os campos e mostram os erros</td><td>Gravam os dados</td></tr><tr><td>Cadastro e login</td><td>Levam direto à Home</td><td>Autenticação real</td></tr><tr><td>Dados (perfil, posts, progresso)</td><td>Exemplos fixos</td><td>Banco de dados por pessoa</td></tr><tr><td>Avaliação das atividades</td><td>Parecer de exemplo</td><td>Parecer gerado por IA a cada envio</td></tr><tr><td>Vídeo dos cursos</td><td>Espaço reservado</td><td>Player com os vídeos enviados</td></tr><tr><td>Conteúdo da trilha</td><td>Três lições completas</td><td>Grade completa</td></tr></table>
+  <p class="small" style="margin-top:24px">A entrega é um protótipo de alta fidelidade. O objetivo desta etapa era provar a experiência, e não a infraestrutura.</p>
+  <div class="foot"><i></i>04 · Solução</div>
+</section>
+
+<section class="s div noite nofoot"><div class="l"><div class="num">05</div><h2><span>Modelo de</span>negócio</h2><p class="lead" style="max-width:900px">Lean Canvas, referências de preço, modelo de receita, custos de operação e a projeção do primeiro ano em três cenários.</p></div><div class="panel" style="position:relative;width:640px"><svg viewBox="0 0 640 1080"><circle cx="320" cy="400" r="190" fill="none" stroke="#fff" stroke-width="10"/><circle cx="320" cy="400" r="70" fill="#fff"/><rect x="130" y="700" width="380" height="60" fill="#FF48B0"/><rect x="130" y="790" width="250" height="60" fill="#fff"/></svg></div></section>
+
+<section class="s noite" style="padding-top:80px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px">
+    <h1 class="t" style="margin:0"><span>Modelo de</span><b>negócio</b></h1>
+    <p class="small" style="max-width:640px;text-align:right">Formato do Lean Canvas. Os preços são <strong>valores de trabalho</strong>, a confirmar na pesquisa com designers.</p>
+  </div>
+  <div class="lc">
+    <div><h4>Problema</h4><ul class="b"><li>Falta um caminho de IA de código que fale a língua do designer</li><li>Código de IA exige revisão, e o designer não sabe o que revisar</li><li>Medo de perder prática (deskilling)</li></ul></div>
+    <div><h4>Solução</h4><ul class="b"><li>Trilha curta com prática na hora</li><li>Nivelamento por desempenho</li><li>Comunidade por tags ligada às lições</li><li>Prova de proficiência</li></ul></div>
+    <div style="grid-row:span 2;background:var(--noite)"><h4 style="color:#fff">Proposta de valor</h4><p style="color:#fff;font-size:24px;line-height:1.35;font-family:'Instrument Sans';font-weight:500">Entregar ao designer a parte técnica que falta e manter com ele a decisão de projeto e a validação do resultado.</p><p style="color:#fff;margin-top:20px;font-size:18px">“A base você já tem. O resto a gente te ensina.”</p></div>
+    <div><h4>Diferencial</h4><ul class="b"><li>Feito por designer, para designer</li><li>Interface cuidada para um público exigente</li><li>A comunidade alimenta o conteúdo no ritmo das ferramentas</li></ul></div>
+    <div style="grid-row:span 2"><h4>Público</h4><ul class="b"><li>Designers gráficos, digitais, UX/UI e de produto</li><li>Do início de carreira à gestão, em agências, estúdios e startups</li><li>Na comunicação, abre para criativos vizinhos</li></ul></div>
+    <div><h4>Métricas</h4><ul class="b"><li>Meta de lançamento: 500 cadastros</li><li>Lições concluídas por semana</li><li>Respostas úteis na comunidade</li></ul></div>
+    <div><h4>Canais</h4><ul class="b"><li>Campanha “Até onde?” (8 episódios)</li><li>Pôsteres e oficina na PUCPR</li><li>Indicação dentro da comunidade</li></ul></div>
+    <div style="grid-column:span 2"><h4>Custos</h4><ul class="b"><li>Produção feita por mim (design, código e campanha)</li><li>Infraestrutura: cerca de R$ 248 por mês</li><li>IA que avalia as atividades: cerca de R$ 0,04 cada</li><li>Campanha: de R$ 750 a R$ 3.660</li></ul></div>
+    <div style="grid-column:span 3"><h4>Receita · proposta</h4><ul class="b"><li><strong>Curso completo</strong>, pago uma vez: R$ 297</li><li><strong>Comissão de 20%</strong> sobre os cursos pagos de criadores</li><li><strong>Gratuito:</strong> comunidade, perfil e primeiras aulas</li><li><strong>Recusada:</strong> assinatura recorrente</li></ul></div>
+  </div>
+  <div class="foot"><i></i>05 · Negócio</div>
+</section>
+
+<section class="s noite">
+  <h1 class="t" style=""><span>Preço</span><b>e receita</b></h1>
+  <div class="row" style="gap:70px">
+    <div style="flex:1.15">
+      <div class="kicker">O que o designer encontra hoje</div>
+      <table class="tb"><tr><th>Referência</th><th>Preço em nov. 2026</th></tr>
+        <tr><td>Rocketseat ONE</td><td>R$ 659,10 por ano (promoção)</td></tr>
+        <tr><td>Origamid</td><td>R$ 468 por ano</td></tr>
+        <tr><td>Hotmart</td><td>fica com 9,9% + R$ 2,49 por venda</td></tr>
+        <tr><td>Udemy</td><td>fica com 63% das vendas que origina</td></tr>
+      </table>
+      <p class="small" style="margin-top:22px">Nenhuma parte do repertório do designer nem junta trilha, prática corrigida e comunidade no mesmo lugar.</p>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+      <div class="card"><span class="tag">Gratuito</span><p>Comunidade, perfil, primeiras aulas e cursos gratuitos de criadores.</p></div>
+      <div class="card"><span class="tag">R$ 297 · uma vez</span><p>Curso completo: trilha inteira, atividades avaliadas e teste de proficiência.</p></div>
+      <div class="card"><span class="tag">20% de comissão</span><p>Sobre os cursos pagos que os membros publicam. O criador escolhe se o curso é gratuito ou pago.</p></div>
+    </div>
+  </div>
+  <div class="foot"><i></i>05 · Negócio</div>
+</section>
+
+<section class="s noite">
+  <h1 class="t" style=""><span>Projeção do</span><b>primeiro ano</b></h1>
+  <div class="row" style="gap:70px">
+    <div style="flex:1.5">
+      <table class="tb num"><tr><th>Linha</th><th>Pessimista</th><th>Base</th><th>Otimista</th></tr>
+      <tr><td>Cadastros no ano</td><td>500</td><td>1.500</td><td>4.000</td></tr><tr><td>Conversão em compra</td><td>2%</td><td>4%</td><td>6%</td></tr><tr><td>Vendas do curso</td><td>10</td><td>60</td><td>240</td></tr><tr><td>Receita bruta</td><td>R$ 2.970</td><td>R$ 18.984</td><td>R$ 77.100</td></tr><tr><td>Taxas, impostos e custos</td><td>R$ 4.206</td><td>R$ 7.480</td><td>R$ 16.357</td></tr>
+      <tr class="tot"><td>Resultado do ano</td><td>−R$ 1.236</td><td>R$ 11.504</td><td>R$ 60.743</td></tr></table>
+      <p class="small" style="margin-top:22px">As taxas de conversão são premissas, e não dados medidos. O cenário pessimista conta só os 500 cadastros da meta da campanha.</p>
+    </div>
+    <div style="flex:1">
+      <div class="stat" style="padding-top:0"><div class="n" style="min-width:190px">20</div><p>vendas no ano pagam a infraestrutura e a campanha</p></div>
+      <div class="stat"><div class="n" style="min-width:190px">193</div><p>vendas no ano para pagar também o meu trabalho, pelo salário médio do designer gráfico</p></div>
+      <p style="font-size:26px;margin-top:30px">O BASE8 é viável como <strong>projeto paralelo</strong> desde o primeiro ano. Só vira fonte principal de renda com escala.</p>
+    </div>
+  </div>
+  <div class="foot"><i></i>05 · Negócio</div>
+</section>
+
+<section class="s div riso nofoot"><div class="l"><div class="num">06</div><h2><span>Plano de</span>divulgação</h2><p class="lead" style="max-width:900px">A campanha “Até onde?”: conceito, fases, canais, episódios, orçamento e metas do lançamento.</p></div><div class="panel" style="position:relative;width:640px"><svg viewBox="0 0 640 1080"><g fill="none" stroke="#fff" stroke-width="12"><path d="M130 540 C130 390 300 390 320 540 C340 690 510 690 510 540 C510 390 340 390 320 540 C300 690 130 690 130 540Z"/></g></svg></div></section>
+
+<section class="s riso pnw">
+  <div class="withpanel mid">
+    <h1 class="t"><span>Campanha de</span><b>lançamento</b></h1>
+    <div style="font:700 110px/1 'Instrument Sans';color:var(--texto);letter-spacing:-.03em;margin-bottom:30px">“Até onde?”</div>
+    <p class="lead">Toda peça <strong>provoca no começo e vira no fim</strong>. A provocação sozinha (“e se criar fosse tão fácil quanto pensar?”) daria a entender que a IA faz tudo. A virada devolve o protagonismo a quem cria.</p>
+    <div class="row" style="margin-top:44px;gap:30px">
+      <div class="col"><h3>8 episódios</h3><p style="font-size:21px">rabisco → site, frase → livro, batida → música… ideia → ∞</p></div>
+      <div class="col"><h3>13 semanas</h3><p style="font-size:21px">teaser com pôsteres sem marca, revelação, oficina na PUCPR</p></div>
+      <div class="col"><h3>8 → ∞</h3><p style="font-size:21px">o 8 que deita e vira infinito é o símbolo da campanha</p></div>
+    </div>
+  </div>
+  <div class="panel w420" style="display:flex;flex-direction:column;justify-content:center;padding:60px;color:#fff">
+    <p style="font:500 22px/1.4 'Instrument Sans';color:#fff;opacity:.85;margin-bottom:24px">Assinatura de todas as peças</p>
+    <p style="font:600 46px/1.15 'Instrument Sans';color:#fff">a base você já tem. o resto a gente te ensina.</p>
+  </div>
+  <div class="foot"><i></i>06 · Campanha</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style=""><span>Fases</span><b>e canais</b></h1>
+  <div class="row" style="gap:30px;margin-top:10px"><div class="fase"><div class="k">S-4 a S-3</div><h3>Preparação</h3><p>Perfis nas redes, página com lista de espera, gravação do manifesto e dos três primeiros episódios.</p></div><div class="fase"><div class="k">S-2 a S-1</div><h3>Teaser</h3><p>Pôsteres sem marca, com a pergunta e um QR: “o que você queria criar?”.</p></div><div class="fase"><div class="k">S1 a S2</div><h3>Lançamento</h3><p>Revelação da marca, vídeo manifesto e episódios 1 e 2. Metade da verba de anúncios.</p></div><div class="fase"><div class="k">S3 a S8</div><h3>Sustentação</h3><p>Um episódio por semana, oficina na PUCPR na S4 e episódio 8 feito com uma ideia do público.</p></div><div class="fase"><div class="k">S9</div><h3>Avaliação</h3><p>Resultados contra as metas e decisão sobre a próxima temporada.</p></div></div>
+  <div class="kicker" style="margin-top:70px">Canais</div>
+  <div class="row" style="gap:26px"><div class="col"><h3 style="font-size:28px">Instagram</h3><p style="font-size:22px">Vitrine e principal canal de cadastro</p></div><div class="col"><h3 style="font-size:28px">TikTok</h3><p style="font-size:22px">Alcance fora de quem já segue</p></div><div class="col"><h3 style="font-size:28px">YouTube</h3><p style="font-size:22px">Shorts e anúncios em vídeo</p></div><div class="col"><h3 style="font-size:28px">LinkedIn e Behance</h3><p style="font-size:22px">O processo para quem já atua</p></div><div class="col"><h3 style="font-size:28px">Presencial</h3><p style="font-size:22px">Pôsteres, mural e oficina</p></div></div>
+  <div class="foot"><i></i>06 · Campanha · 13 semanas, contadas a partir do dia do lançamento</div>
+</section>
+
+<section class="s riso" style="padding-top:80px">
+  <h1 class="t" style="margin-bottom:30px"><span>Oito</span><b>episódios</b></h1>
+  <div class="g4"><div class="ep"><div class="k">01</div><h3>Rabisco → site</h3><p>“isso é um rabisco.”</p><p style="color:var(--texto);margin-top:8px">“…ou um site que ainda não aprendeu a rodar.”</p></div><div class="ep"><div class="k">02</div><h3>Frase → livro</h3><p>“toda história começa numa linha.”</p><p style="color:var(--texto);margin-top:8px">“a próxima pode ser de código.”</p></div><div class="ep"><div class="k">03</div><h3>Batida → música</h3><p>“você ouviu isso?”</p><p style="color:var(--texto);margin-top:8px">“era um app.”</p></div><div class="ep"><div class="k">04</div><h3>Cor → imagem</h3><p>“uma cor.”</p><p style="color:var(--texto);margin-top:8px">“mil imagens.”</p></div><div class="ep"><div class="k">05</div><h3>Foto → vídeo</h3><p>“e se a foto quisesse se mexer?”</p><p style="color:var(--texto);margin-top:8px">“agora ela quer.”</p></div><div class="ep"><div class="k">06</div><h3>Lista → sistema</h3><p>“sua bagunça tem lógica.”</p><p style="color:var(--texto);margin-top:8px">“só faltava virar sistema.”</p></div><div class="ep"><div class="k">07</div><h3>Ideia → software</h3><p>“e se tivesse um app que…”</p><p style="color:var(--texto);margin-top:8px">“você pode ser quem faz.”</p></div><div class="ep"><div class="k">08</div><h3>Sua ideia → ∞</h3><p>“você respondeu.”</p><p style="color:var(--texto);margin-top:8px">Uma ideia do público vira produto.</p></div></div>
+  <p class="small" style="margin-top:30px;font-size:23px">Cada episódio começa com um gancho e termina com uma virada. Todos fecham com a assinatura: “a base você já tem. o resto a gente te ensina.”</p>
+  <div class="foot"><i></i>06 · Campanha</div>
+</section>
+
+<section class="s riso">
+  <h1 class="t" style=""><span>Orçamento</span><b>e metas</b></h1>
+  <div class="row" style="gap:70px">
+    <div style="flex:1.2">
+      <table class="tb num"><tr><th>Item</th><th>Enxuto</th><th>Recomendado</th><th>Ampliado</th></tr>
+      <tr><td>Impressos</td><td>R$ 260</td><td>R$ 640</td><td>R$ 970</td></tr><tr><td>Domínio</td><td>R$ 40</td><td>R$ 40</td><td>R$ 40</td></tr><tr><td>Anúncios no Instagram</td><td>R$ 300</td><td>R$ 600</td><td>R$ 1.200</td></tr><tr><td>Anúncios no TikTok</td><td>R$ 150</td><td>R$ 300</td><td>R$ 700</td></tr><tr><td>Anúncios no YouTube</td><td>R$ 0</td><td>R$ 300</td><td>R$ 600</td></tr><tr><td>Oficina</td><td>R$ 0</td><td>R$ 100</td><td>R$ 150</td></tr>
+      <tr class="tot"><td>Total</td><td>R$ 750</td><td>R$ 1.980</td><td>R$ 3.660</td></tr></table>
+      <p class="small" style="margin-top:20px">A produção visual, a edição e a trilha são minhas. O gasto é só com impressão, domínio e anúncios.</p>
+    </div>
+    <div style="flex:1"><div class="stat" style="padding:22px 0"><div class="n" style="font-size:76px;min-width:260px">150</div><p style="font-size:25px">respostas a “o que você queria criar?” no teaser</p></div><div class="stat" style="padding:22px 0"><div class="n" style="font-size:76px;min-width:260px">30 mil</div><p style="font-size:25px">visualizações somadas no lançamento</p></div><div class="stat" style="padding:22px 0"><div class="n" style="font-size:76px;min-width:260px">500</div><p style="font-size:25px">cadastros na lista de espera até a semana 8</p></div><div class="stat" style="padding:22px 0"><div class="n" style="font-size:76px;min-width:260px">R$ 4</div><p style="font-size:25px">de custo máximo por cadastro vindo de anúncio</p></div><div class="stat" style="padding:22px 0"><div class="n" style="font-size:76px;min-width:260px">20</div><p style="font-size:25px">pessoas na oficina da PUCPR</p></div></div>
+  </div>
+  <div class="foot"><i></i>06 · Campanha</div>
+</section>
+
+<section class="s noite">
+  <h1 class="t"><span>Referências</span><b>citadas</b></h1>
+  <div class="mid">
+  <div class="row" style="gap:60px">
+    <ul class="ref col">
+      <li><strong>Dados de mercado.</strong> McKinsey & Company. <em>The State of AI</em>. 2025. · MIT NANDA. <em>The GenAI Divide</em>. 2025. · Gartner. Previsões sobre IA agêntica. 2025.</li>
+      <li><strong>Designers e criadores.</strong> Designer Fund, 2026. · Adobe, 2026. · Upwork, 2026. · GitHub Research, 2022. · Menlo Ventures. · Microsoft.</li>
+      <li><strong>Colaboração humano-IA.</strong> WEISZ, J. D. et al. <em>Design Principles for Generative AI Applications</em>. CHI 2024.</li>
+      <li><strong>Princípios e riscos.</strong> Princípios de design para IA generativa (Weisz et al.); sistema GSM (ACM, 2023). <strong>Riscos.</strong> <em>De-skilling, Cognitive Offloading, and Misplaced Responsibilities: Potential Ironies of AI-Assisted Design</em>.</li>
+      <li><strong>Pesquisa de campo.</strong> Entrevista E1 (Analista de Dados/BI) e questionário Google Forms (26–28 ago. 2026), conduzidos pelo autor.</li>
+    </ul>
+    <ul class="ref col">
+      <li><strong>Benchmarking de marca.</strong> Duolingo; Programa de Incorporação de Atletas de Alto Rendimento (PAAR); Patreon; PUCPR, <em>Território de Marca</em>, 2020.</li>
+      <li><strong>Benchmarking de estratégias.</strong> 39 fichas em 13 alvos, entre elas v0 (Vercel), muro dos boxes da F1, Bauhaus, The Odin Project, checklist cirúrgico da OMS e faixas do judô. Lista completa no cap. 6 do relatório.</li>
+      <li><strong>Referências de produto.</strong> Duolingo, Reddit, Udemy, Patreon, Gym Rats, Hotmart.</li>
+      <li><strong>Painel semântico.</strong> Ilustrações e cartazes de artistas reunidos no FigJam do projeto (créditos individuais a completar).</li>
+      <li><strong>Objetos de referência.</strong> Fotografias do Wikimedia Commons, com licenças Creative Commons e domínio público.</li>
+    </ul>
+  </div>
+  </div>
+  <div class="foot"><i></i>Fechamento</div>
+</section>
+
+<section class="s capa nofoot">
+  <div class="l" style="justify-content:center">
+    <h1 style="font-size:180px"><em>obri</em>gado.</h1>
+    <p class="lead" style="margin-top:40px">Bruno Higashi · Projeto VII · TCC</p>
+  </div>
+  <div class="r" style="width:640px">
+    <svg viewBox="0 0 640 1080" style="position:absolute;inset:0;width:100%;height:100%">
+      <g fill="none" stroke="#fff" stroke-width="10"><path d="M140 540 C140 400 300 400 320 540 C340 680 500 680 500 540 C500 400 340 400 320 540 C300 680 140 680 140 540Z"/></g>
+      <rect x="0" y="0" width="213" height="120" fill="#0B8FE0"/><rect x="213" y="0" width="213" height="120" fill="#FF48B0"/><rect x="426" y="0" width="214" height="120" fill="#F5EE4A"/><rect x="0" y="960" width="640" height="120" fill="#12A180"/>
+    </svg>
+  </div>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Relatório TCC — BASE8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+:root{
+  --branco:#fff; --noite:#1B1F3B; --rosa:#FF48B0; --verde:#12A180; --limao:#F5EE4A; --riso:#0B8FE0;
+  --texto:#18181b; --sec:#52525b; --ter:#71717a; --linha:#D5D7E0; --sup:#F1F2F6;
+  --c:var(--noite); --ink:var(--noite);
+}
+@page{size:1920px 1080px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#d9dbe2}
+body{font-family:Figtree,sans-serif;color:var(--texto);-webkit-print-color-adjust:exact;print-color-adjust:exact;counter-reset:pg}
+.s{width:1920px;height:1080px;background:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;margin:0 auto 40px;page-break-after:always;break-after:page;counter-increment:pg;padding:96px 120px 120px}
+.capa,.div{flex-direction:row}
+.mid{margin-top:auto;margin-bottom:auto}
+.pnw::after{color:#fff!important}
+.s>.t{flex:none}
+@media print{html,body{background:#fff}.s{margin:0}}
+.s.riso{--c:var(--riso);--ink:var(--riso)}
+.s.rosa{--c:var(--rosa);--ink:#E0329A}
+.s.limao{--c:var(--limao);--ink:var(--noite)}
+.s.verde{--c:var(--verde);--ink:var(--verde)}
+.s.noite{--c:var(--noite);--ink:var(--noite)}
+
+/* rodapé */
+.s:not(.nofoot)::after{content:counter(pg,decimal-leading-zero);position:absolute;right:120px;bottom:48px;font:500 18px/1 'JetBrains Mono',monospace;color:var(--ter)}
+.foot{position:absolute;left:120px;bottom:48px;font:500 15px/1 'Instrument Sans';letter-spacing:.18em;text-transform:uppercase;color:var(--ter);display:flex;gap:18px;align-items:center}
+.foot i{width:10px;height:10px;background:var(--c);display:inline-block}
+.s.limao .foot i{outline:1px solid #c9c23a}
+
+/* título duas linhas */
+.t{font-family:'Instrument Sans';text-transform:uppercase;color:var(--ink);line-height:.95;letter-spacing:-.005em;margin-bottom:44px}
+.t span{display:block;font-weight:400;font-size:64px}
+.t b{display:block;font-weight:700;font-size:64px}
+.s.limao .t{color:var(--noite)}
+.kicker{font:600 17px/1 'Instrument Sans';letter-spacing:.2em;text-transform:uppercase;color:var(--ink);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:12px;height:12px;background:var(--c)}
+p,li{font-size:27px;line-height:1.45;color:var(--sec);font-weight:400}
+strong{color:var(--texto);font-weight:600}
+.lead{font-size:30px;line-height:1.4;color:var(--texto);font-weight:400}
+.small{font-size:21px;line-height:1.45;color:var(--ter)}
+.mono{font-family:'JetBrains Mono',monospace}
+h3{font:600 27px/1.2 'Instrument Sans';color:var(--texto);margin-bottom:10px}
+ul.b{list-style:none}
+ul.b li{position:relative;padding-left:28px;margin-bottom:10px}
+ul.b li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;background:var(--c)}
+
+/* painel lateral colorido */
+.panel{position:absolute;top:0;right:0;bottom:0;width:560px;background:var(--c)}
+.panel.w420{width:420px}
+.panel svg{position:absolute;inset:0;width:100%;height:100%}
+.withpanel{width:1100px}
+
+/* grids */
+.row{display:flex;gap:40px}
+.col{flex:1}
+.card{background:var(--sup);padding:36px 36px;border-top:6px solid var(--c)}
+.card p{font-size:23px}
+.tag{display:inline-block;font:600 14px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;padding:8px 12px;background:var(--c);color:#fff;margin-bottom:16px}
+.s.limao .tag{color:var(--noite)}
+
+/* capa */
+.capa{padding:0;display:flex}
+.capa .l{flex:1;padding:110px 120px;display:flex;flex-direction:column;justify-content:space-between}
+.capa .r{width:760px;position:relative;background:var(--noite)}
+.capa h1{font:700 150px/.9 'Instrument Sans';letter-spacing:-.03em;color:var(--texto)}
+.capa h1 em{font-style:normal;font-weight:400}
+.logo8{display:inline-flex;align-items:center;gap:14px;font:700 54px/1 'Instrument Sans';letter-spacing:-.02em}
+.logo8 b{display:inline-grid;place-items:center;width:52px;height:60px;border:3px solid currentColor;border-radius:10px;font-size:36px;font-weight:500}
+
+/* divisor */
+.div{padding:0;display:flex;align-items:stretch}
+.div .l{flex:1;padding:120px;display:flex;flex-direction:column;justify-content:center}
+.div .num{font:700 220px/1 'Instrument Sans';color:var(--c);letter-spacing:-.04em}
+.div.limao .num{color:var(--noite)}
+.div h2{font:700 96px/.95 'Instrument Sans';text-transform:uppercase;color:var(--texto);margin:20px 0 30px}
+.div h2 span{font-weight:400;display:block}
+
+/* números */
+.stat{display:flex;align-items:center;gap:30px;padding:26px 0;border-bottom:1px solid var(--linha)}
+.stat .n{font:600 88px/1 'Instrument Sans';color:var(--ink);min-width:230px;letter-spacing:-.02em}
+.stat p{font-size:25px;flex:1}
+.stat .src{font:500 15px/1.3 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--ter);width:210px;text-align:right}
+
+/* timeline duplo diamante */
+.dd{display:flex;gap:0;margin-top:10px}
+.ph{flex:1;padding:0 34px 0 0;position:relative}
+.ph .dia{height:150px;position:relative;margin-bottom:34px}
+.ph .dia svg{width:100%;height:100%}
+.ph .st{font:600 15px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px;display:flex;gap:10px;align-items:center}
+.ph h3{font-size:34px;margin-bottom:4px}
+.ph .when{font:500 17px/1 'JetBrains Mono';color:var(--ter);margin-bottom:20px}
+.ph li{font-size:23px;margin-bottom:6px}
+.here{position:absolute;top:-58px;left:50%;transform:translateX(-50%);background:var(--noite);color:#fff;font:600 16px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;padding:12px 16px;white-space:nowrap}
+.here::after{content:"";position:absolute;left:50%;bottom:-10px;margin-left:-10px;border:10px solid transparent;border-bottom:0;border-top-color:var(--noite)}
+
+/* imagens */
+.shot{border:1px solid var(--linha);border-radius:18px;overflow:hidden;background:#fff;}
+.shot img{display:block;width:100%}
+.cap{font:500 15px/1.3 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--ter);margin-top:14px}
+.obj{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.obj figure{background:#fff}
+.obj .im{aspect-ratio:4/3;background:var(--sup);overflow:hidden}
+.obj img{width:100%;height:100%;object-fit:cover;display:block}
+.obj figcaption{padding-top:12px}
+.obj figcaption b{display:block;font:600 18px/1.2 'Instrument Sans';color:var(--texto);margin-bottom:4px}
+.obj figcaption span{font-size:16px;line-height:1.35;color:var(--sec);display:block}
+
+/* paleta */
+.pal{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:230px 230px;gap:0;border:1px solid var(--linha)}
+.sw{padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;color:#fff}
+.sw b{font:600 24px/1.1 'Instrument Sans'}
+.sw small{font:500 16px/1.3 'JetBrains Mono';opacity:.92}
+.sw em{font-style:normal;font:500 14px/1.2 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+
+/* canvas modelo de negócio */
+.lc{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:1fr 1fr 230px;gap:14px;height:740px}
+.lc>div{background:var(--sup);padding:22px 22px}
+.lc h4{font:600 14px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.lc p,.lc li{font-size:18px;line-height:1.4}
+.lc ul.b li{padding-left:18px;margin-bottom:6px}
+.lc ul.b li::before{width:7px;height:7px;top:.6em}
+.open{background:#fff!important;border:2px dashed var(--c)}
+
+.phones{display:flex;gap:30px;align-items:flex-start}
+.phone{width:318px;border-radius:30px;overflow:hidden;border:8px solid #18181b;background:#18181b}
+.phone img{display:block;width:100%;border-radius:22px}
+.ref li{font-size:21px;line-height:1.4;margin-bottom:8px;color:var(--sec)}
+
+.tb{width:100%;border-collapse:collapse}
+.tb th{font:600 17px/1.2 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-align:left;padding:0 18px 14px 0;border-bottom:2px solid var(--c)}
+.tb td{font-size:27px;line-height:1.3;color:var(--sec);padding:19px 22px 19px 0;border-bottom:1px solid var(--linha);vertical-align:top}
+.tb td:first-child{color:var(--texto);font-weight:600}
+.tb.num td:not(:first-child),.tb.num th:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-size:25px}
+.tb tr.tot td{color:var(--texto);font-weight:600;border-bottom:0;border-top:2px solid var(--c)}
+.bigs{display:grid;grid-template-columns:repeat(3,1fr);gap:0 60px}
+.bigs>div{padding:30px 0;border-top:1px solid rgba(255,255,255,.22)}
+.bigs .n{font:600 120px/1 'Instrument Sans';letter-spacing:-.03em;color:#fff}
+.bigs p{color:rgba(255,255,255,.78);font-size:25px;margin-top:10px}
+.s.escuro{background:var(--noite)}
+.s.escuro .t{color:#fff}.s.escuro .foot,.s.escuro::after{color:rgba(255,255,255,.6)!important}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.ep{background:var(--sup);padding:34px 30px 38px;border-top:6px solid var(--c)}
+.ep .k{font:500 16px/1 'JetBrains Mono',monospace;color:var(--ter);margin-bottom:12px}
+.ep h3{font-size:32px;margin-bottom:14px}
+.ep p{font-size:22px;line-height:1.4}
+.fase{flex:1;border-top:6px solid var(--c);padding-top:18px}
+.fase .k{font:500 17px/1 'JetBrains Mono',monospace;color:var(--ter);margin-bottom:10px}
+.fase h3{font-size:32px;margin-bottom:12px}.fase p{font-size:23px;line-height:1.4}
+.phone.sm{width:280px}
+
+.fig img{display:block;width:100%}
+.shot.fig{border-radius:8px}
+.figbox{display:flex;align-items:center;justify-content:center;background:var(--sup);border-radius:8px;overflow:hidden;padding:24px}
+.figbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.nota{margin-top:26px;max-width:1560px}
+.tb td{font-size:var(--tdsz,24px);padding:14px 22px 14px 0}
+.ep p{font-size:21px}
+.ep h3{font-size:28px}
+.s.escuro.noite,.s.escuro.riso,.s.escuro.rosa,.s.escuro.verde,.s.escuro.limao{background:var(--noite)}
+.s.escuro .kicker::before{background:var(--c)}
+.sum{columns:2;column-gap:120px;margin-top:10px}
+.sum div{display:flex;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid var(--linha);break-inside:avoid}
+.sum .k{font:600 22px/1 'JetBrains Mono',monospace;color:var(--ter);width:46px}
+.sum .n{font:600 27px/1.2 'Instrument Sans';color:var(--texto);flex:1;text-transform:uppercase;letter-spacing:.01em}
+.sum .p{font:500 22px/1 'JetBrains Mono',monospace;color:var(--ter)}
+.refs{columns:3;column-gap:56px}
+.refs p{font-size:14.5px;line-height:1.38;margin-bottom:9px;break-inside:avoid;color:var(--sec);overflow-wrap:anywhere}
+.refs2 p{font-size:14px;line-height:1.36;margin-bottom:9px;color:var(--sec);overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<section class="s div limao nofoot" data-cap="05"><div class="l"><div class="num">05</div><h2><span>Pergunta projetual</span>e DNA de marca</h2><p class="lead" style="max-width:900px">Fechamento da fase Define do Duplo Diamante: a pesquisa converge em uma pergunta, e a pergunta ganha um DNA de marca que orienta cada decisão.</p></div><div class="panel" style="position:relative;width:640px"><svg viewBox="0 0 640 1080"><rect x="120" y="200" width="180" height="180" fill="#1B1F3B"/><rect x="340" y="200" width="180" height="180" fill="#FF48B0"/><rect x="120" y="420" width="180" height="180" fill="#0B8FE0"/><rect x="340" y="420" width="180" height="180" fill="#12A180"/><rect x="120" y="640" width="400" height="200" fill="#fff"/></svg></div></section>
+<section class="s escuro limao"><div class="kicker" style="color:#fff">Pergunta projetual</div><div class="mid"><p style="font:600 72px/1.12 'Instrument Sans';color:#fff;max-width:1500px;letter-spacing:-.01em">Como posso potencializar as competências do designer e ampliar o alcance de sua atuação incorporando, por meio da IA de código, expertises técnicas que excedem sua formação?</p><p style="color:rgba(255,255,255,.75);font-size:28px;margin-top:40px;max-width:1300px">Potencializar, e não substituir. A IA de código é o meio, e não quem age. O que se incorpora é expertise técnica, e não conteúdo.</p></div><div class="foot"><i></i>05 · Pergunta projetual e DNA de marca</div></section>
+<section class="s limao "><h1 class="t"><span>Benchmarking</span><b>de DNA de marca</b></h1><p class="lead" style="max-width:1500px;margin-bottom:34px">Analisei quatro marcas, a distâncias diferentes do problema, no mesmo modelo: <strong>valor, quatro diretrizes, oito direcionamentos e personalidade</strong>.</p><table class="tb"><tr><th>Referência</th><th>Valor</th><th>Diretrizes</th><th>Personalidade</th></tr><tr><td>Duolingo</td><td>Acessibilidade</td><td>Gamificação, personalização, irreverência, comunidade</td><td>Otimista, acolhedora</td></tr><tr><td>PAAR</td><td>Incorporação</td><td>Representação, mérito, estabilidade, estrutura</td><td>Disciplinada, patriótica</td></tr><tr><td>Patreon</td><td>Independência</td><td>Autoria, proximidade, sustentação, pertencimento</td><td>Íntima, encorajadora</td></tr><tr><td>PUCPR</td><td>Questionamento</td><td>Conexão, humanismo, excelência, inovação</td><td>Calorosa, encorajadora</td></tr></table><p class="small nota">Recusas registradas: a entrada pelo resultado passado (PAAR) e a assinatura recorrente (Patreon).</p><div class="foot"><i></i>05 · Pergunta projetual e DNA de marca</div></section>
+<section class="s escuro limao"><div class="kicker" style="color:#fff">Valor central · POTENCIALIZAÇÃO</div><div class="mid"><p style="font:600 72px/1.12 'Instrument Sans';color:#fff;max-width:1500px;letter-spacing:-.01em">Fazer o designer entregar, com qualidade profissional, o que a sua formação sozinha não daria conta.</p><p style="color:rgba(255,255,255,.75);font-size:28px;margin-top:40px;max-width:1300px">Não é substituir o designer nem torná-lo programador. A competência central continua dele; o que muda é o entorno. Pergunta de mecanismo: como fazer a pessoa realizar algo que sozinha não conseguiria?</p></div><div class="foot"><i></i>05 · Pergunta projetual e DNA de marca</div></section>
+<section class="s limao">
+  <div style="display:flex;gap:80px;align-items:center;height:100%">
+    <div style="width:720px;flex:none"><svg viewBox="0 0 720 720" width="720" height="720"><path d="M191.7,191.7 A238,238 0 0 1 528.3,191.7 L454.8,265.2 A134,134 0 0 0 265.2,265.2Z" fill="#0B8FE0" fill-opacity="1" stroke="#fff" stroke-width="5"/><path id="r0" d="M228.5,228.5 A186.0,186.0 0 0 1 491.5,228.5" fill="none"/><text font-family="Instrument Sans" font-size="27" font-weight="700" fill="#fff" letter-spacing=".04em"><textPath href="#r0" startOffset="50%" text-anchor="middle" dominant-baseline="middle">HOLÍSTICA</textPath></text><path d="M111.1,111.1 A352,352 0 0 1 360.0,8.0 L360.0,122.0 A238,238 0 0 0 191.7,191.7Z" fill="#0B8FE0" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r1" d="M151.4,151.4 A295.0,295.0 0 0 1 360.0,65.0" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r1" startOffset="50%" text-anchor="middle" dominant-baseline="middle">sistêmica</textPath></text><path d="M360.0,8.0 A352,352 0 0 1 608.9,111.1 L528.3,191.7 A238,238 0 0 0 360.0,122.0Z" fill="#0B8FE0" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r2" d="M360.0,65.0 A295.0,295.0 0 0 1 568.6,151.4" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r2" startOffset="50%" text-anchor="middle" dominant-baseline="middle">prática</textPath></text><path d="M528.3,191.7 A238,238 0 0 1 528.3,528.3 L454.8,454.8 A134,134 0 0 0 454.8,265.2Z" fill="#12A180" fill-opacity="1" stroke="#fff" stroke-width="5"/><path id="r3" d="M491.5,228.5 A186.0,186.0 0 0 1 491.5,491.5" fill="none"/><text font-family="Instrument Sans" font-size="27" font-weight="700" fill="#fff" letter-spacing=".04em"><textPath href="#r3" startOffset="50%" text-anchor="middle" dominant-baseline="middle">ACESSIBILIDADE</textPath></text><path d="M608.9,111.1 A352,352 0 0 1 712.0,360.0 L598.0,360.0 A238,238 0 0 0 528.3,191.7Z" fill="#12A180" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r4" d="M568.6,151.4 A295.0,295.0 0 0 1 655.0,360.0" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r4" startOffset="50%" text-anchor="middle" dominant-baseline="middle">personalizada</textPath></text><path d="M712.0,360.0 A352,352 0 0 1 608.9,608.9 L528.3,528.3 A238,238 0 0 0 598.0,360.0Z" fill="#12A180" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r5" d="M655.0,360.0 A295.0,295.0 0 0 1 568.6,568.6" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r5" startOffset="50%" text-anchor="middle" dominant-baseline="middle">progressiva</textPath></text><path d="M528.3,528.3 A238,238 0 0 1 191.7,528.3 L265.2,454.8 A134,134 0 0 0 454.8,454.8Z" fill="#FF48B0" fill-opacity="1" stroke="#fff" stroke-width="5"/><path id="r6" d="M228.5,491.5 A186.0,186.0 0 0 0 491.5,491.5" fill="none"/><text font-family="Instrument Sans" font-size="27" font-weight="700" fill="#fff" letter-spacing=".04em"><textPath href="#r6" startOffset="50%" text-anchor="middle" dominant-baseline="middle">CONEXÃO</textPath></text><path d="M608.9,608.9 A352,352 0 0 1 360.0,712.0 L360.0,598.0 A238,238 0 0 0 528.3,528.3Z" fill="#FF48B0" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r7" d="M360.0,655.0 A295.0,295.0 0 0 0 568.6,568.6" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r7" startOffset="50%" text-anchor="middle" dominant-baseline="middle">coletividade</textPath></text><path d="M360.0,712.0 A352,352 0 0 1 111.1,608.9 L191.7,528.3 A238,238 0 0 0 360.0,598.0Z" fill="#FF48B0" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r8" d="M151.4,568.6 A295.0,295.0 0 0 0 360.0,655.0" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r8" startOffset="50%" text-anchor="middle" dominant-baseline="middle">profissional</textPath></text><path d="M191.7,528.3 A238,238 0 0 1 191.7,191.7 L265.2,265.2 A134,134 0 0 0 265.2,454.8Z" fill="#F5EE4A" fill-opacity="1" stroke="#fff" stroke-width="5"/><path id="r9" d="M228.5,491.5 A186.0,186.0 0 0 1 228.5,228.5" fill="none"/><text font-family="Instrument Sans" font-size="27" font-weight="700" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r9" startOffset="50%" text-anchor="middle" dominant-baseline="middle">INOVAÇÃO</textPath></text><path d="M111.1,608.9 A352,352 0 0 1 8.0,360.0 L122.0,360.0 A238,238 0 0 0 191.7,528.3Z" fill="#F5EE4A" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r10" d="M151.4,568.6 A295.0,295.0 0 0 1 65.0,360.0" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r10" startOffset="50%" text-anchor="middle" dominant-baseline="middle">ousado</textPath></text><path d="M8.0,360.0 A352,352 0 0 1 111.1,111.1 L191.7,191.7 A238,238 0 0 0 122.0,360.0Z" fill="#F5EE4A" fill-opacity="0.38" stroke="#fff" stroke-width="5"/><path id="r11" d="M65.0,360.0 A295.0,295.0 0 0 1 151.4,151.4" fill="none"/><text font-family="Instrument Sans" font-size="25" font-weight="600" fill="#1B1F3B" letter-spacing=".04em"><textPath href="#r11" startOffset="50%" text-anchor="middle" dominant-baseline="middle">gamificado</textPath></text><circle cx="360" cy="360" r="128" fill="#1B1F3B"/><text x="360" y="346" text-anchor="middle" font-family="JetBrains Mono" font-size="15" fill="#fff" fill-opacity=".7" letter-spacing=".18em">VALOR CENTRAL</text><text x="360" y="382" text-anchor="middle" font-family="Instrument Sans" font-size="23" font-weight="700" fill="#fff">POTENCIALIZAÇÃO</text></svg></div>
+    <div style="flex:1">
+      <h1 class="t"><span>Quatro pilares,</span><b>oito vertentes</b></h1>
+      <p class="lead" style="margin-bottom:30px">O DNA é uma <strong>síntese</strong> das quatro referências, e não uma escolha entre elas.</p>
+      <ul class="b">
+        <li style="--c:#0B8FE0;font-size:23px"><strong>Holística:</strong> conduzir um projeto inteiro em outra área, vendo o todo.</li>
+        <li style="--c:#12A180;font-size:23px"><strong>Acessibilidade:</strong> entrar em uma área técnica sem baixar o teto de competência.</li>
+        <li style="--c:#FF48B0;font-size:23px"><strong>Conexão:</strong> tirar o designer do aprendizado solitário e ligá-lo ao mercado.</li>
+        <li style="--c:#F5EE4A;font-size:23px"><strong>Inovação:</strong> resolver por um caminho que o setor não segue, e mantê-lo.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><i></i>05 · Pergunta projetual e DNA de marca</div>
+</section>
+<section class="s limao "><h1 class="t"><span>Personalidade:</span><b>encorajador e didático</b></h1><p class="lead" style="max-width:1500px;margin-bottom:34px">Os dois adjetivos funcionam como <strong>filtros</strong>: cada um descarta um conjunto de soluções.</p><div class="row" style="gap:56px"><div class="col"><div class="kicker">Encorajador</div><p style="font-size:23px;margin-bottom:16px">O problema do designer pode ser resolvido agora, com o repertório que ele já tem. Por isso, recusei o <strong>portão de fundamentos</strong>, que exige o geral antes do específico.</p></div><div class="col"><div class="kicker">Didático</div><p style="font-size:23px;margin-bottom:16px">A explicação vem junto com a entrega. Sem o “como”, o designer não consegue <strong>revisar o resultado</strong>, e a pesquisa mostrou que essa revisão é indispensável.</p></div></div><div class="foot"><i></i>05 · Pergunta projetual e DNA de marca</div></section>
+<script>
+document.fonts.ready.then(()=>{document.querySelectorAll('section.s').forEach((s,i)=>{
+  const r=s.getBoundingClientRect(); let estouro=s.scrollHeight>s.clientHeight+2||s.scrollWidth>s.clientWidth+2;
+  s.querySelectorAll('*').forEach(e=>{const b=e.getBoundingClientRect(); if(b.height&&b.bottom>r.bottom-40&&!e.closest('.foot')&&!e.closest('.panel')&&!s.classList.contains('div')&&!s.classList.contains('capa')) estouro=true;});
+  if(estouro) s.setAttribute('data-estouro','1');
+}); document.body.setAttribute('data-ok','1');});
+</script>
+</body>
+</html>
