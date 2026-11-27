@@ -20,6 +20,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
 export const metadata: Metadata = {
   title: {
     default: "BASE8",
@@ -44,7 +46,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ThemeRouteSync />
         {children}
         <Toaster />
-        <ViewportSwitcher />
+        {/* Ferramenta de protótipo: só no `next dev`, nunca no site publicado. */}
+        {isDevelopment && <ViewportSwitcher />}
       </body>
     </html>
   );
