@@ -4,13 +4,17 @@ import { Geist_Mono } from "next/font/google";
 import { NavigationProgress } from "@/components/navigation-progress";
 import { navInitScript } from "@/components/side-nav-init";
 import { themeInitScript } from "@/components/theme-init";
+import { ThemeRouteSync } from "@/components/theme-route-sync";
 import { Toaster } from "@/components/ui/toast";
 import { ViewportSwitcher } from "@/components/viewport-switcher";
 import { hubFontClasses } from "@/lib/fonts";
 
 import "./globals.css";
 
-/** Só para trechos de código; o texto do site usa Figtree e Instrument Sans. */
+/**
+ * Só para o efeito ASCII da landing (canvas, `lib/ascii-engine.ts`). Não usar
+ * em texto: o site usa Instrument Sans e Figtree, como no brandbook.
+ */
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -37,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body>
         <NavigationProgress />
+        <ThemeRouteSync />
         {children}
         <Toaster />
         <ViewportSwitcher />

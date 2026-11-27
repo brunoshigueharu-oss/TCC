@@ -3,6 +3,8 @@
 import { MotionConfig, motion } from "motion/react";
 import type { ReactNode } from "react";
 
+import { EASE_OUT } from "@/lib/motion";
+
 type RevealProps = {
   children: ReactNode;
   /** Atraso (s), para escalonar itens de uma mesma lista. */
@@ -10,18 +12,18 @@ type RevealProps = {
   className?: string;
 };
 
-/** Curva padrão do site (docs/direcao-visual.md). */
-const EASE_OUT = [0.22, 1, 0.36, 1] as const;
-
 /**
  * Entrada na rolagem: o bloco sobe 16px e aparece uma única vez, quando entra
- * na tela. Com `prefers-reduced-motion`, o motion corta o deslocamento e
- * mantém só o fade.
+ * na tela. O estado inicial (invisível) vem como estilo inline do servidor;
+ * `data-reveal` deixa o `globals.css` mostrar o bloco já pronto para quem pede
+ * menos movimento e quando o JavaScript não roda, para nenhum texto ficar
+ * escondido esperando uma animação que não vai acontecer.
  */
 export function Reveal({ children, delay = 0, className }: RevealProps) {
   return (
     <MotionConfig reducedMotion="user">
       <motion.div
+        data-reveal
         className={className}
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -4,9 +4,7 @@ import { animate, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
 import { formatCompact, formatNumber, formatTwoDigits } from "@/lib/format";
-
-/** Curva padrão do hub (ver `docs/direcao-visual.md`). */
-export const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+import { EASE_OUT } from "@/lib/motion";
 
 const formatters = {
   number: formatNumber,

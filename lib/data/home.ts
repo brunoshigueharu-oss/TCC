@@ -41,6 +41,10 @@ const homeSchema = z.object({
     firstName: z.string(),
     level: z.number().int().positive(),
     xp: z.number().int().nonnegative(),
+    /** Foto de perfil escolhida pela pessoa. Sem foto, mostra a inicial. */
+    photoUrl: z.string().optional(),
+    /** Imagem de fundo do topo da Home, escolhida pela pessoa. */
+    coverUrl: z.string().optional(),
   }),
   dailyGoal: z.object({
     done: z.number().int().nonnegative(),
@@ -60,7 +64,7 @@ export const homeData: HomeData = homeSchema.parse({
   today: { weekday: "Sexta-feira", dateLabel: "13 nov 2026" },
   studyMinutes: 96,
   answersGiven: 2,
-  user: { firstName: "Marina", level: 3, xp: 1240 },
+  user: { firstName: "Marina", level: 3, xp: 1240, coverUrl: "/inicio/capa-marina-miku.jpg" },
   dailyGoal: { done: 2, target: 3 },
   weeklyXp: { xp: 320, friendsRank: 4 },
   openQuestions: [

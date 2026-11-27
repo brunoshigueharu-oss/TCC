@@ -18,9 +18,12 @@ export default async function HomePage() {
     <div className="flex flex-1 flex-col">
       <HomeGreeting
         firstName={user.firstName}
+        level={user.level}
+        xp={user.xp}
+        photoUrl={user.photoUrl}
+        coverUrl={user.coverUrl}
         weekday={today.weekday}
         dateLabel={today.dateLabel}
-        lessonTitle={currentLesson?.lesson.title ?? null}
       />
       <main className="flex flex-col gap-6 pb-10 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 lg:gap-y-10 lg:pb-0">
         {currentLesson ? <NextStep current={currentLesson} /> : null}

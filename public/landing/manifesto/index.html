@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BASE8 · Manifesto</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #fff; overflow: hidden; }
+  canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+</style>
+</head>
+<body>
+<!-- Cópia do filme de Videos/films/base8-manifesto (film.js + assets), tocada ao vivo na landing, sem render.
+     Sem parâmetro: toca em loop e sem som (a prévia do palco).
+     Com ?controlado: não toca sozinha; quem abre (o player "Assistir com som") chama renderOut(t) no ritmo da trilha. -->
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+  // Sem o desfoque de movimento (várias amostras por quadro): pesado demais para tocar em tempo real.
+  window.VH_BLUR = false;
+</script>
+<script src="film.js"></script>
+<script>
+  (function () {
+    var DURATION = 38;
+    /** Quem pede menos movimento vê só o quadro final, com a logo. */
+    var STILL_AT = 37.5;
+    var isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var startedAt = 0;
+    function tick(now) {
+      if (!startedAt) startedAt = now;
+      window.renderOut(((now - startedAt) / 1000) % DURATION);
+      requestAnimationFrame(tick);
+    }
+    var isControlled = new URLSearchParams(location.search).has("controlado");
+    function start() {
+      if (!window.READY) return setTimeout(start, 50);
+      if (isControlled) return window.renderOut(0);
+      if (isReduced) window.renderOut(STILL_AT);
+      else requestAnimationFrame(tick);
+    }
+    start();
+  })();
+</script>
+</body>
+</html>

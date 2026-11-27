@@ -10,6 +10,7 @@
  */
 
 import { FRAME_SECONDS, startAsciiScene, vividHsl, type AsciiScene, type Pose, type Rgb } from "./ascii-engine";
+import { easeInOutQuad } from "./motion";
 
 type BloomPreset = {
   /** Largura dos quadros guardados (a altura segue a proporção do vídeo). */
@@ -94,9 +95,9 @@ export type AsciiBloomOptions = {
   src: string;
   /** Fundo da página: claro (padrão) ou escuro. */
   page?: BloomPage;
+  /** Margem do canvas em volta da flor (ver `AsciiStageOptions.bleed`). */
+  bleed?: number;
 };
-
-const easeInOut = (u: number) => (u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
 
 /** Brilho quase sem cor vira cinza frio, para não sumir no fundo branco. */
 function neutralizeHighlights(rgb: Rgb) {
@@ -141,16 +142,21 @@ function bloomScene(preset: BloomPreset, page: BloomPage): AsciiScene {
       if (!isDark) neutralizeHighlights(out);
     },
     staticPose: { t: clip.to, rot: 0 },
-    createClock: () => (now, elapsedMs): Pose => {
-      const rot = BLOOM.sway * (Math.sin((now / BLOOM.swayMs) * 6.283) + 0.35 * Math.sin((now / (BLOOM.swayMs * 0.43)) * 6.283 + 1.3));
-      const e = elapsedMs - BLOOM.budMs;
-      if (e < 0) return { t: clip.from, rot };
-      const c = e % cycle;
-      if (c < playMs) return { t: clip.from + (c / 1000) * BLOOM.speed, rot };
-      if (c < playMs + BLOOM.openMs) return { t: clip.to, rot };
-      if (c < playMs + BLOOM.openMs + BLOOM.closeMs) return { t: clip.to - len * easeInOut((c - playMs - BLOOM.openMs) / BLOOM.closeMs), rot };
-      return { t: clip.from, rot };
-    },
+    createClock:
+      () =>
+      (now, elapsedMs): Pose => {
+        const rot =
+          BLOOM.sway *
+          (Math.sin((now / BLOOM.swayMs) * 6.283) + 0.35 * Math.sin((now / (BLOOM.swayMs * 0.43)) * 6.283 + 1.3));
+        const e = elapsedMs - BLOOM.budMs;
+        if (e < 0) return { t: clip.from, rot };
+        const c = e % cycle;
+        if (c < playMs) return { t: clip.from + (c / 1000) * BLOOM.speed, rot };
+        if (c < playMs + BLOOM.openMs) return { t: clip.to, rot };
+        if (c < playMs + BLOOM.openMs + BLOOM.closeMs)
+          return { t: clip.to - len * easeInOutQuad((c - playMs - BLOOM.openMs) / BLOOM.closeMs), rot };
+        return { t: clip.from, rot };
+      },
   };
 }
 
@@ -172,6 +178,6 @@ export function bloomSceneFor(flower: BloomFlower, page: BloomPage = "light") {
  * Liga a animação no canvas. Devolve a função que desliga tudo (quadros
  * guardados, observadores e o laço de desenho).
  */
-export function startAsciiBloom(canvas: HTMLCanvasElement, { flower, src, page = "light" }: AsciiBloomOptions) {
-  return startAsciiScene(canvas, bloomSceneFor(flower, page), src);
+export function startAsciiBloom(canvas: HTMLCanvasElement, { flower, src, page = "light", bleed }: AsciiBloomOptions) {
+  return startAsciiScene(canvas, bloomSceneFor(flower, page), src, { bleed });
 }

@@ -5,16 +5,14 @@ import { cn } from "@/lib/utils";
 type BrandMarkProps = {
   href: string;
   className?: string;
-  /** Só o monograma (o "8" no quadrado), para espaços estreitos. */
+  /** Só o "8", para espaços estreitos. */
   compact?: boolean;
 };
 
 /**
- * Marca tipográfica do BASE8: "BASE" em Instrument Sans apertado e o "8" em
- * mono dentro de um quadrado de linha fina — o algarismo como unidade, como
- * num dígito de contador. Usa só `texto`/`fundo`, então inverte com o tema.
- * Na barra lateral recolhida (variante `nav-recolhida`), o "BASE" some e fica
- * o monograma.
+ * Marca tipográfica do BASE8: a palavra inteira em Instrument Sans apertado,
+ * sem moldura. Usa só `texto`, então inverte com o tema. Na barra lateral
+ * recolhida (variante `nav-recolhida`), o "BASE" some e fica o "8".
  */
 export function BrandMark({ href, className, compact = false }: BrandMarkProps) {
   return (
@@ -22,23 +20,12 @@ export function BrandMark({ href, className, compact = false }: BrandMarkProps) 
       href={href}
       aria-label="BASE8"
       className={cn(
-        "group/brand flex min-h-11 w-fit items-center gap-1.5 rounded-lg text-texto outline-none focus-visible:ring-2 focus-visible:ring-texto focus-visible:ring-offset-4 focus-visible:ring-offset-fundo",
+        "flex min-h-11 w-fit items-center rounded-lg text-texto outline-none transition-opacity duration-200 hover:opacity-70 focus-visible:ring-2 focus-visible:ring-texto focus-visible:ring-offset-4 focus-visible:ring-offset-fundo",
         className,
       )}
     >
-      {compact ? null : (
-        <span
-          aria-hidden
-          className="font-display text-[17px] leading-none font-semibold tracking-[-0.04em] nav-recolhida:hidden"
-        >
-          BASE
-        </span>
-      )}
-      <span
-        aria-hidden
-        className="flex size-[22px] items-center justify-center rounded-[5px] border border-texto font-mono text-[13px] leading-none font-medium transition-colors duration-200 group-hover/brand:bg-texto group-hover/brand:text-fundo"
-      >
-        8
+      <span aria-hidden className="font-display text-[17px] leading-none font-semibold tracking-[-0.04em]">
+        {compact ? null : <span className="nav-recolhida:hidden">BASE</span>}8
       </span>
     </Link>
   );

@@ -27,8 +27,8 @@ export function ActivityBrief({ activity }: ActivityBriefProps) {
           <figcaption className="text-xs font-semibold text-texto-secundario">
             Código gerado pela IA
           </figcaption>
-          <pre className="overflow-x-auto rounded-xl bg-superficie p-3 font-mono text-[13px] leading-relaxed">
-            <code>{activity.codeSample}</code>
+          <pre className="overflow-x-auto rounded-xl bg-superficie p-3 font-code text-[13px] leading-relaxed">
+            <code className="font-code">{activity.codeSample}</code>
           </pre>
         </figure>
       ) : null}

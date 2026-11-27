@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { EASE_OUT } from "../motion/count-up";
+import { EASE_OUT } from "@/lib/motion";
 
 /** Cores de série disponíveis (classe literal: o Tailwind não lê nomes montados). */
 const seriesBg = {
@@ -55,7 +55,10 @@ export function DayBars({ days, axisMax, axisLabels, label }: DayBarsProps) {
 
   return (
     <div className="flex gap-3">
-      <div aria-hidden className="flex h-36 flex-col justify-between pb-0 font-mono text-[10px] leading-none text-texto-secundario tabular-nums">
+      <div
+        aria-hidden
+        className="flex h-36 flex-col justify-between pb-0 font-mono text-[10px] leading-none text-texto-secundario tabular-nums"
+      >
         <span className="-translate-y-1/2">{axisLabels.top}</span>
         <span>{axisLabels.middle}</span>
         <span className="translate-y-1/2">0</span>
@@ -93,7 +96,8 @@ export function DayBars({ days, axisMax, axisLabels, label }: DayBarsProps) {
                             className={cn(
                               "block min-h-0 w-full basis-0 ring-texto transition-shadow group-focus-visible/bar:ring-1",
                               seriesBg[segment.color],
-                              segmentIndex === day.segments.findLastIndex((item) => item.value > 0) && "rounded-t-[3px]",
+                              segmentIndex === day.segments.findLastIndex((item) => item.value > 0) &&
+                                "rounded-t-[3px]",
                             )}
                             initial={false}
                             animate={{ flexGrow: segment.value }}
@@ -116,14 +120,19 @@ export function DayBars({ days, axisMax, axisLabels, label }: DayBarsProps) {
                         </span>
                         {hasSeries && !day.isFuture
                           ? day.segments.map((segment) => (
-                              <span key={segment.name} className="flex items-center gap-1.5 text-[11px] text-texto-secundario">
+                              <span
+                                key={segment.name}
+                                className="flex items-center gap-1.5 text-[11px] text-texto-secundario"
+                              >
                                 <span aria-hidden className={cn("h-0.5 w-2.5 rounded-full", seriesBg[segment.color])} />
                                 <span className="font-mono text-texto tabular-nums">{segment.valueLabel}</span>
                                 {segment.name}
                               </span>
                             ))
                           : null}
-                        <span className="text-[11px] text-texto-secundario">{day.isToday ? `${day.label} · hoje` : day.label}</span>
+                        <span className="text-[11px] text-texto-secundario">
+                          {day.isToday ? `${day.label} · hoje` : day.label}
+                        </span>
                       </span>
                     </motion.span>
                   </button>

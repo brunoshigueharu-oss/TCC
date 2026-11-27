@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { DAILY_GOAL_MAX, DAILY_GOAL_MIN } from "@/lib/data/home";
 import { formatTwoDigits } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { EASE_OUT } from "../../perfil/_components/motion/count-up";
+import { EASE_OUT } from "@/lib/motion";
 import { updateDailyGoal } from "../_actions/update-daily-goal";
 
 type DailyGoalProps = {
@@ -60,7 +60,12 @@ export function DailyGoal({ done, initialTarget, remainingLessons, averageMinute
 
   return (
     <section aria-labelledby="meta-do-dia" className="flex flex-col lg:col-span-4">
-      <SectionHeading id="meta-do-dia" title="Meta de hoje" tone="pratica" meta={isComplete ? "cumprida" : "em curso"} />
+      <SectionHeading
+        id="meta-do-dia"
+        title="Meta de hoje"
+        tone="pratica"
+        meta={isComplete ? "cumprida" : "em curso"}
+      />
 
       <div className="flex flex-col gap-6 px-4 pt-6 pb-7 lg:px-0 lg:pt-8">
         <div className="flex items-end justify-between gap-4">
@@ -115,7 +120,10 @@ export function DailyGoal({ done, initialTarget, remainingLessons, averageMinute
               initial={shouldReduceMotion ? false : { opacity: 0, scaleX: 0.4 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ duration: 0.3, ease: EASE_OUT }}
-              className={cn("h-1.5 flex-1 origin-left rounded-full", index < done ? "bg-pratica" : "bg-superficie-forte")}
+              className={cn(
+                "h-1.5 flex-1 origin-left rounded-full",
+                index < done ? "bg-pratica" : "bg-superficie-forte",
+              )}
             />
           ))}
         </div>

@@ -9,9 +9,11 @@ export const THEME_STORAGE_KEY = "base8-tema";
 export const DARK_CLASS = "dark";
 export const THEME_EVENT = "base8-tema-mudou";
 
+/** Rotas sempre no tema claro (a landing): o modo noite é só do hub. */
+export const LIGHT_ONLY_PATHS = ["/"];
+
 /**
  * Roda antes da primeira pintura (no `<head>`): aplica o tema salvo ou, sem
  * escolha salva, o do sistema — evita o clarão branco ao abrir no escuro.
  */
-export const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");var d=t?t==="escuro":matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("${DARK_CLASS}",d)}catch(e){}})()`;
-
+export const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");var d=${JSON.stringify(LIGHT_ONLY_PATHS)}.indexOf(location.pathname)<0&&(t?t==="escuro":matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("${DARK_CLASS}",d)}catch(e){}})()`;

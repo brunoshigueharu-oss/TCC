@@ -22,7 +22,7 @@ export function GeneratedCode({ lines }: GeneratedCodeProps) {
       tabIndex={0}
       className="max-h-[420px] overflow-auto rounded-xl border border-linha bg-fundo py-3 outline-none focus-visible:ring-2 focus-visible:ring-texto"
     >
-      <ol className="min-w-max font-mono text-[12.5px] leading-[1.7]">
+      <ol className="min-w-max font-code text-[12.5px] leading-[1.7]">
         {lines.map((line, index) => (
           <li key={`${index}-${line.text}`} className="relative flex gap-4 pr-4 pl-3">
             <motion.span

@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { toneBg, type Tone } from "@/lib/tones";
 import { cn } from "@/lib/utils";
-import { EASE_OUT } from "./count-up";
+import { EASE_OUT } from "@/lib/motion";
 
 export type SegmentState = "done" | "current" | "todo";
 

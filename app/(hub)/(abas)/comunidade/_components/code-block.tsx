@@ -15,9 +15,9 @@ type CodeBlockProps = {
 };
 
 /**
- * Bloco de prompt ou de código: barra com o rótulo em mono e "Copiar", linhas
- * numeradas e texto em Geist Mono. Prompts quebram linha; código rola na
- * horizontal para não mexer na indentação.
+ * Bloco de prompt ou de código: barra com o rótulo e "Copiar", linhas
+ * numeradas; prompt em Figtree, código em `font-code`. Prompts quebram
+ * linha; código rola na horizontal para não mexer na indentação.
  */
 export function CodeBlock({ snippet, className }: CodeBlockProps) {
   const [isCopied, setIsCopied] = useState(false);
@@ -80,7 +80,7 @@ export function CodeBlock({ snippet, className }: CodeBlockProps) {
           isPrompt ? "whitespace-pre-wrap" : "overflow-x-auto",
         )}
       >
-        <code className="grid grid-cols-[auto_minmax(0,1fr)]">
+        <code className={cn("grid grid-cols-[auto_minmax(0,1fr)]", !isPrompt && "font-code")}>
           {lines.map((line, index) => (
             <span key={index} className="contents">
               <span
